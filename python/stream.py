@@ -3,35 +3,47 @@
 #
 # Do not make changes to this file unless you know what you are doing--modify
 # the SWIG interface file instead.
+from __future__ import annotations
 
+from random import uniform
 from sys import version_info as _swig_python_version_info
+
+from numpy import empty_like
+
 if _swig_python_version_info >= (2, 7, 0):
+
     def swig_import_helper():
         import importlib
-        pkg = __name__.rpartition('.')[0]
-        mname = '.'.join((pkg, '_stream')).lstrip('.')
+
+        pkg = __name__.rpartition(".")[0]
+        mname = ".".join((pkg, "_stream")).lstrip(".")
         try:
             return importlib.import_module(mname)
         except ImportError:
-            return importlib.import_module('_stream')
+            return importlib.import_module("_stream")
+
     _stream = swig_import_helper()
     del swig_import_helper
 elif _swig_python_version_info >= (2, 6, 0):
+
     def swig_import_helper():
         from os.path import dirname
         import imp
+
         fp = None
         try:
-            fp, pathname, description = imp.find_module('_stream', [dirname(__file__)])
+            fp, pathname, description = imp.find_module("_stream", [dirname(__file__)])
         except ImportError:
             import _stream
+
             return _stream
         try:
-            _mod = imp.load_module('_stream', fp, pathname, description)
+            _mod = imp.load_module("_stream", fp, pathname, description)
         finally:
             if fp is not None:
                 fp.close()
         return _mod
+
     _stream = swig_import_helper()
     del swig_import_helper
 else:
@@ -48,17 +60,18 @@ try:
 except ImportError:
     import __builtin__
 
+
 def _swig_setattr_nondynamic(self, class_type, name, value, static=1):
-    if (name == "thisown"):
+    if name == "thisown":
         return self.this.own(value)
-    if (name == "this"):
-        if type(value).__name__ == 'SwigPyObject':
+    if name == "this":
+        if type(value).__name__ == "SwigPyObject":
             self.__dict__[name] = value
             return
     method = class_type.__swig_setmethods__.get(name, None)
     if method:
         return method(self, value)
-    if (not static):
+    if not static:
         if _newclass:
             object.__setattr__(self, name, value)
         else:
@@ -72,12 +85,12 @@ def _swig_setattr(self, class_type, name, value):
 
 
 def _swig_getattr(self, class_type, name):
-    if (name == "thisown"):
+    if name == "thisown":
         return self.this.own()
     method = class_type.__swig_getmethods__.get(name, None)
     if method:
         return method(self)
-    raise AttributeError("'%s' object has no attribute '%s'" % (class_type.__name__, name))
+    raise AttributeError(f"'{class_type.__name__}' object has no attribute '{name}'")
 
 
 def _swig_repr(self):
@@ -85,21 +98,31 @@ def _swig_repr(self):
         strthis = "proxy of " + self.this.__repr__()
     except __builtin__.Exception:
         strthis = ""
-    return "<%s.%s; %s >" % (self.__class__.__module__, self.__class__.__name__, strthis,)
+    return f"<{self.__class__.__module__}.{self.__class__.__name__}; {strthis} >"
+
 
 try:
     _object = object
     _newclass = 1
 except __builtin__.Exception:
+
     class _object:
         pass
+
     _newclass = 0
+
 
 class _vector(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, _vector, name, value)
+
+    def __setattr__(self, name, value):
+        return _swig_setattr(self, _vector, name, value)
+
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, _vector, name)
+
+    def __getattr__(self, name):
+        return _swig_getattr(self, _vector, name)
+
     __repr__ = _swig_repr
     __swig_setmethods__["x"] = _stream._vector_x_set
     __swig_getmethods__["x"] = _stream._vector_x_get
@@ -116,16 +139,28 @@ class _vector(_object):
             self.this.append(this)
         except __builtin__.Exception:
             self.this = this
+
     __swig_destroy__ = _stream.delete__vector
-    __del__ = lambda self: None
+
+    def __del__(self):
+        return None
+
+
 _vector_swigregister = _stream._vector_swigregister
 _vector_swigregister(_vector)
 
+
 class _tensor(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, _tensor, name, value)
+
+    def __setattr__(self, name, value):
+        return _swig_setattr(self, _tensor, name, value)
+
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, _tensor, name)
+
+    def __getattr__(self, name):
+        return _swig_getattr(self, _tensor, name)
+
     __repr__ = _swig_repr
     __swig_setmethods__["x"] = _stream._tensor_x_set
     __swig_getmethods__["x"] = _stream._tensor_x_get
@@ -142,24 +177,42 @@ class _tensor(_object):
             self.this.append(this)
         except __builtin__.Exception:
             self.this = this
+
     __swig_destroy__ = _stream.delete__tensor
-    __del__ = lambda self: None
+
+    def __del__(self):
+        return None
+
+
 _tensor_swigregister = _stream._tensor_swigregister
 _tensor_swigregister(_tensor)
 
 
 def init_grid(n):
     return _stream.init_grid(n)
+
+
 init_grid = _stream.init_grid
+
 
 def free_grid():
     return _stream.free_grid()
+
+
 free_grid = _stream.free_grid
+
+
 class _origin(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, _origin, name, value)
+
+    def __setattr__(self, name, value):
+        return _swig_setattr(self, _origin, name, value)
+
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, _origin, name)
+
+    def __getattr__(self, name):
+        return _swig_getattr(self, _origin, name)
+
     __repr__ = _swig_repr
     __swig_setmethods__["x"] = _stream._origin_x_set
     __swig_getmethods__["x"] = _stream._origin_x_get
@@ -180,88 +233,125 @@ class _origin(_object):
             self.this.append(this)
         except __builtin__.Exception:
             self.this = this
+
     __swig_destroy__ = _stream.delete__origin
-    __del__ = lambda self: None
+
+    def __del__(self):
+        return None
+
+
 _origin_swigregister = _stream._origin_swigregister
 _origin_swigregister(_origin)
 
 
 def origin(p):
     return _stream.origin(p)
+
+
 origin = _stream.origin
+
 
 def size(L):
     return _stream.size(L)
+
+
 size = _stream.size
+
 
 def py_scalar_init(s, f):
     return _stream.py_scalar_init(s, f)
+
+
 py_scalar_init = _stream.py_scalar_init
+
 
 def py_register_event(action, i, t):
     return _stream.py_register_event(action, i, t)
+
+
 py_register_event = _stream.py_register_event
 
-from numpy import empty_like
+
 class scalar(int):
-    def __new__(cls,i=None):
+    def __new__(cls, i=None):
         if i == None:
             i = new_scalar("python")
-        return int.__new__(cls,i)
+        return int.__new__(cls, i)
+
     def __del__(self):
         if callable(_delete):
             _delete([self])
+
     def __setattr__(self, name, value):
         if name == "f":
-            py_scalar_init(self,value)
+            py_scalar_init(self, value)
         else:
             self.__dict__[name] = value
-    def f(self,x,y=0):
+
+    def f(self, x, y=0):
         try:
             ndim = x.ndim
         except AttributeError:
-            return interpolate(self,x,y)
+            return interpolate(self, x, y)
         if ndim == 1:
-            return _interpolate1D(self,x,x.size)
+            return _interpolate1D(self, x, x.size)
         elif ndim == 2:
             z = empty_like(x)
-            _interpolate2D(self,x,y,z)
+            _interpolate2D(self, x, y, z)
             return z
+
     def norm(self):
         return normf(self)
+
     def stats(self):
         return statsf(self)
 
+
 class vector:
-    def __init__(self,v):
+    def __init__(self, v):
         self.x = scalar(v.x)
         self.y = scalar(v.y)
 
+
 class tensor:
-    def __init__(self,t):
+    def __init__(self, t):
         self.x = vector(t.x)
         self.y = vector(t.y)
 
-def event (action, i = None, t = None):
+
+def event(action, i=None, t=None):
     py_register_event(action, i, t)
 
-from random import uniform
+
 def noise():
-    return uniform(-1.,1.)
+    return uniform(-1.0, 1.0)
 
 
 def new_scalar(name):
     return _stream.new_scalar(name)
+
+
 new_scalar = _stream.new_scalar
+
 
 def _delete(list):
     return _stream._delete(list)
+
+
 _delete = _stream._delete
+
+
 class norm(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, norm, name, value)
+
+    def __setattr__(self, name, value):
+        return _swig_setattr(self, norm, name, value)
+
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, norm, name)
+
+    def __getattr__(self, name):
+        return _swig_getattr(self, norm, name)
+
     __repr__ = _swig_repr
     __swig_setmethods__["avg"] = _stream.norm_avg_set
     __swig_getmethods__["avg"] = _stream.norm_avg_get
@@ -286,20 +376,35 @@ class norm(_object):
             self.this.append(this)
         except __builtin__.Exception:
             self.this = this
+
     __swig_destroy__ = _stream.delete_norm
-    __del__ = lambda self: None
+
+    def __del__(self):
+        return None
+
+
 norm_swigregister = _stream.norm_swigregister
 norm_swigregister(norm)
 
 
 def normf(f):
     return _stream.normf(f)
+
+
 normf = _stream.normf
+
+
 class stats(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, stats, name, value)
+
+    def __setattr__(self, name, value):
+        return _swig_setattr(self, stats, name, value)
+
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, stats, name)
+
+    def __getattr__(self, name):
+        return _swig_getattr(self, stats, name)
+
     __repr__ = _swig_repr
     __swig_setmethods__["min"] = _stream.stats_min_set
     __swig_getmethods__["min"] = _stream.stats_min_get
@@ -328,36 +433,63 @@ class stats(_object):
             self.this.append(this)
         except __builtin__.Exception:
             self.this = this
+
     __swig_destroy__ = _stream.delete_stats
-    __del__ = lambda self: None
+
+    def __del__(self):
+        return None
+
+
 stats_swigregister = _stream.stats_swigregister
 stats_swigregister(stats)
 
 
 def statsf(f):
     return _stream.statsf(f)
+
+
 statsf = _stream.statsf
+
 
 def vorticity(u, omega):
     return _stream.vorticity(u, omega)
+
+
 vorticity = _stream.vorticity
+
 
 def _interpolate1D(v, x, val):
     return _stream._interpolate1D(v, x, val)
+
+
 _interpolate1D = _stream._interpolate1D
+
 
 def _interpolate2D(v, x, y, val):
     return _stream._interpolate2D(v, x, y, val)
+
+
 _interpolate2D = _stream._interpolate2D
+
 
 def run():
     return _stream.run()
+
+
 run = _stream.run
+
+
 class mgstats(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, mgstats, name, value)
+
+    def __setattr__(self, name, value):
+        return _swig_setattr(self, mgstats, name, value)
+
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, mgstats, name)
+
+    def __getattr__(self, name):
+        return _swig_getattr(self, mgstats, name)
+
     __repr__ = _swig_repr
     __swig_setmethods__["i"] = _stream.mgstats_i_set
     __swig_getmethods__["i"] = _stream.mgstats_i_get
@@ -382,16 +514,28 @@ class mgstats(_object):
             self.this.append(this)
         except __builtin__.Exception:
             self.this = this
+
     __swig_destroy__ = _stream.delete_mgstats
-    __del__ = lambda self: None
+
+    def __del__(self):
+        return None
+
+
 mgstats_swigregister = _stream.mgstats_swigregister
 mgstats_swigregister(mgstats)
 
+
 class Poisson(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Poisson, name, value)
+
+    def __setattr__(self, name, value):
+        return _swig_setattr(self, Poisson, name, value)
+
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Poisson, name)
+
+    def __getattr__(self, name):
+        return _swig_getattr(self, Poisson, name)
+
     __repr__ = _swig_repr
     __swig_setmethods__["a"] = _stream.Poisson_a_set
     __swig_getmethods__["a"] = _stream.Poisson_a_get
@@ -428,21 +572,30 @@ class Poisson(_object):
             self.this.append(this)
         except __builtin__.Exception:
             self.this = this
+
     __swig_destroy__ = _stream.delete_Poisson
-    __del__ = lambda self: None
+
+    def __del__(self):
+        return None
+
+
 Poisson_swigregister = _stream.Poisson_swigregister
 Poisson_swigregister(Poisson)
 
 
 def _poisson(p):
     return _stream._poisson(p)
+
+
 _poisson = _stream._poisson
 
-def poisson(a,b,alpha=None,lambda0=0,tolerance=1e-3):
+
+def poisson(a, b, alpha=None, lambda0=0, tolerance=1e-3):
     p = Poisson()
     p.a = a
     p.b = b
-    if alpha != None: p.alpha = alpha
+    if alpha != None:
+        p.alpha = alpha
     p._lambda = lambda0
     p.tolerance = tolerance
     return _poisson(p)
@@ -455,4 +608,3 @@ uf = vector(_stream.cvar.uf)
 # This file is compatible with both classic and new-style classes.
 
 cvar = _stream.cvar
-

@@ -49,7 +49,7 @@ double hfDTorusX(double* f_a, String_Array_T* str_param)
  y=x[1]-center[1];
  z=x[2]-center[2];
 
- dyz=sqrt(y*y+z*z); 
+ dyz=sqrt(y*y+z*z);
  dyz = dyz - R;
  dyzx = sqrt(dyz*dyz + xx*xx);
  dyzx = dyzx - r0;

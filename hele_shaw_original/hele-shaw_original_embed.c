@@ -55,7 +55,7 @@ event init (i = 0) {
 event logfile (i++)
 {
   stats s = statsf (f);
-  fprintf (stderr, "%d %g %d %g %g %g\n", 
+  fprintf (stderr, "%d %g %d %g %g %g\n",
 	   i, t, mgp.i, s.sum, s.min, s.max);
 }
 

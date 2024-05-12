@@ -50,7 +50,7 @@ int main() {
 
   size (2);
   init_grid (1 << LEVEL);
-  
+
   /**
   Hysing et al. consider two cases (1 and 2), with the densities, dynamic
   viscosities and surface tension of fluid 1 and 2 given below. */
@@ -65,7 +65,7 @@ int main() {
   /**
   We reduce the tolerance on the Poisson and viscous solvers to
   improve the accuracy. */
-  
+
   TOLERANCE = 1e-4;
 #if REDUCED
   G.x = -0.98;
@@ -78,7 +78,7 @@ event init (t = 0) {
 
   /**
   The domain is a rectangle. We only simulate half the bubble. */
-  
+
   mask (y > 0.5 ? top : none);
 
   /**
@@ -123,7 +123,7 @@ event logfile (i++) {
     vb += u.x[]*dv;
     sb += dv;
   }
-  printf ("%g %g %g %g %g %g %g %g ", 
+  printf ("%g %g %g %g %g %g %g %g ",
 	  t, sb, -1., xb/sb, vb/sb, dt, perf.t, perf.speed);
   mg_print (mgp);
   mg_print (mgpf);

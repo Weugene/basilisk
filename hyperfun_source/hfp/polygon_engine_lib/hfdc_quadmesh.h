@@ -3,7 +3,7 @@
 
 #include <vector>
 
-class QuadMesh  
+class QuadMesh
 {
 public:
 	std::vector<std::vector<double> > vertex; //3

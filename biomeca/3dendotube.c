@@ -15,7 +15,7 @@ Our goal is to simulate womersley flow from a real 3D internal-aortic tube, this
 #define alpha_w   10.
 
 /**
-##Importing the geometry 
+##Importing the geometry
 see details in [distance.c](http://basilisk.fr/src/examples/distance.c) */
 void fraction_from_stl (scalar f, FILE * fp, int maxlevel)
 {
@@ -34,7 +34,7 @@ void fraction_from_stl (scalar f, FILE * fp, int maxlevel)
     phi[] = (d[] + d[-1] + d[0,-1] + d[-1,-1] +
              d[0,0,-1] + d[-1,0,-1] + d[0,-1,-1] + d[-1,-1,-1])/8.;
   fractions (phi, f);
-  view (fov = 27.1723, quat = {-0.707795,-0.108707,-0.69171,0.0934929}, 
+  view (fov = 27.1723, quat = {-0.707795,-0.108707,-0.69171,0.0934929},
         tx = -0.545947, ty = -0.00320332, bg = {0.3,0.4,0.6}, width = 640, height = 320);
   isosurface ("d", 0, color = "level", min = 5, max = 10);
   //save ("endotubestl.png");
@@ -77,7 +77,7 @@ p[front] = dirichlet(0);
 /**
 ##initial event */
 event init (t = 0) {
-  //read the STL file 
+  //read the STL file
   if (!restore (file = "restart")) {
     FILE * fp = fopen ("endotube.stl", "r");
     fraction_from_stl (f0, fp, LEVEL);
@@ -91,7 +91,7 @@ We display the surface reconstructed from volume fractions. */
     //save ("endotubevof.png");
 
     // initial velocity in order to avoid possible error(not sure really useful)
-    foreach() 
+    foreach()
       u.z[] = 0.01*f0[];
     boundary ({u.z});
   }
@@ -142,7 +142,7 @@ We put a test point to verify the resulte is stational*/
 }
 
 /**
-## Dump files 
+## Dump files
 It's use to restore the data from each 100 interation*/
 event snapshot (i += 100)
 {
@@ -160,7 +160,7 @@ event profill (t += 0.2*M_PI)
   if (t > tmax - 2.*M_PI){
     j += 1;
     char name3[80];
-    sprintf (name3, "test-%d", j);	
+    sprintf (name3, "test-%d", j);
     FILE *fp2;
     fp2 = fopen (name3, "w");
     double uyy = 1.1;
@@ -208,8 +208,8 @@ iteration++;
 ![Isosurface of the distance function coloured with level of refinement.](endotube/endotubestl.png)
 ![Reconstructed VOF surface.](endotube/endotubevof.png)
 
-##gnuplot 
-~~~gnuplot compare with theory value 
+##gnuplot
+~~~gnuplot compare with theory value
 set xlabel "r"
 plot [0:1.05][]'../2dwo/thwo10' us 1:2 t'theo' w l ,\
 'test-1' us 2:3 t't1' w lp,\

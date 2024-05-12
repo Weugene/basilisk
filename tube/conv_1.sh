@@ -41,7 +41,7 @@ if $time_of_debug; then
       echo "$dump at time=$t";
       #sleep 4
       ./convert_single $dump $i $bubcase $maxlevel
-      text2_pvd="        <DataSet timestep=\"${t}\" part=\"0\" file=\"res/${subn_pvd}_0_$(printf %04d $i).pvtu\"/>" >> $pvd      
+      text2_pvd="        <DataSet timestep=\"${t}\" part=\"0\" file=\"res/${subn_pvd}_0_$(printf %04d $i).pvtu\"/>" >> $pvd
       text2_isovolume="        <DataSet timestep=\"${t}\" part=\"0\" file=\"res/${subn_isovolume}_0_$(printf %04d $i).pvtu\"/>" >> $pvd
       echo $text1 >> $pvd
       echo $text2_pvd >> $pvd

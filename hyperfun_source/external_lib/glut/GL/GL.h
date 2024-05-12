@@ -1142,8 +1142,8 @@ typedef void GLvoid;
 #define GL_MAX_ELEMENTS_INDICES_WIN       0x80E9
 
 /* WIN_phong_shading */
-#define GL_PHONG_WIN                      0x80EA 
-#define GL_PHONG_HINT_WIN                 0x80EB 
+#define GL_PHONG_WIN                      0x80EA
+#define GL_PHONG_HINT_WIN                 0x80EB
 
 /* WIN_specular_fog */
 #define GL_FOG_SPECULAR_TEXTURE_WIN       0x80EC

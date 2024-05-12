@@ -43,7 +43,7 @@ public class StlOut {
 
     // StlOut Constructor
     public StlOut(Point3d vertices[], int indices[]) {
-	this.vertices = vertices;	
+	this.vertices = vertices;
 	this.indices = indices;
     }
 
@@ -71,34 +71,34 @@ public class StlOut {
 		nx = CB[Y]*CA[Z] - CB[Z]*CA[Y];
 		ny = CB[Z]*CA[X] - CB[X]*CA[Z];
 		nz = CB[X]*CA[Y] - CB[Y]*CA[X];
-		
+
 		// Normalize the calculated normal vector
 		vec_length = Math.sqrt(nx*nx + ny*ny + nz*nz);
 		nx = nx / vec_length;
 		ny = ny / vec_length;
 		nz = nz / vec_length;
-		
+
 		fw.write(" facet normal " + (float)nx + " " + (float)ny + " " + (float)nz + "\n");
-		fw.write("  outer loop" + "\n"); 
+		fw.write("  outer loop" + "\n");
 		fw.write("   vertex ");
 		fw.write((float)vertices[indices[3*i]].x + " ");
 		fw.write((float)vertices[indices[3*i]].y + " ");
 		fw.write((float)vertices[indices[3*i]].z + "\n");
-		
+
 		fw.write("   vertex ");
 		fw.write((float)vertices[indices[3*i + 1]].x + " ");
 		fw.write((float)vertices[indices[3*i + 1]].y + " ");
 		fw.write((float)vertices[indices[3*i + 1]].z + "\n");
-		
+
 		fw.write("   vertex ");
 		fw.write((float)vertices[indices[3*i + 2]].x + " ");
 		fw.write((float)vertices[indices[3*i + 2]].y + " ");
 		fw.write((float)vertices[indices[3*i + 2]].z + "\n");
-		
-		fw.write("  endloop" + "\n"); 
-		fw.write(" endfacet" + "\n"); 
+
+		fw.write("  endloop" + "\n");
+		fw.write(" endfacet" + "\n");
 	    }
-	    
+
 	    fw.write("endsolid\n");
 	    fw.close();
 	} catch(IOException ioe) {

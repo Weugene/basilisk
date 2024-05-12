@@ -25,7 +25,7 @@ double hfDCylinder(double *f_a, String_Array_T *str_param){
  int array_index, dim;
 
  R=f_a[0];
- 
+
  array_index = (int)f_a[1];
  HF_Get_Runtime_Array(array_index, &u, &dim);
 
@@ -34,14 +34,14 @@ double hfDCylinder(double *f_a, String_Array_T *str_param){
 
  array_index = (int)f_a[3];
  HF_Get_Runtime_Array(array_index, &x, &dim);
- 
+
  if (dim != 3) return -11111111111.1;
- 
+
  x0[0]=x[0],x0[1]=x[1],x0[2]=x[2];
  x1[0]=center[0],x1[1]=center[1],x1[2]=center[2];
  x2[0]=center[0]+u[0],x2[1]=center[1]+u[1],x2[2]=center[2]+u[2];
 
- 
+
  x21[0]=x2[0]-x1[0];
  x21[1]=x2[1]-x1[1];
  x21[2]=x2[2]-x1[2];
@@ -55,7 +55,7 @@ double hfDCylinder(double *f_a, String_Array_T *str_param){
 
  d1 = cp[0]*cp[0] + cp[1]*cp[1] + cp[2]*cp[2];
  d2 = x21[0]*x21[0] + x21[1]*x21[1] + x21[2]*x21[2];
- 
+
  d=d1/d2;
 
  d = sqrt(d);
@@ -63,4 +63,3 @@ double hfDCylinder(double *f_a, String_Array_T *str_param){
  f = R - d;
  return f;
 }
-

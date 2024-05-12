@@ -21,7 +21,7 @@ vector Us[];
 /**
 The analytical solution, as computed by Wannier. */
 
-void psiuv (double x, double y, 
+void psiuv (double x, double y,
 	    double r1, double r2, double e,
 	    double v1, double v2,
 	    double * ux, double * uy, double * psi)
@@ -115,12 +115,12 @@ event init (t = 0) {
 
   /**
   Viscosity is unity. */
-  
+
   mu = fm;
 
   /**
   The geometry is two excentric cylinders. */
-  
+
 
   int it = 0;
   do {
@@ -130,13 +130,13 @@ event init (t = 0) {
   /**
   The outer cylinder is fixed and the inner cylinder is rotating with
   a tangential velocity unity. */
-  
+
   u.n[embed] = dirichlet (x*x + y*y > 1.5*sq(R1) ? 0. : - y/R1);
   u.t[embed] = dirichlet (x*x + y*y > 1.5*sq(R1) ? 0. :   x/R1);
 
   /**
   We initialize the reference field. */
-  
+
   foreach()
     un[] = u.y[];
 }
@@ -173,9 +173,9 @@ event profile (t = end)
   fprintf (ferr, "%d %.3g %.3g %.3g %d %d %d %d %d\n", N, n.avg, n.rms, n.max,
 	   i, mgp.i, mgp.nrelax, mgu.i, mgu.nrelax);
   dump();
-  
+
   view (fov = 13.85, tx = 0, ty = -0.088);
-	
+
   draw_vof ("cs", "fs", filled = -1, fc = {1,1,1});
   squares ("nu", spread = -1);
   save ("nu.png");

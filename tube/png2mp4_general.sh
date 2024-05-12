@@ -45,4 +45,3 @@ done
 
 
 ffmpeg  -f concat -safe 0 -i ${root}_files.txt ${options} ${scale_opt} video_${root}.mp4;
-

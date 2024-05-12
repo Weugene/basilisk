@@ -6,7 +6,7 @@ Copyright 2009 Oleg Fryazinov
 This Work or file is part of the greater total Work, software or group of
 files named HyperFun Polygonizer.
 
-HyperFun Polygonizer can be redistributed and/or modified under the terms 
+HyperFun Polygonizer can be redistributed and/or modified under the terms
 of the CGPL, The Common Good Public License as published by and at CGPL.org
 (http://CGPL.org).  It is released under version 1.0 Beta of the License
 until the 1.0 version is released after which either version 1.0 of the
@@ -17,7 +17,7 @@ WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
 CGPL, The Common Good Public License for more information.)
 
-You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+You should have received a copy of the CGPL along with HyperFun Polygonizer;
 if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -39,7 +39,7 @@ void CMainApp::stlOut(){
 
 	ofstream toFile(itsCL.itsSTLName.c_str());
 	if(!toFile){
-		std::cout << "\n File: " << itsCL.itsSTLName << " could not be opened.\n";    	
+		std::cout << "\n File: " << itsCL.itsSTLName << " could not be opened.\n";
 		exit(0);
 	}
 
@@ -83,7 +83,7 @@ void CMainApp::stlOut(){
 		nn = n1p*N1 + n2p*N2 + n3p*N3;
 		if (nn < 0)
 			bReverse = true;
-		
+
 		d1 = (a1+b1+c1)/3;
 		d2 = (a2+b2+c2)/3;
 		d3 = (a3+b3+c3)/3;
@@ -102,13 +102,13 @@ void CMainApp::stlOut(){
 
 		if (bReverse)
 		{
-			toFile << "   vertex "<< c1 <<" "<< c2 <<" "<< c3 <<" \n";	
+			toFile << "   vertex "<< c1 <<" "<< c2 <<" "<< c3 <<" \n";
 			toFile << "   vertex "<< b1 <<" "<< b2 <<" "<< b3 <<" \n";
 		}
 		else
 		{
 			toFile << "   vertex "<< b1 <<" "<< b2 <<" "<< b3 <<" \n";
-			toFile << "   vertex "<< c1 <<" "<< c2 <<" "<< c3 <<" \n";	
+			toFile << "   vertex "<< c1 <<" "<< c2 <<" "<< c3 <<" \n";
 		}
 		toFile << "  endloop\n";
 		toFile << " endfacet\n";
@@ -124,7 +124,7 @@ void stlWriteInt(ofstream& ofs, int nValue)
 		int niv;
 		char civ[4];
 	} in;
-	
+
 	union
 	{
 		int nov;
@@ -132,7 +132,7 @@ void stlWriteInt(ofstream& ofs, int nValue)
 	} out;
 
 	in.niv = nValue;
-  
+
 	out.nov  = in.civ[0] & 0xFF;
 	out.nov |= (in.civ[1] & 0xFF) << 0x08;
 	out.nov |= (in.civ[2] & 0xFF) << 0x10;
@@ -142,7 +142,7 @@ void stlWriteInt(ofstream& ofs, int nValue)
 
 void stlWriteFloat(ofstream& ofs, float fValue)
 {
-	union 
+	union
 	{
 		int nov;
 		char cov[4];
@@ -172,7 +172,7 @@ void CMainApp::stlBinaryOut()
 	ofstream toFile;
 	toFile.open(itsCL.itsSTLName.c_str(), ios_base::binary);
 	if(!toFile){
-		std::cout << "\n File: " << itsCL.itsSTLName << " could not be opened.\n";    	
+		std::cout << "\n File: " << itsCL.itsSTLName << " could not be opened.\n";
 		exit(0);
 	}
 
@@ -198,7 +198,7 @@ void CMainApp::stlBinaryOut()
 		c1 = itsPolyMesh_->itsData.getVertex(coord3, 0);
 		c2 = itsPolyMesh_->itsData.getVertex(coord3, 1);
 		c3 = itsPolyMesh_->itsData.getVertex(coord3, 2);
-	
+
 		n1p = itsPolyMesh_->itsData.getTNormal(C, 0);
 		n2p = itsPolyMesh_->itsData.getTNormal(C, 1);
 		n3p = itsPolyMesh_->itsData.getTNormal(C, 2);

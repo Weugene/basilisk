@@ -40,8 +40,8 @@ cells with the `foreach()` loop and make use of the cell-centered
 coordinates (`x,y`), which are automatically set in the background.
  */
 event init (t = 0) {
-  foreach() 
-    s[] = exp(-(sq(x - 0.5) + sq(y - 0.5))*10.); 
+  foreach()
+    s[] = exp(-(sq(x - 0.5) + sq(y - 0.5))*10.);
 }
 /**
 We output an `.mp4` movie to display the evolution of `s` via the
@@ -50,7 +50,7 @@ We output an `.mp4` movie to display the evolution of `s` via the
 name. Further, we set the number of pixels (256) and fix the
 colorbar's range.
  */
-event mov (t += 0.1)  
+event mov (t += 0.1)
   output_ppm (s, file = "s.mp4", n = 256, min = -1, max = 1);
 
 /**
@@ -75,7 +75,7 @@ event diff (i++) {
 }
 /**
    Finally, we write a `data` file to check if the scalar field `s` is
-   conserved.  
+   conserved.
  */
 
 event lot (i += 5) {
@@ -102,4 +102,3 @@ plot 'data' u 1:3
    that we can call this event any other name.
  */
 event stop (t = 10);
-

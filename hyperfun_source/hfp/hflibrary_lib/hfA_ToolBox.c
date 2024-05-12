@@ -1,13 +1,13 @@
 /*==============================================================================
 
-Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa 
+Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa
 Copyright 2003-2004 Benjamin Schmitt
 Copyright 2008 Oleg Fryazinov
 
 This Work or file is part of the greater total Work, software or group of
 files named HyperFun Polygonizer.
 
-HyperFun Polygonizer can be redistributed and/or modified under the terms 
+HyperFun Polygonizer can be redistributed and/or modified under the terms
 of the CGPL, The Common Good Public License as published by and at CGPL.org
 (http://CGPL.org).  It is released under version 1.0 Beta of the License
 until the 1.0 version is released after which either version 1.0 of the
@@ -18,20 +18,20 @@ WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
 CGPL, The Common Good Public License for more information.)
 
-You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+You should have received a copy of the CGPL along with HyperFun Polygonizer;
 if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
 
 
-/* 
+/*
 HyperFun Attributes Library
 
 Description: Toolbox functions, from Ebert's book
 
 Code by: Schmitt
 Last revised: 15.04.2003
-*/ 
+*/
 
 #include "general.h"
 #include <stdlib.h>
@@ -52,7 +52,7 @@ a  : lower boundary of the interval
 b  : upper boundary of the interval
 
 
-Test file: 
+Test file:
 
 C-parameters:
 f_a[0]   corresponds to b
@@ -85,12 +85,12 @@ double hfA_Clamp(double* f_a, String_Array_T* str_param){
 definition : step(f,a)-step(b,f)
 
 Parameters:
-f  : real value 
-a  : real value 
-b  : real value 
+f  : real value
+a  : real value
+b  : real value
 
 
-Test file: 
+Test file:
 
 C-parameters:
 f_a[0]   corresponds to a
@@ -122,11 +122,11 @@ definition : if f<a return 0
 else return 1
 
 Parameters:
-f  : real value 
-a  : real value 
+f  : real value
+a  : real value
 
 
-Test file: 
+Test file:
 
 C-parameters:
 f_a[0]   corresponds to a
@@ -148,14 +148,14 @@ double hfA_Step(double* f_a, String_Array_T* str_param){
 }
 
 
-//mapping a value x to [0,1], with a smooth interpolation between [a,b] 
+//mapping a value x to [0,1], with a smooth interpolation between [a,b]
 /*Call: hfA_SmoothStep(f,a,b);
 
 Parameters:
 f  : real value to perform cubic interpolation
-fmin,fmax : 
+fmin,fmax :
 
-Test file: 
+Test file:
 
 C-parameters:
 f_a[0]   corresponds to fmax
@@ -191,7 +191,7 @@ double hfA_SmoothStep(double* f_a, String_Array_T* str_param){
 //Modulo (and not remainder!)
 /*Call: hfA_Modulo(a,b);
 
-definition :	
+definition :
 a%b
 
 Parameters:
@@ -199,7 +199,7 @@ a  : lower boundary of the interval
 b  : upper boundary of the interval
 
 
-Test file: 
+Test file:
 
 C-parameters:
 f_a[0]   corresponds to b
@@ -226,7 +226,7 @@ double hfA_Modulo(double* f_a, String_Array_T* str_param){
 //Floor (and not remainder!)
 /*Call: hfA_Floor(a);
 
-definition :	
+definition :
 
 
 Parameters:
@@ -234,7 +234,7 @@ a  : real value
 
 
 
-Test file: 
+Test file:
 
 C-parameters:
 f_a[0]   corresponds to a

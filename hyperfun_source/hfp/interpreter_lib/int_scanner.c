@@ -7,7 +7,7 @@
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -18,7 +18,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -63,22 +63,22 @@ int HF_get_token_internal(char*                p_str, /* program ASCIIZ string *
    -- from the "p_str" string. All fields of structure "sps" is filled according
    -- to this lexical element.
 */
-  
+
 /***************************************************************************/
   int  Value_To_Return = -1;
-   
+
   int l_e_pos = sps->lexem_end_position;
   int l_e_line = sps->lexem_end_line;
-   
+
   int* i = &(sps->str_position);
-   
+
   int count;
   int found;
   double temp;
   int error;
-   
+
   int is_numeric = 0, has_real = 0;
-   
+
   /* Skip Delimeters */
   while((p_str[*i] == ' ') || (p_str[*i] == '\n') || (p_str[*i] == '\t'))
     {
@@ -91,10 +91,10 @@ int HF_get_token_internal(char*                p_str, /* program ASCIIZ string *
 	l_e_pos = l_e_pos + 1;
       *i = *i + 1;
     };
-   
+
   sps->lexem_start_position = l_e_pos;
   sps->lexem_start_line = l_e_line;
-   
+
   switch(p_str[*i])
     {
     case '\0':
@@ -113,7 +113,7 @@ int HF_get_token_internal(char*                p_str, /* program ASCIIZ string *
     case '-':
       l_e_pos = l_e_pos+1;
       *i = *i + 1;
-       
+
       if(p_str[*i] == '-') /* Comment token */
 	{
 	  l_e_pos = l_e_pos+1;
@@ -301,16 +301,16 @@ int HF_get_token_internal(char*                p_str, /* program ASCIIZ string *
     case '0':case '1':case '2':case '3':case '4':case '5':case '6':case '7':case '8':case '9':case '.':
       sps->real_value = 0.0;
       error = 0;
-       
+
       if(p_str[*i] == '.')
 	goto Label_Point;
       is_numeric = 1;
       /* Integer[.Integer][(E/e)[+/-]Integer] */
       sps->real_value = (p_str[*i] - '0');
-       
+
       l_e_pos = l_e_pos + 1;
       *i = *i + 1;
-       
+
       if((p_str[*i-1] == '0') && isdigit(p_str[*i])){error = 1;}
       if(!error)
 	{
@@ -320,13 +320,13 @@ int HF_get_token_internal(char*                p_str, /* program ASCIIZ string *
 	      l_e_pos = l_e_pos + 1;
 	      *i = *i + 1;
 	    }
-	   
-	   
+
+
 	Label_Point:if((p_str[*i] == '.')) /* After '.' may only be digit or E/e */
 	  {
 	    l_e_pos = l_e_pos + 1;
 	    *i = *i + 1;
-	     
+
 	    if( (isdigit(p_str[*i])))
 	      {
 		has_real = 1;
@@ -351,7 +351,7 @@ int HF_get_token_internal(char*                p_str, /* program ASCIIZ string *
 		{
 		  l_e_pos = l_e_pos + 1;
 		  *i = *i + 1;
-		   
+
 		  temp = 1;
 		  if(p_str[*i] == '-')
 		    {
@@ -367,7 +367,7 @@ int HF_get_token_internal(char*                p_str, /* program ASCIIZ string *
 			  *i = *i + 1;
 			}
 		    }
-		   
+
 		  if(p_str[*i] == '0'){error = 1;}
 		  if(!error)
 		    {
@@ -383,7 +383,7 @@ int HF_get_token_internal(char*                p_str, /* program ASCIIZ string *
 			      l_e_pos = l_e_pos + 1;
 			      *i = *i + 1;
 			    }
-			   
+
 			  sps->real_value = sps->real_value*exp(temp*log(10));/*exp(temp*log(10));*/
 			}
 		    }
@@ -407,7 +407,7 @@ int HF_get_token_internal(char*                p_str, /* program ASCIIZ string *
 	    }
 	  sps->str_buf_len = count;
 	  sps->str_buffer[count] = '\0';
-	   
+
 	  if(isdigit(p_str[*i]) || isalpha(p_str[*i]) || (p_str[*i]=='_'))
 	    {
 	      sps->error_no = Very_Long_Identificator;
@@ -462,7 +462,7 @@ int HF_get_token_internal(char*                p_str, /* program ASCIIZ string *
 		    }
 		  else
 		    Value_To_Return = IdentifierToken;
-		  
+
 		}
 	    }
 	}
@@ -472,15 +472,15 @@ int HF_get_token_internal(char*                p_str, /* program ASCIIZ string *
 	  l_e_pos = l_e_pos+1;
 	  *i = *i + 1;
 	  /* End of Changed section */
-	   
+
 	  sps->error_no = Unknown_Lexem;
 	  Value_To_Return = IllegalToken;
 	}
     }
-   
+
   sps->lexem_end_position = l_e_pos;
   sps->lexem_end_line     = l_e_line;
-   
+
   sps->lexem_code = Value_To_Return;
   return Value_To_Return;
 }
@@ -494,11 +494,11 @@ int HF_get_token(char*                p_str, /* program ASCIIZ string */
      -- "HF_get_token" is intended to skip comments from program
   */
   int r;
-  
+
   do
     {
       r = HF_get_token_internal(p_str, sps);
     }while(r == CommentToken);
-  
+
   return r;
 }

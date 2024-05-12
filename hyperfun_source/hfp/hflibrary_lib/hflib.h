@@ -1,12 +1,12 @@
 /*==============================================================================
 
- Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa 
+ Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa
  Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,7 +17,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -26,9 +26,9 @@
 /*
 -- Name:            hfLib.h
 --
--- Description:     This file in a part of HyperFun 1.0 interpreter. 
+-- Description:     This file in a part of HyperFun 1.0 interpreter.
 --                  It contains declarations of external functions
---                  of the core HyperFun library hfLib.    
+--                  of the core HyperFun library hfLib.
 --
 -- Author:          Adzhiev V. Dzhelembievich
 --
@@ -60,37 +60,37 @@ double hfCylinderY(double* f_a, String_Array_T* str_param);
 
 double hfCylinderX(double* f_a, String_Array_T* str_param);
 
-double hfBlock(double* f_a, String_Array_T* str_param); 
+double hfBlock(double* f_a, String_Array_T* str_param);
 
-double hfBlobby(double* f_a, String_Array_T* str_param); 
-int R_hfBlobby(double* f_a, 
-           String_Array_T* str_param, 
-           Error_Info_T* error_info, 
-           PN_T* p_pn, 
-           int code_index); 
+double hfBlobby(double* f_a, String_Array_T* str_param);
+int R_hfBlobby(double* f_a,
+           String_Array_T* str_param,
+           Error_Info_T* error_info,
+           PN_T* p_pn,
+           int code_index);
 
-double hfMetaball(double* f_a, String_Array_T* str_param); 
-int R_hfMetaball(double* f_a, 
-           String_Array_T* str_param, 
-           Error_Info_T* error_info, 
-           PN_T* p_pn, 
-           int code_index); 
+double hfMetaball(double* f_a, String_Array_T* str_param);
+int R_hfMetaball(double* f_a,
+           String_Array_T* str_param,
+           Error_Info_T* error_info,
+           PN_T* p_pn,
+           int code_index);
 
-double hfSoft(double* f_a, String_Array_T* str_param); 
-int R_hfSoft(double* f_a, 
-           String_Array_T* str_param, 
-           Error_Info_T* error_info, 
-           PN_T* p_pn, 
-           int code_index); 
+double hfSoft(double* f_a, String_Array_T* str_param);
+int R_hfSoft(double* f_a,
+           String_Array_T* str_param,
+           Error_Info_T* error_info,
+           PN_T* p_pn,
+           int code_index);
 
 
 //Added 11/15/99
-double hfBezierVolume(double* f_a, String_Array_T* str_param); 
-int R_hfBezierVolume(double* f_a, 
-           String_Array_T* str_param, 
-           Error_Info_T* error_info, 
-           PN_T* p_pn, 
-           int code_index); 
+double hfBezierVolume(double* f_a, String_Array_T* str_param);
+int R_hfBezierVolume(double* f_a,
+           String_Array_T* str_param,
+           Error_Info_T* error_info,
+           PN_T* p_pn,
+           int code_index);
 
 
 
@@ -295,4 +295,4 @@ double hfDBlendInt(double *f_a, String_Array_T *str_param);
 
 double hfSawtooth(double *f_a, String_Array_T *str_param);
 
-#endif 
+#endif

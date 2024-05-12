@@ -59,7 +59,7 @@ int CMainApp::cliOut() {
 	toFile << "$$HEADEREND\n\n";
 	toFile << "$$GEOMETRYSTART\n";
 
-	cout << "\n"; 
+	cout << "\n";
 
 	auto t1 = std::chrono::high_resolution_clock::now();
 	cout << "Z range: " << "[" << zmin << "; " << zmax << "]\n";
@@ -70,7 +70,7 @@ int CMainApp::cliOut() {
 	}
 	//vector<double> x(3, 0.0);
 	toFile << "$$GEOMETRYEND\n\0";
-	
+
 	/*try {
 		toFile.close();
 	}

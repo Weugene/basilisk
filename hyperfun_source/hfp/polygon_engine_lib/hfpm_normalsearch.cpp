@@ -1,23 +1,23 @@
 /*==============================================================================
 
  Copyright 1999 Eric Fausett
- Copyright 2003-2004 Benjamin Schmitt 
+ Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
  The implemented polygonization algorithm is described in
 
- Pasko A.A., Pilyugin V.V., Pokrovskiy V.N. 
- "Geometric modeling in the analysis of trivariate functions", 
- Communications of Joint Insititute of Nuclear Research, P10-86-310, 
+ Pasko A.A., Pilyugin V.V., Pokrovskiy V.N.
+ "Geometric modeling in the analysis of trivariate functions",
+ Communications of Joint Insititute of Nuclear Research, P10-86-310,
  Dubna, Russia, 1986 (in Russian).
 
- Pasko A.A., Pilyugin V.V., Pokrovskiy V.N. 
+ Pasko A.A., Pilyugin V.V., Pokrovskiy V.N.
  "Geometric modeling in the analysis of trivariate functions",
- Computers and Graphics, vol.12, Nos.3/4, 1988, pp.457-465. 
+ Computers and Graphics, vol.12, Nos.3/4, 1988, pp.457-465.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -28,7 +28,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -37,8 +37,8 @@
 #include "hfpolymesh.h"
 
 
-/*double HFPolyMesh::NormalLISearch(const vector<double>& normDir, 
-								  vector<double>& leftPos, double leftVal, 
+/*double HFPolyMesh::NormalLISearch(const vector<double>& normDir,
+								  vector<double>& leftPos, double leftVal,
 								  vector<double> rightPos, double rightVal, double dist){
 	double moveRight=VertEst(leftVal, rightVal, dist);
 	vector<double> centerPos(3,0.0);
@@ -214,12 +214,12 @@ void HFPolyMesh::NormalVertSearch(){
 	cout << "Sum of all:         " << c1+c2+c3+c4+c5+c6+c7+c8+VBCount << "\n";
 	cout << "Size:               " << itsSVA.size() << "\n\n";
 	}
-	
+
 */
 
 /*
-double HFPolyMesh::NormalLISearch(const vector<double>& normDir, 
-								  vector<double>& leftPos, double leftVal, 
+double HFPolyMesh::NormalLISearch(const vector<double>& normDir,
+								  vector<double>& leftPos, double leftVal,
 								  vector<double> rightPos, double rightVal, double dist){
 	return leftVal;
 	}*/
@@ -227,8 +227,8 @@ double HFPolyMesh::NormalLISearch(const vector<double>& normDir,
 
 
 
-	
-	
+
+
 
 /*void HFPolyMesh::NormalVertSearch(){//lower case: function value -- Upper Case: Position
 	int N=itsCurrentIndex-1;
@@ -270,9 +270,9 @@ double HFPolyMesh::NormalLISearch(const vector<double>& normDir,
 					Center[2]=Left[2]+(offsetDist*searchDir[2]);
 					if(fabs(center-itsS0)<target) break; //Target Reached
 					center=CalcVal(Center);
-					if(center<=itsS0){ 
+					if(center<=itsS0){
 						right=center; Right=Center; searchDist=offsetDist;}
-					else{ 
+					else{
 						left=center; Left=Center; searchDist-=offsetDist;}
 					}
 				}
@@ -286,9 +286,9 @@ double HFPolyMesh::NormalLISearch(const vector<double>& normDir,
 					Center[2]=Left[2]+(offsetDist*searchDir[2]);
 					if(fabs(center-itsS0)<target) break; //Target Reached
 					center=CalcVal(Center);
-					if(center<=itsS0){ 
+					if(center<=itsS0){
 						left=center; Left=Center; searchDist-=offsetDist;}
-					else{ 
+					else{
 						right=center; Right=Center; searchDist=offsetDist;}
 					}
 				}
@@ -391,7 +391,7 @@ void HFPolyMesh::NormalVertSearch(){//lower case: function value -- Upper Case: 
 			double right, length;
 			searchDir=NormalCalc(Left, left, length);
 			FC+=3;
-			for(int LZ=0;; LZ++, left=CalcVal(Left), FC++){	
+			for(int LZ=0;; LZ++, left=CalcVal(Left), FC++){
 				cout << " l:" << left/length;
 				if(LZ>=5){
 					cout << "\nBAD -- len: " << left/length;
@@ -427,9 +427,9 @@ void HFPolyMesh::NormalVertSearch(){//lower case: function value -- Upper Case: 
 									if(fabs(center-itsS0)<target) break; //Target Reached
 									center=CalcVal(Center);
 									FC++;
-									if(center<=itsS0){ 
+									if(center<=itsS0){
 										right=center; Right=Center; searchDist=offsetDist;}
-									else{ 
+									else{
 										left=center; Left=Center; searchDist-=offsetDist;}
 									}
 								}
@@ -442,9 +442,9 @@ void HFPolyMesh::NormalVertSearch(){//lower case: function value -- Upper Case: 
 									if(fabs(center-itsS0)<target) break; //Target Reached
 									center=CalcVal(Center);
 									FC++;
-									if(center<=itsS0){ 
+									if(center<=itsS0){
 										left=center; Left=Center; searchDist-=offsetDist;}
-									else{ 
+									else{
 										right=center; Right=Center; searchDist=offsetDist;}
 									}
 								}
@@ -480,11 +480,11 @@ void HFPolyMesh::NormalVertSearch(){//lower case: function value -- Upper Case: 
 		cout << " -- FINAL: " << CalcVal(itsData.itsVertices[i]) << "\n";
 		}
 	cout << "\n\nFinal Results:\n";
-	
+
 	cout << "Case 0: " << C0 << "\n";
-	
+
 	cout << "Case 1: " << C1 << "\n";
-	
+
 	cout << "Case 2: ";
 	for(int j=0; j<5; j++){ cout << "[" << j << "]:" << C2[j] << "  "; }
 	cout << "BAD:" << C2[5] << "\n";
@@ -493,21 +493,10 @@ void HFPolyMesh::NormalVertSearch(){//lower case: function value -- Upper Case: 
 	cout << "Case 3: ";
 	for(int k=0; k<12; k++){ cout << "[" << k << "]:" << C3[k] << "  "; }
 	cout << "\n";
-	
+
 	cout << "Function Calls for Normal Search: " << FCT << "\n";
 	cout << "Function Calls for Grid Calculation: " << itsGridSize[0]*itsGridSize[1]*itsGridSize[2] << "\n";
 
 	cout << "EBAD: " << EBAD << "\n";
 
 	}*/
-
-
-
-
-
-
-
-
-
-
-

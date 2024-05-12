@@ -10,4 +10,3 @@
 
 cd $HOME/basilisk/work/perfect_wetting_nonsatur_staggered
 mpirun -np 20 ./a.out
-

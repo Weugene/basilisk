@@ -10,4 +10,3 @@
 
 cd $HOME/basilisk/work/Hele-Shaw_original/line/
 mpirun -np 10 ./a.out
-

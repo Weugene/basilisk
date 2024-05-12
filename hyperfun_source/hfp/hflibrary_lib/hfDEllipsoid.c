@@ -3,7 +3,7 @@
 
   Primitive: distance to the ellipsoid surface
 
-  Definition: 
+  Definition:
 
   Call: hfDEllipsoid(x,center,a,b,c);
 
@@ -12,7 +12,7 @@
   center - sphere center array
   a,b,c - ellipsoid half-axes along x,y,z
 
-  Test file: 
+  Test file:
 
   C-parameters:
   f_a[0]   corresponds to c
@@ -79,21 +79,21 @@ double hfDEllipsoid(double* f_a, String_Array_T* str_param)
   a2 = a*a;
   b2 = b*b;
   c2 = c*c;
-	
+
   u2 = xx*xx;
   v2 = yy*yy;
   w2 = zz*zz;
-	
+
   a2u2 = a2*u2;
   b2v2 = b2*v2;
   c2w2 = c2*w2;
-	
+
   uratio = xx/a;
   vratio = yy/b;
   wratio = zz/c;
-	
+
   length = sqrt(xx*xx + yy*yy + zz*zz);
-	
+
   if (uratio*uratio + vratio*vratio + wratio*wratio < 1.0){
     t = 0.0;
     isInside = 1;
@@ -105,10 +105,10 @@ double hfDEllipsoid(double* f_a, String_Array_T* str_param)
     t = max*length;
     isInside = 0;
   }
-	
+
   maxIteration = 128;
   EPSILON = 1e-6;
-  	
+
   for (i=0;i<maxIteration;++i){
     double p2,q2,r2;
     double s,pq,pr,qr,pqr,ds;
@@ -128,21 +128,21 @@ double hfDEllipsoid(double* f_a, String_Array_T* str_param)
     ds = 2.0*(pqr*(qr+pr+pq)-a2u2*qr*(q+r)-b2v2*pr*(p+r)-c2w2*pq*(p+q));
     t -= s/ds;
   }
-	
+
   closestx = (a2*x[0] + t*center[0])/(t+a2);
   closesty = (b2*x[1] + t*center[1])/(t+b2);
   closestz = (c2*x[2] + t*center[2])/(t+c2);
-	
+
   diffx=closestx - x[0];
   diffy=closesty - x[1];
   diffz=closestz - x[2];
-	
+
   distance = sqrt(diffx*diffx + diffy*diffy + diffz*diffz);
-	
+
   if (isInside == 0)
     signed_distance = -distance;
   else
     signed_distance = distance;
- 
+
   return signed_distance;
 }

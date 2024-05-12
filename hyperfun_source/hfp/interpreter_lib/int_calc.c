@@ -7,7 +7,7 @@
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -18,7 +18,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -41,7 +41,7 @@
 					* added the computation for s array attributes;
 					* added the save and restore of s[] in the stack when
 					call to an external function, so that s[] of a called
-					function can be modified in the called function, and will be 
+					function can be modified in the called function, and will be
 					available in the caller with the modified values, and not the initial
 					as it was the case before;
 */
@@ -56,7 +56,7 @@
 
 /* The variable BELOW gives current instance number for function. */
 /* It is valid only inside the function definition or its resriction. */
-int F_instance_No; 
+int F_instance_No;
 
 /* Temporal pointers to storage */
 int* HF_global_code;
@@ -83,10 +83,10 @@ int HF_Get_Runtime_Array(int index, double** p, int *size)
     return 0;
   *p    = &HF_global_data[HF_global_code[index--]];
   *size = HF_global_code[index];
-	
+
   if((*size) < 1)
     return 0;
-	
+
   return 1;
 }
 
@@ -117,7 +117,7 @@ void HF_Fill_Error(PN_T* p_pn, int er_index, Error_Info_T* EI, int ic)
     --  position number in the line.
   */
   EI->error_text = Error_Strings[er_index];
-	
+
   if(ic*2+1 < p_pn->index_to_lexem.amount)
     {
       EI->line       = p_pn->index_to_lexem.data[ic*2];
@@ -167,7 +167,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 				  */
 {  /* This is recursive function:                                          */
   /* When last_index == start_index we'got an error                       */
-	
+
   /*
     -- Function description:
     --  Function for computation expressions.
@@ -178,8 +178,8 @@ int HF_Calc_Expr(PN_T*         p_pn,
   int n, i;
   int instance_No;
   double f_temp;
-	
-    
+
+
 #ifdef HF_DEBUG
   if(*last_index == start_index)
     {
@@ -194,7 +194,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
   */
 #ifdef DEBUG
   assert ((p_pn->code_list).size >= code_index);
-#endif /* DEBUG */  
+#endif /* DEBUG */
   /* The case of external body call: */
   if(code == I_EXTERN_CALL)
     {
@@ -207,7 +207,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
       double* temp_data = HF_global_data;
       int to_return;
 	  double *temp_S_value;
-		
+
       (*last_index)--;
 #ifdef HF_DEBUG
       if(*last_index == start_index)
@@ -222,8 +222,8 @@ int HF_Calc_Expr(PN_T*         p_pn,
       */
 #ifdef DEBUG
       assert ((p_pn->code_list).size >= *last_index);
-#endif /* DEBUG */  		
-      
+#endif /* DEBUG */
+
       (*last_index)--;
 #ifdef HF_DEBUG
       if(*last_index == start_index)
@@ -238,7 +238,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
       */
 #ifdef DEBUG
       assert ((p_pn->code_list).size >= *last_index);
-#endif /* DEBUG */  		
+#endif /* DEBUG */
 
       (*last_index)--;
 #ifdef HF_DEBUG
@@ -254,7 +254,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
       */
 #ifdef DEBUG
       assert ((p_pn->code_list).size >= *last_index);
-#endif /* DEBUG */      
+#endif /* DEBUG */
 
 	/* VAVAVA 3rd argument! */
 				(*last_index)--;
@@ -293,7 +293,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	  return 0; /* Error */
 	}
 #endif
-      
+
       /* Here we check for initialization of arrays */
       for(i=0;i<amount_1;i++)
 	{
@@ -302,7 +302,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	  */
 #ifdef DEBUG
 	  assert((i+arg_1) < p_pn->stack_size);
-#endif /* DEBUG */	  
+#endif /* DEBUG */
 	  if(stack_usage[i+arg_1] != Initialized)
 	    {
 	      HF_Fill_Error(p_pn, Unassigned_Array, error_info, *last_index+1);
@@ -358,9 +358,9 @@ int HF_Calc_Expr(PN_T*         p_pn,
 
 	  // suppose that in the called extern function the arg have been modified
 	  // then we need to consider the modification here
-	  
+
 	  /*for (i=0; i<amount_1; i++)
-		stack[i+arg_1] = stack[p_pn->stack_size + i];;	
+		stack[i+arg_1] = stack[p_pn->stack_size + i];;
 
 	  for (i=0; i<amount_2; i++)
 		  stack[i+arg_2] = stack[p_pn->stack_size + amount_1 + i];;
@@ -370,22 +370,22 @@ int HF_Calc_Expr(PN_T*         p_pn,
 
       HF_global_code = temp_code;
       HF_global_data = temp_data;
-      
+
 	  free(temp_S_value);
 
       return to_return;
-      
+
       /**********************************************************************/
       /***********************************************************************/
     }
-	
+
   /* Simple case: when the expression is array function argument */
   if(code == I_ARRAY_AS_ARG)
     {
       int first  = p_pn->code_list.data[(*last_index) - 1];
       int amount = p_pn->code_list.data[(*last_index) - 2];
       int total  = first + amount;
-		
+
       *value = (*last_index);
 #ifdef HF_DEBUG
       if((((*last_index)-2) <= start_index) ||
@@ -398,20 +398,20 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	}
 #endif
       (*last_index) -= 2;
-      
+
       for(i=first;i<total;i++)
 	//assert(stack_usage[i]==Initialized);
-	
+
 	if(stack_usage[i] != Initialized)
 	  {
 	    HF_Fill_Error(p_pn, Unassigned_Array, error_info, *last_index);
 	    return 0;
 	  }
-	
-			
+
+
       return 1;
     }
-	
+
   /* Simple case: when the expression is array indexing                   */
   if(code == I_ARRAY)
     {
@@ -422,7 +422,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
       double temp_value;
       int actual_i;
       int g_pos = *last_index;
-		
+
       (*last_index)--;
 #ifdef HF_DEBUG
       if(*last_index == start_index)
@@ -439,7 +439,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	  return 0; /* Error */
 	}
 #endif
-		
+
       (*last_index)--;
 #ifdef HF_DEBUG
       if(*last_index == start_index)
@@ -457,7 +457,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	  return 0; /* Error */
 	}
 #endif
-		
+
       (*last_index)--;
 #ifdef HF_DEBUG
       if(*last_index == start_index)
@@ -475,7 +475,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	  return 0; /* Error */
 	}
 #endif
-		
+
       (*last_index)--;
       er_status = HF_Calc_Expr(p_pn,
 			       error_info,
@@ -487,7 +487,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 				   svalue);      /* VAVAVA !!!! */
       if(!er_status)
 	return 0; /* Error */
-		
+
       actual_i = HF_round(temp_value);
       if((actual_i>0) && (actual_i <= ar_item_amount))
 	{
@@ -508,7 +508,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	  return 0; /* Error */
 	}
     }
-	
+
   /* Simple case: when the expression is string index                     */
   if(code == CODE_String_Index)
     {
@@ -530,7 +530,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
       return 0;
 #endif
     }
-	
+
   /* Simple case: when the expression consists of constant data           */
   {
     int First_Data = CODE_First_Data_Index;
@@ -546,7 +546,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
   {
     /* Code are negative, so invert it                                   */
     int correct_i = -(code + 1);
-		
+
     if((0 <= correct_i) &&
        (correct_i < p_pn->stack_size))
       {
@@ -559,7 +559,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	return 1; /* We've got the value                                  */
       }
   }
-		
+
   /* Case when expression consists of function:                           */
   /* n - amount of arguments:                                             */
   switch(code)
@@ -572,7 +572,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
     case FUNC_bool_not_less:
     case FUNC_bool_equal:
     case FUNC_bool_not_equal:
-				
+
     case FUNC_binary_plus:
     case FUNC_binary_minus:
     case FUNC_binary_mult:
@@ -603,7 +603,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
       return 0; /* Error */
 #endif
     }
-		
+
   /* Get arguments:                                                       */
   for(i = 0;i<n;i++)
     {
@@ -614,7 +614,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	  return 0;/* Error */
 	}
     }
-		
+
   /* Calculate function:                                                  */
   switch(code)
     {
@@ -626,7 +626,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	}
       *value = 0.0;
       return 1;
-				
+
     case FUNC_bool_or:
       if((fabs(f_args[0]) < EPS) && (fabs(f_args[1]) < EPS))
 	{
@@ -635,7 +635,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	}
       *value = 1.0;
       return 1;
-				
+
     case FUNC_bool_less:
       if(f_args[1] < f_args[0])
 	{
@@ -644,7 +644,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	}
       *value = 0.0;
       return 1;
-				
+
     case FUNC_bool_greater:
       if(f_args[1] > f_args[0])
 	{
@@ -653,7 +653,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	}
       *value = 0.0;
       return 1;
-				
+
     case FUNC_bool_not_greater:
       if(f_args[1] <= f_args[0])
 	{
@@ -662,7 +662,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	}
       *value = 0.0;
       return 1;
-				
+
     case FUNC_bool_not_less:
       if(f_args[1] >= f_args[0])
 	{
@@ -671,7 +671,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	}
       *value = 0.0;
       return 1;
-				
+
     case FUNC_bool_equal:
       if(fabs(f_args[1] - f_args[0]) < EPS)
 	{
@@ -680,7 +680,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	}
       *value = 0.0;
       return 1;
-				
+
     case FUNC_bool_not_equal:
       if(fabs(f_args[1] - f_args[0]) >= EPS)
 	{
@@ -689,19 +689,19 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	}
       *value = 0.0;
       return 1;
-				
+
     case FUNC_binary_plus:
       *value = f_args[1] + f_args[0];
       return 1;
-				
+
     case FUNC_binary_minus:
       *value = f_args[1] - f_args[0];
       return 1;
-				
+
     case FUNC_binary_mult:
       *value = f_args[1] * f_args[0];
       return 1;
-				
+
     case FUNC_binary_divide:
       if(fabs(f_args[0])<EPS)
 	{
@@ -710,7 +710,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	}
       *value = f_args[1] / f_args[0];
       return 1;
-				
+
     case FUNC_binary_power:
       if(fabs(f_args[1]) < EPS)
 	{
@@ -757,14 +757,14 @@ int HF_Calc_Expr(PN_T*         p_pn,
 
 //	  *value = min(f_args[1], f_args[0]);
       return 1;
-				
+
     case FUNC_binary_union:
       if((ALPHA<0) || (ALPHA>1))
 	{
 	  HF_Fill_Error(p_pn, ALPHA_Range_Error, error_info, code_index);
 	  return 0; /* Error */
 	}
-				
+
       *value = (1/(1+ALPHA))*(f_args[1] + f_args[0] +
 			      sqrt(fabs(f_args[1]*f_args[1] + f_args[0]*f_args[0] -
 					2*ALPHA*f_args[0]*f_args[1])));
@@ -772,21 +772,21 @@ int HF_Calc_Expr(PN_T*         p_pn,
 //  	  *value = max(f_args[1], f_args[0]);
 
       return 1;
-				
+
     case FUNC_binary_neg:
       if((ALPHA<0) || (ALPHA>1))
 	{
 	  HF_Fill_Error(p_pn, ALPHA_Range_Error, error_info, code_index);
 	  return 0; /* Error */
 	}
-				
+
       f_args[0] = -f_args[0];
-				
+
       *value = (1/(1+ALPHA))*(f_args[1] + f_args[0] -
 			      sqrt(fabs(f_args[1]*f_args[1] + f_args[0]*f_args[0] -
 					2*ALPHA*f_args[0]*f_args[1])));
       return 1;
-				
+
     case FUNC_unary_not:
       *value = 0.0;
       if(fabs(f_args[0]) < EPS)
@@ -795,11 +795,11 @@ int HF_Calc_Expr(PN_T*         p_pn,
     case FUNC_unary_plus:
       *value = f_args[0];
       return 1;
-				
+
     case FUNC_unary_minus:
       *value = -f_args[0];
       return 1;
-				
+
     case FUNC_unary_tilda:
       *value = -f_args[0];
       return 1;
@@ -812,7 +812,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
 	}
       *value = sqrt(f_args[0]);
       return 1;
-				
+
     case FUNC_exp   :
       *value = exp(f_args[0]);
       return 1;
@@ -912,7 +912,7 @@ int HF_Calc_Expr(PN_T*         p_pn,
       /********************* BUILD-IN FUNCTIONS ************************/
     default: /* Calc built-in function:                                  */
       F_instance_No = instance_No;
-				
+
       if(functions_info[code-FUNC_unary_tilda-1].p_F_Restriction != NULL)
 	{
 	  if(!functions_info[code-FUNC_unary_tilda-1].p_F_Restriction(f_args,
@@ -920,12 +920,12 @@ int HF_Calc_Expr(PN_T*         p_pn,
 								      error_info,
 								      p_pn,
 								      code_index))
-						
+
 	    {
 	      return 0; /* Error */ /* error_info filled by previous call    */
 	    }
 	}
-				
+
       if(functions_info[code-FUNC_unary_tilda-1].p_Function != NULL)
 	{
 	  *value = functions_info[code-FUNC_unary_tilda-1].p_Function(f_args, &(p_pn->str_param));
@@ -949,11 +949,11 @@ int HF_calc(/*  in*/  PN_T*         p_pn,
     --  memory for stack and stack_usage is allocated and
     --  stack contains actual parameters for body.
   */
-	
-	/*  VAVAVA 
-	  NB: 'svalue' array is filled only all the calculation have been made 
-	  in the very end of HF_calc; all processing of 's' array is performed 
-	  with using stack's cells in the range stack[X_dim+Adim] to stack[X_dim+A_dim+S_dim-1]; 
+
+	/*  VAVAVA
+	  NB: 'svalue' array is filled only all the calculation have been made
+	  in the very end of HF_calc; all processing of 's' array is performed
+	  with using stack's cells in the range stack[X_dim+Adim] to stack[X_dim+A_dim+S_dim-1];
 	  initially, these stack's cells are filled from outside - exactly as for X and A but
 	  then (in distinction to X and A can be assigned by new valus of s array.
 	*/
@@ -965,39 +965,39 @@ int HF_calc(/*  in*/  PN_T*         p_pn,
   double* c_data;/* Constants array                                          */
   int SI;     /* Size of instruction array                                */
   /* No errors: yet                                                          */
-   
+
   HF_global_code = p_pn->code_list.data;
   HF_global_data = stack;
 
   /* Compute CODE_First_Data_Index                                           */
   CODE_First_Data_Index = FUNC_unary_tilda + 1 + HF_FUNCTIONS_AMOUNT;
-  
+
   /* Initialize stack_usage: X_dim + A_dim variables are meaningfull         */
   for(i=0;i<p_pn->X_dim+p_pn->A_dim+p_pn->S_dim;i++)   /* VAVAVA */
     stack_usage[i] = Initialized;
   for(;i<p_pn->stack_size;i++)
     stack_usage[i] = Not_Initialized;
-  
-  /* 
-     Here we are at the first instruction, so ic = 0                         
+
+  /*
+     Here we are at the first instruction, so ic = 0
   */
   IC = 0;
   SX = p_pn->X_dim;/* Amount X of variables in the stack                  */
   SA = p_pn->A_dim;/* Amount A of variables in the stack                  */
   SS = p_pn->S_dim;/* Amount S of variables in the stack                  */  /* VAVAVA */
 	SL = p_pn->stack_size - (SX + SA +SS); /* Local data size               */  /* VAVAVA */
-	
+
   SD = p_pn->constant_values.amount; /* Constant data amount              */
   SI = p_pn->code_list.amount;       /* Instructions amount               */
   instr = p_pn->code_list.data;      /* This renames Instruction array    */
   c_data = p_pn->constant_values.data;
 
   /* VAVAVA Initializing svalue  */
-     for(i=0;i<SS;i++)   	
+     for(i=0;i<SS;i++)
 		svalue[i] = Initialized;
 
   /* This renames Constant Values array */
-	
+
   while(IC < SI)
     {
       switch(instr[IC])
@@ -1007,13 +1007,13 @@ int HF_calc(/*  in*/  PN_T*         p_pn,
 	  {  /* Declare Block                                            */
 	    int si, am, di;
 	    am = instr[IC]; /* Items amount                             */
-					
+
 	    INC(IC);
 	    si = instr[IC]; /* Local item first index                   */
-					
+
 	    INC(IC);
 	    di = instr[IC]; /* Constant item first index                */
-					
+
 #ifdef HF_DEBUG
 	    /* Check for correcteness                                   */
 	    if(((SL-si)>0) && ((SD-di)>0) && (am <= HF_min_int(SL-si,SD-di))
@@ -1027,7 +1027,7 @@ int HF_calc(/*  in*/  PN_T*         p_pn,
 		    stack_usage[index] = Initialized;
 		  }
 		INC(IC);
-						
+
 #ifdef HF_DEBUG
 	      }
 	    else
@@ -1047,10 +1047,10 @@ case CODE_Sarray_assignment:
 					{  /* Declare Block                                            */
 					int am, di;
 					am = instr[IC]; /* 's' array's items amount                             */
-		
+
 					INC(IC);
 					di = instr[IC]; /* Constant item first index                */
-					
+
 #ifdef HF_DEBUG
 					/* Check for correcteness                                   */
 					if( (am <= SS) &&
@@ -1062,13 +1062,13 @@ case CODE_Sarray_assignment:
 							{
 			/* VAVAVA NB! 's[i]' values are put in the stack instead actual parameters of 's'! */
              /*  output array 's' is also completely modified*/
-							int index = SX+SA+i;    
+							int index = SX+SA+i;
 							stack[index] = c_data[di+i];
-						/*	svalue[i] = stack[index]; */  
+						/*	svalue[i] = stack[index]; */
 							stack_usage[index] = Initialized;  /* VAVAVA !!!! */
 							}
 						INC(IC);
-						
+
 #ifdef HF_DEBUG
 						}
 					else
@@ -1082,14 +1082,14 @@ case CODE_Sarray_assignment:
 /* VAVAVA End of processing 's=[...];' */
 	case CODE_assignment:
 	  INC(IC);
-				
+
 	  { /* Declare Block */
 	    int si;
 	    int expr_end_index;
 	    double temp_value;
 	    int er_status;
 	    int index;
-					
+
 	    si = instr[IC]; /* He we've got the variable index          */
 #ifdef HF_DEBUG
 	    if((si<0) || !(si<SL))
@@ -1098,11 +1098,11 @@ case CODE_Sarray_assignment:
 		return 0; /* Error */
 	      }
 #endif
-					
+
 	    INC(IC);
-					
+
 	    expr_end_index = instr[IC];
-					
+
 #ifdef HF_DEBUG
 	    if((expr_end_index<=IC) || (!(expr_end_index<SI)))
 	      {
@@ -1110,7 +1110,7 @@ case CODE_Sarray_assignment:
 		return 0; /* Error */
 	      }
 #endif
-					
+
 	    { /* Declare block */
 	      int last_index = expr_end_index;
 	      er_status = HF_Calc_Expr(p_pn, error_info, IC, &last_index,
@@ -1118,19 +1118,19 @@ case CODE_Sarray_assignment:
 	    }
 	    if(!er_status)
 	      return 0; /* Error, error_info is filled */
-						
+
 	    index = SX+SA+si+SS;
 	    stack[index] = temp_value;
 	    stack_usage[index] = Initialized;
-						
+
 	    IC = expr_end_index;
 	    INC(IC);
 	  }
-					
+
 	  break;
 	case CODE_array_item_assignment:
 	  INC(IC);
-				
+
 	  { /* Declare Block */
 	    int ar_start_index; /* First item of array is
 				   SX+SA+ar_start_index
@@ -1142,7 +1142,7 @@ case CODE_Sarray_assignment:
 	    int expr_end_index;
 	    double temp_value;
 	    int er_status;
-										  
+
 	    ar_start_index = instr[IC];/* Array starting index in SL    */
 #ifdef HF_DEBUG
 	    if((ar_start_index<0) || (!(ar_start_index<SL)))
@@ -1151,10 +1151,10 @@ case CODE_Sarray_assignment:
 		return 0; /* Error */
 	      }
 #endif
-										  
+
 	    INC(IC);
 	    ar_items_amount = instr[IC];/* Array items amount           */
-										  
+
 #ifdef HF_DEBUG
 	    if((ar_items_amount<1) || (!(ar_items_amount + ar_start_index-1 < SL)))
 	      {
@@ -1162,9 +1162,9 @@ case CODE_Sarray_assignment:
 		return 0; /* Error */
 	      }
 #endif
-										  
+
 	    INC(IC);
-										  
+
 	    expr_end_index = instr[IC];
 #ifdef HF_DEBUG
 	    if((expr_end_index<=IC) || (!(expr_end_index<SI)))
@@ -1173,7 +1173,7 @@ case CODE_Sarray_assignment:
 		return 0; /* Error */
 	      }
 #endif
-										  
+
 	    {
 	      /* Calculate expression for index                           */
 	      int last_index = expr_end_index;
@@ -1183,16 +1183,16 @@ case CODE_Sarray_assignment:
 	    if(!er_status)
 	      return 0; /* Error, error_info is filled                 */
 	    si = HF_round(temp_value);
-											  
+
 	    if((1 > si) || (si > ar_items_amount))
 	      {
 		HF_Fill_Error(p_pn, Index_Out_Of_Range, error_info, IC);
 		return 0; /* Error */
 	      }
-											  
+
 	    IC = expr_end_index;
 	    INC(IC);
-											  
+
 	    expr_end_index = instr[IC];
 #ifdef HF_DEBUG
 	    if((expr_end_index<=IC) || (!(expr_end_index<SI)))
@@ -1201,7 +1201,7 @@ case CODE_Sarray_assignment:
 		return 0; /* Error */
 	      }
 #endif
-											  
+
 	    /* Calculate expression                                     */
 	    {
 	      int last_index = expr_end_index;
@@ -1210,10 +1210,10 @@ case CODE_Sarray_assignment:
 	    }
 	    if(!er_status)
 	      return 0; /* Error, error_info is filled                 */
-												  
+
 		stack[SX+SA+SS+ar_start_index+si-1]       = temp_value;  /* VAVAVA */
 					stack_usage[SX+SA+SS+ar_start_index+si-1] = Initialized; /* VAVAVA */
-														  
+
 	    IC = expr_end_index;
 	    INC(IC);
 	  }
@@ -1230,7 +1230,7 @@ case CODE_Sarray_assignment:
 	  /* VAVAVA New code: Beginning of processing 's[...] = ...;' */
 			case CODE_Sarray_item_assignment:
 				INC(IC);
-				
+
 				{ /* Declare Block */
 				 /* First item of array is
 										  SX+SA
@@ -1242,9 +1242,9 @@ case CODE_Sarray_assignment:
 					int expr_end_index;
 					double temp_value;
 					int er_status;
-										  
+
 					ar_items_amount = instr[IC]; /* Array items amount           */
-										  
+
 #ifdef HF_DEBUG
 					if((ar_items_amount<1) || ((ar_items_amount > SS)))
 					{
@@ -1252,9 +1252,9 @@ case CODE_Sarray_assignment:
 					return 0; /* Error */
 					}
 #endif
-										  
+
 					INC(IC);
-										  
+
 					expr_end_index = instr[IC];
 #ifdef HF_DEBUG
 					if((expr_end_index<=IC) || (!(expr_end_index<SI)))
@@ -1263,7 +1263,7 @@ case CODE_Sarray_assignment:
 					return 0; /* Error */
 					}
 #endif
-										  
+
 					{
 						/* Calculate expression for index                           */
 					int last_index = expr_end_index;
@@ -1273,16 +1273,16 @@ case CODE_Sarray_assignment:
 					if(!er_status)
 					return 0; /* Error, error_info is filled                 */
 						si = HF_round(temp_value);
-											  
+
 					if((1 > si) || (si > ar_items_amount))
 					{
 							HF_Fill_Error(p_pn, Index_Out_Of_Range, error_info, IC);
 				    return 0; /* Error */
 					}
-											  
+
 					IC = expr_end_index;
 					INC(IC);
-											  
+
 					expr_end_index = instr[IC];
 #ifdef HF_DEBUG
 					if((expr_end_index<=IC) || (!(expr_end_index<SI)))
@@ -1291,7 +1291,7 @@ case CODE_Sarray_assignment:
 				    return 0; /* Error */
 					}
 #endif
-											  
+
 					/* Calculate expression                                     */
 					{
 						int last_index = expr_end_index;
@@ -1300,10 +1300,10 @@ case CODE_Sarray_assignment:
 					}
 					if(!er_status)
 					return 0; /* Error, error_info is filled                 */
-												  
+
 					stack[SX+SA+si-1]       = temp_value;
 					stack_usage[SX+SA+si-1] = Initialized;
-												  
+
 					IC = expr_end_index;
 					INC(IC);
 				}
@@ -1312,7 +1312,7 @@ case CODE_Sarray_assignment:
 
 	case CODE_goto:
 	  INC(IC);
-				
+
 	  { /* Declare Block */
 	    int oi;
 	    oi = instr[IC];
@@ -1336,7 +1336,7 @@ case CODE_Sarray_assignment:
 	    int expr_end_index;
 	    double temp_value;
 	    int er_status;
-					
+
 	    oi = instr[IC];
 #ifdef HF_DEBUG
 	    if((IC>=oi) || (!(oi<SI)))
@@ -1345,7 +1345,7 @@ case CODE_Sarray_assignment:
 		return 0; /* Error */
 	      }
 #endif
-					
+
 	    INC(IC);
 	    expr_end_index = instr[IC];
 #ifdef HF_DEBUG
@@ -1362,7 +1362,7 @@ case CODE_Sarray_assignment:
 	    }
 	    if(!er_status)
 	      return 0; /* Error, error_info is filled                 */
-						
+
 	    if(fabs(temp_value) >= EPS)
 	      {
 		IC = expr_end_index;
@@ -1375,13 +1375,13 @@ case CODE_Sarray_assignment:
 	case CODE_body_assignment:
 	  /* value = */
 	  INC(IC);
-				
+
 	  { /* Declare Block */
 	    int expr_end_index;
 	    int er_status;
-					
+
 	    expr_end_index = instr[IC];
-					
+
 #ifdef HF_DEBUG
 	    if((expr_end_index<=IC) || (!(expr_end_index<SI)))
 	      {
@@ -1389,7 +1389,7 @@ case CODE_Sarray_assignment:
 		return 0; /* Error */
 	      }
 #endif
-					
+
 	    { /* Declare block */
 	      int last_index = expr_end_index;
 	      er_status = HF_Calc_Expr(p_pn, error_info, IC, &last_index,
@@ -1397,15 +1397,15 @@ case CODE_Sarray_assignment:
 	    }
 	    if(!er_status)
 	      return 0; /* Error, error_info is filled */
-			
+
 	/* VAVAVA Assigning items of svalue array */
 
-						for(i = 0; i<SS; i++)    
-						      svalue[i] = stack[SX+SA+i]; 
+						for(i = 0; i<SS; i++)
+						      svalue[i] = stack[SX+SA+i];
    /* Normal return */
 						//****Added 10/07/01
 						Flag_Initialisation = 1;
-						//*******************			
+						//*******************
 	    return 1; /* No errors */
 	  }
 #ifdef HF_DEBUG

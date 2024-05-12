@@ -31,15 +31,15 @@ for f in ux uxSide Lambda2_in_bubble Lambda2 tracer; do
     ffmpeg  -f concat -safe 0 -i ${f}_files.txt ${options} -vf "scale=3108:1168:force_original_aspect_ratio=decrease:eval=frame,pad=3180:1168:-1:-1:color=white" ${f}.mp4;
 done;
 
-for f in uxSlice omegaSlice; do
-    echo $f;
-    rm ${f}_files.txt
-    list_file=($(ls lambda2_t=*${f}.png| sort -n -t = -k 2 -k 4 | sed -e "s/ /|/g"))
-    for i in "${!list_time[@]}"; do
-        if [[ $i > 0 ]]; then
-            echo ${dt_list[$i-1]} >> ${f}_files.txt
-        fi
-        echo "file '${list_file[$i]}'" >> ${f}_files.txt
-    done;
-    ffmpeg  -f concat -safe 0 -i ${f}_files.txt ${options} -vf "scale=3108:1168:force_original_aspect_ratio=decrease:eval=frame,pad=3180:1168:-1:-1:color=white" ${f}.mp4;
-done;
+#for f in uxSlice omegaSlice; do
+#    echo $f;
+#    rm ${f}_files.txt
+#    list_file=($(ls lambda2_t=*${f}.png| sort -n -t = -k 2 -k 4 | sed -e "s/ /|/g"))
+#    for i in "${!list_time[@]}"; do
+#        if [[ $i > 0 ]]; then
+#            echo ${dt_list[$i-1]} >> ${f}_files.txt
+#        fi
+#        echo "file '${list_file[$i]}'" >> ${f}_files.txt
+#    done;
+#    ffmpeg  -f concat -safe 0 -i ${f}_files.txt ${options} -vf "scale=3108:1168:force_original_aspect_ratio=decrease:eval=frame,pad=3180:1168:-1:-1:color=white" ${f}.mp4;
+#done;

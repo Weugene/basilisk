@@ -14,7 +14,7 @@ for ca in "${calist[@]}"; do
 	    dir="res_${name}"
 	    echo $dir
         (
-            grep "^${level}" $dir/log_${name} > m_${name}.txt 
+            grep "^${level}" $dir/log_${name} > m_${name}.txt
 	    )
     done
 done

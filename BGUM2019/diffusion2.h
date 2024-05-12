@@ -25,7 +25,7 @@ user to provide the diffusivity on faces, which could be `const`ant:
 void flux_diffusion (scalar c, (const) face vector kappa, face vector F) {
   /**
  Neighboring cells are possibly behind a boundary of some
-     sort. As such, we need to compute the relevant solution values. 
+     sort. As such, we need to compute the relevant solution values.
 */
   boundary ({c});
   /**
@@ -54,7 +54,7 @@ void tendency_from_flux (face vector F, scalar dc) {
   foreach() {
     dc[] = 0;
     foreach_dimension() //Rotates over the dimensions
-      dc[] +=  (F.x[] - F.x[1])/Delta; 
+      dc[] +=  (F.x[] - F.x[1])/Delta;
   }
 }
 /**
@@ -90,7 +90,7 @@ void diffusion_midpoint (scalar c, double dt, face vector kappa) {
   scalar dc[], c_temp[];
   foreach()
     c_temp[] = c[];                 //create a scratch
-  flux_diffusion(c_temp, kappa, F); 
+  flux_diffusion(c_temp, kappa, F);
   tendency_from_flux (F, dc);
   advance (c_temp, dc, dt/2.);      //advance to the mid point.
   flux_diffusion(c_temp, kappa, F); //Re-estimate the fluxes at the mid point,
@@ -99,11 +99,8 @@ void diffusion_midpoint (scalar c, double dt, face vector kappa) {
 }
 
 /**
-# Further, 
+# Further,
 
 We could use the [`Runke-Kutta`](/src/runge-kutta.h) schemes (upto 4th
 order) or a [predictor corrector](/src/predictor-corrector.h) scheme.
  */
-
-
-

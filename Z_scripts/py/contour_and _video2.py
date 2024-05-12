@@ -1,11 +1,12 @@
 # trace generated using paraview version 5.8.0
 #
-# To ensure correct image size when batch processing, please search 
+# To ensure correct image size when batch processing, please search
 # for and uncomment the line `# renderView*.ViewSize = [*,*]`
+# import the simple module from the paraview
+from __future__ import annotations
 
-#### import the simple module from the paraview
 from paraview.simple import *
-#### disable automatic camera reset on 'Show'
+# disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
 # find source
@@ -56,7 +57,8 @@ slice1Display.DataAxesGrid = 'GridAxesRepresentation'
 slice1Display.PolarAxes = 'PolarAxesRepresentation'
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-slice1Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+slice1Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # update the view to ensure updated data information
 renderView1.Update()
@@ -81,7 +83,8 @@ contour1Display = Show(contour1, renderView1, 'GeometryRepresentation')
 
 # get color transfer function/color map for 'f'
 fLUT = GetColorTransferFunction('f')
-fLUT.RGBPoints = [0.0, 0.23137254902, 0.298039215686, 0.752941176471, 0.5, 0.865, 0.865, 0.865, 1.0, 0.705882352941, 0.0156862745098, 0.149019607843]
+fLUT.RGBPoints = [0.0, 0.23137254902, 0.298039215686, 0.752941176471, 0.5,
+                  0.865, 0.865, 0.865, 1.0, 0.705882352941, 0.0156862745098, 0.149019607843]
 fLUT.ScalarRangeInitialized = 1.0
 
 # trace defaults for the display properties.
@@ -104,13 +107,15 @@ contour1Display.DataAxesGrid = 'GridAxesRepresentation'
 contour1Display.PolarAxes = 'PolarAxesRepresentation'
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-contour1Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+contour1Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
 contour1Display.ScaleTransferFunction.Points = [0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-contour1Display.OpacityTransferFunction.Points = [0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
+contour1Display.OpacityTransferFunction.Points = [
+    0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
 
 # show color bar/color legend
 contour1Display.SetScalarBarVisibility(renderView1, True)
@@ -151,13 +156,16 @@ cylinder1Display.DataAxesGrid = 'GridAxesRepresentation'
 cylinder1Display.PolarAxes = 'PolarAxesRepresentation'
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-cylinder1Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+cylinder1Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-cylinder1Display.ScaleTransferFunction.Points = [-0.9983690977096558, 0.0, 0.5, 0.0, 1.0, 1.0, 0.5, 0.0]
+cylinder1Display.ScaleTransferFunction.Points = [
+    -0.9983690977096558, 0.0, 0.5, 0.0, 1.0, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-cylinder1Display.OpacityTransferFunction.Points = [-0.9983690977096558, 0.0, 0.5, 0.0, 1.0, 1.0, 0.5, 0.0]
+cylinder1Display.OpacityTransferFunction.Points = [
+    -0.9983690977096558, 0.0, 0.5, 0.0, 1.0, 1.0, 0.5, 0.0]
 
 # update the view to ensure updated data information
 renderView1.Update()
@@ -239,8 +247,8 @@ renderView1.CameraParallelScale = 1.9680297154517084
 
 # save animation
 SaveAnimation('/Users/weugene/basilisk/work/tube/bubble_test.avi', renderView1, ImageResolution=[2148, 464],
-    FrameRate=10,
-    FrameWindow=[0, 101])
+              FrameRate=10,
+              FrameWindow=[0, 101])
 
 # hide data in view
 Hide(cylinder1, renderView1)
@@ -259,7 +267,8 @@ contour2Display = Show(contour2, renderView1, 'GeometryRepresentation')
 
 # get color transfer function/color map for 'fs'
 fsLUT = GetColorTransferFunction('fs')
-fsLUT.RGBPoints = [0.0, 0.23137254902, 0.298039215686, 0.752941176471, 0.5, 0.865, 0.865, 0.865, 1.0, 0.705882352941, 0.0156862745098, 0.149019607843]
+fsLUT.RGBPoints = [0.0, 0.23137254902, 0.298039215686, 0.752941176471, 0.5,
+                   0.865, 0.865, 0.865, 1.0, 0.705882352941, 0.0156862745098, 0.149019607843]
 fsLUT.ScalarRangeInitialized = 1.0
 
 # trace defaults for the display properties.
@@ -282,18 +291,20 @@ contour2Display.DataAxesGrid = 'GridAxesRepresentation'
 contour2Display.PolarAxes = 'PolarAxesRepresentation'
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-contour2Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+contour2Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
 contour2Display.ScaleTransferFunction.Points = [0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-contour2Display.OpacityTransferFunction.Points = [0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
+contour2Display.OpacityTransferFunction.Points = [
+    0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
 
 # reset view to fit data
 renderView1.ResetCamera()
 
-#changing interaction mode based on data extents
+# changing interaction mode based on data extents
 renderView1.CameraPosition = [15.0, 0.0, 10000.0]
 renderView1.CameraFocalPoint = [15.0, 0.0, 0.0]
 
@@ -346,7 +357,7 @@ AssignViewToLayout(view=spreadSheetView1, layout=layout2, hint=0)
 # export view
 ExportView('/Users/weugene/basilisk/work/tube/contour_data.csv', view=spreadSheetView1)
 
-#### saving camera placements for all active views
+# saving camera placements for all active views
 
 # current camera placement for renderView1
 renderView1.InteractionMode = '2D'
@@ -354,6 +365,6 @@ renderView1.CameraPosition = [16.147942715187742, 0.0017525265100293286, 6.75142
 renderView1.CameraFocalPoint = [16.147942715187742, 0.0017525265100293286, 0.0]
 renderView1.CameraParallelScale = 1.7473983889826432
 
-#### uncomment the following to render all views
+# uncomment the following to render all views
 # RenderAllViews()
 # alternatively, if you want to write images, you can use SaveScreenshot(...).

@@ -1,9 +1,9 @@
 kaleido
+matplotlib
 networkx
 numpy
 pandas
-matplotlib
+plotly
 scipy
 statsmodels
 tsmoothie
-plotly

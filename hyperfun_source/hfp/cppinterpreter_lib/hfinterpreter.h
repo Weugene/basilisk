@@ -6,7 +6,7 @@
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,7 +17,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -43,14 +43,14 @@ extern "C"{
 #include "general.h"
 }
 
-struct MemoryError{	
+struct MemoryError{
 	std::string error;
   MemoryError(std::string e){ error=e; }
 };
 
-struct ParseError{ 
-	std::string error; 
-  int line; 
+struct ParseError{
+	std::string error;
+  int line;
   int pos;
   ParseError(std::string e, int l, int p){ error=e; line=l; pos=p; }
 };
@@ -59,16 +59,16 @@ class HFInterpreter{
  public:
   HFInterpreter();
   virtual ~HFInterpreter();
-		
+
   //parse can throw MemoryError or ParseError
   virtual void parse(const std::string& model, const std::string &object);
-		
+
   virtual double calc(const std::vector<double>& X, const std::vector<double>& A, double *S);
   virtual double calc(const std::vector<double>& X, double *S );
-		
+
   void parameters(std::vector<double> A);
   std::vector<double> parameters();
-  
+
   virtual short getXSize();
   virtual short getASize();
   virtual short getSSize();
@@ -77,28 +77,28 @@ class HFInterpreter{
 
   void object(const std::string& object);
   std::string object();
-			
-		
-		
+
+
+
  private:
   void init();
-  
+
   char* itsModel; char *itsObject;
 
   int itsXSize;
   int itsASize;
   int itsSSize;
-  
+
   PN_List_T itsPNList;
   ER_List_T itsErrorList;
   PN_List_T itsLibraryList;
-  
+
   PN_NODE_T* itsPNNode;
   PN_T* itsBodyCode;
-  
+
   double* itsStack;
   int* itsStackUsage;
-  
+
   double itsValue;
   Error_Info_T itsER;
   int itsCalcStatus;

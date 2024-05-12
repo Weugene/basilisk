@@ -21,7 +21,7 @@ int main()
   which we need to convert to
   [STL](https://en.wikipedia.org/wiki/STL_%28file_format%29) using
   [meshlab](http://www.meshlab.net/). */
-  
+
 //  system ("test -f distance.stl || "
 //	  "(wget http://www-static.cc.gatech.edu/data_files/large_models/MY_FILE.ply.gz && "
 //	  "gunzip -f MY_FILE.ply.gz && "
@@ -32,15 +32,15 @@ int main()
   /**
   We read the STL file, compute the bounding box of the model and set
   the domain center and size using this bounding box. */
-  
+
   coord * p = input_stl (fopen ("distance.stl", "r"));
   coord min, max;
-  bounding_box (p, &min, &max);  
+  bounding_box (p, &min, &max);
   double maxl = -HUGE;
   foreach_dimension()
     if (max.x - min.x > maxl)
       maxl = max.x - min.x;
-  
+
   init_grid (8);
   size (1.2*maxl);
   origin ((max.x + min.x)/2. - L0/2,
@@ -77,7 +77,7 @@ int main()
   scalar f[];
   face vector s[];
   fractions (phi, f, s);
-  
+
   /**
   Finally we display the surface reconstructed from volume fractions. */
 

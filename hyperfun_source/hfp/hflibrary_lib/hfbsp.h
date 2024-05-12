@@ -13,7 +13,7 @@ struct BSPTree;
 #define sto_r				11
 #define sto_sardf			12
 
-typedef struct 
+typedef struct
 {
 	double a;
 	double b;
@@ -21,7 +21,7 @@ typedef struct
 	double d;
 }BSPPlane;
 
-typedef struct 
+typedef struct
 {
 	double x;
 	double y;

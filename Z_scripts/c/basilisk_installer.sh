@@ -8,7 +8,7 @@ For details, see http://basilisk.fr/src/INSTALL
 please, write 'sudo -s', before ./basilisk_installer.sh
 Usage: ./$(basename "$0") [<options>]
 Options:
-  CONFIG, choose compilator config file, default is config.gcc. 
+  CONFIG, choose compilator config file, default is config.gcc.
   Note that on 32-bits systems you need to use config.gcc.32bits instead
   BASILISK_PATH, choose path where Basilisk will be installed, default is /opt
   WBASILISK, choose the path to the workspace, default is ~/wbasilisk
@@ -37,15 +37,15 @@ for ARGUMENT in "$@"
 do
 
     KEY=$(echo $ARGUMENT | cut -f1 -d=)
-    VALUE=$(echo $ARGUMENT | cut -f2 -d=)   
+    VALUE=$(echo $ARGUMENT | cut -f2 -d=)
 
     case "$KEY" in
             CONFIG)              CONFIG=${VALUE} ;;
             WBASILISK)           WBASILISK=${VALUE} ;;
-	    BASILISK_PATH)       BASILISK_PATH=${VALUE} ;;   
-	    IS_SUPERCOMPUTER)    IS_SUPERCOMPUTER=${VALUE} ;;  
-            *)   
-    esac    
+	    BASILISK_PATH)       BASILISK_PATH=${VALUE} ;;
+	    IS_SUPERCOMPUTER)    IS_SUPERCOMPUTER=${VALUE} ;;
+            *)
+    esac
 
 
 done
@@ -71,11 +71,11 @@ export PATH=$PATH:$BASILISK
 
 sudo ln -sf $CONFIG config
 if [ $IS_SUPERCOMPUTER == 'T' ]; then
-	echo "export OPENGLIBS='-lfb_osmesa -lGLU -lOSMesa'" 
-	echo 'OPENGLIBS=-lfb_osmesa -lGLU -lOSMesa' 
-else 
-	echo "export OPENGLIBS='-lfb_glx -lGLU -lGLEW -lGL -lX11'"  
-	echo 'OPENGLIBS=-lfb_glx -lGLU -lGLEW -lGL -lX11' 
+	echo "export OPENGLIBS='-lfb_osmesa -lGLU -lOSMesa'"
+	echo 'OPENGLIBS=-lfb_osmesa -lGLU -lOSMesa'
+else
+	echo "export OPENGLIBS='-lfb_glx -lGLU -lGLEW -lGL -lX11'"
+	echo 'OPENGLIBS=-lfb_glx -lGLU -lGLEW -lGL -lX11'
 fi
 
 make -k
@@ -112,4 +112,3 @@ $BASILISK/qcc -O2 bump_test.c -o bump_test -lm
 ./bump_test > out.ppm 2> log
 animate out.ppm
 set +x
-

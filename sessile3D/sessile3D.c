@@ -59,7 +59,7 @@ int main()
 
   const face vector muc[] = {.1,.1,.1};
   mu = muc;
-  
+
   /**
   We must associate the height function field with the VOF tracer, so
   that it is used by the relevant functions (curvature calculation in
@@ -203,5 +203,5 @@ plot 2./(kappa(x*pi/180.)) t 'analytical', \
 
 ## See also
 
-* [2D test](sessile.c) 
+* [2D test](sessile.c)
 */

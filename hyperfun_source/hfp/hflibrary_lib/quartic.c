@@ -5,7 +5,7 @@
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -16,7 +16,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -81,7 +81,7 @@ static void calc_root_of_linear(struct retval  *ret, double c1, double c0)
 //   c2 * x^2 + c1 * x + c0 = 0
 // if successful, returns ret.value[0] = x1 & ret.value[1] = x2
 // if roots are equal, ret.value[0] = root
-static void calc_roots_of_quadratic(struct retval *ret, double c2, 
+static void calc_roots_of_quadratic(struct retval *ret, double c2,
 									double c1, double c0)
 {
   double d;
@@ -115,7 +115,7 @@ static void calc_roots_of_quadratic(struct retval *ret, double c2,
 // real roots of cubic equation:
 //   c3 * x^3 + c2 * x^2 + c1 + c0 = 0
 // if successful, returns real roots in ret.value[]
-static void calc_roots_of_cubic(struct retval  *ret, double c3, 
+static void calc_roots_of_cubic(struct retval  *ret, double c3,
 								double c2, double c1, double c0)
 {
   static struct retval quad_rts;
@@ -196,15 +196,15 @@ static void calc_roots_of_cubic(struct retval  *ret, double c3,
 // real roots of quartic equation:
 //   c4 * x^4 + c3 * x^3 + c2 * x^2 + c1 + c0 = 0
 // if successful, returns real roots in ret.value[]
-void calc_roots_of_quartic(struct retval  *ret, double c4, 
-						   double c3, double c2, 
+void calc_roots_of_quartic(struct retval  *ret, double c4,
+						   double c3, double c2,
 						   double c1, double c0)
 {
   static struct retval subpoly_rts[2];
   double m, b, a3, a2, a1, a0;
   int i, j;
 
-  
+
   if (c0 == 0)
     {
       ret->num_val = 1;
@@ -218,16 +218,16 @@ void calc_roots_of_quartic(struct retval  *ret, double c4,
     {
       struct retval cb_rts;
 	  double hi_root;
-	  
+
 	  a3 = fdiv(c3, c4);
       a2 = fdiv(c2, c4);
       a1 = fdiv(c1, c4);
       a0 = fdiv(c0, c4);
-	  	  
+
       calc_roots_of_cubic(&cb_rts, -8, 4 * a2, 8 * a0 - 2 * a1 * a3, a1 * a1 - a0 * (4 * a2 - a3 * a3));
-	  
+
       hi_root = cb_rts.value[0];
-	  
+
       if (cb_rts.num_val == 2)
 	{
 	  if (cb_rts.value[1] > hi_root)
@@ -246,21 +246,20 @@ void calc_roots_of_quartic(struct retval  *ret, double c4,
 		hi_root = cb_rts.value[2];
 	    }
 	}
-	  
+
       ret->num_val = 0;
-	  
+
       if ((a2 = hi_root * hi_root) > a0)
 	{
 	  b = sqrt(a2 - a0);
 	  m = fdiv(a3 * hi_root - a1, 2 * b);
-		  
+
 	  calc_roots_of_quadratic(&subpoly_rts[0], 1, a3 / 2 + m, hi_root + b);
 	  calc_roots_of_quadratic(&subpoly_rts[1], 1, a3 / 2 - m, hi_root - b);
-		  
+
 	  for (i = 0; i < 2; i++)
 	    for (j = 0; j < subpoly_rts[i].num_val; j++)
 	      ret->value[ret->num_val++] = subpoly_rts[i].value[j];
 	}
     }
 }
-

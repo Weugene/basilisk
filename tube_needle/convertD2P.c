@@ -118,7 +118,7 @@ event vtk_file (i++)
     }
     unrefine ( (x < length_min || x > length_max) && level >= 1);
     unrefine ( (sq(y) + sq(z) > sq(0.55)) && level >= 1);
-    
+
     char subname[80]; sprintf(subname, "dump2pvd_compressed");
     output_vtu_MPI( subname, myt, (scalar *) {fs, f, l, l2, omega, p}, (vector *) {u});
 }
@@ -234,5 +234,3 @@ event stop(t = 100){ // t = 100 should  be sufficiently big in order to reach th
 //event stop(t = 100){ // t = 100 should  be sufficiently big in order to reach this event
 //    return 0;
 //};
-
-

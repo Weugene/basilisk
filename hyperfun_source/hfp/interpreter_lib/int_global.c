@@ -7,7 +7,7 @@
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -18,7 +18,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -261,14 +261,14 @@ function_info_T functions_info[] =
 /* 69 */  {"hfspacemapcubic", 4, { HF_A, HF_A, HF_A, HF_A, 0,    0,    0,    0, 0, 0 }, hfSpaceMapCubic,     NULL, 0          },
 /* 70 */  {"hfspacemapexp", 4, { HF_A, HF_A, HF_A, HF_A, 0,    0,    0,    0, 0, 0 }, hfSpaceMapExp,     NULL, 0          },
 /* 71 */  //{"hfvoxel", 2, { HF_A, HF_R, 0, 0, 0,    0,    0,    0, 0, 0 }, hfVoxel,     NULL, 0          },
-  
+
 /* // Examples:
  *  {"test", 3, {HF_R,HF_A,HF_S,0,0,0,0,0,0,0}, TEST,  R_TEST, 0 },
  *  {"str_t",1, {HF_S,0,0,0,0,0,0,0,0,0}, STR_T, NULL, 0},
  */
 /**********/
 
-/* Attributes */  
+/* Attributes */
 /*A-01*/			{"hfA_Wave", 4, { HF_R, HF_R, HF_R, HF_R,		0,  0,	  0,	0, 0 },				hfA_Wave,     NULL, 0          },
 /*A-02*/			{"hfA_CheckerBoard", 6, { HF_A, HF_A, HF_A,	HF_A,HF_A,	HF_A,	  0,	0, 0 },		hfA_CheckerBoard,     NULL, 0          },
 /*A-03*/			{"hfA_Union", 6, { HF_R, HF_R, HF_A,HF_A,HF_A,HF_R, 0,	0, 0 },						hfA_Union,     NULL, 0          },

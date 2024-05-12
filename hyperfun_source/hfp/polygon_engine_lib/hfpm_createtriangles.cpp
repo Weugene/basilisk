@@ -1,23 +1,23 @@
 /*==============================================================================
 
  Copyright 1999 Eric Fausett
- Copyright 2003-2004 Benjamin Schmitt 
+ Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
  The implemented polygonization algorithm is described in
 
- Pasko A.A., Pilyugin V.V., Pokrovskiy V.N. 
- "Geometric modeling in the analysis of trivariate functions", 
- Communications of Joint Insititute of Nuclear Research, P10-86-310, 
+ Pasko A.A., Pilyugin V.V., Pokrovskiy V.N.
+ "Geometric modeling in the analysis of trivariate functions",
+ Communications of Joint Insititute of Nuclear Research, P10-86-310,
  Dubna, Russia, 1986 (in Russian).
 
- Pasko A.A., Pilyugin V.V., Pokrovskiy V.N. 
+ Pasko A.A., Pilyugin V.V., Pokrovskiy V.N.
  "Geometric modeling in the analysis of trivariate functions",
- Computers and Graphics, vol.12, Nos.3/4, 1988, pp.457-465. 
+ Computers and Graphics, vol.12, Nos.3/4, 1988, pp.457-465.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -28,7 +28,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -65,7 +65,7 @@ void HFPolyMesh::CreateTriangles(){
 								for(cp=0; cp<4; cp++){
 									Edge[cp]=Face2Vert[F-1][cp];
 									}
-								GraphBuildCase2(Edge, I); 
+								GraphBuildCase2(Edge, I);
 								break;
 							case FOUR:
 								S[0]=itsValGrid [i-1]	[j-1]	[k-1];
@@ -76,11 +76,11 @@ void HFPolyMesh::CreateTriangles(){
 								S[5]=itsValGrid [i-1]	[j]		[k];
 								S[6]=itsValGrid [i]		[j]		[k];
 								S[7]=itsValGrid [i]		[j-1]	[k];
-								
+
 								switch (F){
 									//	1			2			3			4			5			6
 									//{ {0,1,2,3}, {0,9,4,8}, {3,11,7,8}, {4,5,6,7}, {2,10,6,11}, {1,10,5,9} }
-									
+
 									//	1			3			4			6			2			5
 									//{1,2,3,4}, {4,12,8,9}, {5,6,7,8}, {2,11,6,10}, {1,10,5,9}, {3,11,7,12}
 									case 1://1
@@ -99,7 +99,7 @@ void HFPolyMesh::CreateTriangles(){
 										for(cp=0; cp<4; cp++){
 											Edge[cp]=Face2Vert[F-1][cp];
 											}
-										GraphBuildCase4(tV, A1, A2, Edge);				
+										GraphBuildCase4(tV, A1, A2, Edge);
 										break;
 									case 4://4
 										A1=S[4]-S[5]; //(S[0]-S[1])-(((S[0]+S[5])-S[1])-S[4])

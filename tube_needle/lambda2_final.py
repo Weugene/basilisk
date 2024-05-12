@@ -1,38 +1,41 @@
 # state file generated using paraview version 5.8.0
-
 # ----------------------------------------------------------------
 # setup views used in the visualization
 # ----------------------------------------------------------------
-
 # trace generated using paraview version 5.8.0
 #
-# To ensure correct image size when batch processing, please search 
+# To ensure correct image size when batch processing, please search
 # for and uncomment the line `# renderView*.ViewSize = [*,*]`
+# import the simple module from the paraview
+from __future__ import annotations
 
-#### import the simple module from the paraview
-from paraview.simple import *
-from paraview.vtk.util import numpy_support # provides unique()
-from vtkmodules.numpy_interface.algorithms import * # provides volume()
-from vtk.numpy_interface import dataset_adapter as dsa
-# import vtk.numpy_interface.algorithms as algs
-import vtk
-import numpy as np
-import glob, os, sys
-import logging
-from sys import argv
-import timeit
 import argparse
+import functools
+import glob
+import logging
+import os
+import sys
+import timeit
+from sys import argv
+
+import __builtin__
+import numpy as np
+import vtk
 from vtk.numpy_interface import dataset_adapter as dsa
+from vtkmodules.numpy_interface.algorithms import *  # provides volume()
+
+from paraview.simple import *
+from paraview.vtk.util import numpy_support  # provides unique()
+# import vtk.numpy_interface.algorithms as algs
 logging.basicConfig(format='%(message)s')
 log = logging.getLogger(__name__)
 
-import functools
-import __builtin__
 # from inspect import getmodule
 #
 # print(getmodule(Show))
-vtk_from_pvpython=True # pvpython reads from file, otherwise from paraview GUI
+vtk_from_pvpython = True  # pvpython reads from file, otherwise from paraview GUI
 # vtk_from_pvpython=False # pvpython reads from file, otherwise from paraview GUI
+
 
 def my_custom_timer(func):
     @functools.wraps(func)
@@ -40,8 +43,9 @@ def my_custom_timer(func):
         start_time = timeit.default_timer()
         s = ''
         for arg_name in kwargs:
-                s += arg_name
-        print("Started {!r}({!r}) {!r} ".format(func.__name__, s, ' line=' + str(sys._getframe().f_back.f_lineno))),
+            s += arg_name
+        print("Started {!r}({!r}) {!r} ".format(func.__name__, s,
+              ' line=' + str(sys._getframe().f_back.f_lineno))),
         value = func(*args, **kwargs)
         end_time = timeit.default_timer()
         run_time = end_time - start_time
@@ -52,62 +56,75 @@ def my_custom_timer(func):
 # print(sys.modules.keys())
 
 
-
 @my_custom_timer
 def XMLPartitionedUnstructuredGridReader(*args, **kwargs):
     return paraview.simple.XMLPartitionedUnstructuredGridReader(*args, **kwargs)
+
 
 @my_custom_timer
 def PVDReader(*args, **kwargs):
     return paraview.simple.PVDReader(*args, **kwargs)
 
+
 @my_custom_timer
 def GetActiveSource(*args, **kwargs):
     return paraview.simple.GetActiveSource(*args, **kwargs)
+
 
 @my_custom_timer
 def Slice(*args, **kwargs):
     return paraview.simple.Slice(*args, **kwargs)
 
+
 @my_custom_timer
 def Calculator(*args, **kwargs):
     return paraview.simple.Calculator(*args, **kwargs)
+
 
 @my_custom_timer
 def Clip(*args, **kwargs):
     return paraview.simple.Clip(*args, **kwargs)
 
+
 @my_custom_timer
 def PassArrays(*args, **kwargs):
     return paraview.simple.PassArrays(*args, **kwargs)
+
 
 @my_custom_timer
 def Fetch(*args, **kwargs):
     return paraview.servermanager.Fetch(*args, **kwargs)
 
+
 @my_custom_timer
 def CellDatatoPointData(*args, **kwargs):
     return paraview.simple.CellDatatoPointData(*args, **kwargs)
+
 
 @my_custom_timer
 def ResampleToImage(*args, **kwargs):
     return paraview.simple.ResampleToImage(*args, **kwargs)
 
+
 @my_custom_timer
 def Contour(*args, **kwargs):
     return paraview.simple.Contour(*args, **kwargs)
+
 
 @my_custom_timer
 def IsoVolume(*args, **kwargs):
     return paraview.simple.IsoVolume(*args, **kwargs)
 
+
 @my_custom_timer
 def StreamTracer(*args, **kwargs):
     return paraview.simple.StreamTracer(*args, **kwargs)
 
+
 @my_custom_timer
 def ExtractSelection(*args, **kwargs):
     return paraview.simple.ExtractSelection(*args, **kwargs)
+
 
 @my_custom_timer
 def Show(*args, **kwargs):
@@ -117,10 +134,11 @@ def Show(*args, **kwargs):
 def eprint(var):
     log.warning(var)
 
+
 # Read from arguments
-#1 video Name
-#2 pvd file name (by defaults in the first file in a current directory)
-#3 pvtu is swithed off by default
+# 1 video Name
+# 2 pvd file name (by defaults in the first file in a current directory)
+# 3 pvtu is swithed off by default
 # ---------------------------------------------------------------------------------------------------------
 start = timeit.default_timer()
 
@@ -134,7 +152,7 @@ parser.add_argument("-filenames", type=str, help="Provide the name of the output
 parser.add_argument("-frameRate", type=int, help="Provide the frame rate for the video, please",
                     nargs='?', default=10)
 parser.add_argument("-frameWindow", type=int, help="Provide the frame window (can be overwritten further), please",
-                    nargs='+', default=[0,0])
+                    nargs='+', default=[0, 0])
 parser.add_argument("-timeList", type=int, help="Provide the list of step, please",
                     nargs='+', default=[0])
 parser.add_argument("-nt", type=int, help="Provide the list of time step, please",
@@ -172,11 +190,11 @@ timeList = args.timeList
 nt = args.nt
 nslices = args.nslices
 
-if len(frameWindow) != 2 or frameWindow[0]<0 or frameWindow[1] < 0:
+if len(frameWindow) != 2 or frameWindow[0] < 0 or frameWindow[1] < 0:
     eprint('Error in frameWindow' + frameWindow)
     sys.exit()
 
-#Current PATH reading
+# Current PATH reading
 if vtk_from_pvpython:
     path = os.path.abspath(os.getcwd())
 else:
@@ -185,27 +203,27 @@ else:
 eprint("Current PATH=" + path)
 if vtk_from_pvpython:
     if filenames[-5::] == '.pvtu':
-    # Find files with *.pvtu extension
+        # Find files with *.pvtu extension
         numbers = []
         file = ""
         for file in glob.glob(filenames):
             numbers.append(int(filter(lambda x: x.isdigit(), file)))
-        file=file[0:-9]
+        file = file[0:-9]
         numbers.sort()
         N = len(numbers)
         filenames = []
         for i in numbers:
             filenames.append('{}/{}{:04d}.pvtu'.format(path, file, i))
         print(filenames)
-        fn = path +  '/' + filenames
-        my_source = XMLPartitionedUnstructuredGridReader(FileName = fn)
+        fn = path + '/' + filenames
+        my_source = XMLPartitionedUnstructuredGridReader(FileName=fn)
     elif filenames[-4::] == '.pvd':
-    # create a new 'PVD Reader'
+        # create a new 'PVD Reader'
         fn = glob.glob(filenames)
-        print('Found files:',fn)
+        print('Found files:', fn)
         fn = fn[0]
-        print('Read the first one:',fn)
-        my_source = PVDReader(FileName = path +  '/' + fn)
+        print('Read the first one:', fn)
+        my_source = PVDReader(FileName=path + '/' + fn)
     else:
         eprint('Get Active Source: No pvd or pvtu files are provided')
         my_source = GetActiveSource()
@@ -215,7 +233,7 @@ else:
 
 my_source.CellArrays = ['fs', 'f', 'l', 'l2', 'omega', 'u.x']
 #     sys.exit()
-#### disable automatic camera reset on 'Show'
+# disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
 # get animation scene
@@ -223,7 +241,7 @@ animationScene1 = GetAnimationScene()
 
 # get the time-keeper
 timeKeeper1 = GetTimeKeeper()
-timesteps = timeKeeper1.TimestepValues # 0, 0.1, 0.2 ...
+timesteps = timeKeeper1.TimestepValues  # 0, 0.1, 0.2 ...
 print("timesteps=", timesteps)
 try:
     NT = len(timesteps)
@@ -232,9 +250,9 @@ except:
     timesteps = [timesteps]
 
 if len(timeList) == 1 and timeList[0] == 0:
-    timeList = range(0,NT)
+    timeList = range(0, NT)
 if nt != 0:
-    timeList = range(0,NT,nt)
+    timeList = range(0, NT, nt)
 if NT != 0:
     print("NT=", NT, " timeList=", timeList)
 else:
@@ -242,9 +260,9 @@ else:
 if frameWindow[0] == 0 and frameWindow[1] == 0:
     frameWindow[0] = 0
     frameWindow[1] = NT-1
-    print('frameWindow is updated:',frameWindow)
+    print('frameWindow is updated:', frameWindow)
 
-print ("renderViews, axesGrid, SpreadSheetViews, layouts.. "),
+print("renderViews, axesGrid, SpreadSheetViews, layouts.. "),
 # Create a new 'Render View'
 renderView1 = CreateView('RenderView')
 renderView1.ViewSize = viewSize
@@ -284,9 +302,9 @@ axesGrid.XLabelColor = [0.9, 0.9, 0.9]
 axesGrid.YLabelColor = [0.9, 0.9, 0.9]
 axesGrid.ZLabelColor = [0.9, 0.9, 0.9]
 
-axesGrid.XAxisLabels = np.around(np.arange(0,30.2,0.25),2)
-axesGrid.YAxisLabels = [-0.5, -0.25, 0.25, 0.5]#np.around(np.linspace(-0.5,0.5,5),2)
-axesGrid.ZAxisLabels = [-0.5, -0.25, 0.25, 0.5]#np.around(np.linspace(-0.5,0.5,5),2)
+axesGrid.XAxisLabels = np.around(np.arange(0, 30.2, 0.25), 2)
+axesGrid.YAxisLabels = [-0.5, -0.25, 0.25, 0.5]  # np.around(np.linspace(-0.5,0.5,5),2)
+axesGrid.ZAxisLabels = [-0.5, -0.25, 0.25, 0.5]  # np.around(np.linspace(-0.5,0.5,5),2)
 
 # Create a new 'Render View'
 renderView2 = CreateView('RenderView')
@@ -330,7 +348,7 @@ layout2.AssignView(0, spreadSheetView1)
 layout3 = CreateLayout(name='Layout #3')
 layout3.AssignView(0, spreadSheetView2)
 
-print ("end")
+print("end")
 # ----------------------------------------------------------------
 # restore active view
 SetActiveView(renderView1)
@@ -343,9 +361,9 @@ boundsDomain = my_source.GetDataInformation().GetBounds()
 lDomain = boundsDomain[1] - boundsDomain[0]
 print("boundsDomain of my source=", boundsDomain, " lDomain=", lDomain)
 
-print ("creating a cylinder.. "),
-###-----------------GENERATION of Cylinder-----------------------------------
-### it is timeless therefore it is outside of the loop
+print("creating a cylinder.. "),
+# -----------------GENERATION of Cylinder-----------------------------------
+# it is timeless therefore it is outside of the loop
 # create a new 'Cylinder'
 cylinder1 = Cylinder()
 cylinder1.Resolution = 100
@@ -399,13 +417,16 @@ for rv in [renderView1, renderView2]:
     transform1Display.ScalarOpacityUnitDistance = 6.650076732513133
 
     # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-    transform1Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+    transform1Display.OSPRayScaleFunction.Points = [
+        0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
     # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-    transform1Display.ScaleTransferFunction.Points = [-2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
+    transform1Display.ScaleTransferFunction.Points = [
+        -2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
 
     # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-    transform1Display.OpacityTransferFunction.Points = [-2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
+    transform1Display.OpacityTransferFunction.Points = [
+        -2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
 
     Show(transform1, rv)
 
@@ -448,16 +469,19 @@ slice2Display.DataAxesGrid = 'GridAxesRepresentation'
 slice2Display.PolarAxes = 'PolarAxesRepresentation'
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-slice2Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+slice2Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-slice2Display.ScaleTransferFunction.Points = [-1.6653345369377348e-16, 0.0, 0.5, 0.0, 1.6653345369377348e-16, 1.0, 0.5, 0.0]
+slice2Display.ScaleTransferFunction.Points = [-1.6653345369377348e-16,
+                                              0.0, 0.5, 0.0, 1.6653345369377348e-16, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-slice2Display.OpacityTransferFunction.Points = [-1.6653345369377348e-16, 0.0, 0.5, 0.0, 1.6653345369377348e-16, 1.0, 0.5, 0.0]
-print ("end")
-###-----------------GENERATION of a CLIP and Convert to Point data-----------------------------------
-global my_stats # output
+slice2Display.OpacityTransferFunction.Points = [-1.6653345369377348e-16,
+                                                0.0, 0.5, 0.0, 1.6653345369377348e-16, 1.0, 0.5, 0.0]
+print("end")
+# -----------------GENERATION of a CLIP and Convert to Point data-----------------------------------
+global my_stats  # output
 
 if not noPic:
     for i in timeList:
@@ -467,7 +491,7 @@ if not noPic:
         animationScene1.AnimationTime = timesteps[i]
         # Properties modified on timeKeeper1
         timeKeeper1.Time = timesteps[i]
-        if i==0 and vtk_from_pvpython:
+        if i == 0 and vtk_from_pvpython:
             fn = str(timesteps[i]) + 'stats.txt'
             my_stats = open(fn, 'w')
 # ***************** CUT remain only a TUBE ****************************
@@ -487,18 +511,19 @@ if not noPic:
         isoVolume0.InputScalars = ['POINTS', 'f']
         isoVolume0.ThresholdRange = [0.0, 0.5]
 
-         # create a new 'Cell Data to Point Data'
+        # create a new 'Cell Data to Point Data'
         cellDatatoPointData0 = CellDatatoPointData(Input=isoVolume0)
 
         # create a new 'Integrate Variables'
         integrateVariables1 = IntegrateVariables(Input=cellDatatoPointData0)
 
         # show data from integrateVariables1
-        integrateVariables1Display = Show(integrateVariables1, spreadSheetView1, 'SpreadSheetRepresentation')
+        integrateVariables1Display = Show(
+            integrateVariables1, spreadSheetView1, 'SpreadSheetRepresentation')
 
         # create a new 'Pass Arrays'
         passArrays1 = PassArrays(Input=integrateVariables1)
-        passArrays1.PointDataArrays = [ 'Points']
+        passArrays1.PointDataArrays = ['Points']
         passArrays1.CellDataArrays = []
 
         # update the view to ensure updated data information
@@ -511,32 +536,33 @@ if not noPic:
 #         u_mean = ss_data.GetPointData().GetArray('u.x').GetValue(0)
 #         print('u_mean:',u_mean)
         s = "time: {} i: {} coarse_x_mean: {}  ".format(timesteps[i], i, x_mean)
-        print (s)
+        print(s)
         if vtk_from_pvpython:
             my_stats.write(s)
 
         del ss_data
-        Delete (passArrays1)
+        Delete(passArrays1)
         del passArrays1
-        Delete (integrateVariables1)
+        Delete(integrateVariables1)
         del integrateVariables1
-        Delete (cellDatatoPointData0)
+        Delete(cellDatatoPointData0)
         del cellDatatoPointData0
         Delete(isoVolume0)
         del isoVolume0
 
-        bounds = [x_mean - 1.7, x_mean + 1.7, -0.5, 0.5, -0.5, 0.5  ]
+        bounds = [x_mean - 1.7, x_mean + 1.7, -0.5, 0.5, -0.5, 0.5]
         print("bounds_rude=", bounds)
-        center = [(bounds[0] + bounds[1])/2, (bounds[2] + bounds[3])/2,(bounds[4] + bounds[5])/2]
+        center = [(bounds[0] + bounds[1])/2, (bounds[2] + bounds[3])/2, (bounds[4] + bounds[5])/2]
         print('center_rude=', center)
         len_bub = bounds[1] - bounds[0]
         len_min = max([bounds[0] - 2, 0.5])
         len_max = min([bounds[1] + 2, lDomain - 0.5])
 
         length = len_max - len_min
-        print('COARSE ESTIMATION: len_min=',len_min,' len_max=',len_max,' len=',length, ' len_bub=', len_bub)
+        print('COARSE ESTIMATION: len_min=', len_min, ' len_max=',
+              len_max, ' len=', length, ' len_bub=', len_bub)
         if abs(length) > 1e30:
-            print ("ERROR in reading: out of box... go to the next time step...")
+            print("ERROR in reading: out of box... go to the next time step...")
             continue
 
 
@@ -600,9 +626,9 @@ if not noPic:
 
 # ***************** REFINED BOUNDS bounds, center, len_min, len_max ****************************
         bounds = connectivity1.GetDataInformation().GetBounds()
-        print("bounds_refined=",bounds)
-        center = [(bounds[0] + bounds[1])/2, (bounds[2] + bounds[3])/2,(bounds[4] + bounds[5])/2]
-        print('center_refined=',center)
+        print("bounds_refined=", bounds)
+        center = [(bounds[0] + bounds[1])/2, (bounds[2] + bounds[3])/2, (bounds[4] + bounds[5])/2]
+        print('center_refined=', center)
 
         len_bub = bounds[1] - bounds[0]
         len_min = np.max([bounds[0] - 2, 0.5])
@@ -613,11 +639,12 @@ if not noPic:
         integrateVariables1 = IntegrateVariables(Input=connectivity1)
 
         # show data from integrateVariables1
-        integrateVariables1Display = Show(integrateVariables1, spreadSheetView1, 'SpreadSheetRepresentation')
+        integrateVariables1Display = Show(
+            integrateVariables1, spreadSheetView1, 'SpreadSheetRepresentation')
 
         # create a new 'Pass Arrays'
         passArrays1 = PassArrays(Input=integrateVariables1)
-        passArrays1.PointDataArrays = [ 'Points', 'u.x']
+        passArrays1.PointDataArrays = ['Points', 'u.x']
         passArrays1.CellDataArrays = ['Volume']
 
         # update the view to ensure updated data information
@@ -628,8 +655,9 @@ if not noPic:
         volume = ss_data.GetCellData().GetArray('Volume').GetValue(0)
         x_mean = ss_data.GetPoint(0)[0]/volume
         u_mean = ss_data.GetPointData().GetArray('u.x').GetValue(0)/volume
-        s = "refined_x_mean: {} refined_u_mean: {} len_min: {} len_max: {} len: {} len_bub: {} ".format(x_mean, u_mean, len_min, len_max, length, len_bub)
-        print (s)
+        s = "refined_x_mean: {} refined_u_mean: {} len_min: {} len_max: {} len: {} len_bub: {} ".format(
+            x_mean, u_mean, len_min, len_max, length, len_bub)
+        print(s)
         if vtk_from_pvpython:
             my_stats.write(s)
 
@@ -687,7 +715,8 @@ if not noPic:
 
         # get color transfer function/color map for 'ux'
         uxLUT = GetColorTransferFunction('ux')
-        uxLUT.RGBPoints = [0.3730543491279064, 0.0, 0.0, 0.5625, 0.5106463634876334, 0.0, 0.0, 1.0, 0.8251430154745502, 0.0, 1.0, 1.0, 0.9823910318856668, 0.5, 1.0, 0.5, 1.139639048296783, 1.0, 1.0, 0.0, 1.4541357002836997, 1.0, 0.0, 0.0, 1.6113837166948162, 0.5, 0.0, 0.0]
+        uxLUT.RGBPoints = [0.3730543491279064, 0.0, 0.0, 0.5625, 0.5106463634876334, 0.0, 0.0, 1.0, 0.8251430154745502, 0.0, 1.0, 1.0,
+                           0.9823910318856668, 0.5, 1.0, 0.5, 1.139639048296783, 1.0, 1.0, 0.0, 1.4541357002836997, 1.0, 0.0, 0.0, 1.6113837166948162, 0.5, 0.0, 0.0]
         uxLUT.ColorSpace = 'RGB'
         uxLUT.ScalarRangeInitialized = 1.0
 #         uxLUT.ApplyPreset('jet', True)
@@ -708,10 +737,8 @@ if not noPic:
         uxLUTColorBar.TitleFontSize = 16*2
         uxLUTColorBar.LabelFontSize = 16*2
 
-
         # set color bar visibility
         uxLUTColorBar.Visibility = 1
-
 
         len_bar = 0.5
         uxLUTColorBar2 = GetScalarBar(uxLUT, renderView2)
@@ -729,17 +756,16 @@ if not noPic:
         # set color bar visibility
         uxLUTColorBar2.Visibility = 0
 
-
-
         # get color transfer function/color map for 'l2'
         l2LUT = GetColorTransferFunction('l2')
-        l2LUT.RGBPoints = [-2.0, 0.0, 1.0, 1.0, -1.55, 0.0, 0.0, 1.0, -1.5, 0.0, 0.0, 0.501960784314, -1.4499999999999997, 1.0, 0.0, 0.0, -1.0, 1.0, 1.0, 0.0]
+        l2LUT.RGBPoints = [-2.0, 0.0, 1.0, 1.0, -1.55, 0.0, 0.0, 1.0, -1.5, 0.0, 0.0,
+                           0.501960784314, -1.4499999999999997, 1.0, 0.0, 0.0, -1.0, 1.0, 1.0, 0.0]
         l2LUT.ColorSpace = 'RGB'
         l2LUT.ScalarRangeInitialized = 1.0
 
         for rv in [renderView1, renderView2]:
             # show data from connectivity1
-            print ("showing connectivity1Display.. "),
+            print("showing connectivity1Display.. "),
             connectivity1Display = Show(connectivity1, rv, 'GeometryRepresentation')
             # trace defaults for the display properties.
             connectivity1Display.Representation = 'Surface'
@@ -762,7 +788,7 @@ if not noPic:
             connectivity1Display.OpacityTransferFunction = 'PiecewiseFunction'
             connectivity1Display.DataAxesGrid = 'GridAxesRepresentation'
             connectivity1Display.PolarAxes = 'PolarAxesRepresentation'
-            print ("end")
+            print("end")
         # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
 #         connectivity1Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
@@ -782,30 +808,31 @@ if not noPic:
         # note: the Get..() functions create a new object, if needed
         # ----------------------------------------------------------------
         passArrays0 = PassArrays(Input=extractSurface1)
-        passArrays0.PointDataArrays = [ 'Points']
+        passArrays0.PointDataArrays = ['Points']
 
         ss_data = Fetch(passArrays0)
         numPoints = ss_data.GetNumberOfPoints()
-        print ("Number of points on contour:", numPoints)
-        data=np.zeros((numPoints,3))
+        print("Number of points on contour:", numPoints)
+        data = np.zeros((numPoints, 3))
         for x in range(numPoints):
             data[x] = ss_data.GetPoint(x)
 #             data[i] = connectivity1.GetPointData().GetArray('f').GetValue(x)
 #         rad = np.linalg.norm(data[],axis=1)
-        rad = np.sqrt(data[:,1]**2 + data[:,2]**2)
+        rad = np.sqrt(data[:, 1]**2 + data[:, 2]**2)
         i_max = np.argmax(rad)
-        x_maxy = data[i_max,0]
+        x_maxy = data[i_max, 0]
 #         data = data[(data[:,0]>=x_maxy) & (data[:,0]<=x_mean)]
         if x_maxy < x_mean:
             print('x_maxy < x_mean')
-            rad = rad[(data[:,0]>=x_maxy) & (data[:,0]<=x_mean)]
+            rad = rad[(data[:, 0] >= x_maxy) & (data[:, 0] <= x_mean)]
         else:
             print('x_maxy >= x_mean')
-            rad = rad[(data[:,0]>=x_mean) & (data[:,0]<=x_maxy)]
-        print('     x_maxy:',x_maxy, " x_mean:", x_mean)
+            rad = rad[(data[:, 0] >= x_mean) & (data[:, 0] <= x_maxy)]
+        print('     x_maxy:', x_maxy, " x_mean:", x_mean)
         rad_mean = rad.mean()
-        s = "RAD_mean: " + str(round(rad_mean,6)) + " delta: " + str(round(0.5 - rad_mean,6)) + "\n"
-        print (s)
+        s = "RAD_mean: " + str(round(rad_mean, 6)) + " delta: " + \
+            str(round(0.5 - rad_mean, 6)) + "\n"
+        print(s)
         if vtk_from_pvpython:
             my_stats.write(s)
 
@@ -816,7 +843,8 @@ if not noPic:
         range0 = arrayInfo.GetComponentRange(0)
         range1 = arrayInfo.GetComponentRange(1)
         range2 = arrayInfo.GetComponentRange(2)
-        rgX, rgY, rgZ = np.max([abs(range0[0]),abs(range0[1])]), np.max([abs(range1[0]),abs(range1[1])]), np.max([abs(range2[0]),abs(range2[1])])
+        rgX, rgY, rgZ = np.max([abs(range0[0]), abs(range0[1])]), np.max(
+            [abs(range1[0]), abs(range1[1])]), np.max([abs(range2[0]), abs(range2[1])])
         range_max = np.sqrt(rgX**2 + rgY**2 + rgZ**2)
         print("velocity range_max= ", range_max)
         print("velocity range_xyz= ", range0, range1, range2)
@@ -825,15 +853,15 @@ if not noPic:
         op.RescaleTransferFunction(0, range_max)
         uxLUTColorBar.UseCustomLabels = 1
         # labels from 100 to 200 in increments of 10
-        uxLUTColorBar.CustomLabels = np.around(np.linspace(0, range_max, 4),1)
+        uxLUTColorBar.CustomLabels = np.around(np.linspace(0, range_max, 4), 1)
 #         uxLUTColorBar.CustomLabels = np.arange(0, range_max, 0.5)
-        print("CustomLabels=",uxLUTColorBar.CustomLabels )
+        print("CustomLabels=", uxLUTColorBar.CustomLabels)
 
         uxLUTColorBar2.UseCustomLabels = 1
         # labels from 100 to 200 in increments of 10
-        uxLUTColorBar2.CustomLabels = np.around(np.linspace(0, range_max, 4),1)
+        uxLUTColorBar2.CustomLabels = np.around(np.linspace(0, range_max, 4), 1)
 #         uxLUTColorBar2.CustomLabels = np.arange(0, range_max, 0.5)
-        print("CustomLabels=",uxLUTColorBar2.CustomLabels )
+        print("CustomLabels=", uxLUTColorBar2.CustomLabels)
         del data
         del rad
         del ss_data
@@ -851,22 +879,22 @@ if not noPic:
         # update the view to ensure updated data information
         renderView1.Update()
 
-#****************** CONNECTIVITY(f) AND U MAGNITUDE ********************
+# ****************** CONNECTIVITY(f) AND U MAGNITUDE ********************
         # show data from connectivity1
-        fn = path + "/" + picName +  '_t=' + str(timesteps[i]) +'ux.png'
-        SaveScreenshot( fn, renderView1,
-            ImageResolution=viewSize,
-            TransparentBackground=0,
-            CompressionLevel='2' )
+        fn = path + "/" + picName + '_t=' + str(timesteps[i]) + 'ux.png'
+        SaveScreenshot(fn, renderView1,
+                       ImageResolution=viewSize,
+                       TransparentBackground=0,
+                       CompressionLevel='2')
         print('File=' + fn + ' generated succesfully')
 
 
-#****************** CONNECTIVITY(f) AND CONTOUR2 (lambda2) ********************
+# ****************** CONNECTIVITY(f) AND CONTOUR2 (lambda2) ********************
         # set color bar visibility
         uxLUTColorBar.Visibility = 0
 
         # show data from connectivity1
-        print ("Showing connectivity1.. "),
+        print("Showing connectivity1.. "),
         connectivity1Display = Show(connectivity1, renderView1, 'GeometryRepresentation')
 
         # trace defaults for the display properties.
@@ -894,16 +922,19 @@ if not noPic:
         connectivity1Display.PolarAxes = 'PolarAxesRepresentation'
 
         # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-        connectivity1Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+        connectivity1Display.OSPRayScaleFunction.Points = [
+            0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
         # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-        connectivity1Display.ScaleTransferFunction.Points = [0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
+        connectivity1Display.ScaleTransferFunction.Points = [
+            0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
 
         # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-        connectivity1Display.OpacityTransferFunction.Points = [0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
-        print ("end")
+        connectivity1Display.OpacityTransferFunction.Points = [
+            0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
+        print("end")
         # show data from contour2
-        print ("Showing contour2.. "),
+        print("Showing contour2.. "),
         contour2Display = Show(contour2, renderView1, 'GeometryRepresentation')
         # trace defaults for the display properties.
         contour2Display.Representation = 'Surface'
@@ -927,14 +958,17 @@ if not noPic:
         contour2Display.PolarAxes = 'PolarAxesRepresentation'
 
         # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-        contour2Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+        contour2Display.OSPRayScaleFunction.Points = [
+            0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
         # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-        contour2Display.ScaleTransferFunction.Points = [-1.0, 0.0, 0.5, 0.0, -0.9998779296875, 1.0, 0.5, 0.0]
+        contour2Display.ScaleTransferFunction.Points = [-1.0,
+                                                        0.0, 0.5, 0.0, -0.9998779296875, 1.0, 0.5, 0.0]
 
         # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-        contour2Display.OpacityTransferFunction.Points = [-1.0, 0.0, 0.5, 0.0, -0.9998779296875, 1.0, 0.5, 0.0]
-        print ("end")
+        contour2Display.OpacityTransferFunction.Points = [-1.0,
+                                                          0.0, 0.5, 0.0, -0.9998779296875, 1.0, 0.5, 0.0]
+        print("end")
         print("RenderView update..")
         renderView1.CameraViewUp = [0.2, 1, 0]
         renderView1.CameraParallelScale = 1.4
@@ -942,21 +976,21 @@ if not noPic:
         renderView1.CameraFocalPoint = [center[0]-0.5, 0, 0]
         renderView1.CameraPosition = [center[0] - 4, 0.6, 4.5]
         renderView1.Update()
-        print ("end")
-        fn = path + "/" + picName+  '_t=' + str(timesteps[i]) +'_noLambda2.png'
-        SaveScreenshot( fn, renderView1,
-                        ImageResolution=viewSize,
-                        TransparentBackground=0,
-                        CompressionLevel='2' )
+        print("end")
+        fn = path + "/" + picName + '_t=' + str(timesteps[i]) + '_noLambda2.png'
+        SaveScreenshot(fn, renderView1,
+                       ImageResolution=viewSize,
+                       TransparentBackground=0,
+                       CompressionLevel='2')
         print('File=' + fn + ' generated succesfully')
 
 
-#****************** LAMBDA2 inside a bubble  ********************
+# ****************** LAMBDA2 inside a bubble  ********************
 
-        print ("Showing connectivity1 and hiding contour2.. "),
-        Show(connectivity1, renderView1) # bubble shape with opacity
-        Hide(contour2, renderView1) # hide lambda2 all
-        print ("end")
+        print("Showing connectivity1 and hiding contour2.. "),
+        Show(connectivity1, renderView1)  # bubble shape with opacity
+        Hide(contour2, renderView1)  # hide lambda2 all
+        print("end")
         # trace defaults for the display properties.
         connectivity1Display.Representation = 'Surface'
         connectivity1Display.Opacity = 0.1
@@ -1000,13 +1034,13 @@ if not noPic:
 #         threshold1Display.OpacityTransferFunction.Points = [0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
 #         print ("end")
 
-
         # show data from threshold1
-        print ("Showing threshold1.. "),
+        print("Showing threshold1.. "),
         threshold1Display = Show(threshold1, renderView1, 'GeometryRepresentation')
         # get color transfer function/color map for 'l2'
         l2LUT = GetColorTransferFunction('l2')
-        l2LUT.RGBPoints = [-1.0, 0.054901960784313725, 0.9411764705882353, 0.12941176470588237, -0.75, 0.865, 0.865, 0.865, -0.5, 1.0, 1.0, 0.0]
+        l2LUT.RGBPoints = [-1.0, 0.054901960784313725, 0.9411764705882353,
+                           0.12941176470588237, -0.75, 0.865, 0.865, 0.865, -0.5, 1.0, 1.0, 0.0]
         l2LUT.ScalarRangeInitialized = 1.0
         # trace defaults for the display properties.
         threshold1Display.Representation = 'Surface'
@@ -1030,17 +1064,20 @@ if not noPic:
         threshold1Display.PolarAxes = 'PolarAxesRepresentation'
 
         # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-        threshold1Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+        threshold1Display.OSPRayScaleFunction.Points = [
+            0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
         # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-        threshold1Display.ScaleTransferFunction.Points = [-1.0, 0.0, 0.5, 0.0, -0.9998779296875, 1.0, 0.5, 0.0]
+        threshold1Display.ScaleTransferFunction.Points = [-1.0,
+                                                          0.0, 0.5, 0.0, -0.9998779296875, 1.0, 0.5, 0.0]
 
         # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-        threshold1Display.OpacityTransferFunction.Points = [-1.0, 0.0, 0.5, 0.0, -0.9998779296875, 1.0, 0.5, 0.0]
+        threshold1Display.OpacityTransferFunction.Points = [-1.0,
+                                                            0.0, 0.5, 0.0, -0.9998779296875, 1.0, 0.5, 0.0]
 
         # show color legend
         threshold1Display.SetScalarBarVisibility(renderView1, False)
-        print ("end")
+        print("end")
         l2PWF = GetOpacityTransferFunction('l2')
         l2PWF.Points = [-1.0, 0.0, 0.5, 0.0, -0.5, 1.0, 0.5, 0.0]
         l2PWF.ScalarRangeInitialized = 1
@@ -1052,23 +1089,24 @@ if not noPic:
         renderView1.CameraPosition = [center[0] - 4, 0.6, 4.5]
         print("RenderView update..")
         renderView1.Update()
-        
-        fn = path + "/" + picName+  '_t=' + str(timesteps[i]) +'_Lambda2_in_bubble.png'
-        SaveScreenshot( fn, renderView1,
-                        ImageResolution=viewSize,
-                        TransparentBackground=0,
-                        CompressionLevel='2' )
+
+        fn = path + "/" + picName + '_t=' + str(timesteps[i]) + '_Lambda2_in_bubble.png'
+        SaveScreenshot(fn, renderView1,
+                       ImageResolution=viewSize,
+                       TransparentBackground=0,
+                       CompressionLevel='2')
         print('File=' + fn + ' generated succesfully')
-#****************** CONNECTIVITY1(f) AND TRACERS ********************
+# ****************** CONNECTIVITY1(f) AND TRACERS ********************
         print('hiding connectivity1, contour2..')
         Hide(connectivity1, renderView1)
         Hide(contour2, renderView1)
         Hide(threshold1, renderView1)
-        print ("end")
+        print("end")
 
         SetActiveSource(connectivity1)
-        selection=SelectPoints()
-        selection.QueryString='(pointIsNear([(' + str(lDomain) + ',0,0),], ' + str(lDomain) + ', inputs))'
+        selection = SelectPoints()
+        selection.QueryString = '(pointIsNear([(' + str(lDomain) + \
+            ',0,0),], ' + str(lDomain) + ', inputs))'
         selection.FieldType = 'POINT'
         selection.UpdatePipelineInformation()
 
@@ -1076,11 +1114,10 @@ if not noPic:
         extractSelection1.UpdatePipeline()
 
         info = extractSelection1.GetDataInformation().DataInformation
-        print('info Number of Points=',info.GetNumberOfPoints ())
+        print('info Number of Points=', info.GetNumberOfPoints())
         arrayInfo = info.GetArrayInformation("u.x", vtk.vtkDataObject.FIELD_ASSOCIATION_POINTS)
         u_tip = arrayInfo.GetComponentRange(0)[0]
         print("u_tip = ", u_tip)
-
 
         # create a new 'Calculator'
         calculator1 = Calculator(Input=resampleToImage1)
@@ -1089,7 +1126,8 @@ if not noPic:
         print('calculator: ', calculator1.Function)
 
         deltaULUT = GetColorTransferFunction('deltaU')
-        deltaULUT.RGBPoints = [0.3730543491279064, 0.0, 0.0, 0.5625, 0.5106463634876334, 0.0, 0.0, 1.0, 0.8251430154745502, 0.0, 1.0, 1.0, 0.9823910318856668, 0.5, 1.0, 0.5, 1.139639048296783, 1.0, 1.0, 0.0, 1.4541357002836997, 1.0, 0.0, 0.0, 1.6113837166948162, 0.5, 0.0, 0.0]
+        deltaULUT.RGBPoints = [0.3730543491279064, 0.0, 0.0, 0.5625, 0.5106463634876334, 0.0, 0.0, 1.0, 0.8251430154745502, 0.0, 1.0, 1.0,
+                               0.9823910318856668, 0.5, 1.0, 0.5, 1.139639048296783, 1.0, 1.0, 0.0, 1.4541357002836997, 1.0, 0.0, 0.0, 1.6113837166948162, 0.5, 0.0, 0.0]
         deltaULUT.ColorSpace = 'RGB'
         deltaULUT.ScalarRangeInitialized = 1.0
 
@@ -1113,7 +1151,6 @@ if not noPic:
         # set color bar visibility
         deltaULUTColorBar.Visibility = 1
 
-
         connectivity1Display.Opacity = 0.23
         # create a new 'Stream Tracer'
         streamTracer1 = StreamTracer(Input=calculator1, SeedType='High Resolution Line Source')
@@ -1130,7 +1167,7 @@ if not noPic:
         streamTracer1.SeedType.Resolution = 50
 
         # show data from streamTracer1
-        print ("Showing streamTracer1Display.. "),
+        print("Showing streamTracer1Display.. "),
         streamTracer1Display = Show(streamTracer1, renderView1, 'GeometryRepresentation')
 
         # trace defaults for the display properties.
@@ -1165,7 +1202,7 @@ if not noPic:
         streamTracer2.SeedType.Point2 = [bounds[0] - 1, 0.5, 0.0]
         streamTracer2.SeedType.Resolution = 50
         # show data from streamTracer2
-        print ("Showing streamTracer2Display.. "),
+        print("Showing streamTracer2Display.. "),
         streamTracer2Display = Show(streamTracer2, renderView1, 'GeometryRepresentation')
 
         # trace defaults for the display properties.
@@ -1201,7 +1238,7 @@ if not noPic:
         streamTracer3.SeedType.Resolution = 50
 
         # show data from streamTracer3
-        print ("Showing streamTracer3Display.. "),
+        print("Showing streamTracer3Display.. "),
         streamTracer3Display = Show(streamTracer3, renderView1, 'GeometryRepresentation')
 
         # trace defaults for the display properties.
@@ -1223,7 +1260,7 @@ if not noPic:
         streamTracer3Display.DataAxesGrid = 'GridAxesRepresentation'
         streamTracer3Display.PolarAxes = 'PolarAxesRepresentation'
 
-        print ("Showing slice1Display.. "),
+        print("Showing slice1Display.. "),
         slice1Display = Show(slice1, renderView1, 'GeometryRepresentation')
 
         # trace defaults for the display properties.
@@ -1247,14 +1284,15 @@ if not noPic:
         slice1Display.DataAxesGrid = 'GridAxesRepresentation'
         slice1Display.PolarAxes = 'PolarAxesRepresentation'
 
-        print ("calculator1.GetDataInformation.. ")
+        print("calculator1.GetDataInformation.. ")
         info = calculator1.GetDataInformation().DataInformation
         arrayInfo = info.GetArrayInformation("deltaU", vtk.vtkDataObject.FIELD_ASSOCIATION_POINTS)
         range0 = arrayInfo.GetComponentRange(0)
         range1 = arrayInfo.GetComponentRange(1)
         range2 = arrayInfo.GetComponentRange(2)
-        print ("end")
-        rgX, rgY, rgZ = np.max([abs(range0[0]),abs(range0[1])]), np.max([abs(range1[0]),abs(range1[1])]), np.max([abs(range2[0]), abs(range2[1])])
+        print("end")
+        rgX, rgY, rgZ = np.max([abs(range0[0]), abs(range0[1])]), np.max(
+            [abs(range1[0]), abs(range1[1])]), np.max([abs(range2[0]), abs(range2[1])])
         range_max = np.sqrt(rgX**2 + rgY**2 + rgZ**2)
         print("deltaU range_max= ", range_max)
         print("deltaU range_xyz= ", range0, range1, range2)
@@ -1263,9 +1301,9 @@ if not noPic:
         op.RescaleTransferFunction(0, range_max)
         deltaULUTColorBar.UseCustomLabels = 1
         # labels from 100 to 200 in increments of 10
-        deltaULUTColorBar.CustomLabels = np.around(np.linspace(0, range_max, 4),1)
+        deltaULUTColorBar.CustomLabels = np.around(np.linspace(0, range_max, 4), 1)
 #         uxLUTColorBar.CustomLabels = np.arange(0, range_max, 0.5)
-        print("CustomLabels deltaU=",uxLUTColorBar.CustomLabels )
+        print("CustomLabels deltaU=", uxLUTColorBar.CustomLabels)
 
         renderView1.CameraPosition = [center[0], center[1], 6]
         renderView1.CameraFocalPoint = center
@@ -1274,12 +1312,12 @@ if not noPic:
 
         print("RenderView update..")
         renderView1.Update()
-        print ("end")
-        fn = path + "/" + picName +  '_t=' + str(timesteps[i]) +'_tracer.png'
-        SaveScreenshot( fn, renderView1,
-            ImageResolution=viewSize,
-            TransparentBackground=0,
-            CompressionLevel='2' )
+        print("end")
+        fn = path + "/" + picName + '_t=' + str(timesteps[i]) + '_tracer.png'
+        SaveScreenshot(fn, renderView1,
+                       ImageResolution=viewSize,
+                       TransparentBackground=0,
+                       CompressionLevel='2')
         Hide(streamTracer1, renderView1)
         Hide(streamTracer2, renderView1)
         Hide(streamTracer3, renderView1)
@@ -1289,7 +1327,7 @@ if not noPic:
 
         print('File=' + fn + ' generated succesfully')
 
-#***************** Like in the article SIDE SLICE and contour(f)*********************
+# ***************** Like in the article SIDE SLICE and contour(f)*********************
         # create a new 'Slice'
         slice3 = Slice(Input=resampleToImage1)
         slice3.SliceType = 'Plane'
@@ -1301,7 +1339,7 @@ if not noPic:
         slice3.SliceType.Normal = [0.0, 0.0, 1.0]
         # init the 'Plane' selected for 'HyperTreeGridSlicer'
         # slice3.HyperTreeGridSlicer.Origin = [10.999999761581421, 0.0, 0.0] #???
-        print ("Showing slice3Display.. "),
+        print("Showing slice3Display.. "),
         slice3Display = Show(slice3, renderView1, 'GeometryRepresentation')
 
         # trace defaults for the display properties.
@@ -1324,16 +1362,19 @@ if not noPic:
         slice3Display.PolarAxes = 'PolarAxesRepresentation'
 
         # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-        slice3Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+        slice3Display.OSPRayScaleFunction.Points = [
+            0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
         # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-        slice3Display.ScaleTransferFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
+        slice3Display.ScaleTransferFunction.Points = [
+            0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
 
         # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-        slice3Display.OpacityTransferFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
+        slice3Display.OpacityTransferFunction.Points = [
+            0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
 
         # show data from connectivity1
-        print ("Showing connectivity1Display.. "),
+        print("Showing connectivity1Display.. "),
         connectivity1Display = Show(connectivity1, renderView1, 'GeometryRepresentation')
         # trace defaults for the display properties.
         connectivity1Display.Representation = 'Surface'
@@ -1361,23 +1402,23 @@ if not noPic:
         uxLUTColorBar.Visibility = 1
         print("RenderView update..")
         renderView1.Update()
-        print ("end")
-        fn = path + "/" + picName +  '_t=' + str(timesteps[i]) +'_uxSide.png'
-        SaveScreenshot( fn, renderView1,
-            ImageResolution=viewSize,
-            TransparentBackground=0,
-            CompressionLevel='2' )
+        print("end")
+        fn = path + "/" + picName + '_t=' + str(timesteps[i]) + '_uxSide.png'
+        SaveScreenshot(fn, renderView1,
+                       ImageResolution=viewSize,
+                       TransparentBackground=0,
+                       CompressionLevel='2')
 #         Hide(streamTracer1, renderView1)
         Hide(slice3, renderView1)
         Hide(slice1, renderView1)
 
         print('File=' + fn + ' generated succesfully')
-#**************************************************************
-#**************** SLICES of U along a bubble ******************
-#**************************************************************
+# **************************************************************
+# **************** SLICES of U along a bubble ******************
+# **************************************************************
         ss = GetSources()
         for so in ss:
-          Hide(ss[so])
+            Hide(ss[so])
 #           print("HIDEALL:", ss[so], len(ss))
 #         Hide(isoVolume1)
 #         Hide(isoVolume1,renderView1)
@@ -1389,7 +1430,7 @@ if not noPic:
         slice4.HyperTreeGridSlicer = 'Plane'
         slice4.SliceOffsetValues = [0]
 
-         # create a new 'Slice' contour(f)
+        # create a new 'Slice' contour(f)
         slice5 = Slice(Input=extractSurface1)
         slice5.SliceType = 'Plane'
         slice5.HyperTreeGridSlicer = 'Plane'
@@ -1398,12 +1439,13 @@ if not noPic:
         uxLUTColorBar.ScalarBarThickness = 16
         uxLUTColorBar.TitleFontSize = 16
         uxLUTColorBar.LabelFontSize = 16
-        for k,sl in enumerate(np.linspace(bounds[0]+0.1, bounds[1]-0.1, nslices)):
+        for k, sl in enumerate(np.linspace(bounds[0]+0.1, bounds[1]-0.1, nslices)):
             print("slice x=", sl)
 
             # create a new 'Text'
             text1 = Text()
-            text1.Text = 'x=' + str(round(sl,2)) + " l/l_b=" + str(round((sl-bounds[0])/len_bub,2))
+            text1.Text = 'x=' + str(round(sl, 2)) + " l/l_b=" + \
+                str(round((sl-bounds[0])/len_bub, 2))
 
             renderView1.CameraPosition = [sl-3, 0.0, 0.0]
             renderView1.CameraFocalPoint = [sl, 0.0, 0.0]
@@ -1420,7 +1462,7 @@ if not noPic:
             camera = GetActiveCamera()
             camera.Azimuth(10)
 
-            print("renderView2:",bounds[0], bounds[1], -0.5, 0.5, -0.5, 0.5)
+            print("renderView2:", bounds[0], bounds[1], -0.5, 0.5, -0.5, 0.5)
 
             # init the 'Plane' selected for 'SliceType'
             slice4.SliceType.Origin = [sl, 0.0, 0.0]
@@ -1433,9 +1475,8 @@ if not noPic:
             text1Display.WindowLocation = 'AnyLocation'
             text1Display.Position = [0.3, 0.2]
 
-
-            for rv in [renderView1,renderView2]:
-                print ("Showing slice4Display.. "),
+            for rv in [renderView1, renderView2]:
+                print("Showing slice4Display.. "),
                 slice4Display = Show(slice4, rv, 'GeometryRepresentation')
 
                 # trace defaults for the display properties.
@@ -1458,19 +1499,21 @@ if not noPic:
                 slice4Display.PolarAxes = 'PolarAxesRepresentation'
 
                 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-                slice4Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+                slice4Display.OSPRayScaleFunction.Points = [
+                    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
                 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-                slice4Display.ScaleTransferFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
+                slice4Display.ScaleTransferFunction.Points = [
+                    0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
 
                 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-                slice4Display.OpacityTransferFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
-
+                slice4Display.OpacityTransferFunction.Points = [
+                    0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
 
             # init the 'Plane' selected for 'SliceType' Black contour line
             slice5.SliceType.Origin = [sl, 0.0, 0.0]
             slice5.SliceType.Normal = [1.0, 0.0, 0.0]
-            print ("Showing slice5Display.. "),
+            print("Showing slice5Display.. "),
             slice5Display = Show(slice5, renderView1, 'GeometryRepresentation')
 
             # trace defaults for the display properties.
@@ -1494,7 +1537,7 @@ if not noPic:
             slice5Display.DataAxesGrid = 'GridAxesRepresentation'
             slice5Display.PolarAxes = 'PolarAxesRepresentation'
 
-            print ("Showing transform1.. "),
+            print("Showing transform1.. "),
             Show(transform1, renderView1)
             uxLUTColorBar.Visibility = 1
 
@@ -1540,23 +1583,23 @@ if not noPic:
             uxLUTColorBar2.Position = [0.5 - 0.5*len_bar, 0.02]
             uxLUTColorBar2.ScalarBarLength = len_bar
 
-            print ("Showing extractSurface1.. "),
+            print("Showing extractSurface1.. "),
             Show(extractSurface1, renderView2, 'GeometryRepresentation')
-            print ("Showing slice4.. "),
+            print("Showing slice4.. "),
             Show(slice4, renderView2, 'GeometryRepresentation')
-            print ("Showing transform1.. "),
+            print("Showing transform1.. "),
             Show(transform1, renderView2, 'GeometryRepresentation')
             renderView2.CameraParallelScale = 1.8
             print("RenderView 1,2 update..")
             renderView1.Update()
             renderView2.Update()
-            print ("end")
-            fn = path + "/" + picName +  '_t=' + str(timesteps[i]) +'_n=' + str(k) + '_uxSlice.png'
+            print("end")
+            fn = path + "/" + picName + '_t=' + str(timesteps[i]) + '_n=' + str(k) + '_uxSlice.png'
 
-            SaveScreenshot( fn, layout1, SaveAllViews=1,
-                 ImageResolution=[4096, 2048],
-                TransparentBackground=0,
-                CompressionLevel='2' )
+            SaveScreenshot(fn, layout1, SaveAllViews=1,
+                           ImageResolution=[4096, 2048],
+                           TransparentBackground=0,
+                           CompressionLevel='2')
 
             SetActiveView(renderView2)
             camera = GetActiveCamera()
@@ -1570,16 +1613,17 @@ if not noPic:
         Hide(slice5, renderView2)
 
 
-#**************************************************************
-#**************** SLICES of OMEGA along a bubble **************
-#**************************************************************
+# **************************************************************
+# **************** SLICES of OMEGA along a bubble **************
+# **************************************************************
 #         ss = GetSources()
 #         for so in ss:
 #           Hide(ss[so])
 
         # get color transfer function/color map for 'omega'
         omegaLUT = GetColorTransferFunction('absOmega')
-        omegaLUT.RGBPoints = [0.3730543491279064, 0.0, 0.0, 0.5625, 0.5106463634876334, 0.0, 0.0, 1.0, 0.8251430154745502, 0.0, 1.0, 1.0, 0.9823910318856668, 0.5, 1.0, 0.5, 1.139639048296783, 1.0, 1.0, 0.0, 1.4541357002836997, 1.0, 0.0, 0.0, 1.6113837166948162, 0.5, 0.0, 0.0]
+        omegaLUT.RGBPoints = [0.3730543491279064, 0.0, 0.0, 0.5625, 0.5106463634876334, 0.0, 0.0, 1.0, 0.8251430154745502, 0.0, 1.0, 1.0,
+                              0.9823910318856668, 0.5, 1.0, 0.5, 1.139639048296783, 1.0, 1.0, 0.0, 1.4541357002836997, 1.0, 0.0, 0.0, 1.6113837166948162, 0.5, 0.0, 0.0]
         omegaLUT.ColorSpace = 'RGB'
         omegaLUT.ScalarRangeInitialized = 1.0
         # omegaLUT.ApplyPreset('jet', True)
@@ -1601,9 +1645,10 @@ if not noPic:
         omegaLUTColorBar.TitleFontSize = 16
         omegaLUTColorBar.LabelFontSize = 16
 
-        print ("Showing resampleToImage1.GetDataInformation.. "),
+        print("Showing resampleToImage1.GetDataInformation.. "),
         info = resampleToImage1.GetDataInformation().DataInformation
-        arrayInfo = info.GetArrayInformation("absOmega", vtk.vtkDataObject.FIELD_ASSOCIATION_POINTS)
+        arrayInfo = info.GetArrayInformation(
+            "absOmega", vtk.vtkDataObject.FIELD_ASSOCIATION_POINTS)
         range0 = arrayInfo.GetComponentRange(0)
         range_max = np.max(np.abs(range0))
         print("|Omega| range= ", range0)
@@ -1611,15 +1656,15 @@ if not noPic:
         op = GetOpacityTransferFunction("absOmega")
         op.RescaleTransferFunction(0, range_max)
         omegaLUTColorBar.CustomLabels = np.ceil(np.linspace(0, range_max, 5))
-        print("CustomLabels=",omegaLUTColorBar.CustomLabels )
+        print("CustomLabels=", omegaLUTColorBar.CustomLabels)
 
-
-        for k,sl in enumerate(np.linspace(bounds[0]+0.1, bounds[1]-0.1, nslices)):
+        for k, sl in enumerate(np.linspace(bounds[0]+0.1, bounds[1]-0.1, nslices)):
             print("slice x=", sl)
 
             # create a new 'Text'
             text1 = Text()
-            text1.Text = 'x=' + str(round(sl,2)) + " l/l_b=" + str(round((sl-bounds[0])/len_bub,2))
+            text1.Text = 'x=' + str(round(sl, 2)) + " l/l_b=" + \
+                str(round((sl-bounds[0])/len_bub, 2))
 
             renderView1.ViewSize = [2048, 2048]
             renderView1.CameraViewUp = [0, 0, 1]
@@ -1631,7 +1676,7 @@ if not noPic:
             camera = GetActiveCamera()
             camera.Azimuth(10)
 
-            print("renderView2:",bounds[0], bounds[1], -0.5, 0.5, -0.5, 0.5)
+            print("renderView2:", bounds[0], bounds[1], -0.5, 0.5, -0.5, 0.5)
 
             # init the 'Plane' selected for 'SliceType'
             slice4.SliceType.Origin = [sl, 0.0, 0.0]
@@ -1644,12 +1689,9 @@ if not noPic:
             text1Display.WindowLocation = 'AnyLocation'
             text1Display.Position = [0.3, 0.2]
 
-
-
-
-            slice4Display = [0,0]
-            for id,rv in enumerate([renderView1,renderView2]):
-                print ("Showing slice4Display.. "),
+            slice4Display = [0, 0]
+            for id, rv in enumerate([renderView1, renderView2]):
+                print("Showing slice4Display.. "),
                 slice4Display[id] = Show(slice4, rv, 'GeometryRepresentation')
 
                 # trace defaults for the display properties.
@@ -1672,17 +1714,19 @@ if not noPic:
                 slice4Display[id].PolarAxes = 'PolarAxesRepresentation'
 
                 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-                slice4Display[id].OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+                slice4Display[id].OSPRayScaleFunction.Points = [
+                    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
                 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-                slice4Display[id].ScaleTransferFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
+                slice4Display[id].ScaleTransferFunction.Points = [
+                    0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
 
                 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-                slice4Display[id].OpacityTransferFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
-
+                slice4Display[id].OpacityTransferFunction.Points = [
+                    0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
 
             # init the 'Plane' selected for 'SliceType'
-            print ("Showing slice5.. "),
+            print("Showing slice5.. "),
             slice5.SliceType.Origin = [sl, 0.0, 0.0]
             slice5.SliceType.Normal = [1.0, 0.0, 0.0]
 
@@ -1708,22 +1752,25 @@ if not noPic:
             slice5Display.OpacityTransferFunction = 'PiecewiseFunction'
             slice5Display.DataAxesGrid = 'GridAxesRepresentation'
             slice5Display.PolarAxes = 'PolarAxesRepresentation'
-            print ("Showing transform1.. "),
+            print("Showing transform1.. "),
             Show(transform1, renderView1)
             info = slice4.GetDataInformation().DataInformation
-            arrayInfo = info.GetArrayInformation("absOmega", vtk.vtkDataObject.FIELD_ASSOCIATION_POINTS)
+            arrayInfo = info.GetArrayInformation(
+                "absOmega", vtk.vtkDataObject.FIELD_ASSOCIATION_POINTS)
             range0 = arrayInfo.GetComponentRange(0)
             range_max_slice = np.max(np.abs(range0))
             print("|Omega| range= ", range0, " range_max_slice=", range_max_slice)
 #             slice4Display[0].SetScalarBarVisibility(renderView1, True)
 
             omegaLUT1 = GetColorTransferFunction('absOmega', slice4Display[0], separate=True)
-            omegaLUT1.RGBPoints = [0.3730543491279064, 0.0, 0.0, 0.5625, 0.5106463634876334, 0.0, 0.0, 1.0, 0.8251430154745502, 0.0, 1.0, 1.0, 0.9823910318856668, 0.5, 1.0, 0.5, 1.139639048296783, 1.0, 1.0, 0.0, 1.4541357002836997, 1.0, 0.0, 0.0, 1.6113837166948162, 0.5, 0.0, 0.0]
+            omegaLUT1.RGBPoints = [0.3730543491279064, 0.0, 0.0, 0.5625, 0.5106463634876334, 0.0, 0.0, 1.0, 0.8251430154745502, 0.0, 1.0, 1.0,
+                                   0.9823910318856668, 0.5, 1.0, 0.5, 1.139639048296783, 1.0, 1.0, 0.0, 1.4541357002836997, 1.0, 0.0, 0.0, 1.6113837166948162, 0.5, 0.0, 0.0]
             omegaLUT1.ColorSpace = 'RGB'
             omegaLUT1.ScalarRangeInitialized = 1.0
             # get separate opacity transfer function/opacity map for 'ux'
             omegaPWF1 = GetOpacityTransferFunction('absOmega', slice4Display[0], separate=True)
-            omegaPWF1.Points = [2.2554501288418073e-07, 0.0, 0.5, 0.0, 2.1026964870830196, 1.0, 0.5, 0.0]
+            omegaPWF1.Points = [2.2554501288418073e-07, 0.0,
+                                0.5, 0.0, 2.1026964870830196, 1.0, 0.5, 0.0]
             omegaPWF1.ScalarRangeInitialized = 1
 
 #             # get color legend/bar for omegaLUT in view renderView1
@@ -1733,7 +1780,7 @@ if not noPic:
             op.RescaleTransferFunction(0, range_max_slice)
             omegaLUTColorBar1.UseCustomLabels = 1
             omegaLUTColorBar1.CustomLabels = np.ceil(np.linspace(0, range_max_slice, 5))
-            print("CustomLabels |Omega|=",omegaLUTColorBar1.CustomLabels )
+            print("CustomLabels |Omega|=", omegaLUTColorBar1.CustomLabels)
             len_bar = 0.5
             omegaLUTColorBar1.Orientation = 'Horizontal'
             omegaLUTColorBar1.WindowLocation = 'AnyLocation'
@@ -1756,10 +1803,9 @@ if not noPic:
             uxLUTColorBar2.Visibility = 0
 #             omegaLUTColorBar.CustomLabels = np.ceil(np.linspace(0, range_max, 5))
 
-
             slice4Display[0].LookupTable = omegaLUT1
             # show data from extractSurface1
-            print ("Showing extractSurface1.. "),
+            print("Showing extractSurface1.. "),
             extractSurface1Display = Show(extractSurface1, renderView2, 'GeometryRepresentation')
             # trace defaults for the display properties.
 
@@ -1785,19 +1831,19 @@ if not noPic:
             extractSurface1Display.PolarAxes = 'PolarAxesRepresentation'
             # show color bar/color legend
             extractSurface1Display.SetScalarBarVisibility(renderView2, True)
-            print ("Showing slice4, transform1 renderView2.. "),
+            print("Showing slice4, transform1 renderView2.. "),
             Show(slice4, renderView2, 'GeometryRepresentation')
             Show(transform1, renderView2, 'GeometryRepresentation')
             renderView2.CameraParallelScale = 1.8
             renderView1.Update()
             renderView2.Update()
-            fn = path + "/" + picName +  '_t=' + str(timesteps[i]) +'_n=' + str(k) + '_omegaSlice.png'
+            fn = path + "/" + picName + '_t=' + \
+                str(timesteps[i]) + '_n=' + str(k) + '_omegaSlice.png'
 
-
-            SaveScreenshot( fn,  layout1, SaveAllViews=1,
-                 ImageResolution=[4096, 2048],
-                TransparentBackground=0,
-                CompressionLevel='2' )
+            SaveScreenshot(fn,  layout1, SaveAllViews=1,
+                           ImageResolution=[4096, 2048],
+                           TransparentBackground=0,
+                           CompressionLevel='2')
 
 #             Hide(extractSurface1, renderView2)
 #             Hide(slice4, renderView2)
@@ -1815,8 +1861,6 @@ if not noPic:
 #             Hide(linearExtrusion1, renderView2)
             print('File=' + fn + ' generated succesfully')
 
-
-
         print("Contours")
         # show data in view
         contour3Display = Show(slice1, spreadSheetView1, 'SpreadSheetRepresentation')
@@ -1824,16 +1868,14 @@ if not noPic:
         ExportView(fn, view=spreadSheetView1)
         print('File=' + fn + ' generated succesfully')
 
-        #print("Tracers")
+        # print("Tracers")
         # show data in view
-        #contour3Display = Show(streamTracer1, spreadSheetView2, 'SpreadSheetRepresentation')
-        #fn = path + '/' + 'tracer_t=' + str(timesteps[i]) + '.csv'
-        #ExportView(fn, view=spreadSheetView2)
-        #print('File=' + fn + ' generated succesfully')
+        # contour3Display = Show(streamTracer1, spreadSheetView2, 'SpreadSheetRepresentation')
+        # fn = path + '/' + 'tracer_t=' + str(timesteps[i]) + '.csv'
+        # ExportView(fn, view=spreadSheetView2)
+        # print('File=' + fn + ' generated succesfully')
         if vtk_from_pvpython == False:
             break
-
-
 
         # Freeing Memory
         Delete(slice5)
@@ -1888,7 +1930,6 @@ if not noPic:
 #         del resampleToImage0
         Delete(clip0)
         del clip0
-
 
 
 stop = timeit.default_timer()

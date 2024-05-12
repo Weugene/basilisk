@@ -20,10 +20,10 @@ void channel (scalar cs, face vector fs) {
   The variable *EPS* is necessary to ensure that the embeded boundary
   does not coincide with a mesh interface, resulting in a division by
   a zero surface in the embeded algorithm. */
-  
+
   foreach_vertex()
     phi[] = difference (y - L0/2. + width/2. - EPS, y - L0/2. - width/2. + EPS);
-  
+
   boundary ({phi});
   fractions (phi, cs, fs);
 }
@@ -40,7 +40,7 @@ double couette (double y) {
 
 int main() {
 
-  /** 
+  /**
   We define a left-right periodic computational fluid domain. */
 
 //  periodic (right);
@@ -54,7 +54,7 @@ int main() {
   stokes = true;
   TOLERANCE = 1e-5;
   DT = 1.e-2;
-  
+
 //  for (N = 8; N <= 64; N *= 2) {
     N=64;
     init_grid (N);
@@ -89,7 +89,7 @@ event init (t = 0) {
   /**
   The gravity vector is aligned with the channel and the viscosity is
   unity. */
-  
+
   mu = fm;
 
   /**
@@ -97,7 +97,7 @@ event init (t = 0) {
 
   for (scalar s in {u})
     s.third = true;
-    
+
   foreach()
     un[] = u.x[];
 }
@@ -108,7 +108,7 @@ We check if the solution is stationnary. */
 event steady (t += 0.1; i <= 1000) {
 
   double du = change (u.x, un);
- 
+
   if (i > 1 && du < 1e-12) {
     event("vtk_file");
     return 1; /* stop */
@@ -162,7 +162,7 @@ event vtk_file (i++){
   (vector *) {uf}, subname, t + dt );
 }
 /**
-# Plots 
+# Plots
 
 ![*u.x* velocity field](example-embed-straight-channel-couette/ux.png)
 

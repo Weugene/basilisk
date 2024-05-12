@@ -5,7 +5,7 @@
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -16,7 +16,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -47,7 +47,7 @@ float HFdif[]={0.7,0.7,0.7};
 float HFspec[]={.2,.2,.2};
 
 
-void SetMaterial(GLfloat *color) 
+void SetMaterial(GLfloat *color)
 {
 	GLfloat ambient_color[4];
 	GLfloat diffuse_color[4];
@@ -63,7 +63,7 @@ void SetMaterial(GLfloat *color)
 	diffuse_color[3]=1.0;
 
 	GL_CALL(glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient_color), ;);
-	GL_CALL(glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse_color), ;); 
+	GL_CALL(glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse_color), ;);
 	GL_CALL(glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 10), ;);
 
 	if (HF_LIGHT_TYPE == 2)
@@ -75,7 +75,7 @@ void SetMaterial(GLfloat *color)
 		specular_color[2]=color[2]*0.5;
 		specular_color[3]=1.0;
 
-		GL_CALL(glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular_color), ;); 
+		GL_CALL(glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular_color), ;);
 		GL_CALL(glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 10), ;);
 	}
 
@@ -94,8 +94,8 @@ void SetMaterial(GLfloat *color)
 		specular_color[2]=1.0;
 		specular_color[3]=1.0;
 
-		GL_CALL(glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular_color), ;); 
-		GL_CALL(glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse_color), ;); 
+		GL_CALL(glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular_color), ;);
+		GL_CALL(glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse_color), ;);
 		GL_CALL(glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 10), ;);
 	}
 }
@@ -103,12 +103,12 @@ void SetMaterial(GLfloat *color)
 
 void SetMeshProperties(){
 
-	if(HF_FACE_LINE_FILL==0) 
-	{ 
-		GL_CALL(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL), ;); 
-		solidAndWire = 0;  
+	if(HF_FACE_LINE_FILL==0)
+	{
+		GL_CALL(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL), ;);
+		solidAndWire = 0;
 	}
-	else if(HF_FACE_LINE_FILL==1) 
+	else if(HF_FACE_LINE_FILL==1)
 	{
 		GL_CALL(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE), ;);
 		solidAndWire = 0;
@@ -157,7 +157,7 @@ void CreateAxes(){
 	{
 		GL_CALL(glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, cl), ;);
 		GL_CALL(glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, cl), ;);
-	} 
+	}
 	else
 	{
 		GL_CALL(glColor3f(cl[0], cl[1], cl[2]), ;);
@@ -172,7 +172,7 @@ void CreateAxes(){
 	cl[1]=0.0;
 	cl[2]=1.0;
 	if (HF_NORMAL)
-	{   
+	{
 		GL_CALL(glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, cl), ;);
 		GL_CALL(glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, cl), ;);
 	}
@@ -203,7 +203,7 @@ void triangle(void)
 	if (!HAS_ATTRIBUTES){
 		GL_CALL(glBegin (GL_TRIANGLES), ;);
 
-		if(HF_NORMAL) {  
+		if(HF_NORMAL) {
 			GL_CALL(SetMaterial(HF_FACE_COLOR),;);
 			edi->createGLTriangle(true, HF_VERTEX_NORMAL ,false);
 		}
@@ -279,7 +279,7 @@ void init_render(void)
 	GL_CALL(glEndList(),;);
 
 	hfAxes = glGenLists (3);
-	GL_CALL(glNewList(hfAxes, GL_COMPILE),;); 
+	GL_CALL(glNewList(hfAxes, GL_COMPILE),;);
 	CreateAxes();
 	GL_CALL(glEndList(),;);
 

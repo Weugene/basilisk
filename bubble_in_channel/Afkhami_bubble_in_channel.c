@@ -73,15 +73,15 @@ void bubbles (scalar f)
 int main(int argc, char * argv[])
 {
     if (argc > 1) {
-        Radius_b = atof(argv[1]); 
+        Radius_b = atof(argv[1]);
     }
     #if CASE==1
     if (argc > 2) {
-        Zet = atof(argv[2]); 
+        Zet = atof(argv[2]);
     }
     #else
     if (argc > 2) {
-        CA = atof(argv[2]); 
+        CA = atof(argv[2]);
     }
     #endif
 	if (argc > 3) {
@@ -212,7 +212,7 @@ event adapt (i++){
 	adapt_wavelet ((scalar *) ADAPT_SCALARS, eps_arr, maxlevel = maxlevel, minlevel = minlevel);
 	for (scalar s in {f,fs})
         s.refine = s.prolongation = fraction_refine;
-	boundary({f,fs});	
+	boundary({f,fs});
 }
 
 

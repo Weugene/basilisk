@@ -1,38 +1,42 @@
 # state file generated using paraview version 5.8.0
-
 # ----------------------------------------------------------------
 # setup views used in the visualization
 # ----------------------------------------------------------------
-
 # trace generated using paraview version 5.8.0
 #
-# To ensure correct image size when batch processing, please search 
+# To ensure correct image size when batch processing, please search
 # for and uncomment the line `# renderView*.ViewSize = [*,*]`
+# import the simple module from the paraview
+from __future__ import annotations
 
-#### import the simple module from the paraview
-from paraview.simple import *
-#from paraview.vtk.util import numpy_support # provides unique()
-#from vtkmodules.numpy_interface.algorithms import * # provides volume()
-#from vtk.numpy_interface import dataset_adapter as dsa
-# import vtk.numpy_interface.algorithms as algs
-import vtk
-#import numpy as np
-import glob, os, sys
-import logging
-from sys import argv
-import timeit
 import argparse
-#from vtk.numpy_interface import dataset_adapter as dsa
+import functools
+import glob
+import logging
+import os
+import sys
+import timeit
+from sys import argv
+
+import __builtin__
+import vtk
+
+from paraview.simple import *
+# from paraview.vtk.util import numpy_support # provides unique()
+# from vtkmodules.numpy_interface.algorithms import * # provides volume()
+# from vtk.numpy_interface import dataset_adapter as dsa
+# import vtk.numpy_interface.algorithms as algs
+# import numpy as np
+# from vtk.numpy_interface import dataset_adapter as dsa
 logging.basicConfig(format='%(message)s')
 log = logging.getLogger(__name__)
 
-import functools
-import __builtin__
 # from inspect import getmodule
 #
 # print(getmodule(Show))
-vtk_from_pvpython=True # pvpython reads from file, otherwise from paraview GUI
+vtk_from_pvpython = True  # pvpython reads from file, otherwise from paraview GUI
 # vtk_from_pvpython=False # pvpython reads from file, otherwise from paraview GUI
+
 
 def my_custom_timer(func):
     @functools.wraps(func)
@@ -40,8 +44,9 @@ def my_custom_timer(func):
         start_time = timeit.default_timer()
         s = ''
         for arg_name in kwargs:
-                s += arg_name
-        print("Started {!r}({!r}) {!r} ".format(func.__name__, s, ' line=' + str(sys._getframe().f_back.f_lineno))),
+            s += arg_name
+        print("Started {!r}({!r}) {!r} ".format(func.__name__, s,
+              ' line=' + str(sys._getframe().f_back.f_lineno))),
         value = func(*args, **kwargs)
         end_time = timeit.default_timer()
         run_time = end_time - start_time
@@ -52,62 +57,75 @@ def my_custom_timer(func):
 # print(sys.modules.keys())
 
 
-
 @my_custom_timer
 def XMLPartitionedUnstructuredGridReader(*args, **kwargs):
     return paraview.simple.XMLPartitionedUnstructuredGridReader(*args, **kwargs)
+
 
 @my_custom_timer
 def PVDReader(*args, **kwargs):
     return paraview.simple.PVDReader(*args, **kwargs)
 
+
 @my_custom_timer
 def GetActiveSource(*args, **kwargs):
     return paraview.simple.GetActiveSource(*args, **kwargs)
+
 
 @my_custom_timer
 def Slice(*args, **kwargs):
     return paraview.simple.Slice(*args, **kwargs)
 
+
 @my_custom_timer
 def Calculator(*args, **kwargs):
     return paraview.simple.Calculator(*args, **kwargs)
+
 
 @my_custom_timer
 def Clip(*args, **kwargs):
     return paraview.simple.Clip(*args, **kwargs)
 
+
 @my_custom_timer
 def PassArrays(*args, **kwargs):
     return paraview.simple.PassArrays(*args, **kwargs)
+
 
 @my_custom_timer
 def Fetch(*args, **kwargs):
     return paraview.servermanager.Fetch(*args, **kwargs)
 
+
 @my_custom_timer
 def CellDatatoPointData(*args, **kwargs):
     return paraview.simple.CellDatatoPointData(*args, **kwargs)
+
 
 @my_custom_timer
 def ResampleToImage(*args, **kwargs):
     return paraview.simple.ResampleToImage(*args, **kwargs)
 
+
 @my_custom_timer
 def Contour(*args, **kwargs):
     return paraview.simple.Contour(*args, **kwargs)
+
 
 @my_custom_timer
 def IsoVolume(*args, **kwargs):
     return paraview.simple.IsoVolume(*args, **kwargs)
 
+
 @my_custom_timer
 def StreamTracer(*args, **kwargs):
     return paraview.simple.StreamTracer(*args, **kwargs)
 
+
 @my_custom_timer
 def ExtractSelection(*args, **kwargs):
     return paraview.simple.ExtractSelection(*args, **kwargs)
+
 
 @my_custom_timer
 def Show(*args, **kwargs):
@@ -117,9 +135,10 @@ def Show(*args, **kwargs):
 def eprint(var):
     log.warning(var)
 
+
 # Read from arguments
-#2 pvd file name (by defaults in the first file in a current directory)
-#3 pvtu is swithed off by default
+# 2 pvd file name (by defaults in the first file in a current directory)
+# 3 pvtu is swithed off by default
 # ---------------------------------------------------------------------------------------------------------
 start = timeit.default_timer()
 
@@ -129,15 +148,15 @@ required = parser.add_argument_group('required arguments')
 optional = parser.add_argument_group('optional arguments')
 
 optional.add_argument("-infn", type=str, help="Provide the name of the input paraview files, please",
-                    nargs='?', default='*.pvd')
+                      nargs='?', default='*.pvd')
 optional.add_argument("-outfn", type=str, help="Provide the name of the output paraview files, please",
-                    nargs='?', default='iso_volume')
+                      nargs='?', default='iso_volume')
 required.add_argument("-maxlevel", type=int, help="Provide the maximum level of refinement",
-                    nargs='?', default=10, required=True)
+                      nargs='?', default=10, required=True)
 required.add_argument("-iter", type=int, help="Provide the iter argument level of refinement",
-                    nargs='?', default=0, required=True)
+                      nargs='?', default=0, required=True)
 required.add_argument("-volumetric_repr", type=int, help="Provide the volumetric_repr argument 1 if volumetric repr, 0 only surface",
-                    nargs='?', default=0, required=True)
+                      nargs='?', default=0, required=True)
 
 # parser.add_argument('--foo', action='store_const', const=2, default=42)
 args = parser.parse_args()
@@ -147,7 +166,7 @@ outfn = args.outfn
 maxlevel = args.maxlevel
 iter = args.iter
 volumetric_repr = args.volumetric_repr
-#Current PATH reading
+# Current PATH reading
 if vtk_from_pvpython:
     path = os.path.abspath(os.getcwd())
 else:
@@ -156,28 +175,28 @@ else:
 eprint("Current PATH=" + path)
 if vtk_from_pvpython:
     if infn[-5::] == '.pvtu':
-    # Find files with *.pvtu extension
+        # Find files with *.pvtu extension
         numbers = []
         file = ""
         for file in glob.glob(infn):
             numbers.append(int(filter(lambda x: x.isdigit(), file)))
-        file=file[0:-9]
+        file = file[0:-9]
         numbers.sort()
         N = len(numbers)
         infn = []
         for i in numbers:
             infn.append('{}/{}{:04d}.pvtu'.format(path, file, i))
         print(infn)
-        fn = path +  '/' + infn
-        my_source = XMLPartitionedUnstructuredGridReader(FileName = fn)
+        fn = path + '/' + infn
+        my_source = XMLPartitionedUnstructuredGridReader(FileName=fn)
     elif infn[-4::] == '.pvd':
-    # create a new 'PVD Reader'
+        # create a new 'PVD Reader'
         fn = glob.glob(infn)
-        print('Found files:',fn)
-	id_fn = fn.index("dump2pvd_compressed.pvd")
+        print('Found files:', fn)
+        id_fn = fn.index("dump2pvd_compressed.pvd")
         fn = fn[id_fn]
-        print('Read the first one:',fn)
-        my_source = PVDReader(FileName = path +  '/' + fn)
+        print('Read the first one:', fn)
+        my_source = PVDReader(FileName=path + '/' + fn)
     else:
         eprint('Get Active Source: No pvd or pvtu files are provided')
         my_source = GetActiveSource()
@@ -185,9 +204,9 @@ else:
     eprint('Get Active Source')
     my_source = GetActiveSource()
 
-#my_source.CellArrays = ['fs', 'f', 'l', 'l2', 'omega', 'u.x']
+# my_source.CellArrays = ['fs', 'f', 'l', 'l2', 'omega', 'u.x']
 #     sys.exit()
-#### disable automatic camera reset on 'Show'
+# disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
 # get animation scene
@@ -195,7 +214,7 @@ animationScene1 = GetAnimationScene()
 
 # get the time-keeper
 timeKeeper1 = GetTimeKeeper()
-timesteps = timeKeeper1.TimestepValues # 0, 0.1, 0.2 ...
+timesteps = timeKeeper1.TimestepValues  # 0, 0.1, 0.2 ...
 print("timesteps=", timesteps)
 try:
     NT = len(timesteps)
@@ -203,7 +222,7 @@ except:
     NT = 1
     timesteps = [timesteps]
 
-print ("renderViews, axesGrid, SpreadSheetViews, layouts.. "),
+print("renderViews, axesGrid, SpreadSheetViews, layouts.. "),
 # Create a new 'Render View'
 renderView1 = CreateView('RenderView')
 
@@ -219,7 +238,7 @@ layout1 = CreateLayout(name='Layout #1')
 layout1.SplitHorizontal(0, 0.5)
 layout1.AssignView(1, renderView1)
 
-print ("end")
+print("end")
 # ----------------------------------------------------------------
 # restore active view
 SetActiveView(renderView1)
@@ -287,31 +306,30 @@ connectivity1.ExtractionMode = 'Extract Largest Region'
 connectivity1.ColorRegions = 0
 
 print("Connectivity1 finished")
-#fn = path + '/res/save_isovolume_0_' + iter + '.pvtu'
-#SaveData(fn, proxy=connectivity1, 
+# fn = path + '/res/save_isovolume_0_' + iter + '.pvtu'
+# SaveData(fn, proxy=connectivity1,
 #        PointDataArrays=['f', 'fs', 'l', 'l2', 'omega', 'u.x', 'vtkGhostType', 'vtkValidPointMask'],
-#	CellDataArrays=['vtkGhostType'],
-#	WriteTimeSteps=1
-#)
+# CellDataArrays=['vtkGhostType'],
+# WriteTimeSteps=1
+# )
 
 if volumetric_repr == 1:
-	Show(connectivity1, renderView1)
-	fn = "{}/res/{}_0_{:04d}.pvtu".format(path, outfn, iter)
-	SaveData(fn, proxy=connectivity1, 
-		#PointDataArrays=['f', 'fs', 'l', 'l2', 'omega', 'u.x'],
-		UseSubdirectory=0
-	)
-	print("Saved volumetric data of bubble:", fn)
+    Show(connectivity1, renderView1)
+    fn = "{}/res/{}_0_{:04d}.pvtu".format(path, outfn, iter)
+    SaveData(fn, proxy=connectivity1,
+             # PointDataArrays=['f', 'fs', 'l', 'l2', 'omega', 'u.x'],
+             UseSubdirectory=0
+             )
+    print("Saved volumetric data of bubble:", fn)
 else:
-	# create a new 'Extract Surface'
-	extractSurface1 = ExtractSurface(Input=connectivity1)
-	Show(extractSurface1, renderView1)
-	fn = "{}/res/{}_0_{:04d}.vtp".format(path, outfn, iter)
-	SaveData(fn, proxy=extractSurface1
-		#PointDataArrays=['f', 'fs', 'l', 'l2', 'omega', 'u.x']
-	)
-	print("Saved surface data of bubble:", fn)
-
+    # create a new 'Extract Surface'
+    extractSurface1 = ExtractSurface(Input=connectivity1)
+    Show(extractSurface1, renderView1)
+    fn = "{}/res/{}_0_{:04d}.vtp".format(path, outfn, iter)
+    SaveData(fn, proxy=extractSurface1
+             # PointDataArrays=['f', 'fs', 'l', 'l2', 'omega', 'u.x']
+             )
+    print("Saved surface data of bubble:", fn)
 
 
 # Freeing Memory
@@ -327,7 +345,6 @@ Delete(cellDatatoPointData1)
 del cellDatatoPointData1
 Delete(clip1)
 del clip1
-
 
 
 stop = timeit.default_timer()

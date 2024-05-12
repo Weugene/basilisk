@@ -1,12 +1,12 @@
 /*==============================================================================
 
- Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa 
+ Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa
  Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,7 +17,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -107,7 +107,7 @@ double hfBSplineVolume(double* f_a, String_Array_T* str_param)
   double *bbox;
   int u,v,w;
   int i,j,k;
-  
+
   int array_index,dim;
   double cube;
   double B_value;
@@ -117,53 +117,53 @@ double hfBSplineVolume(double* f_a, String_Array_T* str_param)
   double factor_u;
   double factor_v;
   double factor_w;
-  
+
   array_index=(int)f_a[0];
   HF_Get_Runtime_Array(array_index, &ctr_points, &dim);
-  
+
   array_index=(int)f_a[1];
   HF_Get_Runtime_Array(array_index, &bbox, &dim);
-  
+
   KnotOrder_u=(int)f_a[2];
   KnotOrder_v=(int)f_a[3];
   KnotOrder_w=(int)f_a[4];
   /* printf("oru=%d  orv=%d  orw=%d\n",KnotOrder_u,KnotOrder_v,KnotOrder_w); */
-  
+
   w=(int)f_a[5];
   v=(int)f_a[6];
   u=(int)f_a[7];
-  
+
   array_index=(int)f_a[8];
   HF_Get_Runtime_Array(array_index, &x, &dim);
-  
+
   if (dim != 3) return -1111111111111.0;
-  
-  
+
+
   xt = (x[0]-bbox[0])/(bbox[3]-bbox[0]);
   yt = (x[1]-bbox[1])/(bbox[4]-bbox[1]);
   zt = (x[2]-bbox[2])/(bbox[5]-bbox[2]);
-  
-  
+
+
   factor_u = 1.0+(double)(u-KnotOrder_u);
   factor_v = 1.0+(double)(v-KnotOrder_v);
   factor_w = 1.0+(double)(w-KnotOrder_w);
-  
-  
+
+
   KnotNbSom_u = u-1;
   KnotNbSom_v = v-1;
   KnotNbSom_w = w-1;
-  
+
   B_value=0.0;
   /*printf("fu=%f  fv=%f  fv=%f\n",factor_u,factor_v,factor_w); */
   /* printf("x=%f  y=%f  z=%f\n",xt,yt,zt); */
   xt =xt * factor_u;
   yt =yt * factor_v;
   zt =zt * factor_w;
-  
+
   /* printf("x=%f  y=%f  z=%f\n",xt,yt,zt); */
-  
+
   /* getchar(); */
-  
+
   for( k=0;k<w;k++){
     for( i=0;i<u;i++)
       for( j=0;j<v;j++){
@@ -173,21 +173,21 @@ double hfBSplineVolume(double* f_a, String_Array_T* str_param)
 			 *RecursSpline_w(k,KnotOrder_w,zt)
 			 *ctr_points[k*u*v+i*v+j]
 			 );
-	
+
       }
     ;
   }
-  
-  
+
+
   cube=R_int(R_int((bbox[3]-0.01-x[0])*(x[0]-bbox[0]+0.01),
 		   (bbox[4]-0.01-x[1])*(x[1]-bbox[2]+0.01)),(bbox[5]-x[2]-0.01)*(x[2]-bbox[2]+0.01));
-  
+
   /* if(B_value!=0.0) printf("%f\n",B_value); */
   /* getchar(); */
   return R_int(cube,B_value);
   /* return 1.0; */
   /* return B_value; */
-  
+
 }
 /*--------------------------------------------------------------*/
 int R_hfBSplineVolume(double* f_a,
@@ -204,7 +204,7 @@ int R_hfBSplineVolume(double* f_a,
     }
     return 1;
   */
-  
+
   return 1;
 }
 /*--------------------------------------------------------------*/

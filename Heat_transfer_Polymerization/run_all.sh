@@ -20,5 +20,3 @@ echo "JLAB_SLURM_O_WORKDIR=${JLAB_SLURM_O_WORKDIR}"
 ./run_heat.sh $1 0 1
 #./run_heat.sh $1 1 0
 ./run_heat.sh $1 1 1
-
-

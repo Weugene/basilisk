@@ -8,7 +8,7 @@
     The licenses for most software are designed to limit an Original Work's
     distribution.  The Common Good Public License seeks to do the opposite by
     securing an Original Work's wide spread distribution, modification, and use
-    by as many people as possible.  
+    by as many people as possible.
 
     To protect your rights, we need to make restrictions that forbid anyone to
     deny you these rights or to ask you to surrender the rights. These
@@ -118,7 +118,7 @@
 	    to the Original Work and / or Derivative Work.
 
 	    0.4. You must cause any Derivative Work to carry prominent notices
-	    stating that You made modifications and the date of any change.  
+	    stating that You made modifications and the date of any change.
 
 	    0.5. You must cause the whole or any part of the Original Work and /
 	    or Derivative Work that you distribute or publish to be licensed as
@@ -131,7 +131,7 @@
 	    of any warranty; and give any other recipients of the Original Work
 	    and / or Derivative Work a copy of this License along with any
 	    Original Works and / or Derivative Works.
-   
+
        1.0. Duty to Environment.
 
 	    By your ownership, distribution, modification, and review of this

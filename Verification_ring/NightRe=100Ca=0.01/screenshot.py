@@ -3,26 +3,35 @@
 # To ensure correct image size when batch processing, please search
 # for and uncomment the line `# renderView*.ViewSize = [*,*]`
 # specify M step
-#### import the simple module from the paraview
-from paraview.simple import *
-import glob, os, sys
+# import the simple module from the paraview
+from __future__ import annotations
+
+import glob
 import logging
+import os
+import sys
 from sys import argv
-logging.basicConfig(format='%(message)s')
+
+from paraview.simple import *
+
+logging.basicConfig(format="%(message)s")
 log = logging.getLogger(__name__)
+
 
 def eprint(var):
     log.warning(var)
+
+
 argc = len(sys.argv)
 print(argc)
-picname="pic_"
+picname = "pic_"
 step = 50
-if (argc>1):
-    picname=argv[1]
-if (argc>2):
+if argc > 1:
+    picname = argv[1]
+if argc > 2:
     step = int(argv[2])
 print("picname:", picname, "step=", step)
-#os.chdir("/haha")
+# os.chdir("/haha")
 path = os.path.abspath(os.getcwd())
 eprint(path)
 
@@ -31,17 +40,17 @@ numbers = []
 file = ""
 for file in glob.glob("*.pvtu"):
     numbers.append(int(filter(lambda x: x.isdigit(), file)))
-file=file[0:-9]
+file = file[0:-9]
 numbers.sort()
 N = len(numbers)
 
-#eprint(filenames)
+# eprint(filenames)
 filenames = []
 for i in numbers:
-    filenames.append('{}/{}{:04d}.pvtu'.format(path,file,i))
+    filenames.append(f"{path}/{file}{i:04d}.pvtu")
 print(filenames)
 
-#### disable automatic camera reset on 'Show'
+# disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
 # get animation scene
@@ -58,12 +67,12 @@ rkpvd = XMLPartitionedUnstructuredGridReader(FileName=filenames)
 calculator2 = Calculator(Input=rkpvd)
 
 # Properties modified on calculator2
-calculator2.AttributeType = 'Cell Data'
-calculator2.ResultArrayName = 'Solid&L1&L2'
-calculator2.Function = 'f+fs'
+calculator2.AttributeType = "Cell Data"
+calculator2.ResultArrayName = "Solid&L1&L2"
+calculator2.Function = "f+fs"
 
 # get active view
-renderView1 = GetActiveViewOrCreate('RenderView')
+renderView1 = GetActiveViewOrCreate("RenderView")
 # uncomment following to set a specific view size
 # renderView1.ViewSize = [1024, 1024]
 
@@ -71,50 +80,63 @@ renderView1 = GetActiveViewOrCreate('RenderView')
 calculator2Display = Show(calculator2, renderView1)
 
 # get color transfer function/color map for 'SolidL1L2'
-solidL1L2LUT = GetColorTransferFunction('SolidL1L2')
-solidL1L2LUT.RGBPoints = [0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.14901960784313725, 1.0, 2.0, 0.23529411764705882, 0.00392156862745098, 0.047058823529411764]
+solidL1L2LUT = GetColorTransferFunction("SolidL1L2")
+solidL1L2LUT.RGBPoints = [
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.14901960784313725,
+    1.0,
+    2.0,
+    0.23529411764705882,
+    0.00392156862745098,
+    0.047058823529411764,
+]
 solidL1L2LUT.ScalarRangeInitialized = 1.0
 
 # get opacity transfer function/opacity map for 'SolidL1L2'
-solidL1L2PWF = GetOpacityTransferFunction('SolidL1L2')
+solidL1L2PWF = GetOpacityTransferFunction("SolidL1L2")
 solidL1L2PWF.Points = [0.0, 0.0, 0.5, 0.0, 2.0, 1.0, 0.5, 0.0]
 solidL1L2PWF.ScalarRangeInitialized = 1
 
 # trace defaults for the display properties.
-calculator2Display.Representation = 'Surface'
-calculator2Display.ColorArrayName = ['CELLS', 'Solid&L1&L2']
+calculator2Display.Representation = "Surface"
+calculator2Display.ColorArrayName = ["CELLS", "Solid&L1&L2"]
 calculator2Display.LookupTable = solidL1L2LUT
-calculator2Display.OSPRayScaleFunction = 'PiecewiseFunction'
-calculator2Display.SelectOrientationVectors = 'None'
+calculator2Display.OSPRayScaleFunction = "PiecewiseFunction"
+calculator2Display.SelectOrientationVectors = "None"
 calculator2Display.ScaleFactor = 0.09375
-calculator2Display.SelectScaleArray = 'Solid&L1&L2'
-calculator2Display.GlyphType = 'Arrow'
-calculator2Display.GlyphTableIndexArray = 'Solid&L1&L2'
+calculator2Display.SelectScaleArray = "Solid&L1&L2"
+calculator2Display.GlyphType = "Arrow"
+calculator2Display.GlyphTableIndexArray = "Solid&L1&L2"
 calculator2Display.GaussianRadius = 0.0046875
-calculator2Display.SetScaleArray = [None, '']
-calculator2Display.ScaleTransferFunction = 'PiecewiseFunction'
-calculator2Display.OpacityArray = [None, '']
-calculator2Display.OpacityTransferFunction = 'PiecewiseFunction'
-calculator2Display.DataAxesGrid = 'GridAxesRepresentation'
-calculator2Display.SelectionCellLabelFontFile = ''
-calculator2Display.SelectionPointLabelFontFile = ''
-calculator2Display.PolarAxes = 'PolarAxesRepresentation'
+calculator2Display.SetScaleArray = [None, ""]
+calculator2Display.ScaleTransferFunction = "PiecewiseFunction"
+calculator2Display.OpacityArray = [None, ""]
+calculator2Display.OpacityTransferFunction = "PiecewiseFunction"
+calculator2Display.DataAxesGrid = "GridAxesRepresentation"
+calculator2Display.SelectionCellLabelFontFile = ""
+calculator2Display.SelectionPointLabelFontFile = ""
+calculator2Display.PolarAxes = "PolarAxesRepresentation"
 calculator2Display.ScalarOpacityFunction = solidL1L2PWF
 calculator2Display.ScalarOpacityUnitDistance = 0.033594269600637446
 
 # init the 'GridAxesRepresentation' selected for 'DataAxesGrid'
-calculator2Display.DataAxesGrid.XTitleFontFile = ''
-calculator2Display.DataAxesGrid.YTitleFontFile = ''
-calculator2Display.DataAxesGrid.ZTitleFontFile = ''
-calculator2Display.DataAxesGrid.XLabelFontFile = ''
-calculator2Display.DataAxesGrid.YLabelFontFile = ''
-calculator2Display.DataAxesGrid.ZLabelFontFile = ''
+calculator2Display.DataAxesGrid.XTitleFontFile = ""
+calculator2Display.DataAxesGrid.YTitleFontFile = ""
+calculator2Display.DataAxesGrid.ZTitleFontFile = ""
+calculator2Display.DataAxesGrid.XLabelFontFile = ""
+calculator2Display.DataAxesGrid.YLabelFontFile = ""
+calculator2Display.DataAxesGrid.ZLabelFontFile = ""
 
 # init the 'PolarAxesRepresentation' selected for 'PolarAxes'
-calculator2Display.PolarAxes.PolarAxisTitleFontFile = ''
-calculator2Display.PolarAxes.PolarAxisLabelFontFile = ''
-calculator2Display.PolarAxes.LastRadialAxisTextFontFile = ''
-calculator2Display.PolarAxes.SecondaryRadialAxesTextFontFile = ''
+calculator2Display.PolarAxes.PolarAxisTitleFontFile = ""
+calculator2Display.PolarAxes.PolarAxisLabelFontFile = ""
+calculator2Display.PolarAxes.LastRadialAxisTextFontFile = ""
+calculator2Display.PolarAxes.SecondaryRadialAxesTextFontFile = ""
 
 
 # show color bar/color legend
@@ -124,7 +146,7 @@ calculator2Display.SetScalarBarVisibility(renderView1, False)
 renderView1.OrientationAxesVisibility = 0
 
 # get active view
-renderView1 = GetActiveViewOrCreate('RenderView')
+renderView1 = GetActiveViewOrCreate("RenderView")
 
 # uncomment following to set a specific view size
 renderView1.ViewSize = [1152, 1150]
@@ -136,19 +158,45 @@ Hide(rkpvd, renderView1)
 renderView1.Update()
 
 # Properties modified on solidL1L2LUT
-solidL1L2LUT.RGBPoints = [0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 2.0, 0.23529411764705882, 0.00392156862745098, 0.047058823529411764]
+solidL1L2LUT.RGBPoints = [
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    2.0,
+    0.23529411764705882,
+    0.00392156862745098,
+    0.047058823529411764,
+]
 
 # Properties modified on solidL1L2LUT
-solidL1L2LUT.RGBPoints = [0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 2.0, 0.2196078431372549, 0.0, 0.043137254901960784]
+solidL1L2LUT.RGBPoints = [
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    2.0,
+    0.2196078431372549,
+    0.0,
+    0.043137254901960784,
+]
 
-#### saving camera placements for all active views
+# saving camera placements for all active views
 
 # current camera placement for renderView1
-renderView1.InteractionMode = '2D'
+renderView1.InteractionMode = "2D"
 renderView1.CameraPosition = [0.0, 0.0, 10000.0]
 renderView1.CameraParallelScale = 0.5478616589771803
 
-#### uncomment the following to render all views
+# uncomment the following to render all views
 # RenderAllViews()
 # alternatively, if you want to write images, you can use SaveScreenshot(...).
 
@@ -163,7 +211,11 @@ for i in range(0, N, step):
     animationScene1.AnimationTime = i
     # Properties modified on timeKeeper1
     timeKeeper1.Time = i
-    SaveScreenshot( path + "/" + picname + str(i) + '.png', renderView1, ImageResolution=[2316, 2204],
-    TransparentBackground=1,
-    # PNG options
-    CompressionLevel='2')
+    SaveScreenshot(
+        path + "/" + picname + str(i) + ".png",
+        renderView1,
+        ImageResolution=[2316, 2204],
+        TransparentBackground=1,
+        # PNG options
+        CompressionLevel="2",
+    )

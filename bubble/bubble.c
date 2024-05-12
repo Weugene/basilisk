@@ -93,10 +93,10 @@ int main (int argc, char * argv[]) {
   maxruntime (&argc, argv);
   if (argc > 1)
     LEVEL = atoi (argv[1]);
-  
+
   /**
   We set the domain geometry and initial refinement. */
-  
+
   size (WIDTH);
   origin (-L0/2, 0, -L0/2);
   init_grid (128);
@@ -104,7 +104,7 @@ int main (int argc, char * argv[]) {
   /**
   We set the physical parameters: densities, viscosities and surface
   tension. */
-  
+
   rho1 = 1.;
   rho2 = 1./RHOR;
   mu1 = 1./Ga;
@@ -115,7 +115,7 @@ int main (int argc, char * argv[]) {
   We reduce the tolerance on the divergence of the flow. This is
   important to minimise mass conservation errors for these simulations
   which are very long. */
-  
+
   TOLERANCE = 1e-4;
   run();
 }
@@ -175,7 +175,7 @@ event logfile (i += 10) {
     sb += dv;
   }
   fprintf (ferr,
-	   "%.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f\n", 
+	   "%.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f\n",
 	   t, sb,
 	   xb/sb, yb/sb, zb/sb,
 	   vbx/sb, vby/sb, vbz/sb);
@@ -198,7 +198,7 @@ event snapshot (t = 1; t <= MAXTIME; t++)
     omegay[] = (u.z[1] - u.z[-1] - u.x[0,0,1] + u.x[0,0,-1])/(2.*Delta);
   boundary ({omegay});
 #endif
-  
+
   char name[80];
   sprintf (name, "dump-%03d", (int) t);
   dump (file = name);
@@ -211,20 +211,20 @@ event movie (t = 0; t <= MAXTIME; t += 0.25)
 {
 
 #if BUBBLE19
-  
+
   view (fov = 5.0278, quat = {-0.132839,0.513023,0.0748175,0.844727},
 	tx = 0.00149469, ty = -0.355489, width = 300, height = 800);
-  
+
   /**
   For $50 < t < 60$ we do a tracking shot from the initial camera
   position (above) to a new position, following and zooming on the
   bubble. */
-  
+
   travelling (50, 60, fov = 2.07254, tx = 0.00524944, ty = -0.513744);
 
   /**
   For $60 < t < 82$ we just follow the bubble. */
-  
+
   travelling (60, 82, tx = 0.00898601, ty = -0.703841);
 
 #else // BUBBLE26
@@ -239,11 +239,11 @@ event movie (t = 0; t <= MAXTIME; t += 0.25)
 
   travelling (60, 110, tx = -0.00644264, ty = -0.741016);
 #endif
-  
+
   /**
   We use a different color for the bubble interface and for the
   isosurface. */
-  
+
   clear();
   draw_vof ("f", fc = {0.13,0.47,0.77});
 #if dimension == 3

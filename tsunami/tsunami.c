@@ -4,7 +4,7 @@
 The 2004 Indian Ocean tsunami was caused by a large-scale fault
 rupture (> 1000 km) at the Indian–Australian and Eurasian–Andaman
 plate boundaries. This example uses the fault model of [Grilli et
-al, 2007](/src/references.bib#grilli2007) as initial conditions for a 
+al, 2007](/src/references.bib#grilli2007) as initial conditions for a
 Saint-Venant solution of the subsequent tsunami. A similar setup is
 discussed in [Popinet, 2011](/src/references.bib#popinet2011).
 
@@ -132,8 +132,8 @@ int adapt() {
   with thresholds *{ETAE,HMAXE}*. The compiler is not clever enough yet
   and needs to be told explicitly that this is a list of *double*s,
   hence the *(double[])*
-  [type casting](http://en.wikipedia.org/wiki/Type_conversion). 
-  
+  [type casting](http://en.wikipedia.org/wiki/Type_conversion).
+
   The function then returns the number of cells refined. */
 
   astats s = adapt_wavelet ({eta, hmax}, (double[]){ETAE,HMAXE},
@@ -169,21 +169,21 @@ event init (i = 0)
     conserve_elevation();
   else {
     conserve_elevation();
-    
+
     /**
     The initial still water surface is at $z=0$ so that the water depth
     $h$ is... */
-    
+
     foreach()
       h[] = max(0., - zb[]);
     boundary ({h});
-    
+
     /**
     The initial deformation is given by an Okada fault model with the
     following parameters. The *iterate = adapt* option will iterate this
     initialisation until our *adapt()* function above returns zero
     i.e. until the deformations are resolved properly. */
-  
+
 //    fault (x = 94.57, y = 3.83,
 //	   depth = 11.4857e3,
 //	   strike = 323, dip = 12, rake = 90,
@@ -223,7 +223,7 @@ event logfile (i++) {
   \frac{d\mathbf{u}}{dt} = - C_f|\mathbf{u}|\frac{\mathbf{u}}{h}
   $$
   with $C_f=10^{-4}$. */
-  
+
 //  foreach() {
 //    double a = h[] < dry ? HUGE : 1. + 1e-4*dt*norm(u)/h[];
 //    foreach_dimension()
@@ -251,7 +251,7 @@ event snapshots (t += 60; t <= 600) {
   printf ("file: t-%g\n", t);
   output_field ({h, zb, hmax}, stdout, n = 1 << maxlevel, linear = true);
 #endif
-  
+
   /**
   We also save a snapshot file we can restart from. */
 
@@ -283,7 +283,7 @@ set palette defined ( 0 0 0 0.5647, 0.125 0 0.05882 1, 0.25 0 0.5647 1, \
 		      0.625 1 0.9333 0, 0.75 1 0.4392 0, \
 		      0.875 0.9333 0 0, 1 0.498 0 0 )
 
-# here we plot the value of hmax ($5) but only for wet cells 
+# here we plot the value of hmax ($5) but only for wet cells
 # (i.e. h = $3 > 1e-3), dry cells take a 'no data' value i.e. 1e1000
 # We use only the last output file (i.e. 't-600' minutes = 10 hours)
 
@@ -323,10 +323,10 @@ event movies (t++) {
 
   /**
   After completion this will give the following animation
-  
+
   ![Animation of the wave elevation. Dark blue is -2 metres and
   less. Dark red is +2 metres and more.](tsunami/eta.mp4)
-  
+
   We also use the *box* option to only output a subset of the domain
   (defined by the lower-left, upper-right coordinates). */
 
@@ -334,7 +334,7 @@ event movies (t++) {
   /**
   ![Animation of the wave elevation. Dark blue is -2 metres and
   less. Dark red is +2 metres and more.](tsunami/eta-zoom.mp4)
-  
+
   And repeat the operation for the level of refinement...*/
 
   scalar l = etam;
@@ -345,9 +345,9 @@ event movies (t++) {
   /**
   ![Animation of the level of refinement. Dark blue is 5 and dark red
   is 10.](tsunami/level.mp4)
-  
+
   ...and for the process id for parallel runs. */
-  
+
 #if _OPENMP || _MPI
   foreach()
     etam[] = tid();

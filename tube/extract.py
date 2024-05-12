@@ -1,17 +1,16 @@
 # state file generated using paraview version 5.8.0
-
 # ----------------------------------------------------------------
 # setup views used in the visualization
 # ----------------------------------------------------------------
-
 # trace generated using paraview version 5.8.0
 #
-# To ensure correct image size when batch processing, please search 
+# To ensure correct image size when batch processing, please search
 # for and uncomment the line `# renderView*.ViewSize = [*,*]`
+# import the simple module from the paraview
+from __future__ import annotations
 
-#### import the simple module from the paraview
 from paraview.simple import *
-#### disable automatic camera reset on 'Show'
+# disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
 # get the material library
@@ -76,7 +75,8 @@ cylinder1.Height = 30.0
 cylinder1.Capping = 0
 
 # create a new 'PVD Reader'
-dump2pvd_compressedpvd = PVDReader(FileName='/Users/weugene/basilisk/work/tube/dump2pvd_compressed.pvd')
+dump2pvd_compressedpvd = PVDReader(
+    FileName='/Users/weugene/basilisk/work/tube/dump2pvd_compressed.pvd')
 dump2pvd_compressedpvd.CellArrays = ['fs', 'f', 'l', 'l2', 'omega', 'u.x']
 
 # create a new 'Clip'
@@ -174,7 +174,8 @@ transform1Display.PolarAxes = 'PolarAxesRepresentation'
 transform1Display.ScalarOpacityUnitDistance = 8.706185806543795
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-transform1Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+transform1Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
 transform1Display.ScaleTransferFunction.Points = [-1.0, 0.0, 0.5, 0.0, 1.0, 1.0, 0.5, 0.0]
@@ -187,7 +188,8 @@ extractSelection1Display = Show(extractSelection1, renderView1, 'UnstructuredGri
 
 # get color transfer function/color map for 'f'
 fLUT = GetColorTransferFunction('f')
-fLUT.RGBPoints = [0.0, 0.23137254902, 0.298039215686, 0.752941176471, 0.5000000000000002, 0.865, 0.865, 0.865, 1.0000000000000004, 0.705882352941, 0.0156862745098, 0.149019607843]
+fLUT.RGBPoints = [0.0, 0.23137254902, 0.298039215686, 0.752941176471, 0.5000000000000002,
+                  0.865, 0.865, 0.865, 1.0000000000000004, 0.705882352941, 0.0156862745098, 0.149019607843]
 fLUT.ScalarRangeInitialized = 1.0
 
 # get opacity transfer function/opacity map for 'f'
@@ -218,13 +220,16 @@ extractSelection1Display.ScalarOpacityFunction = fPWF
 extractSelection1Display.ScalarOpacityUnitDistance = 0.0
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-extractSelection1Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+extractSelection1Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-extractSelection1Display.ScaleTransferFunction.Points = [0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
+extractSelection1Display.ScaleTransferFunction.Points = [
+    0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-extractSelection1Display.OpacityTransferFunction.Points = [0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
+extractSelection1Display.OpacityTransferFunction.Points = [
+    0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
 
 # setup the color legend parameters for each legend in this view
 

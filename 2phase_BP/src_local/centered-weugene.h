@@ -7,14 +7,14 @@
 We wish to approximate numerically the incompressible,
 variable-density Navier--Stokes equations
 $$
-\partial_t\mathbf{u}+\nabla\cdot(\mathbf{u}\otimes\mathbf{u}) = 
-\frac{1}{\rho}\left[-\nabla p + \nabla\cdot(2\mu\mathbf{D})\right] + 
+\partial_t\mathbf{u}+\nabla\cdot(\mathbf{u}\otimes\mathbf{u}) =
+\frac{1}{\rho}\left[-\nabla p + \nabla\cdot(2\mu\mathbf{D})\right] +
 \mathbf{a}
 $$
 $$
 \nabla\cdot\mathbf{u} = 0
 $$
-with the deformation tensor 
+with the deformation tensor
 $\mathbf{D}=[\nabla\mathbf{u} + (\nabla\mathbf{u})^T]/2$.
 
 The scheme implemented here is close to that used in Gerris ([Popinet,
@@ -67,7 +67,7 @@ zero.
 
 The statistics for the (multigrid) solution of the pressure Poisson
 problems and implicit viscosity are stored in *mgp*, *mgpf*, *mgu*
-respectively. 
+respectively.
 
 If *stokes* is set to *true*, the velocity advection term
 $\nabla\cdot(\mathbf{u}\otimes\mathbf{u})$ is omitted. This is a
@@ -139,7 +139,7 @@ event defaults (i = 0)
   The pressures are never dumped. */
 
   p.nodump = pf.nodump = true;
-  
+
   /**
   The default density field is set to unity (times the metric). */
 
@@ -332,7 +332,7 @@ static void correction (double dt)
   foreach()
     foreach_dimension()
       u.x[] += dt*g.x[];
-  boundary ((scalar *){u});  
+  boundary ((scalar *){u});
 }
 
 /**
@@ -372,7 +372,7 @@ surface tension or hydrostatic pressure in the presence of gravity.
 To ensure a consistent discretisation, the acceleration term is
 defined on faces as are pressure gradients and the centered combined
 acceleration and pressure gradient term $\mathbf{g}$ is obtained by
-averaging. 
+averaging.
 
 The (provisionary) face velocity field at time $t+\Delta t$ is
 obtained by interpolation from the centered velocity field. The

@@ -65,4 +65,3 @@ event adapt (i++) {
   astats s = adapt_wavelet ({h}, (double[]){1e-3}, LEVEL);
   fprintf (stderr, "# refined %d cells, coarsened %d cells\n", s.nf, s.nc);
 }
-

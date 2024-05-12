@@ -8,7 +8,7 @@ We want to solve Poisson--Helmholtz equations of the general form
 $$
 L(a) = \nabla\cdot (\alpha\nabla a) + \lambda a = b
 $$
-This can be done efficiently using a multigrid solver. 
+This can be done efficiently using a multigrid solver.
 
 An important aspect of Poisson--Helmholtz equations is that the
 operator $L()$ is linear. This property can be used to build better

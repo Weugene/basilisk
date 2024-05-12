@@ -21,7 +21,7 @@ void tracer_fluxes (scalar f,
   /**
   We first compute the cell-centered gradient of *f* in a locally-allocated
   vector field. */
-  
+
   vector g[];
   gradients ({f}, {g});
 
@@ -85,7 +85,7 @@ void advection (struct Advection p)
 
   /**
   If *src* is not provided we set all the source terms to zero. */
-  
+
   scalar * lsrc = p.src;
   if (!lsrc) {
     const scalar zero[] = 0.;

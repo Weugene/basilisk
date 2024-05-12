@@ -31,7 +31,7 @@ int	g_stoScheme = sto_r;
 int	g_nMeshDataSize = 0;
 SoupMeshData * g_pMeshData = NULL;
 
-double det3(double a, double b, double c, 
+double det3(double a, double b, double c,
 			double d, double e, double f,
 			double g, double h, double i)
 {
@@ -48,15 +48,15 @@ BSPPlane* copyPlane(BSPPlane * other)
 	return plane;
 }
 
-BSPPlane* buildPlane(double x1, double y1, double z1, 
-					 double x2, double y2, double z2, 
+BSPPlane* buildPlane(double x1, double y1, double z1,
+					 double x2, double y2, double z2,
 					 double x3, double y3, double z3)
 {
 	BSPPlane* plane = (BSPPlane*)malloc(sizeof(BSPPlane));
 	double dx1 = x2 - x1, dy1 = y2 - y1, dz1 = z2 - z1;
 	double dx2 = x3 - x1, dy2 = y3 - y1, dz2 = z3 - z1;
-	double nx = dy1*dz2 - dy2*dz1, 
-		ny = dz1*dx2 - dz2*dx1, 
+	double nx = dy1*dz2 - dy2*dz1,
+		ny = dz1*dx2 - dz2*dx1,
 		nz = dx1*dy2 - dx2*dy1;
 #ifdef SBSP_NORMALIZEPLANE
 	double nabs = sqrt(nx*nx+ny*ny+nz*nz);
@@ -213,15 +213,15 @@ BSPTree* sbspBuildBSP(int nVertexNum, double* pVertexData, int nFacesNum, int* p
 			g_pMeshData[iFace].m_points[iIndex].z = pVertexData[idx[iIndex]*3+2];
 		}
 		g_pMeshData[iFace].m_plBase = buildPlane(
-			g_pMeshData[iFace].m_points[0].x, 
-			g_pMeshData[iFace].m_points[0].y, 
-			g_pMeshData[iFace].m_points[0].z, 
-			g_pMeshData[iFace].m_points[1].x, 
-			g_pMeshData[iFace].m_points[1].y, 
-			g_pMeshData[iFace].m_points[1].z, 
-			g_pMeshData[iFace].m_points[2].x, 
-			g_pMeshData[iFace].m_points[2].y, 
-			g_pMeshData[iFace].m_points[2].z); 
+			g_pMeshData[iFace].m_points[0].x,
+			g_pMeshData[iFace].m_points[0].y,
+			g_pMeshData[iFace].m_points[0].z,
+			g_pMeshData[iFace].m_points[1].x,
+			g_pMeshData[iFace].m_points[1].y,
+			g_pMeshData[iFace].m_points[1].z,
+			g_pMeshData[iFace].m_points[2].x,
+			g_pMeshData[iFace].m_points[2].y,
+			g_pMeshData[iFace].m_points[2].z);
 	}
 	pTree = (BSPTree*)malloc(sizeof(BSPTree));
 	pTree->pFront = NULL;
@@ -257,7 +257,7 @@ void sbspProcessTree(BSPTree* pTree, int nPolygonsSize, int* pPolygons)
 		fAngle = -1;
 		if (g_pMeshData[nPoly].m_bSplit)
 			continue;
-		/* collect all the information for candidate, such as: 
+		/* collect all the information for candidate, such as:
 		   number of front/back/span faces, minimal distance after possible split and
 		   minimal angle between planes */
 		for (iSubIndex = 0; iSubIndex < nPolygonsSize; iSubIndex++)
@@ -290,7 +290,7 @@ void sbspProcessTree(BSPTree* pTree, int nPolygonsSize, int* pPolygons)
 			else
 				fRatio = (double)nToFront/(double)nToBack;
 		}
-		else 
+		else
 			fRatio = 0.0;
 		fRatio *= fDistance;
 		fRatio *= acos(fAngle);
@@ -309,7 +309,7 @@ void sbspProcessTree(BSPTree* pTree, int nPolygonsSize, int* pPolygons)
 	pTree->firstPolygon = pPolygons[nItOpt];
 	pTree->plPartition = copyPlane(g_pMeshData[pTree->firstPolygon].m_plBase);
 	nToFront = 0; nToBack = 0;
-	
+
 	/* first pass: calculate size for arrays */
 	for (iIndex = 0; iIndex < nPolygonsSize; iIndex++)
 	{
@@ -385,7 +385,7 @@ double sbspMinPlaneDistance(int nIndex, BSPPlane* plane)
 	fDistance = FLT_MAX;
 	for (i = 0; i < g_pMeshData[nIndex].m_pointsSize; i++)
 	{
-		vecTemp = g_pMeshData[nIndex].m_points[i];		
+		vecTemp = g_pMeshData[nIndex].m_points[i];
 		fDistanceCur = fabs(distancePlane(vecTemp.x, vecTemp.y, vecTemp.z, plane));
 		if (fabs(fDistanceCur) > g_distTol)
 			fDistance = min(fDistance, fDistanceCur);
@@ -442,7 +442,7 @@ int sbspSplitPolygon(int nIndex, BSPPlane* planeSplit, int* oFront, int* oBack)
 			nRayIsecIt++;
 		}
 	}
-	
+
 	if (nRayIsec[0] != -1 && nRayIsec[1] != -1)
 	{
 		/* plane intersects the face over two vertices */

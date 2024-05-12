@@ -14,7 +14,7 @@ scalar fs[], f[], p[];
 vector u[];
 scalar l[], omega[], l2[];
 double rho1=1, rho2=1, mu1=1, mu2=1;
-double eta_s=1e-5; 
+double eta_s=1e-5;
 int NITERMIN, NITERMAX;
 int iter_fp = 0;
 bool relative_residual_poisson=false, relative_residual_viscous=false;

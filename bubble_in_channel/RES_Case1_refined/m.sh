@@ -9,7 +9,7 @@ for i in {0..11}; do
 	dir="res_${rlist[i]}_${zlist[i]}_{$level}"
 	echo $dir
     (
-        grep "^${level}" $dir/log_${rlist[i]}_${zlist[i]}_${level} > m_${rlist[i]}_${zlist[i]}_${level}.txt 
+        grep "^${level}" $dir/log_${rlist[i]}_${zlist[i]}_${level} > m_${rlist[i]}_${zlist[i]}_${level}.txt
 	)
 done
 find . -iname "m_*" -size  0 -print -delete

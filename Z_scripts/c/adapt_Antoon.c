@@ -2,7 +2,7 @@
  * fraction.h works if dimension>=2
  * the results worst to best:
  *  1. not set
- *  2. f.prolongation=refine_injection and 
+ *  2. f.prolongation=refine_injection and
  *	3. f.prolongation=fraction_refine; // probably refines if neighbors are changing!!! Do not use for smooth fields
  *	the result of comparison can be seen in adapt_comparison.png
  *	using of f.refine does not change the result. prolongation operator is more important.
@@ -19,7 +19,7 @@ Furthermore, by default for a scalar field, the coarsening attribute is not even
 #include "grid/tree.h"
 #include "utils.h"
 #include "fractions.h"
-scalar f[]; 
+scalar f[];
 int main(){
   FILE * fp0 = fopen("original","w");
   FILE * fp1 = fopen("adapted_no_set","w");

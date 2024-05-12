@@ -616,8 +616,3 @@ event adapt (i++) {
      * This can be avoided by imposing a coarse mesh close to the outflow boundary, for example:*/
 //    unrefine (x > 0.4*L0);
 }
-
-
-
-
-

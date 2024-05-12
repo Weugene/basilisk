@@ -1,17 +1,16 @@
 # state file generated using paraview version 5.8.0
-
 # ----------------------------------------------------------------
 # setup views used in the visualization
 # ----------------------------------------------------------------
-
 # trace generated using paraview version 5.8.0
 #
-# To ensure correct image size when batch processing, please search 
+# To ensure correct image size when batch processing, please search
 # for and uncomment the line `# renderView*.ViewSize = [*,*]`
+# import the simple module from the paraview
+from __future__ import annotations
 
-#### import the simple module from the paraview
 from paraview.simple import *
-#### disable automatic camera reset on 'Show'
+# disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
 # get the material library
@@ -50,7 +49,8 @@ renderView1.AxesGrid.YLabelFontSize = 18
 renderView1.AxesGrid.ZLabelColor = [0.9, 0.9, 0.9]
 renderView1.AxesGrid.ZLabelFontSize = 18
 renderView1.AxesGrid.XAxisUseCustomLabels = 1
-renderView1.AxesGrid.XAxisLabels = [0.0, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0, 5.25, 5.5, 5.75, 6.0, 6.25, 6.5, 6.75, 7.0, 7.25, 7.5, 7.75, 8.0, 8.25, 8.5, 8.75, 9.0, 9.25, 9.5, 9.75, 10.0, 10.25, 10.5, 10.75, 11.0, 11.25, 11.5, 11.75, 12.0, 12.25, 12.5, 12.75, 13.0, 13.25, 13.5, 13.75, 14.0, 14.25, 14.5, 14.75, 15.0, 15.25, 15.5, 15.75, 16.0, 16.25, 16.5, 16.75, 17.0, 17.25, 17.5, 17.75, 18.0, 18.25, 18.5, 18.75, 19.0, 19.25, 19.5, 19.75, 20.0, 20.25, 20.5, 20.75, 21.0, 21.25, 21.5, 21.75, 22.0, 22.25, 22.5, 22.75, 23.0, 23.25, 23.5, 23.75, 24.0, 24.25, 24.5, 24.75, 25.0, 25.25, 25.5, 25.75, 26.0, 26.25, 26.5, 26.75, 27.0, 27.25, 27.5, 27.75, 28.0, 28.25, 28.5, 28.75, 29.0, 29.25, 29.5, 29.75, 30.0]
+renderView1.AxesGrid.XAxisLabels = [0.0, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0, 5.25, 5.5, 5.75, 6.0, 6.25, 6.5, 6.75, 7.0, 7.25, 7.5, 7.75, 8.0, 8.25, 8.5, 8.75, 9.0, 9.25, 9.5, 9.75, 10.0, 10.25, 10.5, 10.75, 11.0, 11.25, 11.5, 11.75, 12.0, 12.25, 12.5, 12.75, 13.0, 13.25, 13.5, 13.75, 14.0, 14.25, 14.5, 14.75, 15.0,
+                                    15.25, 15.5, 15.75, 16.0, 16.25, 16.5, 16.75, 17.0, 17.25, 17.5, 17.75, 18.0, 18.25, 18.5, 18.75, 19.0, 19.25, 19.5, 19.75, 20.0, 20.25, 20.5, 20.75, 21.0, 21.25, 21.5, 21.75, 22.0, 22.25, 22.5, 22.75, 23.0, 23.25, 23.5, 23.75, 24.0, 24.25, 24.5, 24.75, 25.0, 25.25, 25.5, 25.75, 26.0, 26.25, 26.5, 26.75, 27.0, 27.25, 27.5, 27.75, 28.0, 28.25, 28.5, 28.75, 29.0, 29.25, 29.5, 29.75, 30.0]
 renderView1.AxesGrid.YAxisUseCustomLabels = 1
 renderView1.AxesGrid.YAxisLabels = [-0.5, -0.25, 0.25, 0.5]
 renderView1.AxesGrid.ZAxisUseCustomLabels = 1
@@ -89,7 +89,8 @@ renderView1.AxesGrid.YLabelFontSize = 18
 renderView1.AxesGrid.ZLabelColor = [0.9, 0.9, 0.9]
 renderView1.AxesGrid.ZLabelFontSize = 18
 renderView1.AxesGrid.XAxisUseCustomLabels = 1
-renderView1.AxesGrid.XAxisLabels = [0.0, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0, 5.25, 5.5, 5.75, 6.0, 6.25, 6.5, 6.75, 7.0, 7.25, 7.5, 7.75, 8.0, 8.25, 8.5, 8.75, 9.0, 9.25, 9.5, 9.75, 10.0, 10.25, 10.5, 10.75, 11.0, 11.25, 11.5, 11.75, 12.0, 12.25, 12.5, 12.75, 13.0, 13.25, 13.5, 13.75, 14.0, 14.25, 14.5, 14.75, 15.0, 15.25, 15.5, 15.75, 16.0, 16.25, 16.5, 16.75, 17.0, 17.25, 17.5, 17.75, 18.0, 18.25, 18.5, 18.75, 19.0, 19.25, 19.5, 19.75, 20.0, 20.25, 20.5, 20.75, 21.0, 21.25, 21.5, 21.75, 22.0, 22.25, 22.5, 22.75, 23.0, 23.25, 23.5, 23.75, 24.0, 24.25, 24.5, 24.75, 25.0, 25.25, 25.5, 25.75, 26.0, 26.25, 26.5, 26.75, 27.0, 27.25, 27.5, 27.75, 28.0, 28.25, 28.5, 28.75, 29.0, 29.25, 29.5, 29.75, 30.0]
+renderView1.AxesGrid.XAxisLabels = [0.0, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0, 5.25, 5.5, 5.75, 6.0, 6.25, 6.5, 6.75, 7.0, 7.25, 7.5, 7.75, 8.0, 8.25, 8.5, 8.75, 9.0, 9.25, 9.5, 9.75, 10.0, 10.25, 10.5, 10.75, 11.0, 11.25, 11.5, 11.75, 12.0, 12.25, 12.5, 12.75, 13.0, 13.25, 13.5, 13.75, 14.0, 14.25, 14.5, 14.75, 15.0,
+                                    15.25, 15.5, 15.75, 16.0, 16.25, 16.5, 16.75, 17.0, 17.25, 17.5, 17.75, 18.0, 18.25, 18.5, 18.75, 19.0, 19.25, 19.5, 19.75, 20.0, 20.25, 20.5, 20.75, 21.0, 21.25, 21.5, 21.75, 22.0, 22.25, 22.5, 22.75, 23.0, 23.25, 23.5, 23.75, 24.0, 24.25, 24.5, 24.75, 25.0, 25.25, 25.5, 25.75, 26.0, 26.25, 26.5, 26.75, 27.0, 27.25, 27.5, 27.75, 28.0, 28.25, 28.5, 28.75, 29.0, 29.25, 29.5, 29.75, 30.0]
 renderView1.AxesGrid.YAxisUseCustomLabels = 1
 renderView1.AxesGrid.YAxisLabels = [-0.5, -0.25, 0.25, 0.5]
 renderView1.AxesGrid.ZAxisUseCustomLabels = 1
@@ -164,7 +165,8 @@ cylinder1.Height = 30.0
 cylinder1.Capping = 0
 
 # create a new 'PVD Reader'
-dump2pvd_compressedpvd = PVDReader(FileName='/Users/weugene/basilisk/work/tube/dump2pvd_compressed.pvd')
+dump2pvd_compressedpvd = PVDReader(
+    FileName='/Users/weugene/basilisk/work/tube/dump2pvd_compressed.pvd')
 dump2pvd_compressedpvd.CellArrays = ['fs', 'f', 'l', 'l2', 'omega', 'u.x']
 
 # create a new 'Clip'
@@ -250,7 +252,8 @@ integrateVariables1 = IntegrateVariables(Input=connectivity1)
 # create a new 'PassArrays'
 passArrays1 = PassArrays(Input=integrateVariables1)
 passArrays1.PointDataArrays = ['u.x']
-passArrays1.CellDataArrays = ['absOmega', 'f', 'fs', 'l', 'l2', 'omega', 'u.x', 'vtkGhostType', 'vtkValidPointMask', 'Volume', 'vtkGhostType']
+passArrays1.CellDataArrays = ['absOmega', 'f', 'fs', 'l', 'l2', 'omega',
+                              'u.x', 'vtkGhostType', 'vtkValidPointMask', 'Volume', 'vtkGhostType']
 
 # create a new 'Extract Surface'
 f = ExtractSurface(Input=connectivity1)
@@ -265,7 +268,8 @@ slice6.SliceOffsetValues = [0.0]
 slice6.SliceType.Origin = [14.83475923538208, -0.00173245370388031, -0.00017940998077392578]
 
 # init the 'Plane' selected for 'HyperTreeGridSlicer'
-slice6.HyperTreeGridSlicer.Origin = [14.83475923538208, -0.00173245370388031, -0.00017940998077392578]
+slice6.HyperTreeGridSlicer.Origin = [14.83475923538208, -
+                                     0.00173245370388031, -0.00017940998077392578]
 
 # create a new 'PassArrays'
 passArrays2 = PassArrays(Input=connectivity1)
@@ -284,7 +288,8 @@ slice2.SliceType.Origin = [14.83475923538208, 0.0, 0.0]
 slice2.SliceType.Normal = [0.0, 0.0, 1.0]
 
 # init the 'Plane' selected for 'HyperTreeGridSlicer'
-slice2.HyperTreeGridSlicer.Origin = [14.83475923538208, -0.00173245370388031, -0.00017940998077392578]
+slice2.HyperTreeGridSlicer.Origin = [14.83475923538208, -
+                                     0.00173245370388031, -0.00017940998077392578]
 
 # create a new 'Contour'
 contour1 = Contour(Input=resampleToImage1)
@@ -299,7 +304,7 @@ calculator2.Function = 'u.x - iHat*1.34014457095'
 
 # create a new 'Stream Tracer'
 streamTracer1 = StreamTracer(Input=calculator2,
-    SeedType='High Resolution Line Source')
+                             SeedType='High Resolution Line Source')
 streamTracer1.Vectors = ['POINTS', 'deltaU']
 streamTracer1.SurfaceStreamlines = 1
 streamTracer1.InitialStepLength = 0.05
@@ -314,7 +319,7 @@ streamTracer1.SeedType.Resolution = 50
 
 # create a new 'Stream Tracer'
 streamTracer2 = StreamTracer(Input=calculator2,
-    SeedType='High Resolution Line Source')
+                             SeedType='High Resolution Line Source')
 streamTracer2.Vectors = ['POINTS', 'deltaU']
 streamTracer2.SurfaceStreamlines = 1
 streamTracer2.InitialStepLength = 0.01
@@ -342,7 +347,7 @@ slice3.HyperTreeGridSlicer.Origin = [14.70956802368164, 0.0, 0.0]
 
 # create a new 'Stream Tracer'
 streamTracer3 = StreamTracer(Input=calculator2,
-    SeedType='High Resolution Line Source')
+                             SeedType='High Resolution Line Source')
 streamTracer3.Vectors = ['POINTS', 'deltaU']
 streamTracer3.SurfaceStreamlines = 1
 streamTracer3.InitialStepLength = 0.01
@@ -378,7 +383,8 @@ slice5.SliceOffsetValues = [0.0]
 slice5.SliceType.Origin = [16.42798843383789, 0.0, 0.0]
 
 # init the 'Plane' selected for 'HyperTreeGridSlicer'
-slice5.HyperTreeGridSlicer.Origin = [14.83475923538208, -0.00173245370388031, -0.00017940998077392578]
+slice5.HyperTreeGridSlicer.Origin = [14.83475923538208, -
+                                     0.00173245370388031, -0.00017940998077392578]
 
 # create a new 'Slice'
 slice4 = Slice(Input=resampleToImage1)
@@ -426,20 +432,25 @@ transform1Display.PolarAxes = 'PolarAxesRepresentation'
 transform1Display.ScalarOpacityUnitDistance = 6.650076732513133
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-transform1Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+transform1Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-transform1Display.ScaleTransferFunction.Points = [-2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
+transform1Display.ScaleTransferFunction.Points = [
+    -2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-transform1Display.OpacityTransferFunction.Points = [-2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
+transform1Display.OpacityTransferFunction.Points = [
+    -2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
 
 # show data from slice4
 slice4Display = Show(slice4, renderView1, 'GeometryRepresentation')
 
 # get separate color transfer function/color map for 'absOmega'
-separate_slice4Display_absOmegaLUT = GetColorTransferFunction('absOmega', slice4Display, separate=True)
-separate_slice4Display_absOmegaLUT.RGBPoints = [0.0, 0.0, 0.0, 0.5625, 1.198753696686236, 0.0, 0.0, 1.0, 3.938767540651804, 0.0, 1.0, 1.0, 5.3087717654360755, 0.5, 1.0, 0.5, 6.678775990220343, 1.0, 1.0, 0.0, 9.41878983418591, 1.0, 0.0, 0.0, 10.78879405897018, 0.5, 0.0, 0.0]
+separate_slice4Display_absOmegaLUT = GetColorTransferFunction(
+    'absOmega', slice4Display, separate=True)
+separate_slice4Display_absOmegaLUT.RGBPoints = [0.0, 0.0, 0.0, 0.5625, 1.198753696686236, 0.0, 0.0, 1.0, 3.938767540651804, 0.0, 1.0, 1.0,
+                                                5.3087717654360755, 0.5, 1.0, 0.5, 6.678775990220343, 1.0, 1.0, 0.0, 9.41878983418591, 1.0, 0.0, 0.0, 10.78879405897018, 0.5, 0.0, 0.0]
 separate_slice4Display_absOmegaLUT.ColorSpace = 'RGB'
 separate_slice4Display_absOmegaLUT.ScalarRangeInitialized = 1.0
 
@@ -463,20 +474,24 @@ slice4Display.DataAxesGrid = 'GridAxesRepresentation'
 slice4Display.PolarAxes = 'PolarAxesRepresentation'
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-slice4Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+slice4Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-slice4Display.ScaleTransferFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
+slice4Display.ScaleTransferFunction.Points = [
+    0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-slice4Display.OpacityTransferFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
+slice4Display.OpacityTransferFunction.Points = [
+    0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
 
 # show data from slice5
 slice5Display = Show(slice5, renderView1, 'GeometryRepresentation')
 
 # get color transfer function/color map for 'absOmega'
 absOmegaLUT = GetColorTransferFunction('absOmega')
-absOmegaLUT.RGBPoints = [0.0, 0.0, 0.0, 0.5625, 3.324178890387746, 0.0, 0.0, 1.0, 10.922317027236845, 0.0, 1.0, 1.0, 14.721378616251418, 0.5, 1.0, 0.5, 18.520440205265977, 1.0, 1.0, 0.0, 26.11857834211507, 1.0, 0.0, 0.0, 29.91763993112964, 0.5, 0.0, 0.0]
+absOmegaLUT.RGBPoints = [0.0, 0.0, 0.0, 0.5625, 3.324178890387746, 0.0, 0.0, 1.0, 10.922317027236845, 0.0, 1.0, 1.0, 14.721378616251418,
+                         0.5, 1.0, 0.5, 18.520440205265977, 1.0, 1.0, 0.0, 26.11857834211507, 1.0, 0.0, 0.0, 29.91763993112964, 0.5, 0.0, 0.0]
 absOmegaLUT.ColorSpace = 'RGB'
 absOmegaLUT.ScalarRangeInitialized = 1.0
 
@@ -503,13 +518,16 @@ slice5Display.DataAxesGrid = 'GridAxesRepresentation'
 slice5Display.PolarAxes = 'PolarAxesRepresentation'
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-slice5Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+slice5Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-slice5Display.ScaleTransferFunction.Points = [0.06722302855573097, 0.0, 0.5, 0.0, 5.7994661811456565, 1.0, 0.5, 0.0]
+slice5Display.ScaleTransferFunction.Points = [
+    0.06722302855573097, 0.0, 0.5, 0.0, 5.7994661811456565, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-slice5Display.OpacityTransferFunction.Points = [0.06722302855573097, 0.0, 0.5, 0.0, 5.7994661811456565, 1.0, 0.5, 0.0]
+slice5Display.OpacityTransferFunction.Points = [
+    0.06722302855573097, 0.0, 0.5, 0.0, 5.7994661811456565, 1.0, 0.5, 0.0]
 
 # ----------------------------------------------------------------
 # setup the visualization in view 'renderView2'
@@ -545,20 +563,25 @@ transform1Display_1.PolarAxes = 'PolarAxesRepresentation'
 transform1Display_1.ScalarOpacityUnitDistance = 6.650076732513133
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-transform1Display_1.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+transform1Display_1.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-transform1Display_1.ScaleTransferFunction.Points = [-2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
+transform1Display_1.ScaleTransferFunction.Points = [
+    -2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-transform1Display_1.OpacityTransferFunction.Points = [-2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
+transform1Display_1.OpacityTransferFunction.Points = [
+    -2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
 
 # show data from dump2pvd_compressedpvd
-dump2pvd_compressedpvdDisplay = Show(dump2pvd_compressedpvd, renderView2, 'UnstructuredGridRepresentation')
+dump2pvd_compressedpvdDisplay = Show(
+    dump2pvd_compressedpvd, renderView2, 'UnstructuredGridRepresentation')
 
 # get color transfer function/color map for 'f'
 fLUT = GetColorTransferFunction('f')
-fLUT.RGBPoints = [0.0, 0.23137254902, 0.298039215686, 0.752941176471, 0.5, 0.865, 0.865, 0.865, 1.0, 0.705882352941, 0.0156862745098, 0.149019607843]
+fLUT.RGBPoints = [0.0, 0.23137254902, 0.298039215686, 0.752941176471, 0.5,
+                  0.865, 0.865, 0.865, 1.0, 0.705882352941, 0.0156862745098, 0.149019607843]
 fLUT.ScalarRangeInitialized = 1.0
 
 # get opacity transfer function/opacity map for 'f'
@@ -588,7 +611,8 @@ dump2pvd_compressedpvdDisplay.ScalarOpacityFunction = fPWF
 dump2pvd_compressedpvdDisplay.ScalarOpacityUnitDistance = 0.49414351405732404
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-dump2pvd_compressedpvdDisplay.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+dump2pvd_compressedpvdDisplay.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # setup the color legend parameters for each legend in this view
 
@@ -634,13 +658,16 @@ slice6Display.DataAxesGrid = 'GridAxesRepresentation'
 slice6Display.PolarAxes = 'PolarAxesRepresentation'
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-slice6Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+slice6Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-slice6Display.ScaleTransferFunction.Points = [0.5690040558055741, 0.0, 0.5, 0.0, 9.136316321136388, 1.0, 0.5, 0.0]
+slice6Display.ScaleTransferFunction.Points = [
+    0.5690040558055741, 0.0, 0.5, 0.0, 9.136316321136388, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-slice6Display.OpacityTransferFunction.Points = [0.5690040558055741, 0.0, 0.5, 0.0, 9.136316321136388, 1.0, 0.5, 0.0]
+slice6Display.OpacityTransferFunction.Points = [
+    0.5690040558055741, 0.0, 0.5, 0.0, 9.136316321136388, 1.0, 0.5, 0.0]
 
 # setup the color legend parameters for each legend in this view
 
@@ -673,8 +700,10 @@ slice2Display = Show(slice2, spreadSheetView1, 'SpreadSheetRepresentation')
 # ----------------------------------------------------------------
 
 # get separate opacity transfer function/opacity map for 'absOmega'
-separate_slice4Display_absOmegaPWF = GetOpacityTransferFunction('absOmega', slice4Display, separate=True)
-separate_slice4Display_absOmegaPWF.Points = [2.2554501288418073e-07, 0.0, 0.5, 0.0, 9.294432572752617, 1.0, 0.5, 0.0]
+separate_slice4Display_absOmegaPWF = GetOpacityTransferFunction(
+    'absOmega', slice4Display, separate=True)
+separate_slice4Display_absOmegaPWF.Points = [
+    2.2554501288418073e-07, 0.0, 0.5, 0.0, 9.294432572752617, 1.0, 0.5, 0.0]
 separate_slice4Display_absOmegaPWF.ScalarRangeInitialized = 1
 
 # get opacity transfer function/opacity map for 'absOmega'

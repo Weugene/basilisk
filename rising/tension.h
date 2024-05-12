@@ -69,7 +69,7 @@ $\phi=\sigma\kappa$. */
 
 event acceleration (i++)
 {
-  
+
   /**
   We check for all VOF interfaces for which $\sigma$ is non-zero. */
 

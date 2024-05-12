@@ -6,7 +6,7 @@ curvature calculation. It is similar to the case presented in
 [Popinet, 2009](/src/references.bib#popinet2009) (Figure 5). The
 curvatures of circles/spheres with a randomised position and varying
 radii are computed and statistics on the error are gathered and
-displayed on the graph below. 
+displayed on the graph below.
 
 We use the
 [Vofi](http://www.ida.upmc.fr/~zaleski/paris/Vofi-1.0.tar.gz) library
@@ -68,7 +68,7 @@ void sample_circles (int nr, double R, int levelmax, norm * n, cstats * sc)
       refine (c[] > 0. && c[] < 1. && level < l);
       vofi (c, l);
     }
-    
+
     /**
     We then successively coarsen this fine initial grid to compute the
     curvature on coarser and coarser grids (thus saving on the
@@ -77,9 +77,9 @@ void sample_circles (int nr, double R, int levelmax, norm * n, cstats * sc)
     restriction ({c});
     for (int l = levelmax; l >= 3; l--) {
       unrefine (level >= l || c[] <= 0. || c[] >= 1.);
-      
+
       cstats s = curvature (c, kappa);
-      
+
       /**
       We store statistics on the methods used for curvature
       computation... */
@@ -90,7 +90,7 @@ void sample_circles (int nr, double R, int levelmax, norm * n, cstats * sc)
 
           /**
 	  ...and error statistics (for a given level of refinement *l*). */
-           
+
 	  double e = fabs(kappa[] - (dimension - 1)/R)*R/(dimension - 1);
 	  n[l].volume += dv();
 	  n[l].avg += dv()*e;
@@ -99,14 +99,14 @@ void sample_circles (int nr, double R, int levelmax, norm * n, cstats * sc)
 	    n[l].max = e;
 	}
     }
-  }  
+  }
 }
 
 int main()
 {
   origin (-0.5, -0.5, -0.5);
   init_grid (N);
-  
+
   /**
   We try a wide enough range of radii. */
 
@@ -139,7 +139,7 @@ int main()
     sample_circles (10, R, 6, n, sc);
     sample_circles (1, R, levelmax, n, sc);
 #endif
-    
+
     /**
     Finally we output the statistics for this particular radius and for
     each level of refinement. */
@@ -179,9 +179,9 @@ degradation is significantly less pronounced for the method
 implemented in [Popinet, 2009](/src/references.bib#popinet2009).
 
 The grading of the methods used for curvature calculation follows what
-is expected: 
+is expected:
 
-* exclusively HF for $D > 15$, 
+* exclusively HF for $D > 15$,
 * a combination of HF, nearest-neighbor average and "mixed HF fit" for
 $3 < D < 15$
 * and exclusively "centroids fit" for $D < 3$.
@@ -191,7 +191,7 @@ set logscale
 set grid
 set key top right
 set xlabel 'Diameter (grid points)'
-set ylabel 'Relative curvature error / percentage' 
+set ylabel 'Relative curvature error / percentage'
 f(x)=(x > 0. ? 100.*x : 1e1000)
 set yrange [:100]
 plot 2./(x*x) t '2/x^{2}', 'log' u 1:4 w lp t 'Max', '' u 1:3 w lp t 'RMS', \

@@ -8,7 +8,7 @@ Copyright 2018-2019 Dmitry Popov
 This Work or file is part of the greater total Work, software or group of
 files named HyperFun Polygonizer.
 
-HyperFun Polygonizer can be redistributed and/or modified under the terms 
+HyperFun Polygonizer can be redistributed and/or modified under the terms
 of the CGPL, The Common Good Public License as published by and at CGPL.org
 (http://CGPL.org).  It is released under version 1.0 Beta of the License
 until the 1.0 version is released after which either version 1.0 of the
@@ -19,7 +19,7 @@ WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
 CGPL, The Common Good Public License for more information.)
 
-You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+You should have received a copy of the CGPL along with HyperFun Polygonizer;
 if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -41,14 +41,14 @@ if not, see -  http://CGPL.org to get a copy of the License.
 //////////////////////////////////////////////////////////////////////
 
 
-CMainApp::CMainApp(int & argc, char ** argv) 
+CMainApp::CMainApp(int & argc, char ** argv)
 {
 #ifdef DEBUG
 	int flag = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG); // Get current flag
-	flag |= _CRTDBG_LEAK_CHECK_DF; 
-	flag |= _CRTDBG_ALLOC_MEM_DF; 
-	flag |= _CRTDBG_CHECK_ALWAYS_DF; 
-	flag |= _CRTDBG_CHECK_CRT_DF; 
+	flag |= _CRTDBG_LEAK_CHECK_DF;
+	flag |= _CRTDBG_ALLOC_MEM_DF;
+	flag |= _CRTDBG_CHECK_ALWAYS_DF;
+	flag |= _CRTDBG_CHECK_CRT_DF;
 	_CrtSetDbgFlag(flag); // Set flag to the new value
 #endif
 
@@ -159,7 +159,7 @@ void CMainApp::parseString(){
 	}
 	//Check for Errors in File while parsing
 	catch(ParseError pe){
-		std::cout << "Error: " << pe.error; 
+		std::cout << "Error: " << pe.error;
 		std::cout << "\n" << "       line = " << pe.line;
 		std::cout << " , position = " << pe.pos << "\n" << "\n";
 		std::cout << "Exiting..." << "\n";
@@ -180,8 +180,8 @@ void CMainApp::generateTriangles(){
 	{
 		DcGenerator gen;
 		gen.setGridN(itsCL.itsGridSize[0], itsCL.itsGridSize[1], itsCL.itsGridSize[2]);
-		gen.setBox(itsCL.itsBBMinMax[0], itsCL.itsBBMinMax[3], 
-			itsCL.itsBBMinMax[1], itsCL.itsBBMinMax[4], 
+		gen.setBox(itsCL.itsBBMinMax[0], itsCL.itsBBMinMax[3],
+			itsCL.itsBBMinMax[1], itsCL.itsBBMinMax[4],
 			itsCL.itsBBMinMax[2], itsCL.itsBBMinMax[5]);
 		gen.setFunc(&itsInterpreter, itsCL.itsIsoValue);
 		gen.setParameters(itsCL.itsAConstants);
@@ -286,13 +286,13 @@ int CMainApp::getLightType(){
 void CMainApp::getFaceColor(float *fc){
 	fc[0] = (float)itsCL.itsFaceColor[0];
 	fc[1] = (float)itsCL.itsFaceColor[1];
-	fc[2] = (float)itsCL.itsFaceColor[2]; 
+	fc[2] = (float)itsCL.itsFaceColor[2];
 }
 
 void CMainApp::getLineColor(float *fc){
 	fc[0] = (float)itsCL.itsLineColor[0];
 	fc[1] = (float)itsCL.itsLineColor[1];
-	fc[2] = (float)itsCL.itsLineColor[2]; 
+	fc[2] = (float)itsCL.itsLineColor[2];
 }
 
 
@@ -300,11 +300,11 @@ void CMainApp::getLineColor(float *fc){
 void CMainApp::getBoundingBox(float *min,float *max){
 	min[0] = (float)itsCL.itsBBMinMax[0];
 	min[1] = (float)itsCL.itsBBMinMax[1];
-	min[2] = (float)itsCL.itsBBMinMax[2]; 
+	min[2] = (float)itsCL.itsBBMinMax[2];
 
 	max[0] = (float)itsCL.itsBBMinMax[3];
 	max[1] = (float)itsCL.itsBBMinMax[4];
-	max[2] = (float)itsCL.itsBBMinMax[5]; 
+	max[2] = (float)itsCL.itsBBMinMax[5];
 }
 
 
@@ -332,7 +332,7 @@ int CMainApp::getNormalSegments(double *** normal){
 
 int CMainApp::getWireAndSurface()
 {
-	return itsCL.itsWireAndSurface;  
+	return itsCL.itsWireAndSurface;
 }
 
 
@@ -514,4 +514,3 @@ double CMainApp::GetAttrFromTriangle(int i,int j ,int k){
 bool CMainApp::getAttribute(){
 	return itsCL.itsAttributes;
 }
-

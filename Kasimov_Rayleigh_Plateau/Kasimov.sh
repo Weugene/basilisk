@@ -11,4 +11,3 @@
 #PBS -o out.txt
 cd ~/basilisk/work/Kasimov_Rayleigh_Plateau/
 mpirun -np 10 ./a.out
-

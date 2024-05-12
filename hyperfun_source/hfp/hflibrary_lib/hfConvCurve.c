@@ -1,12 +1,12 @@
 /*==============================================================================
 
- Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa 
+ Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa
  Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,7 +17,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -37,7 +37,7 @@
 #                 vect[n] - beginning points coordinate array
 #                 vect[n+1] - ending points coordinate array
 #                 x - points coordinate array
-# 
+#
 #    Call      :  hfConvCurve(x,vect,S,T);
 #
 #    Test file :  mycurve.hf
@@ -98,15 +98,15 @@ double hfConvCurve(double* f_a, String_Array_T* str_param) {
     ax = (vect[3*(n+1)] - vect[3*n]) / l;
     ay = (vect[3*(n+1)+1] - vect[3*n+1]) / l;
     az = (vect[3*(n+1)+2] - vect[3*n+2]) / l;
-    
+
     dx = x[0] - vect[3*n];
     dy = x[1] - vect[3*n+1];
     dz = x[2] - vect[3*n+2];
-    
+
     xx = dx*ax + dy*ay + dz*az;
     p = sqrt(1 + S[n]*S[n] * ( dx*dx + dy*dy + dz*dz - xx*xx));
     q = sqrt(1 + S[n]*S[n] * ( dx*dx + dy*dy + dz*dz + l*l - 2*l*xx ));
-    
+
     f += xx / (2*p*p*(p*p + S[n]*S[n]*xx*xx)) + (l - xx) / (2*p*p*q*q)
       + (atan(S[n]*xx/p) + atan(S[n]*(l - xx)/p)) / (2*S[n]*p*p*p);
   }

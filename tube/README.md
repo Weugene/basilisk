@@ -8,4 +8,3 @@ If you want to use Paraview pvpython, then:
 `export PYTHONPATH=$(python -c "import site; print(site.getsitepackages()[0])")`
 4. activate `source .venv/bin/activate`
 5. install packages to the current venv: `pip install -r requirements.txt`
-

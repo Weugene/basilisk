@@ -198,6 +198,6 @@ The movie reveals how the solution got into the state depicted above. The origin
 
 <video width="1024" height="154" controls>
 <source src="rt/rt.mp4" type="video/mp4">
-</video> 
+</video>
 
  */

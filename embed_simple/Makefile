@@ -15,4 +15,3 @@ embed_simple:
 	CC99='mpicc -std=c99' qcc $(CFLAGS)  -D_MPI=1  embed_simple.c $(CINCL) $(CLIBS)
 	mpirun -np 10 ./a.out
 #	mvlc movie.mp4
-

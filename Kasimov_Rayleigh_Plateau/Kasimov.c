@@ -278,4 +278,3 @@ and the velocity. */
 event adapt (i++) {
     adapt_wavelet ({f}, (double[]){feps}, MAXLEVEL);
 }
-

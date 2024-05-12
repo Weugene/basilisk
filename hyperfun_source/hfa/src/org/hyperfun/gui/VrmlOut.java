@@ -50,7 +50,7 @@ public class VrmlOut {
     public VrmlOut(String buf, Color materialColor, Point3d[] vertices, Vector3f[] normals, int[] indices) {
 	this.buf = buf;
 	this.materialColor = materialColor;
-	this.vertices = vertices;	
+	this.vertices = vertices;
 	this.normals = normals;
 	this.indices = indices;
 	//vrmlout();
@@ -147,7 +147,7 @@ public class VrmlOut {
 	pw.print( itsPolyMesh_->itsData.getAttributes(E, 2) + ", \n");
 	}
 	pw.print( "          ]}\n");
-	*/	
+	*/
 
 	outputtxt.append( "        }\n");
 	outputtxt.append( "      }\n");

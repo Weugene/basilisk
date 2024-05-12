@@ -11,4 +11,3 @@ CALC_TIME=36000
 mask:
 	qcc   $(CFLAGS) mask.c $(CINCL) $(CLIBS)
 	./a.out
-

@@ -78,7 +78,7 @@ using namespace std;
 
 HFSlicer::HFSlicer(HFInterpreter& interp, vector<double> boundaries, vector<double> slicingStep): boundaries(boundaries), delta(slicingStep)
 {
-	/******ADDED FOR S ATTRIBUTES******/ 
+	/******ADDED FOR S ATTRIBUTES******/
 	itsInterpreter = &interp;
 	numberOfArrtibutes = itsInterpreter->getSSize();
 	currentAttributesValues = new double[numberOfArrtibutes];
@@ -107,7 +107,7 @@ HFSlicer::HFSlicer(HFInterpreter& interp, vector<double> boundaries, vector<doub
 	//array of chains
 	chains = (chain*)malloc(maxChains * sizeof(chain));
 
-	//Type of cell                                                                                         
+	//Type of cell
 	cell_code = 0;
 
 	//TODO: check allocation
@@ -164,7 +164,7 @@ double HFSlicer::GetZDelta()
 	return delta[2];
 };
 
-double HFSlicer::calcF() 
+double HFSlicer::calcF()
 {
 	vector<double> tmpX(3);
 	tmpX[0] = currentXValue[0];
@@ -174,7 +174,7 @@ double HFSlicer::calcF()
 };
 
 //Looking for f(X)=0 on x range from negative x to positive
-double HFSlicer::fx0(double negativex, double positivex) 
+double HFSlicer::fx0(double negativex, double positivex)
 {
 	double result = negativex;
 	double residual = abs(positivex - negativex);
@@ -286,7 +286,7 @@ void HFSlicer::processCell(int cell_counter) {
 		column[cell_counter] = leftrow[cell_counter];
 
 		//TODO: Check. The error is possible if &leftrow[cell_counter] == leftrow[cell_counter]->isLeftForSecond
-		//Deleting pointer to the left chain for this cell 
+		//Deleting pointer to the left chain for this cell
 		if (&leftrow[cell_counter] == leftrow[cell_counter]->isLeftForFirst) {
 			leftrow[cell_counter]->isLeftForFirst = leftrow[cell_counter]->isLeftForSecond;
 			leftrow[cell_counter]->isLeftForSecond = NULL;
@@ -325,7 +325,7 @@ void HFSlicer::processCell(int cell_counter) {
 		column[cell_counter - 1] = NULL;
 		//column[cell_counter] = NULL;
 		break;
-	//TODO: FIX AS 1 and 14!!!! 
+	//TODO: FIX AS 1 and 14!!!!
 	case 6:
 		currentXValue[0] = x2;
 		ystart = fy0(y2, y1);
@@ -417,7 +417,7 @@ void HFSlicer::processCell(int cell_counter) {
 			if (column[cell_counter - 1]->isLeftForFirst == NULL)
 				column[cell_counter - 1]->isLeftForFirst = &leftrow[cell_counter];
 			else column[cell_counter - 1]->isLeftForSecond = &leftrow[cell_counter];
-			
+
 			leftrow[cell_counter] = column[cell_counter - 1];
 			column[cell_counter] = tmpbuffer;
 		}
@@ -427,9 +427,9 @@ void HFSlicer::processCell(int cell_counter) {
 		ystart = fy0(y2, y1);
 		currentXValue[1] = y2;
 		createchain(&chains[number_of_chains], &stack[segment_counter], &stack[segment_counter + 1], 1, number_of_chains, x2, ystart, fx0(x2, x1), y2);
-		
+
 		chains[number_of_chains].isLeftForFirst = &leftrow[cell_counter];
-		
+
 		leftrow[cell_counter] = &chains[number_of_chains];
 		column[cell_counter] = &chains[number_of_chains];
 
@@ -443,7 +443,7 @@ void HFSlicer::processCell(int cell_counter) {
 		createchain(&chains[number_of_chains], &stack[segment_counter], &stack[segment_counter + 1], -1, number_of_chains, xstart, y2, x2, fy0(y1, y2));
 
 		chains[number_of_chains].isLeftForFirst = &leftrow[cell_counter];
-		
+
 		leftrow[cell_counter] = &chains[number_of_chains];
 		column[cell_counter] = &chains[number_of_chains];
 
@@ -528,7 +528,7 @@ void HFSlicer::processCell(int cell_counter) {
 			currentXValue[1] = y2;
 			addlink(leftrow[cell_counter], &stack[segment_counter++], fx0(x1, x2), y2, false, 1);
 			tmpbuffer = leftrow[cell_counter];
-			
+
 			//Deleting pointer to the left chain for this cell
 			if (&leftrow[cell_counter] == leftrow[cell_counter]->isLeftForFirst) {
 				leftrow[cell_counter]->isLeftForFirst = leftrow[cell_counter]->isLeftForSecond;
@@ -580,7 +580,7 @@ void HFSlicer::processCell(int cell_counter) {
 		}
 		else leftrow[cell_counter]->isLeftForSecond = NULL;
 		leftrow[cell_counter] = NULL;
-		
+
 		column[cell_counter - 1] = NULL;
 		break;
 	case 14:
@@ -628,7 +628,7 @@ void HFSlicer::processCell(int cell_counter) {
 			chains[number_of_chains - 1].isLeftForSecond = NULL;
 
 			number_of_chains--;
-			
+
 		}
 
 		if (leftrow[cell_counter]->isLeftForFirst == &leftrow[cell_counter])
@@ -778,7 +778,7 @@ void HFSlicer::processFirstColumn() {
 				ystart = fy0(y2, y1);
 				currentXValue[0] = x1;
 				createchain(&chains[number_of_chains], &stack[segment_counter], &stack[segment_counter + 1], 0, number_of_chains, x2, ystart, x1, fy0(y2, y1));
-				
+
 				chains[number_of_chains].isLeftForFirst = &leftrow[cell_counter];
 
 				leftrow[cell_counter] = &chains[number_of_chains];
@@ -857,7 +857,7 @@ void HFSlicer::processFirstColumn() {
 				ystart = fy0(y2, y1);
 				currentXValue[1] = y2;
 				createchain(&chains[number_of_chains], &stack[segment_counter], &stack[segment_counter + 1], 1, number_of_chains, x2, ystart, fx0(x2, x1), y2);
-				
+
 				chains[number_of_chains].isLeftForFirst = &leftrow[cell_counter];
 
 				leftrow[cell_counter] = &chains[number_of_chains];
@@ -871,7 +871,7 @@ void HFSlicer::processFirstColumn() {
 				xstart = fx0(x1, x2);
 				currentXValue[0] = x2;
 				createchain(&chains[number_of_chains], &stack[segment_counter], &stack[segment_counter + 1], -1, number_of_chains, xstart, y2, x2, fy0(y1, y2));
-				
+
 				chains[number_of_chains].isLeftForFirst = &leftrow[cell_counter];
 
 				leftrow[cell_counter] = &chains[number_of_chains];
@@ -900,9 +900,9 @@ void HFSlicer::processFirstColumn() {
 					xstart = fx0(x1, x2);
 					currentXValue[0] = x2;
 					createchain(&chains[number_of_chains], &stack[segment_counter], &stack[segment_counter + 1], -1, number_of_chains, xstart, y2, x2, fy0(y1, y2));
-					
+
 					chains[number_of_chains].isLeftForFirst = &leftrow[cell_counter];
-					
+
 					leftrow[cell_counter] = &chains[number_of_chains];
 					column[cell_counter] = &chains[number_of_chains];
 
@@ -913,9 +913,9 @@ void HFSlicer::processFirstColumn() {
 					if (first) {
 						currentXValue[0] = x2;
 						createchain(&chains[number_of_chains], &stack[segment_counter], &stack[segment_counter + 1], 1, number_of_chains, xstart, y1, x2, fy0(y1, y2));
-						
+
 						chains[number_of_chains].isLeftForFirst = &leftrow[cell_counter];
-						
+
 						leftrow[cell_counter] = &chains[number_of_chains];
 						segment_counter += 2;
 						number_of_chains++;
@@ -923,7 +923,7 @@ void HFSlicer::processFirstColumn() {
 					else {
 						currentXValue[0] = x2;
 						addlink(column[cell_counter - 1], &stack[segment_counter++], x2, fy0(y1, y2), true, 1);
-						
+
 						if (column[cell_counter - 1]->isLeftForFirst == NULL)
 							column[cell_counter - 1]->isLeftForFirst = &leftrow[cell_counter];
 						else column[cell_counter - 1]->isLeftForSecond = &leftrow[cell_counter];
@@ -949,7 +949,7 @@ void HFSlicer::processFirstColumn() {
 				ystart = fy0(y1, y2);
 				currentXValue[0] = x2;
 				createchain(&chains[number_of_chains], &stack[segment_counter], &stack[segment_counter + 1], 0, number_of_chains, x1, ystart, x2, fy0(y1, y2));
-				
+
 				chains[number_of_chains].isLeftForFirst = &leftrow[cell_counter];
 
 				leftrow[cell_counter] = &chains[number_of_chains];
@@ -963,7 +963,7 @@ void HFSlicer::processFirstColumn() {
 				currentXValue[0] = x2;
 				if (first) {
 					createchain(&chains[number_of_chains], &stack[segment_counter], &stack[segment_counter + 1], 1, number_of_chains, xstart, y1, x2, fy0(y1, y2));
-					
+
 					chains[number_of_chains].isLeftForFirst = &leftrow[cell_counter];
 
 					leftrow[cell_counter] = &chains[number_of_chains];
@@ -972,7 +972,7 @@ void HFSlicer::processFirstColumn() {
 				}
 				else {
 					addlink(column[cell_counter - 1], &stack[segment_counter++], x2, fy0(y1, y2), true, 1);
-					
+
 					if (column[cell_counter - 1]->isLeftForFirst == NULL)
 						column[cell_counter - 1]->isLeftForFirst = &leftrow[cell_counter];
 					else column[cell_counter - 1]->isLeftForSecond = &leftrow[cell_counter];
@@ -1150,9 +1150,9 @@ void HFSlicer::processLowerCell() {
 			else leftrow[0]->isLeftForSecond = NULL;
 
 			createchain(&chains[number_of_chains], &stack[segment_counter], &stack[segment_counter + 1], 1, number_of_chains, x2, ystart, fx0(x2, x1), y2);
-			
+
 			chains[number_of_chains].isLeftForFirst = &leftrow[0];
-			
+
 			leftrow[0] = &chains[number_of_chains];
 			column[0] = &chains[number_of_chains];
 
@@ -1189,7 +1189,7 @@ void HFSlicer::processLowerCell() {
 		createchain(&chains[number_of_chains], &stack[segment_counter], &stack[segment_counter + 1], 1, number_of_chains, x2, ystart, fx0(x2, x1), y2);
 
 		chains[number_of_chains].isLeftForFirst = &leftrow[0];
-		
+
 		leftrow[0] = &chains[number_of_chains];
 		column[0] = &chains[number_of_chains];
 
@@ -1203,7 +1203,7 @@ void HFSlicer::processLowerCell() {
 		createchain(&chains[number_of_chains], &stack[segment_counter], &stack[segment_counter + 1], -1, number_of_chains, xstart, y2, x2, fy0(y1, y2));
 
 		chains[number_of_chains].isLeftForFirst = &leftrow[0];
-		
+
 		leftrow[0] = &chains[number_of_chains];
 		column[0] = &chains[number_of_chains];
 
@@ -1216,7 +1216,7 @@ void HFSlicer::processLowerCell() {
 		if (xstart < hypX(x1, x2, f11, f12, f21, f22)) {
 			//adding the new piar of coordinates to the left chain
 			addlink(leftrow[0], &stack[segment_counter++], xstart, y1, false, -1);
-			
+
 			if (&leftrow[0] == leftrow[0]->isLeftForFirst) {
 				leftrow[0]->isLeftForFirst = leftrow[0]->isLeftForSecond;
 				leftrow[0]->isLeftForSecond = NULL;
@@ -1229,7 +1229,7 @@ void HFSlicer::processLowerCell() {
 			createchain(&chains[number_of_chains], &stack[segment_counter], &stack[segment_counter + 1], -1, number_of_chains, xstart, y2, x2, fy0(y1, y2));
 
 			chains[number_of_chains].isLeftForFirst = &leftrow[0];
-			
+
 			leftrow[0] = &chains[number_of_chains];
 			column[0] = &chains[number_of_chains];
 
@@ -1250,7 +1250,7 @@ void HFSlicer::processLowerCell() {
 			else leftrow[0]->isLeftForSecond = NULL;
 
 			tmpbuffer = leftrow[0];
-			
+
 			chains[number_of_chains].isLeftForFirst = &leftrow[0];
 
 			leftrow[0] = &chains[number_of_chains];
@@ -1383,7 +1383,7 @@ int HFSlicer::sliceZ(double z) {
 
 			//shift to the upper cell in the column
 			y2 = y1 + delta[1];
-			
+
 			cell_code = 0;
 
 			f11 = f12;
@@ -1470,7 +1470,7 @@ void HFSlicer::printchain(ostream& toFile, const chain c) {
 		l = l->next;
 	}
 	points_counter += 2;
-	
+
 	toFile << points_counter << ",";
 
 	//pix,piy
@@ -1485,7 +1485,7 @@ void HFSlicer::printchain(ostream& toFile, const chain c) {
 
 int HFSlicer::WriteCLILayer(ostream& toFile, double z)
 {
-	
+
 	int result = sliceZ(z);
 	if (result)
 	{
@@ -1496,6 +1496,6 @@ int HFSlicer::WriteCLILayer(ostream& toFile, double z)
 			}
 		}
 	}
-	
+
 	return result;
 };

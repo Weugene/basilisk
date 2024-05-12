@@ -3,7 +3,7 @@
 int main (int argc, char * argv[])
 {
   Array * history = array_new();
-  
+
   view (samples = 1);
 
   for (int i = 1; i < argc; i++) {

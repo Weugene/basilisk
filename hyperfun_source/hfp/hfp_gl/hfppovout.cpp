@@ -5,7 +5,7 @@
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -16,7 +16,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -46,7 +46,7 @@ void CMainApp::povrayMeshOut(){
 
 	if (itsCL.itsAttributes){
 		for (i=0;i<tr_n;++i){
-				// attributes 
+				// attributes
 				// arithmetic sum of the colors of each vertex
 				red =   (1.0f/3.0f)*(GetAttrFromTriangle(i,0,0) + GetAttrFromTriangle(i,1,0) + GetAttrFromTriangle(i,2,0));
 				green = (1.0f/3.0f)*(GetAttrFromTriangle(i,0,1) + GetAttrFromTriangle(i,1,1) + GetAttrFromTriangle(i,2,1));
@@ -74,7 +74,7 @@ void CMainApp::povrayMeshOut(){
 	fprintf(pov,"\t<%lf,%lf,%lf>\n",Max_[0], Min_[1], Min_[2]);
 	fprintf(pov,"\tcolor 1\n");
 	fprintf(pov,"}\n");
-	
+
 	fprintf(pov,"light_source {\n");
 	fprintf(pov,"\t<%lf,%lf,%lf>\n",Min_[0], Max_[1], Min_[2]);
 	fprintf(pov,"\tcolor 1\n");
@@ -89,7 +89,7 @@ void CMainApp::povrayMeshOut(){
 	fprintf(pov,"\t<%lf,%lf,%lf>\n",Max_[0], Max_[1], Min_[2]);
 	fprintf(pov,"\tcolor 1\n");
 	fprintf(pov,"}\n");
-	
+
 	fprintf(pov,"light_source {\n");
 	fprintf(pov,"\t<%lf,%lf,%lf>\n",Max_[0], Min_[1], Max_[2]);
 	fprintf(pov,"\tcolor 1\n");
@@ -119,14 +119,14 @@ void CMainApp::povrayMeshOut(){
 				fprintf(pov,"\t<%lf,%lf,%lf>,\n",	GetNormalFromTriangle(i,0,0), // normal 1
 												GetNormalFromTriangle(i,0,1),
 												GetNormalFromTriangle(i,0,2));
-			
+
 				fprintf(pov,"\t<%lf,%lf,%lf>,",	GetVertexFromTriangle(i,1,0), // corner 1
 												GetVertexFromTriangle(i,1,1),
 												GetVertexFromTriangle(i,1,2));
 				fprintf(pov,"\t<%lf,%lf,%lf>,\n",	GetNormalFromTriangle(i,1,0), // normal 1
 												GetNormalFromTriangle(i,1,1),
 												GetNormalFromTriangle(i,1,2));
-			
+
 
 				fprintf(pov,"\t<%lf,%lf,%lf>,",	GetVertexFromTriangle(i,2,0), // corner 1
 												GetVertexFromTriangle(i,2,1),
@@ -134,8 +134,8 @@ void CMainApp::povrayMeshOut(){
 				fprintf(pov,"\t<%lf,%lf,%lf>\n",	GetNormalFromTriangle(i,2,0), // normal 1
 												GetNormalFromTriangle(i,2,1),
 												GetNormalFromTriangle(i,2,2));
-			
-				
+
+
 							// no attributes => now put green as a color
 				// later put HF_FACE_COLOR
 				fprintf(pov,"\ttexture { Green }\n");
@@ -151,16 +151,16 @@ void CMainApp::povrayMeshOut(){
 				fprintf(pov,"\t<%lf,%lf,%lf>,",	GetVertexFromTriangle(i,0,0), // corner 1
 												GetVertexFromTriangle(i,0,1),
 												GetVertexFromTriangle(i,0,2));
-				
+
 				fprintf(pov,"\t<%lf,%lf,%lf>,",	GetVertexFromTriangle(i,1,0), // corner 1
 												GetVertexFromTriangle(i,1,1),
 												GetVertexFromTriangle(i,1,2));
-				
+
 
 				fprintf(pov,"\t<%lf,%lf,%lf>\n",	GetVertexFromTriangle(i,2,0), // corner 1
 												GetVertexFromTriangle(i,2,1),
 												GetVertexFromTriangle(i,2,2));
-				
+
 				// no attributes => now put green as a color
 				// later put HF_FACE_COLOR
 				fprintf(pov,"\ttexture { Green }\n");
@@ -181,14 +181,14 @@ void CMainApp::povrayMeshOut(){
 				fprintf(pov,"\t<%lf,%lf,%lf>,\n",	GetNormalFromTriangle(i,0,0), // normal 1
 												GetNormalFromTriangle(i,0,1),
 												GetNormalFromTriangle(i,0,2));
-			
+
 				fprintf(pov,"\t<%lf,%lf,%lf>,",	GetVertexFromTriangle(i,1,0), // corner 1
 												GetVertexFromTriangle(i,1,1),
 												GetVertexFromTriangle(i,1,2));
 				fprintf(pov,"\t<%lf,%lf,%lf>,\n",	GetNormalFromTriangle(i,1,0), // normal 1
 												GetNormalFromTriangle(i,1,1),
 												GetNormalFromTriangle(i,1,2));
-			
+
 
 				fprintf(pov,"\t<%lf,%lf,%lf>,",	GetVertexFromTriangle(i,2,0), // corner 1
 												GetVertexFromTriangle(i,2,1),
@@ -196,10 +196,10 @@ void CMainApp::povrayMeshOut(){
 				fprintf(pov,"\t<%lf,%lf,%lf>\n",	GetNormalFromTriangle(i,2,0), // normal 1
 												GetNormalFromTriangle(i,2,1),
 												GetNormalFromTriangle(i,2,2));
-			
-				
+
+
 				fprintf(pov,"\ttexture { attributes_%d }\n",i);
-				
+
 				fprintf(pov,"}\n");
 			}
 		}
@@ -211,19 +211,19 @@ void CMainApp::povrayMeshOut(){
 				fprintf(pov,"\t<%lf,%lf,%lf>,",	GetVertexFromTriangle(i,0,0), // corner 1
 												GetVertexFromTriangle(i,0,1),
 												GetVertexFromTriangle(i,0,2));
-				
+
 				fprintf(pov,"\t<%lf,%lf,%lf>,",	GetVertexFromTriangle(i,1,0), // corner 1
 												GetVertexFromTriangle(i,1,1),
 												GetVertexFromTriangle(i,1,2));
-				
+
 
 				fprintf(pov,"\t<%lf,%lf,%lf>\n",	GetVertexFromTriangle(i,2,0), // corner 1
 												GetVertexFromTriangle(i,2,1),
 												GetVertexFromTriangle(i,2,2));
-			
-				
+
+
 				fprintf(pov,"\ttexture { attributed_%d }\n",i);
-				
+
 				fprintf(pov,"}\n");
 			}
 		}

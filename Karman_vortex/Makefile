@@ -7,4 +7,3 @@ karman_vortex:
 	./a.out
 #	CC99='mpicc -std=c99' qcc $(CFLAGS)  -D_MPI=1  $(CFILE).c  $(CLIBS)
 #	mpirun -np 4 ./a.out  > out 2> log
-

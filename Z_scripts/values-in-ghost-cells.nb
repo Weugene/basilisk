@@ -22,34 +22,34 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"uoldxi", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"uoldxi", "=", "1"}], ";"}], "\[IndentingNewLine]",
  RowBox[{
-  RowBox[{"uoldxg", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"uoldxg", "=", "1"}], ";"}], "\[IndentingNewLine]",
  RowBox[{
-  RowBox[{"dt", "=", "0.01"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"dt", "=", "0.01"}], ";"}], "\[IndentingNewLine]",
  RowBox[{
-  RowBox[{"CC", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"CC", "=", "1"}], ";"}], "\[IndentingNewLine]",
  RowBox[{
-  RowBox[{"Delta", "=", 
-   RowBox[{"4", "/", 
-    RowBox[{"2", "^", "9"}]}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"Delta", "=",
+   RowBox[{"4", "/",
+    RowBox[{"2", "^", "9"}]}]}], ";"}], "\[IndentingNewLine]",
  RowBox[{
-  RowBox[{"uxi", "=", "1"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"Print", "[", 
+  RowBox[{"uxi", "=", "1"}], ";"}], "\[IndentingNewLine]",
+ RowBox[{"Print", "[",
   RowBox[{
-   RowBox[{"(", 
-    RowBox[{"uoldxi", "+", "uoldxg", "+", 
+   RowBox[{"(",
+    RowBox[{"uoldxi", "+", "uoldxg", "+",
      RowBox[{
-      RowBox[{"(", 
+      RowBox[{"(",
        RowBox[{
-        RowBox[{"2.0", "*", 
-         RowBox[{"(", 
-          RowBox[{"dt", "*", 
-           RowBox[{"CC", "/", "Delta"}]}], ")"}]}], "-", "1"}], ")"}], "*", 
-      "uxi"}]}], ")"}], "/", 
-   RowBox[{"(", 
-    RowBox[{"1.0", "+", 
-     RowBox[{"2.0", "*", "dt", "*", 
+        RowBox[{"2.0", "*",
+         RowBox[{"(",
+          RowBox[{"dt", "*",
+           RowBox[{"CC", "/", "Delta"}]}], ")"}]}], "-", "1"}], ")"}], "*",
+      "uxi"}]}], ")"}], "/",
+   RowBox[{"(",
+    RowBox[{"1.0", "+",
+     RowBox[{"2.0", "*", "dt", "*",
       RowBox[{"CC", "/", "Delta"}]}]}], ")"}]}], "]"}]}], "Input",
  CellChangeTimes->{{3.802844826952153*^9, 3.802844957857215*^9}, {
   3.804588546100787*^9, 3.8045885488832083`*^9}},
@@ -66,32 +66,32 @@ Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"Print", "[", 
+  RowBox[{"Print", "[",
    RowBox[{
-    RowBox[{"(", 
+    RowBox[{"(",
      RowBox[{
-      RowBox[{"2.0", "*", 
-       RowBox[{"(", 
-        RowBox[{"dt", "*", 
-         RowBox[{"CC", "/", "Delta"}]}], ")"}]}], "-", "1"}], ")"}], "*", 
+      RowBox[{"2.0", "*",
+       RowBox[{"(",
+        RowBox[{"dt", "*",
+         RowBox[{"CC", "/", "Delta"}]}], ")"}]}], "-", "1"}], ")"}], "*",
     RowBox[{
-     RowBox[{"(", 
+     RowBox[{"(",
       RowBox[{
        RowBox[{
-        RowBox[{"(", 
+        RowBox[{"(",
          RowBox[{
-          RowBox[{"(", 
-           RowBox[{"uoldxi", "+", "uoldxg"}], ")"}], "/", 
-          RowBox[{"(", 
+          RowBox[{"(",
+           RowBox[{"uoldxi", "+", "uoldxg"}], ")"}], "/",
+          RowBox[{"(",
            RowBox[{
-            RowBox[{"2.0", "*", "dt", "*", "CC"}], "-", "Delta"}], ")"}]}], 
-         ")"}], "*", "Delta"}], "+", " ", "uxi"}], ")"}], "/", 
-     RowBox[{"(", 
-      RowBox[{"1", "+", 
-       RowBox[{"2.0", "*", "dt", "*", 
+            RowBox[{"2.0", "*", "dt", "*", "CC"}], "-", "Delta"}], ")"}]}],
+         ")"}], "*", "Delta"}], "+", " ", "uxi"}], ")"}], "/",
+     RowBox[{"(",
+      RowBox[{"1", "+",
+       RowBox[{"2.0", "*", "dt", "*",
         RowBox[{"CC", "/", "Delta"}]}]}], ")"}]}]}], "]"}], "\n"}]], "Input",
  CellChangeTimes->{{3.802845038950379*^9, 3.8028451321533546`*^9}, {
-  3.80284591769518*^9, 3.8028459233497877`*^9}, {3.804588537212356*^9, 
+  3.80284591769518*^9, 3.8028459233497877`*^9}, {3.804588537212356*^9,
   3.8045885397936687`*^9}},
  CellLabel->"In[19]:=",ExpressionUUID->"625458aa-1521-4ffd-a0f6-5f4416d6034f"],
 
@@ -105,28 +105,28 @@ In[19]:=",ExpressionUUID->"a6594e55-4f62-4642-9302-7eef29fc2524"]
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"Print", "[", 
+ RowBox[{"Print", "[",
   RowBox[{
-   RowBox[{"(", 
-    RowBox[{"uoldxi", "+", "uoldxg", "+", 
+   RowBox[{"(",
+    RowBox[{"uoldxi", "+", "uoldxg", "+",
      RowBox[{
-      RowBox[{"(", 
+      RowBox[{"(",
        RowBox[{
-        RowBox[{"2.0", "*", 
-         RowBox[{"(", 
-          RowBox[{"dt", "*", 
-           RowBox[{"CC", "/", "Delta"}]}], ")"}]}], "-", "1"}], ")"}], "*", 
-      "uxi"}]}], ")"}], " ", "-", " ", 
-   RowBox[{"(", 
+        RowBox[{"2.0", "*",
+         RowBox[{"(",
+          RowBox[{"dt", "*",
+           RowBox[{"CC", "/", "Delta"}]}], ")"}]}], "-", "1"}], ")"}], "*",
+      "uxi"}]}], ")"}], " ", "-", " ",
+   RowBox[{"(",
     RowBox[{
      RowBox[{
-      RowBox[{"(", 
+      RowBox[{"(",
        RowBox[{
-        RowBox[{"(", 
-         RowBox[{"uoldxi", "+", "uoldxg"}], ")"}], "/", 
-        RowBox[{"(", 
+        RowBox[{"(",
+         RowBox[{"uoldxi", "+", "uoldxg"}], ")"}], "/",
+        RowBox[{"(",
          RowBox[{
-          RowBox[{"2.0", "*", "dt", "*", "CC"}], "-", "Delta"}], ")"}]}], 
+          RowBox[{"2.0", "*", "dt", "*", "CC"}], "-", "Delta"}], ")"}]}],
        ")"}], "*", "Delta"}], "+", " ", "uxi"}], ")"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.802845764823535*^9, 3.80284578369313*^9}, {
   3.804588529276922*^9, 3.804588533118379*^9}},
@@ -142,24 +142,24 @@ In[20]:=",ExpressionUUID->"4d69af50-c957-4e08-b466-42f9c001a227"]
 Cell[BoxData[{
  RowBox[{
   RowBox[{
-   RowBox[{"u", "[", 
-    RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
-   RowBox[{"0.01", "*", 
-    RowBox[{"Sin", "[", 
-     RowBox[{"2", "*", "Pi", "*", "x"}], "]"}], "*", 
-    RowBox[{"Sin", "[", 
-     RowBox[{"2", "*", "Pi", "*", "y"}], "]"}]}]}], 
-  ";"}], "\[IndentingNewLine]", 
+   RowBox[{"u", "[",
+    RowBox[{"x_", ",", "y_"}], "]"}], ":=",
+   RowBox[{"0.01", "*",
+    RowBox[{"Sin", "[",
+     RowBox[{"2", "*", "Pi", "*", "x"}], "]"}], "*",
+    RowBox[{"Sin", "[",
+     RowBox[{"2", "*", "Pi", "*", "y"}], "]"}]}]}],
+  ";"}], "\[IndentingNewLine]",
  RowBox[{
   RowBox[{
    RowBox[{
-    RowBox[{"v", "[", 
-     RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
-    RowBox[{"0.01", "*", 
-     RowBox[{"Cos", "[", 
-      RowBox[{"2", "*", "Pi", "*", "x"}], "]"}], "*", 
-     RowBox[{"Cos", "[", 
-      RowBox[{"2", "*", "Pi", "*", "y"}], "]"}]}]}], ";"}], 
+    RowBox[{"v", "[",
+     RowBox[{"x_", ",", "y_"}], "]"}], ":=",
+    RowBox[{"0.01", "*",
+     RowBox[{"Cos", "[",
+      RowBox[{"2", "*", "Pi", "*", "x"}], "]"}], "*",
+     RowBox[{"Cos", "[",
+      RowBox[{"2", "*", "Pi", "*", "y"}], "]"}]}]}], ";"}],
   "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{{3.802951773737359*^9, 3.8029518220252123`*^9}},
  CellLabel->"In[21]:=",ExpressionUUID->"e5f81922-9ae0-4b80-9138-964d17677b1c"]
@@ -197,4 +197,3 @@ Cell[4327, 141, 821, 23, 94, "Input",ExpressionUUID->"e5f81922-9ae0-4b80-9138-96
 }
 ]
 *)
-

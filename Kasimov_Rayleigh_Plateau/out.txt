@@ -3,7 +3,7 @@ Begin PBS Prologue Tue Apr 30 11:36:12 MSK 2019 1556613372
 Job ID:           5922353.mgmt-arkuda.skoltech.ru
 Username: e.sharaborin
 Group:            e.sharaborin
-Node(s):        hpc-a2c02s07:ppn=4	
+Node(s):        hpc-a2c02s07:ppn=4
 End PBS Prologue Tue Apr 30 11:36:12 MSK 2019 1556613372
 ----------------------------------------------------------------
 WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... ----------------------------------------------------------------
@@ -24,10 +24,10 @@ Begin PBS Prologue Tue Apr 30 11:47:00 MSK 2019 1556614020
 Job ID:           5922410.mgmt-arkuda.skoltech.ru
 Username: e.sharaborin
 Group:            e.sharaborin
-Node(s):        htc-a1c01s04:ppn=4	
+Node(s):        htc-a1c01s04:ppn=4
 End PBS Prologue Tue Apr 30 11:47:00 MSK 2019 1556614020
 ----------------------------------------------------------------
-WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... 
+WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... WARNING: does not converge... WARNING: does not converge...
 ===================================================================================
 =   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
 =   PID 21041 RUNNING AT htc-a1c01s04
@@ -56,7 +56,7 @@ Begin PBS Prologue Mon May 13 21:34:03 MSK 2019 1557772443
 Job ID:           6067277.mgmt-arkuda.skoltech.ru
 Username: e.sharaborin
 Group:            e.sharaborin
-Node(s):        hpc-a2c02s07:ppn=10	
+Node(s):        hpc-a2c02s07:ppn=10
 End PBS Prologue Mon May 13 21:34:03 MSK 2019 1557772443
 ----------------------------------------------------------------
 ----------------------------------------------------------------
@@ -77,7 +77,7 @@ Begin PBS Prologue Tue May 14 03:42:13 MSK 2019 1557794533
 Job ID:           6071558.mgmt-arkuda.skoltech.ru
 Username: e.sharaborin
 Group:            e.sharaborin
-Node(s):        hpc-a2c02s02:ppn=10	
+Node(s):        hpc-a2c02s02:ppn=10
 End PBS Prologue Tue May 14 03:42:13 MSK 2019 1557794533
 ----------------------------------------------------------------
 ----------------------------------------------------------------

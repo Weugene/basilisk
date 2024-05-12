@@ -1,12 +1,12 @@
 /*==============================================================================
 
- Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa 
+ Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa
  Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,7 +17,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -37,7 +37,7 @@
 #                 end - ending points coordinate array
 #                 begin - beginning points coordinate array
 #                 x - points coordinate array
-# 
+#
 #    Call      :  hfConvLine(x,begin,end,R);
 #
 #    Test file :  myline2.hf
@@ -71,7 +71,7 @@ double hfConvLineR(double* f_a, String_Array_T* str_param) {
   double ax, ay, az;   /* normalized vector from beginnig to ending Point */
   double dx, dy, dz;   /* d = r - b */
   double pT,qT2;
-  double l, p, q2, xx, /*S=1.0*/ S=1.0, f_tmp, f=0.0; 
+  double l, p, q2, xx, /*S=1.0*/ S=1.0, f_tmp, f=0.0;
   int array_index,dim;
   int N;  /* the number of primitive */
 
@@ -97,11 +97,11 @@ double hfConvLineR(double* f_a, String_Array_T* str_param) {
     ax = (end[3*n] - begin[3*n]) / l;
     ay = (end[3*n+1] - begin[3*n+1]) / l;
     az = (end[3*n+2] - begin[3*n+2]) / l;
-    
+
     dx = x[0] - begin[3*n];
     dy = x[1] - begin[3*n+1];
     dz = x[2] - begin[3*n+2];
-    
+
     pT = sqrt(1 + SQ(S)*SQ(R));
     qT2 = 1 + SQ(S)*(SQ(R) + SQ(l));
 
@@ -124,9 +124,3 @@ double hfConvLineR(double* f_a, String_Array_T* str_param) {
 
   return f - T;
 }
-
-
-
-
-
-

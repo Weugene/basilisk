@@ -1,12 +1,12 @@
 /*==============================================================================
 
- Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa 
+ Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa
  Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,13 +17,13 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
 
 
-/* 
+/*
 HyperFun Attributes Library
 
 Description: Returns a value between [borne1,borne2]. It is a pseudo-random
@@ -34,21 +34,21 @@ Definition: Series(x)*Series(y)*Series(z)
 Call: hfColorNoiseG(x,borne1,borne2,amp,freq,phase);
 
 Parameters:
- x - point coordinates array 
- amp - amplitude 
+ x - point coordinates array
+ amp - amplitude
  freq - frequency
- phase - phase for sin() in the series 
+ phase - phase for sin() in the series
 
-Test file: PovRay file 
+Test file: PovRay file
 
 C-parameters:
         f_a[0]   corresponds to phase
         f_a[1]   corresponds to freq
-	    f_a[2]   corresponds to array x 
+	    f_a[2]   corresponds to array x
 
 Code by: Schmitt
 Last revised: 05 May 2003
-*/ 
+*/
 
 #include "general.h"
 #include <stdlib.h>
@@ -68,20 +68,20 @@ double hfA_NoiseG(double* f_a, String_Array_T* str_param)
 */
   double xt, yt, zt, a2x, a2y, a2z, sx, sy, sz, sx2, sy2, sz2, a1d;
   double Serx, Sery, Serz;
-  double a1, a2, phase, SS; 
+  double a1, a2, phase, SS;
 double c;
 double c_min,c_max;
 double* x;
 
 int array_index, dim;
 
-phase = f_a[0]; 
+phase = f_a[0];
 a2 = f_a[1];
 a1 = 1.0;
 
 
 array_index = (int)f_a[2];
-HF_Get_Runtime_Array(array_index, &x, &dim); 
+HF_Get_Runtime_Array(array_index, &x, &dim);
 
 xt=x[0];
 yt=x[1];
@@ -102,14 +102,11 @@ zt=x[2];
         Serz=a1*sz+sz2;
         SS=Serx*Sery*Serz;
 
-c=2.17/1.17; 
+c=2.17/1.17;
 c_min = pow(-a1*c,3);
 c_max = -c_min;
-		
+
 SS=(SS-c_min)/(c_max-c_min);
-		
+
 return SS;
 }
-
-
-

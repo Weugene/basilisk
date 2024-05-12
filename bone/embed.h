@@ -4,7 +4,7 @@
 Boundaries of general shape can be described using an integral
 (i.e. finite volume) formulation which takes into account the volume
 and area fractions of intersection of the embedded boundary with the
-Cartesian mesh. 
+Cartesian mesh.
 
 We will need to deal with volume fractions. Interpolations (for
 Dirichlet boundary conditions) assume a 5x5 stencil. */
@@ -31,7 +31,7 @@ file. */
 ## Operator overloading
 
 Several standard operators, defined in [common.h]() need to be tuned
-to take into account the embedded fractions. 
+to take into account the embedded fractions.
 
 The *SEPS* constant is used to avoid division by zero. */
 
@@ -143,7 +143,7 @@ static inline double embed_face_gradient_x (Point point, scalar a, int i)
   if (face_condition(fs, cs)) {
     p.y = fabs(p.y), p.z = fabs(p.z);
     return (((a[i,0,0] - a[i-1,0,0])*(1. - p.y) +
-	     (a[i,j,0] - a[i-1,j,0])*p.y)*(1. - p.z) + 
+	     (a[i,j,0] - a[i-1,j,0])*p.y)*(1. - p.z) +
 	    ((a[i,0,k] - a[i-1,0,k])*(1. - p.y) +
 	     (a[i,j,k] - a[i-1,j,k])*p.y)*p.z)/Delta;
   }
@@ -158,7 +158,7 @@ static inline double embed_face_value_x (Point point, scalar a, int i)
   int j = sign(p.y), k = sign(p.z);
   if (face_condition(fs, cs)) {
     p.y = fabs(p.y), p.z = fabs(p.z);
-    return ((cs_avg(a,i,0,0)*(1. - p.y) + cs_avg(a,i,j,0)*p.y)*(1. - p.z) + 
+    return ((cs_avg(a,i,0,0)*(1. - p.y) + cs_avg(a,i,j,0)*p.y)*(1. - p.z) +
 	    (cs_avg(a,i,0,k)*(1. - p.y) + cs_avg(a,i,j,k)*p.y)*p.z);
   }
   return cs_avg(a,i,0,0);
@@ -256,7 +256,7 @@ double embed_interpolate (Point point, scalar s, coord p)
   int i = sign(p.x), j = sign(p.y);
   if (cs[i] && cs[0,j] && cs[i,j])
     // bilinear interpolation when all neighbors are defined
-    return ((s[]*(1. - fabs(p.x)) + s[i]*fabs(p.x))*(1. - fabs(p.y)) + 
+    return ((s[]*(1. - fabs(p.x)) + s[i]*fabs(p.x))*(1. - fabs(p.y)) +
 	    (s[0,j]*(1. - fabs(p.x)) + s[i,j]*fabs(p.x))*fabs(p.y));
   else {
     // linear interpolation with gradients biased toward the
@@ -292,19 +292,19 @@ int fractions_cleanup (struct Cleanup p)
 {
   scalar c = p.c;
   face vector s = p.s;
-  
+
   /**
   Since both surface and volume fractions are altered, iterations are
   needed. This reflects the fact that changes are coupled spatially
   through the topology of the domain: for examples, long, unresolved
   "filaments" may need many iterations to be fully removed. */
-  
+
   int changed = 1, schanged = 0;
   for (int i = 0; i < 100 && changed; i++) {
 
     /**
     Face fractions of empty cells must be zero. */
-   
+
     foreach_face()
       if (s.x[] && ((!c[] || !c[-1]) || s.x[] < p.smin))
 	s.x[] = 0.;
@@ -336,7 +336,7 @@ int fractions_cleanup (struct Cleanup p)
 	surface fraction larger than epsilon) cannot be smaller than
 	the dimension (the limiting cases correspond to a triangle in
 	2D and a tetrahedron in 3D). */
-	
+
 	if (n < dimension)
 	  c[] = 0., changed++;
       }
@@ -347,7 +347,7 @@ int fractions_cleanup (struct Cleanup p)
   assert (!changed); // not converged yet...
   return schanged;
 }
-  
+
 /**
 ## Dirichlet boundary condition
 
@@ -362,7 +362,7 @@ and is summarised in the figure below (see also Figure 4 of Johansen
 and Colella and Figure 2 of [Schwartz et al, 2006](#schwartz2006) for
 the 3D implementation).
 
-![Third-order normal gradient scheme](figures/dirichlet_gradient.svg) 
+![Third-order normal gradient scheme](figures/dirichlet_gradient.svg)
 
 For degenerate cases, a non-zero value of *coef* is returned and
 `coef*s[]` must be added to the value returned to obtain the gradient. */
@@ -422,7 +422,7 @@ static inline double dirichlet_gradient_x (Point point, scalar s, scalar cs,
     /**
     This is a degenerate case, we use the boundary value and the
     cell-center value to define the gradient. */
-	
+
     d[0] = max(1e-3, fabs(p.x/n.x));
     *coef = - 1./(d[0]*Delta);
     return bc/(d[0]*Delta);
@@ -431,7 +431,7 @@ static inline double dirichlet_gradient_x (Point point, scalar s, scalar cs,
   /**
   For non-degenerate cases, the gradient is obtained using either
   second- or third-order estimates. */
-  
+
   *coef = 0.;
   if (v[1] != nodata) // third-order gradient
     return (d[1]*(bc - v[0])/d[0] - d[0]*(bc - v[1])/d[1])/((d[1] - d[0])*Delta);
@@ -498,7 +498,7 @@ $$
 $$
 and a viscous drag
 $$
-\mathbf{F}_{\mu} = - \int_{\partial \Gamma} 
+\mathbf{F}_{\mu} = - \int_{\partial \Gamma}
 2 \mu \mathbf{D} \cdot \mathbf{n}d \partial \Gamma
 $$
 These two vectors are computed by the *embed_force()* function.
@@ -517,7 +517,7 @@ void embed_force (scalar p, vector u, face vector mu, coord * Fp, coord * Fmu)
       To compute the pressure force, we first get the coordinates of
       the barycentre of the embedded fragment, its area and normal,
       and then interpolate the pressure field on the surface. */
-      
+
       coord n, b;
       double area = embed_geometry (point, &b, &n);
       area *= pow (Delta, dimension - 1);
@@ -531,7 +531,7 @@ void embed_force (scalar p, vector u, face vector mu, coord * Fp, coord * Fmu)
       embedded fragment). This is not completely trivial since it is
       defined on the faces of the cell. We use a
       surface-fraction-weighted average value. */
-      
+
       if (constant(mu.x) != 0.) {
 	double mua = 0., fa = 0.;
 	foreach_dimension() {
@@ -548,7 +548,7 @@ void embed_force (scalar p, vector u, face vector mu, coord * Fp, coord * Fmu)
 	[embed_gradient()](#embed_gradient) function. We thus
 	need to re-express the viscous force using only normal
 	derivatives of the velocity field.
-	
+
 	If we assume that $\mathbf{u}$ is constant on the boundary, then
 	$$
 	\mathbf{{\nabla}} \mathbf{u} \cdot \mathbf{t}= \mathbf{0}
@@ -563,7 +563,7 @@ void embed_force (scalar p, vector u, face vector mu, coord * Fp, coord * Fmu)
 	$$
 	$$
 	\mathbf{D}= \frac{1}{2}  \left( \mathbf{{\nabla}} \mathbf{u} +
-	\mathbf{{\nabla}}^T \mathbf{u} \right) = \frac{1}{2} 
+	\mathbf{{\nabla}}^T \mathbf{u} \right) = \frac{1}{2}
 	\left(\begin{array}{cc}
 	2 \left( \mathbf{{\nabla}} u \cdot \mathbf{n} \right) n_x & \left(
 	\mathbf{{\nabla}} u \cdot \mathbf{n} \right) n_y + \left(
@@ -587,10 +587,10 @@ void embed_force (scalar p, vector u, face vector mu, coord * Fp, coord * Fmu)
 	$$
 	$$
 	\mathbf{F}_{\mu} = - \int_{\Gamma} \left(\begin{array}{c}
-	\mu \left[ \left( \mathbf{{\nabla}} u \cdot \mathbf{n} \right) 
+	\mu \left[ \left( \mathbf{{\nabla}} u \cdot \mathbf{n} \right)
 	(n^2_x + 1) + \left( \mathbf{{\nabla}} v \cdot \mathbf{n} \right) n_x
 	n_y \right]\\
-	\mu \left[ \left( \mathbf{{\nabla}} v \cdot \mathbf{n} \right) 
+	\mu \left[ \left( \mathbf{{\nabla}} v \cdot \mathbf{n} \right)
 	(n^2_y + 1) + \left( \mathbf{{\nabla}} u \cdot \mathbf{n} \right) n_x
 	n_y \right]
 	\end{array}\right)
@@ -604,8 +604,8 @@ void embed_force (scalar p, vector u, face vector mu, coord * Fp, coord * Fmu)
       }
     }
 
-  Fp->x = Fpx; Fp->y = Fpy; 
-  Fmu->x = Fmux; Fmu->y = Fmuy; 
+  Fp->x = Fpx; Fp->y = Fpy;
+  Fmu->x = Fmux; Fmu->y = Fmuy;
 }
 
 /**
@@ -620,18 +620,18 @@ double embed_vorticity (Point point, vector u, coord p, coord n)
   /**
   We compute $\mathbf{{\nabla}}\mathbf{u}\cdot\mathbf{n}$, taking
   the boundary conditions into account. */
-    
+
   coord dudn = embed_gradient (point, u, p, n);
 
   /**
   The vorticity is then obtained using the relations
   $$
-  \omega = \partial_x v - \partial_y u = 
-  \left( \mathbf{{\nabla}} v \cdot \mathbf{n} \right) n_x - 
+  \omega = \partial_x v - \partial_y u =
+  \left( \mathbf{{\nabla}} v \cdot \mathbf{n} \right) n_x -
   \left( \mathbf{{\nabla}} u \cdot \mathbf{n} \right) n_y
   $$
   */
-    
+
   return dudn.y*n.x - dudn.x*n.y;
 }
 #endif // dimension == 2
@@ -639,7 +639,7 @@ double embed_vorticity (Point point, vector u, coord p, coord n)
 /**
 ## Flux through the embedded boundary
 
-This function computes the flux through the embedded boundary contained 
+This function computes the flux through the embedded boundary contained
 within a cell
 $$
 \int_b \mu \nabla s\cdot\mathbf{n} db
@@ -649,7 +649,7 @@ boundary (outward-pointing) normal.
 
 Boundary conditions for *s* are taken into account.
 
-The result is returned in *val*. 
+The result is returned in *val*.
 
 For degenerate cases, the value returned by the function must be
 multiplied by `s[]` and added to *val*. */
@@ -660,7 +660,7 @@ double embed_flux (Point point, scalar s, face vector mu, double * val)
   /**
   If the cell does not contain a fragment of embedded boundary, the
   flux is zero. */
-  
+
   *val = 0.;
   if (cs[] >= 1. || cs[] <= 0.)
     return 0.;
@@ -694,7 +694,7 @@ double embed_flux (Point point, scalar s, face vector mu, double * val)
 
   /**
   We retrieve the (average) value of $\mu$ without the metric. */
-  
+
   double mua = 0., fa = 0.;
   foreach_dimension() {
     mua += mu.x[] + mu.x[1];
@@ -751,7 +751,7 @@ static inline double bilinear_embed (Point point, scalar s)
   if (!coarse(cs,0,0,child.z) || !coarse(cs,child.x,0,child.z) ||
       !coarse(cs,0,child.y,child.z) ||
       !coarse(cs,child.x,child.y,child.z))
-    return coarse(s);  
+    return coarse(s);
   #endif
   return bilinear (point, s);
 }
@@ -763,10 +763,10 @@ static inline double bilinear_embed (Point point, scalar s)
 ## Lifting the "small cell" CFL restriction
 
 For explicit advection schemes, the timestep is limited by the CFL
-conditions 
-$$ 
+conditions
+$$
 \Delta t < \frac{c_s\Delta}{f_i|u_i|}
-$$ 
+$$
 where $i$ is the index of each face, and $c_s$ and $f_i$ are the
 embedded volume and face fractions respectively. It is clear that the
 timestep may need to be arbitrarily small if $c_s/f_s$ tends toward
@@ -794,16 +794,16 @@ void update_tracer (scalar f, face vector uf, face vector flux, double dt)
   Note that the distinction should be made between $c_m$, the cell
   fraction metric, and $c_s$, the embedded fraction. This is not done
   now so that embedded boundaries cannot be combined with a metric
-  yet. 
+  yet.
 
   The field *e* will store the "overflowing" sum of fluxes for each cell. */
-  
+
   scalar e[];
   foreach() {
 
     /**
     If the cell is empty, it cannot overflow. */
-    
+
     if (cs[] <= 0.)
       e[] = 0.;
 
@@ -811,7 +811,7 @@ void update_tracer (scalar f, face vector uf, face vector flux, double dt)
     If the cell does not contain an embedded boundary, it cannot
     overflow either and the sum of the fluxes can be added to advance
     *f* in time. */
-    
+
     else if (cs[] >= 1.) {
       foreach_dimension()
 	f[] += dt*(flux.x[] - flux.x[1])/Delta;
@@ -821,12 +821,12 @@ void update_tracer (scalar f, face vector uf, face vector flux, double dt)
     /**
     If the cell contains the embedded boundary, we compute the maximum
     timestep verifying the restrictive CFL condition
-    $$ 
+    $$
     \Delta t_{max} = \frac{c_s\Delta}{max(f_i|u_i|)}
     $$
     Note that *fs* does not appear in the code below because *uf*
     already stores the product $f_su$. */
-    
+
     else {
       double umax = 0.;
       for (int i = 0; i <= 1; i++)
@@ -837,7 +837,7 @@ void update_tracer (scalar f, face vector uf, face vector flux, double dt)
 
       /**
       We compute the sum of the fluxes. */
-      
+
       double F = 0.;
       foreach_dimension()
 	F += flux.x[] - flux.x[1];
@@ -847,18 +847,18 @@ void update_tracer (scalar f, face vector uf, face vector flux, double dt)
       If the timestep is smaller than $\Delta t_{max}$, the cell
       cannot overflow and *f* is advanced in time using the entire
       flux. */
-      
+
       if (dt <= dtmax) {
 	f[] += dt*F;
 	e[] = 0.;
       }
-      
+
       /**
       Otherwise, the cell is filled "to the brim" by advancing *f*
       using the maximum allowable timestep. The field *e* is used to
       store the excess flux, weighted by the sum of the neighboring
       embedded fractions. */
-      
+
       else {
 	f[] += dtmax*F;
 	double scs = 0.;
@@ -872,7 +872,7 @@ void update_tracer (scalar f, face vector uf, face vector flux, double dt)
 
   /**
   In a second phase, the excesses in each cell are added to the
-  neighboring cells in proportion of their embedded fractions. */ 
+  neighboring cells in proportion of their embedded fractions. */
 
   foreach() {
     double se = 0.;
@@ -906,19 +906,19 @@ event metric (i = 0)
   cs.prolongation = fraction_refine;
   foreach_dimension()
     fs.x.prolongation = embed_face_fraction_refine_x;
-  
+
   /**
   Note that we do not need to change the `refine` method since the
   default `refine` method calls the prolongation method for each
   component. */
-  
+
 #endif
   boundary ({cs, fs});
   restriction ({cs, fs});
 
   // fixme: embedded boundaries cannot be combined with (another) metric yet
   assert (is_constant (cm) || cm.i == cs.i);
-  
+
   cm = cs;
   fm = fs;
 }
@@ -941,9 +941,9 @@ event metric (i = 0)
 }
 
 @article{schwartz2006,
-  title={A Cartesian grid embedded boundary method for the heat equation 
+  title={A Cartesian grid embedded boundary method for the heat equation
   and Poisson’s equation in three dimensions},
-  author={Schwartz, Peter and Barad, Michael and Colella, Phillip and Ligocki, 
+  author={Schwartz, Peter and Barad, Michael and Colella, Phillip and Ligocki,
   Terry},
   journal={Journal of Computational Physics},
   volume={211},

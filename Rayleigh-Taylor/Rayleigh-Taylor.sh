@@ -10,4 +10,3 @@
 
 cd $HOME/basilisk/work/Rayleigh-Taylor/
 mpirun -np 16 ./a.out 63
-

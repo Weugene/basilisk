@@ -38,7 +38,7 @@ static void relax_viscosity (scalar * a, scalar * b, int l, void * data)
 #else
   vector w = u;
 #endif
-  
+
   foreach_level_or_leaf (l) {
     foreach_dimension()
       w.x[] = (dt/rho[]*(2.*mu.x[1]*u.x[1] + 2.*mu.x[]*u.x[-1]
@@ -74,7 +74,7 @@ static void relax_viscosity (scalar * a, scalar * b, int l, void * data)
     foreach_dimension()
       u.x[] = (u.x[] + 2.*w.x[])/3.;
 #endif
-  
+
 #if TRASH
   vector u1[];
   foreach_level_or_leaf (l)
@@ -87,7 +87,7 @@ static void relax_viscosity (scalar * a, scalar * b, int l, void * data)
 #endif
 }
 
-static double residual_viscosity (scalar * a, scalar * b, scalar * resl, 
+static double residual_viscosity (scalar * a, scalar * b, scalar * resl,
 				  void * data)
 {
   struct Viscosity * p = (struct Viscosity *) data;
@@ -171,7 +171,7 @@ mgstats viscosity (struct Viscosity p)
   face vector mu = p.mu;
   scalar rho = p.rho;
   restriction ({mu,rho});
-  
+
   return mg_solve ((scalar *){u}, (scalar *){r},
 		   residual_viscosity, relax_viscosity, &p, p.nrelax, p.res);
 }

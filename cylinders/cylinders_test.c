@@ -174,7 +174,7 @@ event vtk_file (t += 0.01){
     char subname[80]; sprintf(subname, "br");
     scalar l[];
     vorticity (u, omega);
-    foreach() {l[] = level; omega[] *= 1 - cs[];}    
+    foreach() {l[] = level; omega[] *= 1 - cs[];}
     output_vtu_MPI( (scalar *) {l, omega, cs, p}, (vector *) {u, uf}, subname, L0/pow(2, minlevel));
 }
 
@@ -226,7 +226,7 @@ refinement of the narrow gap between cylinders.
 
 ~~~bib
 @article{sangani1982,
-  title={Slow flow past periodic arrays of cylinders 
+  title={Slow flow past periodic arrays of cylinders
   with application to heat transfer},
   author={Sangani, AS and Acrivos, A},
   journal={International Journal of Multiphase Flow},

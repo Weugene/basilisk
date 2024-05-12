@@ -12,7 +12,7 @@ int main(int argc, char * argv[])
 //            b.x[] = bU.x[];
 //        }
 //    }
-  
+
     foreach() {
         foreach_dimension(){
             b.x[] = bU.x[];

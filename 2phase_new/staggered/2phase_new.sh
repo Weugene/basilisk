@@ -10,4 +10,3 @@
 
 cd $HOME/basilisk/work/2phase_new/staggered
 mpirun -np 10 ./a.out
-

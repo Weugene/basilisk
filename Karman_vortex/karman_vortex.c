@@ -30,7 +30,7 @@ int main() {
   origin (-0.5, -L0/2.);
   N = 1024;
   mu = muv;
-  run(); 
+  run();
 }
 
 /**

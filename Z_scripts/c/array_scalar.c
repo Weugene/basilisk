@@ -30,4 +30,3 @@ event event1 (i++) {
 int main() {
     run();
 }
-

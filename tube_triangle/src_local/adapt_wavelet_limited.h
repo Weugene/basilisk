@@ -2,18 +2,18 @@
 #define BASILISK_HEADER_23
 #line 1 "./../src_local/adapt_wavelet_limited.h"
 /**
- 
- 
+
+
  an adaptation by [Cesar Pairetti](http://basilisk.fr/sandbox/pairetti/) of his
  [http://basilisk.fr/sandbox/pairetti/bag_mode/adapt_wavelet_limited.h]()
  is used here.
- 
+
  As Stephane says: "Ideally, automatic adaptation using only error control (i.e. cmax in adapt_wavelet) should be more reliable and less susceptible to "user error". I know of many examples where the adaptation functions in Gerris have been abused in this way, leading to erroneous simulations. So, hand-tuning should only be used as a last resort."
- 
- 
- 
- 
- 
+
+
+
+
+
 */
 
 #define TREE 1
@@ -60,7 +60,7 @@ astats adapt_wavelet_limited (struct Adapt_limited p)
   tree->refined.n = 0;
   static const int refined = 1 << user, too_fine = 1 << (user + 1);
   foreach_cell() {
-    int cellMAX = p.MLFun(x,y,z); 
+    int cellMAX = p.MLFun(x,y,z);
     if (is_active(cell)) {
       static const int too_coarse = 1 << (user + 2);
       if (is_leaf (cell)) {
@@ -128,7 +128,7 @@ astats adapt_wavelet_limited (struct Adapt_limited p)
       continue;
   }
   mpi_boundary_refine (listc);
-  
+
   // coarsening
   // the loop below is only necessary to ensure symmetry of 2:1 constraint
   for (int l = depth(); l >= p.minlevel; l--) {
@@ -163,7 +163,7 @@ astats adapt_wavelet_limited (struct Adapt_limited p)
   if (st.nc || st.nf)
     mpi_boundary_update (p.list);
   free (listcm);
-  
+
   return st;
 }
 

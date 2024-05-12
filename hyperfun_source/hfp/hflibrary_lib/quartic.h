@@ -14,8 +14,8 @@ struct retval
 /* real roots of quartic equation:
    c4 * x^4 + c3 * x^3 + c2 * x^2 + c1 + c0 = 0
  if successful, returns real roots in ret.value[] */
-void calc_roots_of_quartic(struct retval  *ret, double c4, 
-						   double c3, double c2, 
+void calc_roots_of_quartic(struct retval  *ret, double c4,
+						   double c3, double c2,
 						   double c1, double c0);
 
 #endif /*QUARTIC*/

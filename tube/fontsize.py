@@ -1,17 +1,16 @@
 # state file generated using paraview version 5.8.0
-
 # ----------------------------------------------------------------
 # setup views used in the visualization
 # ----------------------------------------------------------------
-
 # trace generated using paraview version 5.8.0
 #
-# To ensure correct image size when batch processing, please search 
+# To ensure correct image size when batch processing, please search
 # for and uncomment the line `# renderView*.ViewSize = [*,*]`
+# import the simple module from the paraview
+from __future__ import annotations
 
-#### import the simple module from the paraview
 from paraview.simple import *
-#### disable automatic camera reset on 'Show'
+# disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
 # get the material library
@@ -76,7 +75,8 @@ cylinder1.Height = 30.0
 cylinder1.Capping = 0
 
 # create a new 'PVD Reader'
-dump2pvd_compressedpvd = PVDReader(FileName='/Users/weugene/basilisk/work/tube/dump2pvd_compressed.pvd')
+dump2pvd_compressedpvd = PVDReader(
+    FileName='/Users/weugene/basilisk/work/tube/dump2pvd_compressed.pvd')
 dump2pvd_compressedpvd.CellArrays = ['fs', 'f', 'l', 'l2', 'omega', 'u.x']
 
 # create a new 'Contour'
@@ -152,7 +152,8 @@ contour5Display = Show(contour5, renderView1, 'GeometryRepresentation')
 
 # get color transfer function/color map for 'l2'
 l2LUT = GetColorTransferFunction('l2')
-l2LUT.RGBPoints = [-196.13518855062603, 0.054901960784313725, 0.9411764705882353, 0.12941176470588237, -70.72661356212413, 0.865, 0.865, 0.865, 54.68196142637777, 1.0, 1.0, 0.0]
+l2LUT.RGBPoints = [-196.13518855062603, 0.054901960784313725, 0.9411764705882353,
+                   0.12941176470588237, -70.72661356212413, 0.865, 0.865, 0.865, 54.68196142637777, 1.0, 1.0, 0.0]
 l2LUT.ScalarRangeInitialized = 1.0
 
 # trace defaults for the display properties.
@@ -176,13 +177,16 @@ contour5Display.DataAxesGrid = 'GridAxesRepresentation'
 contour5Display.PolarAxes = 'PolarAxesRepresentation'
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-contour5Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+contour5Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-contour5Display.ScaleTransferFunction.Points = [-1.0, 0.0, 0.5, 0.0, -0.9998779296875, 1.0, 0.5, 0.0]
+contour5Display.ScaleTransferFunction.Points = [-1.0,
+                                                0.0, 0.5, 0.0, -0.9998779296875, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-contour5Display.OpacityTransferFunction.Points = [-1.0, 0.0, 0.5, 0.0, -0.9998779296875, 1.0, 0.5, 0.0]
+contour5Display.OpacityTransferFunction.Points = [-1.0,
+                                                  0.0, 0.5, 0.0, -0.9998779296875, 1.0, 0.5, 0.0]
 
 # show data from transform1
 transform1Display = Show(transform1, renderView1, 'UnstructuredGridRepresentation')
@@ -208,7 +212,8 @@ transform1Display.PolarAxes = 'PolarAxesRepresentation'
 transform1Display.ScalarOpacityUnitDistance = 8.706185806543795
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-transform1Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+transform1Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
 transform1Display.ScaleTransferFunction.Points = [-1.0, 0.0, 0.5, 0.0, 1.0, 1.0, 0.5, 0.0]

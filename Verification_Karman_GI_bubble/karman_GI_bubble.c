@@ -183,7 +183,7 @@ void bubbles (scalar f)
                     }
         //phi[] = -phi[];
     }
-    
+
     boundary ({phi});
     fractions (phi, f, ff);
 }

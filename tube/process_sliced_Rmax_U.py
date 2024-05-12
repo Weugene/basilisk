@@ -1,211 +1,302 @@
-from process_sliced_bubble import *
+from __future__ import annotations
+
+import glob
 import json
-from scipy.signal import find_peaks
+import logging
+import os
+import traceback
 
-#find point where it start to decrease
-def find_extremum(coords, find_decrease=True, eps=1e-3):
-    my_list_x = coords[:,0]
-    my_list_y = coords[:,1]
-    my_result = len(my_list_y) - 1
-    if find_decrease:
-        peaks, _ = find_peaks(my_list_y, height=0, distance=100)
-        print(f"find_decrease peaks={peaks}  my_list_y={my_list_y[peaks]}")
-        my_result = peaks[0]
-        # for index in range(1, len(my_list_y) - 1):
-        #     # if my_list_x[index] < -0.01:
-        #     #     continue
-        #     if my_list_y[index] - my_list_y[index + 1] > eps:
-        #         my_result = index
-        #         break
-    else:
-        peaks, _ = find_peaks(-my_list_y, height=0, distance=100)
-        print(f"find_increasing peaks={peaks}  my_list_y={my_list_y[peaks]}")
-        my_result = peaks[0]
-        # for index in range(1, len(my_list_y) - 1):
-        #     # if my_list_x[index] < -0.01:
-        #     #     continue
-        #     if my_list_y[index + 1] - my_list_y[index] > eps:
-        #         my_result = index
-        #         break
-    return my_result
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+from process_sliced_bubble import calculate_rmax
+from process_sliced_bubble import clusterize_points
+from process_sliced_bubble import get_time
+from process_sliced_bubble import NumpyEncoder
+from process_sliced_bubble import order_points_in_each_cluster
+from process_sliced_bubble import plot_circle_with_curvature
+from process_sliced_bubble import shift_to_xmin
+from process_sliced_bubble import sort_names
 
-def give_coord(x, y, df_in, index, side='up'):
-    df = df_in.copy(deep=True)
-    # find the start point
-    # df_cluster = df[(df['label'] == index)] # take points of cluster "index"
-    if side == 'up':
-        df_ind = df[(df['label'] == index) & (df['y'] > 0)] # take points of cluster "index" and above y>0
-    else:
-        df_ind = df[(df['label'] == index) & (df['y'] <= 0)] # take points of cluster "index" and above y>0
-    start = list(sorted(zip(df_ind['x'].values, df_ind['y'].values), key = lambda x: x[0])[-1]) # sort by x and take the last right element
-    print(f'start:{start}')
 
-    # x_tip = start[0]
-    # x -= x_tip
-    # df['x'] -= x_tip
-    # df_cluster['x'] -= x_tip
-    # start[0] -= x_tip
+# Configure logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s - %(levelname)s [%(filename)s:%(lineno)d] - %(message)s",
+)
+logging.getLogger('matplotlib.font_manager').disabled = True
 
-    coords = np.c_[x,y]
-    if side == 'up':
-        coords = coords[coords[:,1] > 0]
-    else:
-        coords = coords[coords[:,1] <= 0]
-    clustering = DBSCAN(eps=0.02, min_samples=2).fit(coords)
-    print(f'Found N={clustering} clusters')
-    df_compare = pd.DataFrame({'x': coords[:,0], 'y': coords[:,1], 'label': clustering.labels_} )
-    # print(f'df: {df_compare}')
-    label = df_compare[(df_compare['x'] == start[0]) & (df_compare['y'] == start[1])]['label'].values[0]
-    print(f'label: {label}')
-    ind = df_compare['label'] == label
-    coords = np.c_[df_compare['x'][ind].values, df_compare['y'][ind].values]
-    coords = optimized_path(coords, start)
-    return coords
+rc_params: dict = {
+    # 'backend': 'pdf',
+    'font.size': 8,
+    'axes.labelsize': 8,
+    'legend.fontsize': 8,
+    'xtick.labelsize': 6,
+    'ytick.labelsize': 6,
+    'lines.linewidth': 0.5,
+    # 'text.usetex': True,
+    # 'text.latex.preamble': r'\usepackage{amsmath}',
+    # "font.family": "serif",
+    'figure.figsize': [32/5.33333 - 2*0.416667, 0.574],
+}
+grey = '#808080'
+matplotlib.rcParams.update(rc_params)
 
-csvPattern = "slice_t=*.csv"
-xmin = -4
-xmax = 4
-ymax = 1.5
-picScale = 4
-picScale1 = 16
+# Function to recursively convert lists in a dictionary to NumPy arrays
 
-props = {}
-props['mu1'] = 0.88e-3
-props['mu2'] = 0.019e-3
-props['rho1'] = 997
-props['rho2'] = 1.204
-props['sigma'] = 72.8e-3
-props['diam'] = 0.514e-3
-props['grav'] = 9.8 #variable parameter
-props['alpha'] = 110*np.pi/180  #variable parameter
-props['d/diam'] = 1.295828280810274  #variable parameter
-props['s1'] = -1
-props['s2'] = 1
-props['Vd'] = 0.2179e-9 #estiamte volume
-props["a"] = 0.000373 #estiamte radius of drop
-print(f'props={props}')
 
-csvnames = glob.glob(f'./{csvPattern}', recursive = False)
-csvnames = sort_names(csvnames)
-print('Found pvd files in:', csvnames)
+def convert_lists_to_numpy_arrays(obj):
+    if isinstance(obj, list):
+        return np.asarray(obj)
+    elif isinstance(obj, dict):
+        for key, value in obj.items():
+            obj[key] = convert_lists_to_numpy_arrays(value)
+    return obj
 
-outputs = {'t':[], 'curvature_tip': [], 'U_tip':[], 'x_tip':[], 'rmax':[]}
 
-for ifile, file in enumerate(csvnames):
-    time = get_time(file)
-    # Debugging
-    # if time != 0.556045:
-    #     continue
-    # if time > 7.61:
-    #     continue
-    print(f'file: {file} time: {time}')
-    try:
-        res = pd.read_csv(file, sep = ',', usecols=['Points_0','Points_1','u.x_0','u.x_1','u.x_2','u.x_Magnitude'])
-    except:
-        continue
-    left_x = res['Points_0'].min()
-    right_x = res['Points_0'].max()
-    length = right_x - left_x
-    res['Points_0'] -= left_x
-    plt.figure(figsize=(8*picScale, 1.3*picScale))
-    x = res['Points_0'].values
-    y = res['Points_1'].values
-    U = res['u.x_Magnitude'].values
-    try:
-        df, centers = find_df_centers(res, width=0.125) # some points |y| < width
-        # draw all centers
-        # for index, row in centers.iterrows():
-        #     x_circle, y_circle, curvature_tip = compute_curvature(index, row, df, props["a"]))
-        #     plt.plot(x_circle, y_circle, 'c.', ms=2)
-        # draw the second circle from right
-        index, row = list(centers.index)[-2], centers.iloc[-2]
-        print('row', row, 'index', index)
-        x_circle, y_circle, curvature_tip = compute_curvature(index, row, df, props["a"])
+def find_nearest_index(array, value):
+    if len(array) == 0:
+        return 0
+    array = np.asarray(array)
+    idx = (np.abs(array - value)).argmin()
+    if array[idx] < value:
+        idx += 1
+    return idx, array[idx] == value
 
-        # find the start point
-        df_cluster = df[(df['label'] == index)].copy(deep=True) # take points of cluster "index"
-        df_ind = df[(df['label'] == index) & (df['y'] > 0)] # take points of cluster "index" and above y>0
-        # print(f'df_cluster {df_cluster}')
-        start = list(sorted(zip(df_ind['x'].values, df_ind['y'].values), key = lambda x: x[0])[-1]) # sort by x and take the last right element
-        # shift bubble to the beginning
-        coords_up = give_coord(x, y, df, index, side='up')
-        coords_down = give_coord(x, y, df, index, side='down')
-    except:
+
+if __name__ == "__main__":
+    json_pattern = "metadata_t=*.json"
+    path = os.path.join(os.getcwd(), "res27")
+    xmin = -4.5
+    xmax = 4.5
+    width = 5.16666
+    height = width/9.0
+    # height = width/3.0
+    arrow_scale = 1
+    props = {
+        "mu1": 0.88e-3,
+        "mu2": 0.019e-3,
+        "rho1": 997,
+        "rho2": 1.204,
+        "sigma": 72.8e-3,
+        "diam": 0.514e-3,
+        "grav": 9.8,  # variable parameter
+        "alpha": 110 * np.pi / 180,  # variable parameter
+        "d/diam": 1.295828280810274,  # variable parameter
+        "s1": -1,
+        "s2": 1,
+        "Vd": 0.2179e-9,  # estimate volume
+        "a": 0.000373,  # estimate radius of drop
+    }
+    logging.debug(f"props: {props}")
+
+    json_names = glob.glob(os.path.join(path, json_pattern), recursive=False)
+
+    json_names = sort_names(json_names)
+    logging.debug(f"Found {json_pattern} files in: {json_names}")
+
+    for ifile, file in enumerate(json_names):  # [::10]
+        time = get_time(file)
+        # Debugging
+        # if time not in [2.27704]:  #1.9472, 6.82811, #  5.43179, 7.19203, 10.3504
+        #     continue
+        # if time > 7.61:
+        #     continue
+        logging.debug(f"file: {file} time: {time}")
         try:
-            df, centers = find_df_centers(res, width=0.1) # some points |y| < width
-            # draw all centers
-            # for index, row in centers.iterrows():
-            #     x_circle, y_circle, curvature_tip = compute_curvature(index, row, df, props["a"]))
-            #     plt.plot(x_circle, y_circle, 'c.', ms=2)
-            # draw the second circle from right
-            index, row = list(centers.index)[-2], centers.iloc[-2]
-            print('row', row, 'index', index)
-            x_circle, y_circle, curvature_tip = compute_curvature(index, row, df, props["a"])
+            with open(os.path.join(path, file)) as fd:
+                res = json.load(fd)
+                res = convert_lists_to_numpy_arrays(res)
 
-            # find the start point
-            df_cluster = df[(df['label'] == index)].copy(deep=True) # take points of cluster "index"
-            df_ind = df[(df['label'] == index) & (df['y'] > 0)] # take points of cluster "index" and above y>0
-            # print(f'df_cluster {df_cluster}')
-            start = list(sorted(zip(df_ind['x'].values, df_ind['y'].values), key = lambda x: x[0])[-1]) # sort by x and take the last right element
-            # shift bubble to the beginning
-            coords_up = give_coord(x, y, df, index, side='up')
-            coords_down = give_coord(x, y, df, index, side='down')
-        except:
-            print('Can\'t find start point')
+            res["logger"] = logging
+            shift_to_xmin(res)
+            clusterize_points(res, width=0.01)
+            order_points_in_each_cluster(res, max_retries=5, timeout_seconds=120)
+            with open(os.path.join(path, file), "w") as f:
+                json.dump(res, f, cls=NumpyEncoder)
+
+            curvature0 = None
+            circle_x = np.array([])
+            circle_y = np.array([])
+            coords_up = np.array([])
+            coords_down = np.array([])
+            plt.figure(figsize=(width, height))
+
+            df = res["df"]
+            tips = []
+            for i, label in enumerate(res["labels"]):
+                index_label = df["label"] == label
+                xx, yy = df[index_label]["xp"].values, df[index_label]["yp"].values
+                ux, umag = df[index_label]["ux"].values, df[index_label]["umag"].values
+                n_points = len(xx)
+                logging.info({"Processing label": label, "n_points": n_points})
+                if n_points < 50:
+                    res[label] = {
+                        "xx": xx,
+                        "yy": yy,
+                        "new_xx": roots[0]["new_xx"],
+                        "new_yy": roots[0]["new_yy"],
+                        "roots": [],
+                        "xmax": xx.max(),
+                        "xmin": xx.min(),
+                        "n_points": n_points,
+                    }
+                    continue
+                roots = plot_circle_with_curvature(xx, yy, ux, umag, label, smooth_parameter=0)
+                tips = tips + roots
+                res[label] = {
+                    "xx": xx,
+                    "yy": yy,
+                    "new_xx": roots[0]["new_xx"],
+                    "new_yy": roots[0]["new_yy"],
+                    "roots": roots,
+                    "xmax": xx.max(),
+                    "xmin": xx.min(),
+                    "n_points": n_points,
+                }
+            tips = sorted(tips, key=lambda v: v.get("x0", -1000), reverse=True)
+            second_tip = tips[1]
+            # choose the second tip filter out too close tips
+            for i in range(1, len(tips)):
+                if tips[i].get("x0") is not None and abs(tips[i].get("x0") - tips[0].get("x0")) > 0.1:
+                    second_tip = tips[i]
+                    break
+
+            # dataframe = pd.DataFrame({"x": second_tip["new_xx"], "y": second_tip["new_yy"]})
+            # # take points of cluster "index" and above y>0
+            # dataframe = dataframe[dataframe["y"] >= 0]
+            # start = list(sorted(zip(dataframe["x"], dataframe["y"]), key=lambda x: x[0], reverse=True)[0])
+            start = [second_tip["x0"], second_tip["y0"]]
+            logging.debug(f"start:{start}")
+            x_tip = start[0]
+            start[0] -= x_tip
+            res["xp"] -= x_tip
+            for label in res["labels"]:
+                res[label]["xx"] -= x_tip
+                res[label]["new_xx"] -= x_tip
+                for root in res[label]["roots"]:
+                    if root.get("x0") is not None:
+                        root["circle_x"] -= x_tip
+                        root["x0"] -= x_tip
+                        root["x_left"] -= x_tip
+                        root["x_right"] -= x_tip
+            # xmin = res["xp"].min()
+            # xmax = res["xp"].max()
+            rmax = calculate_rmax(second_tip, logging)
+            ##########################
+            ######### Draw ##########
+            ##########################
+            default_colors = [
+                'blue', 'orange', 'green', 'brown', 'purple',
+                'pink', 'grey', 'cyan', 'magenta', 'yellow', 'aqua',
+            ]
+            colors = dict()
+            label_xmax = sorted(
+                [(label, res[label]) for label in res["labels"]], key=lambda x: x[1].get(
+                    "xmax",
+                ) if x[1].get("n_points") > 100 else x[1].get("xmax") - 100, reverse=True,
+            )
+            for label, _ in label_xmax:
+                colors[label] = default_colors.pop(0)
+
+            for label in res["labels"]:
+                # plt.scatter(res[label]["xx"], res[label]["yy"], s=1)
+                plt.plot(res[label]["xx"], res[label]["yy"], '-', color=colors[label])
+                # plt.plot(res[label]["new_xx"], res[label]["new_yy"])
+                # for root in res[label]["roots"]:
+                #     plt.plot(root["circle_x"], root["circle_y"])
+                #     plt.quiver(
+                #         root["x0"], root["y0"], arrow_scale*root["nx0"], arrow_scale*root["ny0"],
+                #         color='red', scale=100, width=0.0001
+                #     )
+                #     plt.scatter(root["x0"], root["y0"], s=0.1, color='red')
+
+            plt.plot(
+                second_tip["circle_x"], second_tip["circle_y"],
+                linewidth=0.3, color="red", linestyle="dashed",
+            )
+            plt.quiver(
+                second_tip["x0"], second_tip["y0"], arrow_scale *
+                second_tip["nx0"], arrow_scale*second_tip["ny0"],
+                color='red', scale=100, width=0.001,
+            )
+            plt.scatter(second_tip["x0"], second_tip["y0"], s=0.4, color='red')
+            # Add text to the plot
+            curvature0 = np.abs(second_tip["curvature0"])
+            plt.title(
+                label=rf'$t={time:.3f} \quad |\kappa|={curvature0:.3f} \quad R_\max={rmax:.3f}$',
+                color='black',
+                fontsize=6,
+            )
+            plt.xlim(xmin, xmax)
+            plt.ylim(-0.5, 0.5)
+
+            plt.grid(True, alpha=0.1, zorder=-1000)
+            plt.gca().spines['top'].set_color(grey)      # Grey color with opacity
+            plt.gca().spines['right'].set_color(grey)    # Grey color with opacity
+            plt.gca().spines['bottom'].set_color(grey)   # Grey color with opacity
+            plt.gca().spines['left'].set_color(grey)     # Grey color with opacity
+            plt.tick_params('both', length=2, width=0.3, which='major', color=grey)
+            plt.savefig(file[:-4] + "png", bbox_inches="tight",  dpi=1200, transparent=False)
+            plt.savefig(file[:-4] + "eps", bbox_inches="tight", transparent=False)
+
+            if len(second_tip.get("xx_peak_left", [])):
+                xpeak = second_tip["xx_peak_left"] - x_tip
+                ypeak = second_tip["yy_peak_left"]
+                plt.scatter(xpeak[0], ypeak[0], s=0.1, color='green')
+                plt.scatter(xpeak[1:], ypeak[1:], s=0.1, color='red')
+                plt.scatter(
+                    second_tip["xx_left"] - x_tip,
+                    second_tip["yy_left"], s=0.1, color='red',
+                )
+            if len(second_tip.get("xx_peak_right", [])):
+                xpeak = second_tip["xx_peak_right"] - x_tip
+                ypeak = second_tip["yy_peak_right"]
+                plt.scatter(xpeak[-1], ypeak[-1], s=0.1, color='green')
+                plt.scatter(xpeak[:-1], ypeak[:-1], s=0.1, color='red')
+                plt.scatter(
+                    second_tip["xx_right"] - x_tip,
+                    second_tip["yy_right"], s=0.1, color='red',
+                )
+
+            plt.scatter(second_tip["x_left"], second_tip["y_left"], s=0.1, color='black')
+            plt.scatter(second_tip["x_right"], second_tip["y_right"], s=0.1, color='black')
+            plt.savefig(
+                "dots_" + file[:-4] + "png",
+                bbox_inches="tight",  dpi=1200, transparent=False,
+            )
+            plt.savefig("dots_" + file[:-4] + "eps", bbox_inches="tight", transparent=False)
+            plt.close()
+
+            # save after each calculation
+            with open(r"output_sliced_Rmax_U.json") as fd:
+                outputs = json.load(fd)
+                i_time, replace_element = find_nearest_index(outputs["t"], time)
+                if replace_element:
+                    outputs["curvature_tip"][i_time] = second_tip["curvature0"]
+                    outputs["U_tip"][i_time] = second_tip["umag"]
+                    outputs["U_x"][i_time] = second_tip["ux"]
+                    outputs["x_tip"][i_time] = second_tip["x0"]
+                    outputs["nx"][i_time] = second_tip["nx0"]
+                    outputs["ny"][i_time] = second_tip["ny0"]
+                    outputs["rmax"][i_time] = rmax
+                else:
+                    outputs["t"].insert(i_time, time)
+                    outputs["curvature_tip"].insert(i_time, second_tip["curvature0"])
+                    outputs["U_tip"].insert(i_time, second_tip["umag"])
+                    outputs["U_x"].insert(i_time, second_tip["ux"])
+                    outputs["x_tip"].insert(i_time, second_tip["x0"])
+                    outputs["nx"].insert(i_time, second_tip["nx0"])
+                    outputs["ny"].insert(i_time, second_tip["ny0"])
+                    outputs["rmax"].insert(i_time, rmax)
+            with open(r"output_sliced_Rmax_U.json", "w") as fd:
+                json.dump(outputs, fd, cls=NumpyEncoder)
+
+        except Exception as e:
+            logging.error({
+                "error": "Failed to process json",
+                "message": e,
+                "t": time,
+                "traceback": traceback.format_exc(),
+            })
             continue
-    print(f'start:{start}')
-
-    x_tip = start[0]
-    U_tip = df[(df['x'] == start[0]) & (df['y'] == start[1])]['U'].values[0]
-    x_circle -= x_tip
-    x -= x_tip
-    df['x'] -= x_tip
-    df_cluster['x'] -= x_tip
-    start[0] -= x_tip
-    coords_up[:,0] -= x_tip
-    coords_down[:,0] -= x_tip
-    i_rmax_up = min(find_extremum(coords_up, True), np.argmin(coords_up[:,0])) # choose index between point where y begins decreasing and the tail of the bubble
-    rmax_up = coords_up[i_rmax_up,1]
-    i_rmax_down = min(find_extremum(coords_down, False), np.argmin(coords_down[:,0])) # choose index between point where y begins decreasing and the tail of the bubble
-    rmax_down = coords_down[i_rmax_down,1]
-    print(f"up: {find_extremum(coords_up, True)} {np.argmin(coords_up[:,0])}")
-    print(f"down: {find_extremum(coords_down, False)} {np.argmin(coords_down[:,0])}")
-    print(f'rmax_up[{i_rmax_up}]={rmax_up} rmax_down[{i_rmax_down}]={rmax_down}')
-    # Output to the file
-    outputs['t'].append(time)
-    outputs['curvature_tip'].append(curvature_tip)
-    outputs['U_tip'].append(U_tip)
-    outputs['x_tip'].append(x_tip)
-    outputs['rmax'].append(max(np.abs(rmax_down), np.abs(rmax_up)))
-
-    # Draw
-    df = df.values
-    df_cluster = df_cluster.values
-
-    width = np.abs(xmax - xmin)
-    height = 1
-    plt.figure(figsize=(picScale1, (height/width)*picScale1))
-    plt.plot(x_circle, y_circle, 'c-', ms=2)
-    # plt.plot(coords_up[::5,0], coords_up[::5,1], '-', lw=4)
-    # plt.plot(coords_down[::5,0], coords_down[::5,1], '-', lw=4)
-    plt.plot(x, y, '.', ms=2) #all points
-    plt.plot(df_cluster[:,0], df_cluster[:,1], 'r.', ms=2) #chosen only 1 cluster
-    # plt.plot(df[:,0], df[:,1], 'r.', ms=2) #chosen for clustering |y| <0.1
-    # if rmax_up > rmax_down:
-    plt.plot([coords_up[i_rmax_up, 0]], [coords_up[i_rmax_up, 1]], '.', ms=5) #Rmax point
-    # else:
-    plt.plot([coords_down[i_rmax_down, 0]], [coords_down[i_rmax_down, 1]], '.', ms=5) #Rmax point
-    plt.plot([xmin,xmax],[-0.5,-0.5], c='0.55')
-    plt.plot([xmin,xmax],[ 0.5, 0.5], c='0.55')
-    plt.xlim(xmin, xmax)
-    plt.ylim(-0.5, 0.5)
-    # displaying the title
-    plt.title(f"$t={time}$")
-    # plt.axis('equal')
-    plt.grid(True)
-    plt.savefig(file[:-3]+'eps', bbox_inches='tight')
-    plt.savefig(file[:-3]+'png', bbox_inches='tight')
-    plt.cla()
-
-with open("output_sliced_Rmax_U.json", "w") as f:
-    json.dump(outputs, f)
