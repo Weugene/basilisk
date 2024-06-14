@@ -17,7 +17,7 @@ from process_sliced_bubble import order_points_in_each_cluster
 from process_sliced_bubble import plot_circle_with_curvature
 from process_sliced_bubble import shift_to_xmin
 from process_sliced_bubble import sort_names
-
+from work.tube.pozrikidis import fit_curve, Config
 
 # Configure logging
 logging.basicConfig(
@@ -37,7 +37,12 @@ rc_params: dict = {
     # 'text.usetex': True,
     # 'text.latex.preamble': r'\usepackage{amsmath}',
     # "font.family": "serif",
+    'text.usetex': False,  # Turn off LaTeX rendering
+    "font.family": "Times New Roman",
+    # 'ps.useafm': True,
+    # 'pdf.use14corefonts': True,
     'figure.figsize': [32/5.33333 - 2*0.416667, 0.574],
+    # 'figure.figsize': [32/5.33333/2 - 2*0.416667, 2],
 }
 grey = '#808080'
 matplotlib.rcParams.update(rc_params)
@@ -67,12 +72,21 @@ def find_nearest_index(array, value):
 if __name__ == "__main__":
     json_pattern = "metadata_t=*.json"
     path = os.path.join(os.getcwd(), "res27")
-    xmin = -4.5
-    xmax = 4.5
-    width = 5.16666
-    height = width/9.0
-    # height = width/3.0
+    # xmin = -4.5
+    # xmax = 4.5
+    # ymin = -0.5
+    # ymax = 0.5
+    # width = 5.16666
+    # height = width/9.0
+
+    xmin = -2
+    xmax = 0.15
+    ymin = -1
+    ymax = 1
+    width = 32/5.33333/2 - 2*0.416667
+    height = 2
     arrow_scale = 1
+    vector_format = "pdf"
     props = {
         "mu1": 0.88e-3,
         "mu2": 0.019e-3,
@@ -81,12 +95,14 @@ if __name__ == "__main__":
         "sigma": 72.8e-3,
         "diam": 0.514e-3,
         "grav": 9.8,  # variable parameter
-        "alpha": 110 * np.pi / 180,  # variable parameter
-        "d/diam": 1.295828280810274,  # variable parameter
+        "alpha": np.pi/6,  # variable parameter
         "s1": -1,
         "s2": 1,
-        "Vd": 0.2179e-9,  # estimate volume
-        "a": 0.000373,  # estimate radius of drop
+        # "d/diam": 1.295828280810274,  # variable parameter
+        # "tail_y/diam": 0.2,
+        # "Vd": 0.2179e-9,  # estimate volume
+        # "a": 0.000373,  # estimate radius of drop
+        # "l": 2.54107886e-04,  # estimate length of drop
     }
     logging.debug(f"props: {props}")
 
@@ -98,8 +114,8 @@ if __name__ == "__main__":
     for ifile, file in enumerate(json_names):  # [::10]
         time = get_time(file)
         # Debugging
-        # if time not in [2.27704]:  #1.9472, 6.82811, #  5.43179, 7.19203, 10.3504
-        #     continue
+        if time not in [7.03331]:  # 1.9472, 6.82811, #  5.43179, 7.19203, 10.3504
+            continue
         # if time > 7.61:
         #     continue
         logging.debug(f"file: {file} time: {time}")
@@ -110,7 +126,7 @@ if __name__ == "__main__":
 
             res["logger"] = logging
             shift_to_xmin(res)
-            clusterize_points(res, width=0.01)
+            clusterize_points(res, width=0.02)
             order_points_in_each_cluster(res, max_retries=5, timeout_seconds=120)
             with open(os.path.join(path, file), "w") as f:
                 json.dump(res, f, cls=NumpyEncoder)
@@ -142,7 +158,7 @@ if __name__ == "__main__":
                         "n_points": n_points,
                     }
                     continue
-                roots = plot_circle_with_curvature(xx, yy, ux, umag, label, smooth_parameter=0)
+                roots = plot_circle_with_curvature(xx, yy, ux, umag, label, smooth_parameter=0.01)
                 tips = tips + roots
                 res[label] = {
                     "xx": xx,
@@ -183,6 +199,21 @@ if __name__ == "__main__":
             # xmin = res["xp"].min()
             # xmax = res["xp"].max()
             rmax = calculate_rmax(second_tip, logging)
+            curvature0 = np.abs(second_tip["curvature0"])
+
+            # pendant drop
+            props["second_tip"] = second_tip
+            props["curvature"] = curvature0
+            length_guess = 1
+            config = Config(props)
+
+            X_psi, Sigma_psi = fit_curve(length_guess, config)
+
+            logging.debug(f"X_psi min/max: {X_psi.min()} {X_psi.max()}")
+            logging.debug(f"Sigma_psi min/max: {Sigma_psi.min()} {Sigma_psi.max()}")
+
+            plt.plot(X_psi, Sigma_psi, "y-")
+
             ##########################
             ######### Draw ##########
             ##########################
@@ -201,8 +232,8 @@ if __name__ == "__main__":
 
             for label in res["labels"]:
                 # plt.scatter(res[label]["xx"], res[label]["yy"], s=1)
-                plt.plot(res[label]["xx"], res[label]["yy"], '-', color=colors[label])
-                # plt.plot(res[label]["new_xx"], res[label]["new_yy"])
+                # plt.plot(res[label]["xx"], res[label]["yy"], '-', color=colors[label])
+                plt.plot(res[label]["new_xx"], res[label]["new_yy"], '-', color=colors[label] )
                 # for root in res[label]["roots"]:
                 #     plt.plot(root["circle_x"], root["circle_y"])
                 #     plt.quiver(
@@ -221,24 +252,26 @@ if __name__ == "__main__":
                 color='red', scale=100, width=0.001,
             )
             plt.scatter(second_tip["x0"], second_tip["y0"], s=0.4, color='red')
+            # Add tube horizontal lines
+            plt.plot([xmin, xmax], [-0.5, -0.5], color='black', linewidth=1)
+            plt.plot([xmin, xmax], [0.5, 0.5], color='black', linewidth=1)
             # Add text to the plot
-            curvature0 = np.abs(second_tip["curvature0"])
             plt.title(
                 label=rf'$t={time:.3f} \quad |\kappa|={curvature0:.3f} \quad R_\max={rmax:.3f}$',
                 color='black',
                 fontsize=6,
             )
+
             plt.xlim(xmin, xmax)
-            plt.ylim(-0.5, 0.5)
+            plt.ylim(ymin, ymax)
 
             plt.grid(True, alpha=0.1, zorder=-1000)
-            plt.gca().spines['top'].set_color(grey)      # Grey color with opacity
-            plt.gca().spines['right'].set_color(grey)    # Grey color with opacity
-            plt.gca().spines['bottom'].set_color(grey)   # Grey color with opacity
-            plt.gca().spines['left'].set_color(grey)     # Grey color with opacity
+            for direction in ['top', 'right', 'bottom', 'left']:
+                plt.gca().spines[direction].set_color(grey)  # Grey color with opacity
             plt.tick_params('both', length=2, width=0.3, which='major', color=grey)
-            plt.savefig(file[:-4] + "png", bbox_inches="tight",  dpi=1200, transparent=False)
-            plt.savefig(file[:-4] + "eps", bbox_inches="tight", transparent=False)
+            plt.tight_layout()
+            plt.savefig(file[:-4] + "png", bbox_inches="tight", pad_inches=0, dpi=1200, transparent=False)
+            plt.savefig(file[:-4] + vector_format, bbox_inches="tight", pad_inches=0, transparent=False)
 
             if len(second_tip.get("xx_peak_left", [])):
                 xpeak = second_tip["xx_peak_left"] - x_tip
@@ -246,8 +279,8 @@ if __name__ == "__main__":
                 plt.scatter(xpeak[0], ypeak[0], s=0.1, color='green')
                 plt.scatter(xpeak[1:], ypeak[1:], s=0.1, color='red')
                 plt.scatter(
-                    second_tip["xx_left"] - x_tip,
-                    second_tip["yy_left"], s=0.1, color='red',
+                    second_tip["xx_left_point"] - x_tip,
+                    second_tip["yy_left_point"], s=0.1, color='red',
                 )
             if len(second_tip.get("xx_peak_right", [])):
                 xpeak = second_tip["xx_peak_right"] - x_tip
@@ -255,17 +288,17 @@ if __name__ == "__main__":
                 plt.scatter(xpeak[-1], ypeak[-1], s=0.1, color='green')
                 plt.scatter(xpeak[:-1], ypeak[:-1], s=0.1, color='red')
                 plt.scatter(
-                    second_tip["xx_right"] - x_tip,
-                    second_tip["yy_right"], s=0.1, color='red',
+                    second_tip["xx_right_point"] - x_tip,
+                    second_tip["yy_right_point"], s=0.1, color='red',
                 )
 
             plt.scatter(second_tip["x_left"], second_tip["y_left"], s=0.1, color='black')
             plt.scatter(second_tip["x_right"], second_tip["y_right"], s=0.1, color='black')
             plt.savefig(
                 "dots_" + file[:-4] + "png",
-                bbox_inches="tight",  dpi=1200, transparent=False,
+                bbox_inches="tight", pad_inches=0,  dpi=1200, transparent=False,
             )
-            plt.savefig("dots_" + file[:-4] + "eps", bbox_inches="tight", transparent=False)
+            plt.savefig("dots_" + file[:-4] + vector_format, bbox_inches="tight", pad_inches=0, transparent=False)
             plt.close()
 
             # save after each calculation

@@ -31,6 +31,7 @@ from sklearn.cluster import DBSCAN
 from timeout_decorator import timeout
 from timeout_decorator import TimeoutError
 
+
 SMALL_SIZE = 20
 MEDIUM_SIZE = 25
 BIGGER_SIZE = 30
@@ -99,7 +100,7 @@ def fun_psi(psi, z, s1, s2, length, B):
 
 def fun_x(x, z, s1, s2, length, B):
     w, f = z
-    return [-(1 + w**2) * (1 / f + np.sqrt(1 + w**2) * (-s1 * s2 * x / length**2 - B)), -w]
+    return [(1 + w**2) * (1 / f + np.sqrt(1 + w**2) * (s1 * s2 * x / length**2 - B)), w]
 
 
 def volume(X, Sigma):
@@ -614,35 +615,36 @@ def calculate_rmax(second_tip, logging):
     print("u_left:", u_left, "u_right:", u_right)
     x_left, y_left, _, _ = interpolate.splev(u_left, tck)
     x_right, y_right, _, _ = interpolate.splev(u_right, tck)
+
     print("x_left:", x_left, "y_left:", y_left)
     print("x_right", x_right, "y_right:", y_right)
     # u = periodic_linspace(u_left, u_right, num=100, endpoint=True)
 
     logging.debug(f"find peaks in range [{u_left}, {second_tip['u']}]")
-
+    # uniform distribution of point along curve
     u_left_arr = np.linspace(u_left, u0, 100)
     xx_left, yy_left, _, _ = interpolate.splev(u_left_arr, second_tip["tck"])
-    i_max = np.abs(yy_left).argmax()
+    i_max_left = np.abs(yy_left).argmax()
 
     # peaks_left, _ = find_peaks(yy_left, height=0.1)  #, prominence=0.01
-    # xx_peak_coords_left = xx_left[peaks_left] if len(peaks_left) else np.array([xx_left[i_max]])
-    # yy_peak_coords_left = yy_left[peaks_left] if len(peaks_left) else np.array([yy_left[i_max]])
+    # xx_peak_coords_left = xx_left[peaks_left] if len(peaks_left) else np.array([xx_left[i_max_left]])
+    # yy_peak_coords_left = yy_left[peaks_left] if len(peaks_left) else np.array([yy_left[i_max_left]])
     # logging.debug(f"find_peaks left peaks={peaks_left} xx={xx_peak_coords_left} yy={yy_peak_coords_left}")
 
-    xx_peak_coords_left = np.array([xx_left[i_max]])
-    yy_peak_coords_left = np.array([yy_left[i_max]])
+    xx_peak_coords_left = np.array([xx_left[i_max_left]])
+    yy_peak_coords_left = np.array([yy_left[i_max_left]])
     logging.debug(f"find_peaks left xx={xx_peak_coords_left} yy={yy_peak_coords_left}")
 
     logging.debug(f"find peaks in range [{u0}, {u_right}]")
     u_right_arr = np.linspace(u0, u_right, 100)
     xx_right, yy_right, _, _ = interpolate.splev(u_right_arr, second_tip["tck"])
-    i_max = np.abs(yy_right).argmax()
+    i_max_right = np.abs(yy_right).argmax()
     # peaks_right, _ = find_peaks(-yy_right, height=0.1)  #, prominence=0.01
-    # xx_peak_coords_right = xx_right[peaks_right] if len(peaks_right) else np.array([xx_right[i_min]])
-    # yy_peak_coords_right = yy_right[peaks_right] if len(peaks_right) else np.array([yy_right[i_min]])
+    # xx_peak_coords_right = xx_right[peaks_right] if len(peaks_right) else np.array([xx_right[i_max_right]])
+    # yy_peak_coords_right = yy_right[peaks_right] if len(peaks_right) else np.array([yy_right[i_max_right]])
     # logging.debug(f"find_peaks right peaks={peaks_right} xx={xx_peak_coords_right} yy={yy_peak_coords_right}")
-    xx_peak_coords_right = np.array([xx_right[i_max]])
-    yy_peak_coords_right = np.array([yy_right[i_max]])
+    xx_peak_coords_right = np.array([xx_right[i_max_right]])
+    yy_peak_coords_right = np.array([yy_right[i_max_right]])
     logging.debug(f"find_peaks right xx={xx_peak_coords_right} yy={yy_peak_coords_right}")
     if len(yy_peak_coords_left) == 0 and len(yy_peak_coords_right) == 0:
         logging.error("No peaks found")
@@ -660,10 +662,14 @@ def calculate_rmax(second_tip, logging):
     second_tip["yy_peak_left"] = yy_peak_coords_left
     second_tip["xx_peak_right"] = xx_peak_coords_right
     second_tip["yy_peak_right"] = yy_peak_coords_right
-    second_tip["xx_left"] = xx_left[0]
-    second_tip["yy_left"] = yy_left[0]
-    second_tip["xx_right"] = xx_right[-1]
-    second_tip["yy_right"] = yy_right[-1]
+    second_tip["xx_left_point"] = xx_left[0]
+    second_tip["yy_left_point"] = yy_left[0]
+    second_tip["xx_right_point"] = xx_right[-1]
+    second_tip["yy_right_point"] = yy_right[-1]
+    second_tip["xx_left"] = xx_left[i_max_left:]
+    second_tip["yy_left"] = yy_left[i_max_left:]
+    second_tip["xx_right"] = xx_right[:i_max_right]
+    second_tip["yy_right"] = yy_right[:i_max_right]
     return rmax
 
 
@@ -778,16 +784,16 @@ def fit_curve(par0, props, coords):
     props["d/diam"] = np.abs(d) / props["diam"]
     props["l"] = length
     diam = props["diam"]
-    plt.plot(X_psi / diam, Sigma_psi / diam, ".-")
-    plt.plot(X_x / diam, Sigma_x / diam, ".-")
-    plt.grid(True)
-    plt.savefig("shape_full.eps", bbox_inches="tight")
-    plt.cla()
+    # plt.plot(X_psi / diam, Sigma_psi / diam, ".-")
+    # plt.plot(X_x / diam, Sigma_x / diam, ".-")
+    # plt.grid(True)
+    # plt.savefig("shape_full.eps", bbox_inches="tight")
+    # plt.cla()
     return X_psi / diam, Sigma_psi / diam, X_x / diam, Sigma_x / diam, props
 
 
 if __name__ == "__main__":
-    csvPattern = "slice_t=*.csv"
+    pattern = "metadata_t=*.json"
     xmin = -4
     xmax = 4
     ymax = 1.5
@@ -824,7 +830,7 @@ if __name__ == "__main__":
 
     pendant_drop(props, picScale1)
 
-    csvnames = glob.glob(f"./{csvPattern}", recursive=False)
+    csvnames = glob.glob(f"./{pattern}", recursive=False)
     csvnames = sort_names(csvnames)
     print("Found pvd files in:", csvnames)
 
@@ -838,6 +844,8 @@ if __name__ == "__main__":
         time = get_time(file)
         # if ifile != 2:
         #     continue
+        if time != 7.03331:
+            continue
         print(f"file: {file} time: {time}")
         res = pd.read_csv(
             file,
