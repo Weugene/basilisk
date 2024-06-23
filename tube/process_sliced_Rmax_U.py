@@ -17,7 +17,7 @@ from process_sliced_bubble import order_points_in_each_cluster
 from process_sliced_bubble import plot_circle_with_curvature
 from process_sliced_bubble import shift_to_xmin
 from process_sliced_bubble import sort_names
-from work.tube.pozrikidis import fit_curve, Config
+from work.tube.pozrikidis import fit_curve, Config, full_shape_psi, full_shape_psi_x, fit_curve_err, sform
 
 # Configure logging
 logging.basicConfig(
@@ -79,11 +79,11 @@ if __name__ == "__main__":
     # width = 5.16666
     # height = width/9.0
 
-    xmin = -2
-    xmax = 0.15
-    ymin = -1
-    ymax = 1
-    width = 32/5.33333/2 - 2*0.416667
+    xmin = -1.51
+    xmax = 0.1
+    ymin = -0.9
+    ymax = 0.51
+    width = 32/5.33333/2 - 2*0.416667  # 2,1666
     height = 2
     arrow_scale = 1
     vector_format = "pdf"
@@ -95,9 +95,12 @@ if __name__ == "__main__":
         "sigma": 72.8e-3,
         "diam": 0.514e-3,
         "grav": 9.8,  # variable parameter
+        "Umean": 4.117,
         "alpha": np.pi/6,  # variable parameter
         "s1": -1,
         "s2": 1,
+        # "gradp_basilisk": 4.38820E5,  # from Poiseuille's flow
+        "gradp_basilisk": 542_400,  # from p_drop
         # "d/diam": 1.295828280810274,  # variable parameter
         # "tail_y/diam": 0.2,
         # "Vd": 0.2179e-9,  # estimate volume
@@ -199,20 +202,75 @@ if __name__ == "__main__":
             # xmin = res["xp"].min()
             # xmax = res["xp"].max()
             rmax = calculate_rmax(second_tip, logging)
+            second_tip["xx_left"] -= x_tip
+            second_tip["xx_right"] -= x_tip
+            second_tip["xx_peak_left"] -= x_tip
+            second_tip["xx_peak_right"] -= x_tip
+            second_tip["xx_left_point"] -= x_tip
+            second_tip["xx_right_point"] -= x_tip
             curvature0 = np.abs(second_tip["curvature0"])
-
+            logging.info({"second_tip": second_tip.keys()})
             # pendant drop
             props["second_tip"] = second_tip
             props["curvature"] = curvature0
-            length_guess = 1
-            config = Config(props)
+            props["d"] = -1 or 0.5*(second_tip["xx_peak_left"] + second_tip["xx_peak_right"])
+            length_basilisk = np.sqrt(props["sigma"]/props["gradp_basilisk"])/props["diam"]
+            config = Config(props, logging)
+            X_psi_basilisk, Sigma_psi_basilisk = full_shape_psi_x(length_basilisk, config, mirror=True)
 
-            X_psi, Sigma_psi = fit_curve(length_guess, config)
+            length_guess = 0.48976214
+            mode = "length"
+            if mode == "length":
+                x_guess = (length_guess, )
+            else:
+                x_guess = (length_guess, 2.0*curvature0)
+            X_psi, Sigma_psi, _, _ = fit_curve(x_guess, config, mode=mode)
+            X_psi_both, Sigma_psi_both = full_shape_psi(config.length_avg, config)
+            X_psi_both_full, Sigma_psi_both_full = full_shape_psi_x(config.length_avg, config, mirror=True)
 
-            logging.debug(f"X_psi min/max: {X_psi.min()} {X_psi.max()}")
-            logging.debug(f"Sigma_psi min/max: {Sigma_psi.min()} {Sigma_psi.max()}")
+            logging.info({
+                "mode": mode,
+                "length_left": sform(config.length_left),
+                "length_right": sform(config.length_right),
+                "length_avg": sform(config.length_avg),
+                "length_basilisk": sform(length_basilisk),
+                "curvature": sform(config.curvature),
+                "B": sform(config.B),
+                "gradp_left": config.get_pressure_gradient(config.length_left),
+                "gradp_right": config.get_pressure_gradient(config.length_right),
+                "gradp_avg": config.get_pressure_gradient(config.length_avg),
+                "gradp_basilisk": config.get_pressure_gradient(length_basilisk),
+                "error_left": sform(fit_curve_err(x_guess, config, part="left", mode=mode)),
+                "error_right": sform(fit_curve_err(x_guess, config, part="right", mode=mode)),
+                "error_avg": sform(fit_curve_err(x_guess, config, part="both", mode=mode)),
+            })
 
-            plt.plot(X_psi, Sigma_psi, "y-")
+            # mode = "length+B"
+            # if mode == "length":
+            #     x_guess = (length_guess, )
+            # else:
+            #     x_guess = (length_guess, 2.0*curvature0)
+            # X_psi_2, Sigma_psi_2, _, _ = fit_curve(x_guess, config, mode=mode)
+            # X_psi_both_2, Sigma_psi_both_2 = full_shape_psi_x(config.length_avg, config, mirror=True)
+            #
+            # logging.info({
+            #     "mode": mode,
+            #     "length_left": sform(config.length_left),
+            #     "length_right": sform(config.length_right),
+            #     "length_avg": sform(config.length_avg),
+            #     "length_basilisk": sform(length_basilisk),
+            #     "curvature": sform(config.curvature),
+            #     "B": sform(config.B),
+            #     "gradp_left": config.get_pressure_gradient(config.length_left),
+            #     "gradp_right": config.get_pressure_gradient(config.length_right),
+            #     "gradp_avg": config.get_pressure_gradient(config.length_avg),
+            #     "gradp_basilisk": config.get_pressure_gradient(length_basilisk),
+            #     "error_left": sform(fit_curve_err(x_guess, config, part="left", mode=mode)),
+            #     "error_right": sform(fit_curve_err(x_guess, config, part="right", mode=mode)),
+            #     "error_avg": sform(fit_curve_err(x_guess, config, part="both", mode=mode)),
+            # })
+
+
 
             ##########################
             ######### Draw ##########
@@ -233,7 +291,7 @@ if __name__ == "__main__":
             for label in res["labels"]:
                 # plt.scatter(res[label]["xx"], res[label]["yy"], s=1)
                 # plt.plot(res[label]["xx"], res[label]["yy"], '-', color=colors[label])
-                plt.plot(res[label]["new_xx"], res[label]["new_yy"], '-', color=colors[label] )
+                plt.plot(res[label]["new_xx"], res[label]["new_yy"], '-', color=colors[label], linewidth=0.8)
                 # for root in res[label]["roots"]:
                 #     plt.plot(root["circle_x"], root["circle_y"])
                 #     plt.quiver(
@@ -241,16 +299,26 @@ if __name__ == "__main__":
                 #         color='red', scale=100, width=0.0001
                 #     )
                 #     plt.scatter(root["x0"], root["y0"], s=0.1, color='red')
+            # add fitting curve
+            # plt.plot(X_psi, Sigma_psi, linestyle="dotted", color="lime", linewidth=0.8)
+            # plt.plot(X_psi_2, Sigma_psi_2, linestyle="dotted", color="magenta", linewidth=0.8)
+            plt.plot(X_psi_basilisk, Sigma_psi_basilisk, linestyle="solid", color="red", linewidth=0.5)
+            # plt.plot(X_psi_x_basilisk , Sigma_psi_x_basilisk, linestyle="dotted", color="aqua", linewidth=0.8)
+            # plt.plot(second_tip["xx_left"], second_tip["yy_left"], linestyle="-", color="pink")
+            # plt.plot(second_tip["xx_right"], second_tip["yy_right"], linestyle="-", color="grey")
+            plt.plot(X_psi_both_full, Sigma_psi_both_full, linestyle="solid", color="lime", linewidth=0.5)
+            plt.plot(X_psi_both, Sigma_psi_both, linestyle="solid", color="forestgreen", linewidth=0.5)
 
-            plt.plot(
-                second_tip["circle_x"], second_tip["circle_y"],
-                linewidth=0.3, color="red", linestyle="dashed",
-            )
-            plt.quiver(
-                second_tip["x0"], second_tip["y0"], arrow_scale *
-                second_tip["nx0"], arrow_scale*second_tip["ny0"],
-                color='red', scale=100, width=0.001,
-            )
+        # plt.plot(X_psi_both_2, Sigma_psi_both_2, linestyle="dotted", color="magenta", linewidth=0.8)
+            # plt.plot(
+            #     second_tip["circle_x"], second_tip["circle_y"],
+            #     linewidth=0.3, color="red", linestyle="dashed",
+            # )
+            # plt.quiver(
+            #     second_tip["x0"], second_tip["y0"], arrow_scale *
+            #     second_tip["nx0"], arrow_scale*second_tip["ny0"],
+            #     color='red', scale=100, width=0.001,
+            # )
             plt.scatter(second_tip["x0"], second_tip["y0"], s=0.4, color='red')
             # Add tube horizontal lines
             plt.plot([xmin, xmax], [-0.5, -0.5], color='black', linewidth=1)
@@ -274,7 +342,7 @@ if __name__ == "__main__":
             plt.savefig(file[:-4] + vector_format, bbox_inches="tight", pad_inches=0, transparent=False)
 
             if len(second_tip.get("xx_peak_left", [])):
-                xpeak = second_tip["xx_peak_left"] - x_tip
+                xpeak = second_tip["xx_peak_left"]
                 ypeak = second_tip["yy_peak_left"]
                 plt.scatter(xpeak[0], ypeak[0], s=0.1, color='green')
                 plt.scatter(xpeak[1:], ypeak[1:], s=0.1, color='red')

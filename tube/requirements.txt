@@ -4,6 +4,7 @@ networkx
 numpy
 pandas
 plotly
+sciform
 scipy
 statsmodels
 tsmoothie

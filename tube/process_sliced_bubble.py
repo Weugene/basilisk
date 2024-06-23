@@ -359,10 +359,10 @@ def find_u_for_parametric_curve(tck, specific_u, target_distance=0.1, bounds=(0,
 def compute_curvature_from_ordered_points_averaged(tck, specific_u):
     # Find the parameter values u_left and u_right
     u_left = find_u_for_parametric_curve(
-        tck, specific_u=specific_u, target_distance=0.15, bounds=(specific_u-0.1, specific_u),
+        tck, specific_u=specific_u, target_distance=0.05, bounds=(specific_u-0.2, specific_u),
     )
     u_right = find_u_for_parametric_curve(
-        tck, specific_u=specific_u, target_distance=0.15, bounds=(specific_u, specific_u+0.1),
+        tck, specific_u=specific_u, target_distance=0.05, bounds=(specific_u, specific_u+0.2),
     )
     print("u_left:", u_left, "u_right:", u_right)
     x_left, y_left, _, _ = interpolate.splev(u_left, tck)
@@ -378,7 +378,7 @@ def compute_curvature_from_ordered_points_averaged(tck, specific_u):
         args=(new_xx, new_yy),
         method="L-BFGS-B",
         jac=jac_curvature,
-        options={"gtol": 1e-7, "disp": Debug_plot, "maxiter": 1000, "eps": 1e-08},
+        options={"gtol": 1e-10, "disp": Debug_plot, "maxiter": 2000, "eps": 1e-10},
     )
     xc = result.x[0]
     yc = result.x[1]
@@ -446,7 +446,7 @@ def plot_circle_with_curvature(xx, yy, ux, umag, label, smooth_parameter=0.001):
             "root: ", i, "x0:", x0, "y0:", y0, "u0:", u0,
             "umag0:", umag0, "specific_u:", specific_u,
         )
-        if False:
+        if True:
             curvature0 = compute_curvature_from_ordered_points(tck, specific_u)
             nx0, ny0 = compute_normals_from_ordered_points(tck, specific_u)
             # Determine concavity based on curvature
@@ -454,6 +454,7 @@ def plot_circle_with_curvature(xx, yy, ux, umag, label, smooth_parameter=0.001):
             # Adjust the direction of the normal vector based on concavity
             nx0 = nx0 if concave_inward else -nx0
             ny0 = ny0 if concave_inward else -ny0
+            x_left, y_left, x_right, y_right = 0, 0, 0, 0
         else:
             xc, yc, rc, curvature0, x_left, y_left, x_right, y_right = compute_curvature_from_ordered_points_averaged(
                 tck, specific_u,
