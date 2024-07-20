@@ -3,7 +3,7 @@
 ulimit -n 10000
 options="-y -framerate 10 -c:v libx264 -pix_fmt yuv420p -an -fs 10M "
 
-[[ $# < 1 ]] && { echo "Usage: ./$(basename $0) <input*.format>  [<crf>]"; exit 1; }
+[[ $# -lt 1 ]] && { echo "Usage: ./$(basename $0) <input*.format>  [<crf>]"; exit 1; }
 
 echo ${options}
 infn="$1"
@@ -19,7 +19,7 @@ exctractnum(){
 }
 
 list_files=($(ls $infn | sort -n -t = -k 2 ))
-echo "list files:" ${list_files[@]}
+echo "list files:" "${list_files[@]}"
 mkdir -p fig
 
 list_timetmp=()
@@ -31,10 +31,10 @@ done
 
 list_time=( $( printf "%s\n" "${list_timetmp[@]}" | sort -n ) )
 
-echo ${list_timetmp[@]} ${list_time[@]}
+echo "${list_timetmp[@]}" "${list_time[@]}"
 dt_list=()
 for i in "${!list_time[@]}"; do
-    if [[ $i > 0 ]]; then
+    if [[ $i -gt 0 ]]; then
         dt=$(echo "(${list_time[$i]}-(${list_time[$i-1]}))/${va}" | bc -l | sed -e 's/^\./0./' -e 's/^-\./-0./')
         dt_list+=("duration $dt")
         echo $dt, ${dt_list[$i]}
@@ -55,7 +55,7 @@ done
 rm -rf time_files.txt
 list_file=($(ls fig/${fn}*.png | sort -n -t = -k 2 ))
 for i in "${!list_time[@]}"; do
-    if [[ $i > 0 ]]; then
+    if [[ $i -gt 0 ]]; then
 		echo "${dt_list[$i-1]}"
         echo ${dt_list[$i-1]} >> time_files.txt
     fi

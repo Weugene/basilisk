@@ -40,7 +40,7 @@ class Config:
         self.length_left = None
         self.length_right = None
         self.length_avg = None
-        logging.info(f"B={self.B}, x0={self.x0}, y0={self.y0}")
+        self.logging.info(f"B={self.B}, x0={self.x0}, y0={self.y0}")
 
     def set_coord(self, coords):
         self.coords = coords
@@ -51,6 +51,10 @@ class Config:
             sform(self.gradient_pressure_coef/length**2),
             sform(self.gradient_pressure_coef_dim/length**2)
         ]
+
+    def set_B(self, B: float):
+        self.B = B
+        self.curvature = B/2.0
 
 # x = X(psi), sigma = Sigma(psi)
 # dX/dpsi = sin(psi)/Q
@@ -85,6 +89,12 @@ def fun_x(x: float, z: tuple[float, float], length: float, config: Config) -> li
 
 
 def shape_psi(length: float, config: Config) -> tuple[ndarray, ndarray]:
+    """
+    Compute upper and lower parts of drop nose. Only integration from [psi1,psi2].
+    :param length: capillary length
+    :param config: here we use s1, s2, B and ps1, ps2, coord_sign
+    :return:
+    """
     X0 = 0
     Sigma0 = 0
     solution_psi = scp_integrate.solve_ivp(
@@ -92,7 +102,7 @@ def shape_psi(length: float, config: Config) -> tuple[ndarray, ndarray]:
         t_span=(config.psi1, config.psi2),
         y0=(X0, Sigma0),
         method="BDF",
-        args=[length, config],
+        args=[length, config],  # we use s1, s2, B
         min_step=1e-6,
         max_step=1e-3,
         rtol=1e-15,
@@ -115,12 +125,6 @@ def full_shape_psi(length: float, config: Config) -> tuple[ndarray, ndarray]:
         X_psi = np.concatenate([X_psi_right[::-1], X_psi_left])
         Sigma_psi = np.concatenate([Sigma_psi_right[::-1], Sigma_psi_left])
     return X_psi, Sigma_psi
-
-
-
-# def compute_shape_psi(Vd, config: Config) -> float:
-#     X_psi, Sigma_psi = shape_psi(config)
-#     return target_fun(X_psi, Sigma_psi, Vd)
 
 
 def find_difference(x: ndarray, y: ndarray, xn: ndarray, yn: ndarray) -> float:

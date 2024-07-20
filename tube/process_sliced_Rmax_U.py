@@ -216,7 +216,8 @@ if __name__ == "__main__":
             props["d"] = -1 or 0.5*(second_tip["xx_peak_left"] + second_tip["xx_peak_right"])
             length_basilisk = np.sqrt(props["sigma"]/props["gradp_basilisk"])/props["diam"]
             config = Config(props, logging)
-            X_psi_basilisk, Sigma_psi_basilisk = full_shape_psi_x(length_basilisk, config, mirror=True)
+            _, Sigma_psi_basilisks = full_shape_psi(length_basilisk, config)
+            X_psi_basilisk_full, Sigma_psi_basilisk_full = full_shape_psi_x(length_basilisk, config, mirror=True)
 
             length_guess = 0.48976214
             mode = "length"
@@ -234,6 +235,10 @@ if __name__ == "__main__":
                 "length_right": sform(config.length_right),
                 "length_avg": sform(config.length_avg),
                 "length_basilisk": sform(length_basilisk),
+                "Rmax_left": sform(Sigma_psi[-1]),
+                "Rmax_right": sform(Sigma_psi[0]),
+                "Rmax_avg": sform(Sigma_psi_both[-1]),
+                "Rmax_basilisk": sform(Sigma_psi_basilisks[-1]),
                 "curvature": sform(config.curvature),
                 "B": sform(config.B),
                 "gradp_left": config.get_pressure_gradient(config.length_left),
@@ -302,7 +307,7 @@ if __name__ == "__main__":
             # add fitting curve
             # plt.plot(X_psi, Sigma_psi, linestyle="dotted", color="lime", linewidth=0.8)
             # plt.plot(X_psi_2, Sigma_psi_2, linestyle="dotted", color="magenta", linewidth=0.8)
-            plt.plot(X_psi_basilisk, Sigma_psi_basilisk, linestyle="solid", color="red", linewidth=0.5)
+            plt.plot(X_psi_basilisk_full, Sigma_psi_basilisk_full, linestyle="solid", color="red", linewidth=0.5)
             # plt.plot(X_psi_x_basilisk , Sigma_psi_x_basilisk, linestyle="dotted", color="aqua", linewidth=0.8)
             # plt.plot(second_tip["xx_left"], second_tip["yy_left"], linestyle="-", color="pink")
             # plt.plot(second_tip["xx_right"], second_tip["yy_right"], linestyle="-", color="grey")

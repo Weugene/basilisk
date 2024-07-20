@@ -8,13 +8,15 @@ import cv2
 import ffmpeg
 
 # Step 1: Find all files matching the pattern
-path = "/Users/evgeniisharaborin/basilisk/work/tube/"
-prefix = "dots_metadata_t="
-file_pattern = f"{prefix}*.png"
+path = "/Users/evgeniisharaborin/basilisk/work/tube/res27/"
+# prefix = "dots_metadata_t="
+prefix = "pic_t="
+postfix = "_Lambda2"
+file_pattern = f"{prefix}*{postfix}.png"
 image_files = glob.glob(file_pattern)
 
 # Step 2: Extract time information from filenames
-pattern = rf"{prefix}(\d*\.\d+).png"
+pattern = rf"{prefix}(\d*\.\d+){postfix}.png"
 filenames = "filelist.txt"
 acceleration = 2
 time_values = [float(re.search(pattern, filename).group(1)) for filename in image_files]
