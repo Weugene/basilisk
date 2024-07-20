@@ -3,7 +3,7 @@
 !delta_u_mean_stats*xlsx
 !tube/Contours_OpenFOAM_ANSYS_Experiment/*
 out
-*.json
+*.json_
 *.vtk
 *.vtk.*
 *.vtp
