@@ -19,6 +19,7 @@ from process_sliced_bubble import shift_to_xmin
 from process_sliced_bubble import sort_names
 from work.tube.pozrikidis import fit_curve, Config, full_shape_psi, full_shape_psi_x, fit_curve_err, sform
 
+logging.Logger
 # Configure logging
 logging.basicConfig(
     level=logging.DEBUG,
@@ -312,7 +313,7 @@ if __name__ == "__main__":
             # plt.plot(second_tip["xx_left"], second_tip["yy_left"], linestyle="-", color="pink")
             # plt.plot(second_tip["xx_right"], second_tip["yy_right"], linestyle="-", color="grey")
             plt.plot(X_psi_both_full, Sigma_psi_both_full, linestyle="solid", color="lime", linewidth=0.5)
-            plt.plot(X_psi_both, Sigma_psi_both, linestyle="solid", color="forestgreen", linewidth=0.5)
+            # plt.plot(X_psi_both, Sigma_psi_both, linestyle="solid", color="forestgreen", linewidth=0.5)
 
         # plt.plot(X_psi_both_2, Sigma_psi_both_2, linestyle="dotted", color="magenta", linewidth=0.8)
             # plt.plot(
@@ -329,11 +330,11 @@ if __name__ == "__main__":
             plt.plot([xmin, xmax], [-0.5, -0.5], color='black', linewidth=1)
             plt.plot([xmin, xmax], [0.5, 0.5], color='black', linewidth=1)
             # Add text to the plot
-            plt.title(
-                label=rf'$t={time:.3f} \quad |\kappa|={curvature0:.3f} \quad R_\max={rmax:.3f}$',
-                color='black',
-                fontsize=6,
-            )
+            # plt.title(
+            #     label=rf'$t={time:.3f} \quad |\kappa|={curvature0:.3f} \quad R_\max={rmax:.3f}$',
+            #     color='black',
+            #     fontsize=6,
+            # )
 
             plt.xlim(xmin, xmax)
             plt.ylim(ymin, ymax)
@@ -373,6 +374,23 @@ if __name__ == "__main__":
             )
             plt.savefig("dots_" + file[:-4] + vector_format, bbox_inches="tight", pad_inches=0, transparent=False)
             plt.close()
+
+            dump_data = {
+                "simulation": {
+                    "x": res[0]["new_xx"],
+                    "y": res[0]["new_yy"]
+                },
+                "basilisk": {
+                    "x": X_psi_basilisk_full,
+                    "y": Sigma_psi_basilisk_full
+                },
+                "optimization": {
+                    "x": X_psi_both_full,
+                    "y": Sigma_psi_both_full
+                }
+            }
+            with open("figure_7.json", "w") as f:
+                json.dump(dump_data, f, cls=NumpyEncoder)
 
             # save after each calculation
             with open(r"output_sliced_Rmax_U.json") as fd:

@@ -16,8 +16,8 @@ from numpy import sin
 from numpy import sqrt
 from python_tsp.distances import euclidean_distance_matrix
 from python_tsp.heuristics import solve_tsp_lin_kernighan
-from python_tsp.heuristics import solve_tsp_local_search
-from python_tsp.heuristics import solve_tsp_record_to_record
+# from python_tsp.heuristics import solve_tsp_local_search
+# from python_tsp.heuristics import solve_tsp_record_to_record
 from scipy import integrate
 from scipy import interpolate
 from scipy.integrate import quad
