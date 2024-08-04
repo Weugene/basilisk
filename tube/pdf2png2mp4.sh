@@ -12,7 +12,7 @@ fn="${infn%.*}"
 pattern="$(echo "$fn"| sed 's/\*//')"
 echo "infn=$infn ext=$extension filename=$fn pattern=$pattern"
 #acceleration
-va=2.0
+va=1.0
 
 exctractnum(){
 	echo "$1" | grep -Eo '[+-]?[0-9]+([.][0-9]+)?'| grep -m1 ""
@@ -62,4 +62,4 @@ for i in "${!list_time[@]}"; do
     echo "file '${list_file[$i]}'" >> time_files.txt
 done
 
-ffmpeg  -f concat -safe 0 -i time_files.txt ${options} -vf "scale=1920:1440:force_original_aspect_ratio=decrease:eval=frame,pad=1920:1440:-1:-1:color=white" ${pattern}.mp4;
+ffmpeg  -f concat -safe 0 -i time_files.txt ${options} -vf "force_original_aspect_ratio=decrease:eval=frame:color=white" ${pattern}.mp4;

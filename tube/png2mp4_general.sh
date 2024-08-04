@@ -1,6 +1,6 @@
-#set -x
+set -x
 set -o nounset
-echo "NOTE: We assume that files have format: prefix_t=1.0root.png run as $0 prefix root"
+echo "NOTE: We assume that files have format: prefix_t=1.0root.png run as $0 prefix root 1900 1078"
 ulimit -n 10000
 options="-y -framerate 10 -c:v libx264 -pix_fmt yuv420p -an -fs 10M "
 
@@ -15,7 +15,7 @@ if [[ -z $scalex ||  -z $scaley ]]; then echo "scalex is not defined, then set d
 dn="${prefix}_t=*${root}.png"
 #pic_t=4.59881ux.png
 echo "SEE:" $(ls $dn)
-va=2.0
+va=1.0
 list_time=($(ls $dn | sort -n -t = -k 2 | sed "s/${prefix}_t=//" | sed "s/${root}.png//"));
 echo ${list_time[@]}
 dt_list=()
@@ -36,12 +36,11 @@ for i in "${!list_time[@]}"; do
     if [[ $i > 0 ]]; then
         echo ${dt_list[$i-1]} >> ${root}_files.txt
     fi
-    echo "file '${list_file[$i]}'" >> ${root}_files.txt
-    #nm=${list_files[$i]}
-    #time=${list_time[$i]}
-    #filename="${nm%.*}"
-    #convert -density 600 $nm -gravity North  -pointsize 10 -annotate +0+100 "t=$time" fig/$filename.png
+    echo "file 'fig/${list_file[$i]}'" >> ${root}_files.txt
+    nm=${list_file[$i]}
+    time=${list_time[$i]}
+    filename="${nm%.*}"
+    convert -density 600 $nm -gravity North -font "Times-New-Roman" -pointsize 10 -fill white -annotate +10+10 "t=$time" fig/$filename.png
 done
-
 
 ffmpeg  -f concat -safe 0 -i ${root}_files.txt ${options} ${scale_opt} video_${root}.mp4;
