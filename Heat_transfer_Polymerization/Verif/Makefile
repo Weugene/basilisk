@@ -14,9 +14,9 @@ cyl_x=-0.5
 Nb=5
 Ncx=2
 Ncy=3
-TOLERANCE_P=1e-8
-TOLERANCE_V=1e-8
-TOLERANCE_T=1e-8
+TOLERANCE_P=1e-10
+TOLERANCE_V=1e-10
+TOLERANCE_T=1e-10
 Htr=355000 #355000
 Arrhenius_const=0 #80600   0
 Ea_by_R=7700 #already divided by 8.31  =  7697=64000/8.314

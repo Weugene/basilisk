@@ -449,8 +449,8 @@ event logoutput(t += 0.1){
 /**
 We adapt according to the error on the embedded geometry, velocity and
 tracer fields. */
-#define ADAPT_SCALARS {fs, T, u.x, u.y}
-#define ADAPT_EPS_SCALARS {fseps, Teps, ueps, ueps}
+#define ADAPT_SCALARS {fs, T, alpha_doc}
+#define ADAPT_EPS_SCALARS {fseps, Teps, aeps}
 
 event adapt (i++){
 	double eps_arr[] = ADAPT_EPS_SCALARS;
