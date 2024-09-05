@@ -109,7 +109,7 @@ struct numerical_params {
     double DT;
     double maxDT;
     double m_bp;
-    double m_bp_T;
+    double mbpT;
     double feps;
     double ueps;
     double rhoeps;
@@ -217,7 +217,7 @@ static const cyaml_schema_field_t numerical_params_fields[] = {
         CYAML_FIELD_FLOAT("maxDT", CYAML_FLAG_DEFAULT, struct numerical_params, maxDT),
         CYAML_FIELD_FLOAT("DT", CYAML_FLAG_DEFAULT, struct numerical_params, DT),
         CYAML_FIELD_FLOAT("m_bp", CYAML_FLAG_OPTIONAL, struct numerical_params, m_bp),
-        CYAML_FIELD_FLOAT("m_bp_T", CYAML_FLAG_OPTIONAL, struct numerical_params, m_bp_T),
+        CYAML_FIELD_FLOAT("mbpT", CYAML_FLAG_OPTIONAL, struct numerical_params, mbpT),
         CYAML_FIELD_FLOAT("feps", CYAML_FLAG_OPTIONAL, struct numerical_params, feps),
         CYAML_FIELD_FLOAT("ueps", CYAML_FLAG_OPTIONAL, struct numerical_params, ueps),
         CYAML_FIELD_FLOAT("rhoeps", CYAML_FLAG_OPTIONAL, struct numerical_params, rhoeps),
@@ -396,7 +396,7 @@ int main(int argc, char *argv[])
     printf("TOLERANCE=%g TOLERANCEV=%g TOLERANCEP=%g\n", numpar->TOLERANCE, numpar->TOLERANCEV, numpar->TOLERANCEP);
     printf("CFL=%g CFL_ARR=%g\n", numpar->CFL, numpar->CFL_ARR);
     printf("DT=%g maxDT=%g\n", numpar->DT, numpar->maxDT);
-    printf("m_bp=%g m_bp_T=%g\n", numpar->m_bp, numpar->m_bp_T);
+    printf("m_bp=%g mbpT=%g\n", numpar->m_bp, numpar->mbpT);
     printf("feps=%g ueps=%g rhoeps=%g Teps=%g aeps=%g mueps=%g\n", numpar->feps, numpar->ueps, numpar->rhoeps, numpar->Teps, numpar->aeps, numpar->mueps);
 
 
@@ -422,7 +422,7 @@ int main(int argc, char *argv[])
 //    double maxDT;
 //    double DT;
 //    double m_bp = 2.0;
-//    double m_bp_T = 2.0;
+//    double mbpT = 2.0;
 //    double mindelta;
 //    double feps = 1e-10;
 //    double ueps = 1e-2;

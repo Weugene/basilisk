@@ -1,9 +1,9 @@
 CFLAGS=-DDUMP=1 -O2 #-events
 CLIBS=-lm
 
-Tcyl=380
-Tin=400
-maxlevel=8
+Tcyl=600
+Tin=300
+maxlevel=9
 iter_fp=0
 ratio_Rbmin=0.166666
 ratio_Rbmax=0.6
@@ -14,12 +14,12 @@ cyl_x=-0.5
 Nb=5
 Ncx=2
 Ncy=3
-TOLERANCE_P=1e-6
-TOLERANCE_V=1e-6
+TOLERANCE_P=1e-8
+TOLERANCE_V=1e-8
 TOLERANCE_T=1e-8
 Htr=355000 #355000
-Arrhenius_const=0 #80600
-Ea_by_R=2400 #already divided by 8.31  =  7697=64000/8.314
+Arrhenius_const=0 #80600   0
+Ea_by_R=7700 #already divided by 8.31  =  7697=64000/8.314
 dev_r=0.
 dev_x=0.
 dev_y=0.
@@ -27,7 +27,7 @@ shift_x=0
 shift_y=$(shell echo 0.5\*$(ratio_dist_y) | bc)
 non_saturated=0
 
-parallel=4
+parallel=2
 ind=L0
 
 dumpname=dump-1.05384e-05
@@ -39,8 +39,10 @@ args_short=$(Tcyl) $(Tin) $(maxlevel) $(iter_fp) $(TOLERANCE_P) $(TOLERANCE_V) $
 $(Htr) $(Arrhenius_const) $(Ea_by_R) $(ind)
 
 #run:=mpirun -np $(parallel)  ./a.out $(args) > out$(ind) 2> log$(ind)
-run_short:=mpirun -np $(parallel)  ./a.out $(args_short) > out$(ind) 2> log$(ind)&
-compile:=CC99='mpicc -std=c99' qcc -O2 -D_MPI=1
+run_short:=mpirun -np $(parallel)  ./a.out $(args_short) #> out$(ind) 2> log$(ind)
+run_serial:=./a.out $(args_short)
+#compile:=qcc -g -O0 -events
+compile:=CC99='mpicc -std=c99' qcc -O0 -D_MPI=1 -events
 remove:=rm -rf .qcc*
 
 all: verify
@@ -56,6 +58,7 @@ verify_wall:
 verify_cylinder:
 	$(remove)
 	$(compile)  verification_poly_cylinder.c -lm
+	#$(run_serial)
 	$(run_short)
 verify_couette:
 	$(remove)

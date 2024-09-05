@@ -110,7 +110,7 @@ struct numerical_params {
     float DT;
     float maxDT;
     float m_bp;
-    float m_bp_T;
+    float mbpT;
     float feps;
     float ueps;
     float rhoeps;
@@ -220,7 +220,7 @@ static const cyaml_schema_field_t numerical_params_fields[] = {
         CYAML_FIELD_FLOAT("maxDT", CYAML_FLAG_OPTIONAL, struct numerical_params, maxDT),
         CYAML_FIELD_FLOAT("DT", CYAML_FLAG_DEFAULT, struct numerical_params, DT),
         CYAML_FIELD_FLOAT("m_bp", CYAML_FLAG_OPTIONAL, struct numerical_params, m_bp),
-        CYAML_FIELD_FLOAT("m_bp_T", CYAML_FLAG_OPTIONAL, struct numerical_params, m_bp_T),
+        CYAML_FIELD_FLOAT("mbpT", CYAML_FLAG_OPTIONAL, struct numerical_params, mbpT),
         CYAML_FIELD_FLOAT("feps", CYAML_FLAG_OPTIONAL, struct numerical_params, feps),
         CYAML_FIELD_FLOAT("ueps", CYAML_FLAG_OPTIONAL, struct numerical_params, ueps),
         CYAML_FIELD_FLOAT("rhoeps", CYAML_FLAG_OPTIONAL, struct numerical_params, rhoeps),
@@ -372,7 +372,7 @@ int read_config(int argc, char *argv[])
     if (!input->num_params.CFL_ARR) numpar->CFL_ARR = 0.5;
     if (!input->num_params.maxDT) numpar->maxDT = 1e+10;
     if (!input->num_params.m_bp) numpar->m_bp = 2.0;
-    if (!input->num_params.m_bp_T) numpar->m_bp_T = 2.0;
+    if (!input->num_params.mbpT) numpar->mbpT = 2.0;
     if (!input->num_params.feps) numpar->feps = 1e-10;
     if (!input->num_params.ueps) numpar->ueps = 1e-2;
     if (!input->num_params.rhoeps) numpar->rhoeps = 1e-10;
@@ -428,7 +428,7 @@ int read_config(int argc, char *argv[])
     printf("NITERMIN=%d NITERMAX=%d\n", numpar->NITERMIN, numpar->NITERMAX);
     printf("CFL=%g CFL_ARR=%g\n", numpar->CFL, numpar->CFL_ARR);
     printf("DT=%g maxDT=%g\n", numpar->DT, numpar->maxDT);
-    printf("m_bp=%g m_bp_T=%g\n", numpar->m_bp, numpar->m_bp_T);
+    printf("m_bp=%g mbpT=%g\n", numpar->m_bp, numpar->mbpT);
     printf("feps=%g ueps=%g rhoeps=%g Teps=%g aeps=%g mueps=%g\n", numpar->feps, numpar->ueps, numpar->rhoeps, numpar->Teps, numpar->aeps, numpar->mueps);
 
     /* Free the data */
