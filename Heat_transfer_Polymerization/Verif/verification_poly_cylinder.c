@@ -57,13 +57,13 @@ int main(int argc, char * argv[]) {
         "./a.out T_solid, Tin, maxlevel, iter_fp, TOLERANCE_P, TOLERANCE_V, TOLERANCE_T, Htr, "
         "Arrhenius_const, Ea_by_R, subname\n"
     );
-    TOLERANCE = 1e-7;
+    TOLERANCE = 1e-9;
     NITERMIN = 1;
     NITERMAX = 100;
     CFL = 0.4;
     CFL_ARR = 0.5;
-    DT = 1e-2;
-    maxDT0 = 2.5e-2;
+    DT = 1e-3;
+    maxDT0 = 2.5e-3;
 
     N_smooth = 1; //three-phase-rheology.h
 
@@ -226,9 +226,9 @@ int main(int argc, char * argv[]) {
     MPI_Get_processor_name(hostname, &h_len);
     printf("rank:%d size: %d at %s h_len %d\n", rank, psize, hostname, h_len);
 #endif
-//    for (maxlevel = 6; maxlevel < 10; maxlevel++){
+    for (maxlevel = 6; maxlevel < 10; maxlevel++){
         run();
-//    }
+    }
 }
 
 //#define T_BC min(T_solid + (Tin - T_solid)*tanh( 100*(sqrt(sq(x) + sq(y)) - channel_diam) ), T_solid)  #not compatible for convergence check
