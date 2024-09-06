@@ -66,7 +66,7 @@ int main(int argc, char * argv[]) {
     NITERMAX = 100;
     CFL = 0.4;
     CFL_ARR = 0.5;
-    DT = 1e-3;
+    double DT0 = 1e-3;
     maxDT0 = 2.5e-3;
 
     N_smooth = 1; //three-phase-rheology.h
@@ -185,7 +185,6 @@ int main(int argc, char * argv[]) {
     T_target = temp_cyl;
     const vector U_sol[] = {vel_s.x, vel_s.y, vel_s.z};
     target_U = U_sol;
-    init_grid(1 << LEVEL);
     origin (-L0/2, -L0/2.);
     periodic(right);
     periodic(top);
@@ -240,7 +239,10 @@ int main(int argc, char * argv[]) {
     for (maxlevel = 6; maxlevel < 10; maxlevel++){
         mindelta = L0/pow(2, maxlevel);
         mindelta0 = L0/pow(2, 8);
-        DT *= sq(mindelta/mindelta0);  // h^2/DT = h0^2/DT0
+        DT = sq(mindelta/mindelta0)*DT0;  // h^2/DT = h0^2/DT0
+        N = 1 << maxlevel;
+        init_grid(N);
+        fprintf(ferr, "maxlevel=%d N=%d mindelta=%g mindelta0=%g DT=%g\n", maxlevel, N, mindelta, mindelta0, DT);
         run();
     }
 }
