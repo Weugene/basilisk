@@ -52,7 +52,7 @@ double feps = 1e-10, fseps = 1e-10, ueps = 1e-5, rhoeps = 1e-10, Teps = 1e-5, ae
 double mindelta, mindelta0;
 
 char subname[150], logname[200];
-char prefix[10];
+char prefix[100];
 
 
 int main(int argc, char * argv[]) {
