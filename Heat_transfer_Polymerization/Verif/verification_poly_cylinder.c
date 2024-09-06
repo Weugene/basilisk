@@ -52,14 +52,14 @@ double feps = 1e-10, fseps = 1e-10, ueps = 1e-5, rhoeps = 1e-10, Teps = 1e-5, ae
 double mindelta, mindelta0;
 
 char subname[150], logname[200];
-char prefix[];
+char prefix[10];
 
 
 int main(int argc, char * argv[]) {
     fprintf(
         ferr,
         "./a.out T_solid, Tin, maxlevel, iter_fp, TOLERANCE_P, TOLERANCE_V, TOLERANCE_T, Htr, "
-        "Arrhenius_const, Ea_by_R, subname\n"
+        "Arrhenius_const, Ea_by_R, subname prefix is_extrapolated\n"
     );
     TOLERANCE = 1e-9;
     NITERMIN = 1;
