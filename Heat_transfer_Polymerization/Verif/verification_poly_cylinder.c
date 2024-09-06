@@ -51,6 +51,9 @@ double feps = 1e-10, fseps = 1e-10, ueps = 1e-5, rhoeps = 1e-10, Teps = 1e-5, ae
 double mindelta, mindelta0;
 
 char subname[150], logname[200];
+char prefix[];
+
+
 int main(int argc, char * argv[]) {
     fprintf(
         ferr,
@@ -125,6 +128,9 @@ int main(int argc, char * argv[]) {
     if (argc > 11) {
         strcpy(subname, argv[11]);
         sprintf (logname, "log%s", subname);
+    }
+    if (argc > 12) {
+        strcpy(prefix, argv[12]);
     }
 
 	fprintf(
@@ -227,6 +233,9 @@ int main(int argc, char * argv[]) {
     printf("rank:%d size: %d at %s h_len %d\n", rank, psize, hostname, h_len);
 #endif
     for (maxlevel = 6; maxlevel < 10; maxlevel++){
+        mindelta = L0/pow(2, maxlevel);
+        mindelta0 = L0/pow(2, 8);
+        DT *= sq(mindelta/mindelta0);  // h^2/DT = h0^2/DT0
         run();
     }
 }
@@ -355,7 +364,7 @@ event set_penalization(i++){
     double new_eta_s = 1e-5;
     double new_m_bp = 0;
     set_penalization_parameters (mu, rho, new_m_bp, new_eta_s);
-    new_m_bp = 0.5;
+    new_m_bp = 1;
     double new_eta_T = 0;
     double new_chi_conductivity = kappa1 / (rho1 * Cp1);
     set_heat_penalization_parameters(new_m_bp, new_eta_T, new_chi_conductivity);
@@ -405,7 +414,7 @@ event logoutput(t += 0.1){
         loc[i].x = 0.5*L0*i/(Ninterp - 1.0);
         loc[i].y = loc[i].z = 0;
     }
-    sprintf(name_vtu, "cylinder_polymerization_basilisk.csv");
+    sprintf(name_vtu, "cylinder_polymerization_basilisk_%s.csv", prefix);
     if (firstWrite == 0 && pid() == 0){
         fp = fopen(name_vtu, "w");
         fprintf (fp, "x,t,maxlevel,T,alpha,u,mu\n");
@@ -429,7 +438,6 @@ event logoutput(t += 0.1){
 //event vtk_file (t += dt_vtk)
 //{
 //    char path[] = "res"; // no slash at the end!!
-//    char prefix[] = "verif_cylinder";
 //    scalar l[];
 //    foreach() {
 //        l[] = level;
