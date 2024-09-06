@@ -31,6 +31,7 @@ static coord vel_s = {0, 0, 0};
 
 int snapshot_i = 1000;
 int iter_fp = 0;
+int is_extrapolated = 0;
 double dt_vtk = 1;
 double Uin, Tin, T_solid, Tam;
 double RhoR, RhoRS, MuR, MuRS, CpR, CpRS, KappaR, KappaRS;
@@ -132,6 +133,9 @@ int main(int argc, char * argv[]) {
     if (argc > 12) {
         strcpy(prefix, argv[12]);
     }
+    if (argc > 13) {
+        is_extrapolated = atoi(argv[13]);
+    }
 
 	fprintf(
         ferr,
@@ -201,8 +205,9 @@ int main(int argc, char * argv[]) {
         "Dim-less nums: Re=%g,  Fr=%g\n"
         "Solver:        DTmax=%g, CFL=%g, CFL_ARR=%g, NITERMIN=%d,  NITERMAX=%d,\n"
         "               TOLERANCE_P=%g, TOLERANCE_V=%g, TOLERANCE_T=%g\n"
+        "               is_extrapolated=%d\n"
         "ADAPT:         minlevel=%d,  maxlevel=%d, feps=%g, fseps=%g, ueps=%g, Teps=%g, aeps=%g\n"
-        "OUTPUT:        dt_vtk=%g,    number of procs=%d\n",
+        "OUTPUT:        dt_vtk=%g,    number of procs=%d,   prefix=%s\n",
         mu0, mu1, mu2, mu3, rho1, rho2, rho3,
         mu1/rho1, mu2/rho2, mu3/rho3,
         kappa1, kappa2, kappa3,
@@ -215,9 +220,9 @@ int main(int argc, char * argv[]) {
         Ggrav_ndim, Uin,
         Re, Fr,
         DT, CFL, CFL_ARR, NITERMIN, NITERMAX,
-        TOLERANCE_P, TOLERANCE_V, TOLERANCE_T,
+        TOLERANCE_P, TOLERANCE_V, TOLERANCE_T, is_extrapolated,
         minlevel, maxlevel, feps, fseps, ueps, Teps, aeps,
-        dt_vtk, npe()
+        dt_vtk, npe(), prefix
     );
 
     fs.refine = fs.prolongation = fraction_refine;
@@ -296,6 +301,16 @@ void solid_func(scalar fs){
 }
 
 
+void calculate_T_target(scalar T, scalar fs, double T_solid, scalar T_target){
+    foreach(){
+        T_target[] = T[];
+        if(fs[]!=1 && fs[]!=0){
+            T_target[] = T_solid;
+        }
+    }
+    boundary({T_target});
+}
+
 event init (t = 0) {
     char name[300];
     sprintf (name, "restart_%s", subname);
@@ -315,10 +330,10 @@ event init (t = 0) {
             f[] = 1;
             alpha_doc[] = 0;
             foreach_dimension() u.x[] = 0;
-            temp_cyl[] = T_solid;
             levelset[] = geometry(x, y, z);
         }
         boundary({f, fs, alpha_doc, temp_cyl, levelset, u.x, u.y});
+        calculate_T_target(T, fs, T_solid, T_target);
         update_T_target(levelset, T_target, cfl=0.5, nmax=100);
     }else{
         FILE *popen(const char *cmd_str, const char *mode);
@@ -391,15 +406,12 @@ event properties(i++){
 }
 
 event chem_conductivity_term (i++){
-    foreach(){
-        T_target[] = T[];
-        if(fs[]!=1 && fs[]!=0){
-            T_target[] = T_solid;
-        }
+    if (is_extrapolated){
+        fprintf(ferr, "Extrapolation of T...\n");
+        calculate_T_target(T, fs, T_solid, T_target);
+        int nmax = max(100 - i, 10);
+        update_T_target(levelset, T_target, cfl=0.5, nmax=nmax);
     }
-    boundary({T_target});
-    int nmax = max(100 - i, 20);
-    update_T_target(levelset, T_target, cfl=0.5, nmax=nmax);
 }
 
 event logoutput(t += 0.1){
