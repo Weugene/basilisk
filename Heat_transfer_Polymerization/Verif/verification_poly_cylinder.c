@@ -333,10 +333,13 @@ event init (t = 0) {
             alpha_doc[] = 0;
             foreach_dimension() u.x[] = 0;
             levelset[] = geometry(x, y, z);
+            T_target[] = T_solid;
         }
         boundary({f, fs, alpha_doc, temp_cyl, levelset, u.x, u.y});
-        calculate_T_target(T, fs, T_solid, T_target);
-        update_T_target(levelset, T_target, cfl=0.5, nmax=100);
+        if (is_extrapolated){
+            calculate_T_target(T, fs, T_solid, T_target);
+            update_T_target(levelset, T_target, cfl=0.5, nmax=100);
+        }
     }else{
         FILE *popen(const char *cmd_str, const char *mode);
         int pclose(FILE *stream);
