@@ -61,7 +61,7 @@ int main(int argc, char * argv[]) {
         "./a.out T_solid, Tin, maxlevel, iter_fp, TOLERANCE_P, TOLERANCE_V, TOLERANCE_T, Htr, "
         "Arrhenius_const, Ea_by_R, subname prefix is_extrapolated\n"
     );
-    TOLERANCE = 1e-9;
+    double TOLERANCE0 = 1e-9;
     NITERMIN = 1;
     NITERMAX = 100;
     CFL = 0.4;
@@ -242,7 +242,11 @@ int main(int argc, char * argv[]) {
         DT = sq(mindelta/mindelta0)*DT0;  // h^2/DT = h0^2/DT0
         N = 1 << maxlevel;
         init_grid(N);
-        fprintf(ferr, "maxlevel=%d N=%d mindelta=%g mindelta0=%g DT=%g\n", maxlevel, N, mindelta, mindelta0, DT);
+        TOLERANCE_T = sq(mindelta/mindelta0)*TOLERANCE0;
+        fprintf(
+            ferr,
+            "maxlevel=%d N=%d mindelta=%g mindelta0=%g DT=%g TOLERANCE_T=%g\n",
+            maxlevel, N, mindelta, mindelta0, DT, TOLERANCE_T);
         run();
     }
 }
@@ -412,9 +416,10 @@ event properties(i++){
 
 event chem_conductivity_term (i++){
     if (is_extrapolated){
-        fprintf(ferr, "Extrapolation of T...\n");
+
         calculate_T_target(T, fs, T_solid, T_target);
-        int nmax = max(100 - i, 10);
+        int nmax = 40;
+        fprintf(ferr, "Extrapolation of T with nmax=%d\n", nmax);
         update_T_target(levelset, T_target, cfl=0.5, nmax=nmax);
     }
 }
