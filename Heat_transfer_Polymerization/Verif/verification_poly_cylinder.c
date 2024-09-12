@@ -99,8 +99,8 @@ int main(int argc, char * argv[]) {
 
 	Eeta_by_Rg = 3.76e+4/8.314;// Kelvin Epon 9310,Safonov page 21
 	chi = 20;
-    Rho1 = 1200, Rho2 = 1.092, Rho3 = 1790;//air at 23 C Graphite
-    CP1 = 1255, CP2 = 1006, CP3 = 712;//J/(kg*K)
+    Rho1 = 1200, Rho2 = 1.092, Rho3 = 1200;//air at 23 C Graphite Rho3 = 1790
+    CP1 = 1255, CP2 = 1006, CP3 = 1255;//J/(kg*K)  CP3=712
 //    Kappa1 = 0.2, Kappa2 = 0.02535, Kappa3 = 8.70;//W/(m*K)
     Kappa1 = 3012.05, Kappa2 = 381.78, Kappa3 = 3012.05;//W/(m*K)
     Ggrav = 0; // m/s^2
@@ -143,7 +143,7 @@ int main(int argc, char * argv[]) {
         "           nu1=%g, nu2=%g, nu3=%g,\n"
         "           Kappa1=%g, Kappa2=%g, Kappa3=%g, CP1=%g, CP2=%g, CP3=%g,\n"
         "           Uin=%g, time*=%g, Tin=%g, T_solid=%g, Tam=%g,\n"
-        "           Htr=%g, Arrenius=%g, Ea_by_R=%g, n_degree=%g,\n"
+        "           Htr=%g, Arrhenius=%g, Ea_by_R=%g, n_degree=%g,\n"
         "           Eeta_by_Rg=%g, chi=%g\n"
         "Geometry: channel_diam=%g,  domainSize=%g\n",
         Mu0, Mu1, Mu2, Mu3, Rho1, Rho2, Rho3,
@@ -236,13 +236,13 @@ int main(int argc, char * argv[]) {
     MPI_Get_processor_name(hostname, &h_len);
     printf("rank:%d size: %d at %s h_len %d\n", rank, psize, hostname, h_len);
 #endif
-    for (maxlevel = 6; maxlevel < 10; maxlevel++){
+    for (maxlevel = 5; maxlevel < 10; maxlevel++){
+        iter_fp = 0;
         mindelta = L0/pow(2, maxlevel);
         mindelta0 = L0/pow(2, 8);
         DT = sq(mindelta/mindelta0)*DT0;  // h^2/DT = h0^2/DT0
         N = 1 << maxlevel;
         init_grid(N);
-        TOLERANCE_T = sq(mindelta/mindelta0)*TOLERANCE0;
         fprintf(
             ferr,
             "maxlevel=%d N=%d mindelta=%g mindelta0=%g DT=%g TOLERANCE_T=%g\n",
@@ -290,16 +290,30 @@ alpha_doc[top] = neumann(0);
 #define mynorm(v) (sqrt(sq(v.x) + sq(v.y)))
 double xmin_center = 0, xmax_center = 0;
 
-// Cylinder with diameter 1
-double geometry(double x, double y, double z){
+// Cylinder with radii 1
+double r_inner = 0.5;
+double r_outer = 1;
+double r_between = 0.75;
+double geometry_ring(double x, double y, double z){
+    double r = sqrt (sq (x) + sq (y));
+    if (r > r_between){
+        return r_outer - r;
+    } else {
+        return r - r_inner;
+    }
     return 1 - sqrt (sq (x) + sq (y));
+}
+
+// Cylinder with radii 1
+double geometry_cylinder(double x, double y, double z){
+    return r_outer - sqrt (sq (x) + sq (y));
 }
 
 
 void solid_func(scalar fs){
     vertex scalar phi[];
     foreach_vertex() {
-        phi[] = geometry(x, y, z);
+        phi[] = geometry_ring(x, y, z);
     }
     boundary ((scalar *){phi});
     fractions (phi, fs);
@@ -310,9 +324,6 @@ void solid_func(scalar fs){
 void calculate_T_target(scalar T, scalar fs, double T_solid, scalar T_target){
     foreach(){
         T_target[] = T[];
-        if(fs[]!=1 && fs[]!=0){
-            T_target[] = T_solid;
-        }
     }
     boundary({T_target});
 }
@@ -336,13 +347,13 @@ event init (t = 0) {
             f[] = 1;
             alpha_doc[] = 0;
             foreach_dimension() u.x[] = 0;
-            levelset[] = geometry(x, y, z);
+            levelset[] = geometry_cylinder(x, y, z);
             T_target[] = T_solid;
         }
         boundary({f, fs, alpha_doc, temp_cyl, levelset, u.x, u.y});
         if (is_extrapolated){
             calculate_T_target(T, fs, T_solid, T_target);
-            update_T_target(levelset, T_target, cfl=0.5, nmax=100);
+            update_T_target(levelset, T_target, fs, T_solid=T_solid, cfl=0.5, nmax=10);
         }
     }else{
         FILE *popen(const char *cmd_str, const char *mode);
@@ -388,7 +399,7 @@ event set_penalization(i++){
     double new_eta_s = 1e-5;
     double new_m_bp = 0;
     set_penalization_parameters (mu, rho, new_m_bp, new_eta_s);
-    new_m_bp = 1;
+    new_m_bp = 0.5;
     double new_eta_T = 0;
     double new_chi_conductivity = kappa1 / (rho1 * Cp1);
     set_heat_penalization_parameters(new_m_bp, new_eta_T, new_chi_conductivity);
@@ -416,17 +427,16 @@ event properties(i++){
 
 event chem_conductivity_term (i++){
     if (is_extrapolated){
-
         calculate_T_target(T, fs, T_solid, T_target);
-        int nmax = 40;
+        int nmax = 5;
         fprintf(ferr, "Extrapolation of T with nmax=%d\n", nmax);
-        update_T_target(levelset, T_target, cfl=0.5, nmax=nmax);
+        update_T_target(levelset, T_target, fs=fs, T_solid=T_solid, cfl=0.5, nmax=nmax);
     }
 }
 
 event logoutput(t += 0.1){
     FILE *fp;
-    const int Nvar = 4;
+    const int Nvar = 5;
     const int Ninterp = 1001;
     static int firstWrite = 0;
     char name_vtu[1000];
@@ -439,36 +449,38 @@ event logoutput(t += 0.1){
     sprintf(name_vtu, "cylinder_polymerization_basilisk_%s.csv", prefix);
     if (firstWrite == 0 && pid() == 0){
         fp = fopen(name_vtu, "w");
-        fprintf (fp, "x,t,maxlevel,T,alpha,u,mu\n");
+        fprintf (fp, "x,t,maxlevel,T,alpha,u,mu,T_target\n");
         fclose(fp);
         firstWrite++;
     }
 
-    interpolate_array ((scalar*) {T, alpha_doc, u.x, mu_cell}, loc, Ninterp, v, true);
+    interpolate_array ((scalar*) {T, alpha_doc, u.x, mu_cell, T_target}, loc, Ninterp, v, true);
     if (pid() == 0){
         fp = fopen(name_vtu, "a");
         for (int i = 0; i < Ninterp; i++){
             int ii = i*Nvar;
-            fprintf (fp, "%g,%g,%d,%g,%g,%g,%g\n", loc[i].x, t, maxlevel, v[ii], v[ii+1], v[ii+2], v[ii+3]);
+            fprintf (fp, "%g,%g,%d,%g,%g,%g,%g,%g\n", loc[i].x, t, maxlevel, v[ii], v[ii+1], v[ii+2], v[ii+3], v[ii+4]);
         }
         fclose(fp);
     }
 }
 
-//#define VTK_SCALARS {rhov, T, T_target, alpha_doc, mu_cell, u.x, u.y, p, Phi_visc, Phi_src, uf.x}
-//#define VTK_EPS_SCALARS {rhoeps, Teps, Teps, aeps, mueps, ueps, ueps, feps, feps, feps, ueps}
+//#define VTK_SCALARS {rhov, T, T_target, alpha_doc, mu_cell, u.x, u.y, p, Phi_visc, Phi_src, uf.x, levelset}
+//#define VTK_EPS_SCALARS {rhoeps, Teps, Teps, aeps, mueps, ueps, ueps, feps, feps, feps, ueps, feps}
 //event vtk_file (t += dt_vtk)
 //{
 //    char path[] = "res"; // no slash at the end!!
+//    char maxlevel_str[100];
+//    sprintf(maxlevel_str, "%s_%d", prefix, maxlevel);
 //    scalar l[];
 //    foreach() {
 //        l[] = level;
 //    }
 //
 //    output_htg(
-//        (scalar *){T, T_target, alpha_doc, p, fs, f, l, rhov, mu_cell, divutmp},
-//        (vector *){u, g, uf, dbp, total_rhs, residual_of_u, divtauu, alpha, alphamv, kappa},
-//        path, prefix, iter_fp, t
+//        (scalar *){T, T_target, alpha_doc, p, fs, f, l, rhov, mu_cell, divutmp, levelset, fnn, H},
+//        (vector *){u, g, uf, dbp, total_rhs, residual_of_u, divtauu, alpha, alphamv, kappa, gff, nn},
+//        path, maxlevel_str, iter_fp, t
 //    );
 //    iter_fp++;
 ////    double eps_arr[] = VTK_EPS_SCALARS;
@@ -487,11 +499,11 @@ event adapt (i++){
 	MinMaxValues((scalar *) ADAPT_SCALARS, eps_arr);
 	adapt_wavelet ((scalar *) ADAPT_SCALARS, eps_arr, maxlevel = maxlevel, minlevel = minlevel);
     foreach(){
-        levelset[] = geometry(x, y, z);
+        levelset[] = geometry_cylinder(x, y, z);
     }
     boundary({levelset});
     if (i%100) count_cells(t, i);
 }
 
 
-event stop(t = 10);
+event stop(t = 5);

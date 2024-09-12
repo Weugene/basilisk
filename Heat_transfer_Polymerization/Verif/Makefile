@@ -1,9 +1,9 @@
-CFLAGS=-DDUMP=1 -O2 #-events
+CFLAGS=-DDUMP=1 -O3 #-events
 CLIBS=-lm
 
 Tcyl=600
 Tin=300
-maxlevel=9
+maxlevel=6
 iter_fp=0
 ratio_Rbmin=0.166666
 ratio_Rbmax=0.6
@@ -14,9 +14,9 @@ cyl_x=-0.5
 Nb=5
 Ncx=2
 Ncy=3
-TOLERANCE_P=1e-10
-TOLERANCE_V=1e-10
-TOLERANCE_T=1e-10
+TOLERANCE_P=1e-9
+TOLERANCE_V=1e-9
+TOLERANCE_T=1e-8
 Htr=355000 #355000
 Arrhenius_const=0 #80600   0
 Ea_by_R=7700 #already divided by 8.31  =  7697=64000/8.314
@@ -27,7 +27,7 @@ shift_x=0
 shift_y=$(shell echo 0.5\*$(ratio_dist_y) | bc)
 non_saturated=0
 
-parallel=2
+parallel=4
 ind=L0
 prefix=A_0
 is_extrapolated=1
@@ -44,7 +44,7 @@ $(Htr) $(Arrhenius_const) $(Ea_by_R) $(ind) $(prefix) $(is_extrapolated)
 run_short:=mpirun -np $(parallel)  ./a.out $(args_short) > out_$(prefix) 2> log_$(prefix)
 run_serial:=./a.out $(args_short)
 #compile:=qcc -g -O0 -events
-compile:=CC99='mpicc -std=c99' qcc -O2 -D_MPI=1 -events
+compile:=CC99='mpicc -std=c99' qcc -O3 -D_MPI=1 -events
 remove:=rm -rf .qcc*
 
 all: verify
