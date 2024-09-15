@@ -31,8 +31,8 @@ parallel=4
 ind=L0
 prefix=A_0
 is_extrapolated=1
-nmax=10
-Nsb=3
+nmax=2
+Nsb=2
 
 dumpname=dump-1.05384e-05
 args=$(Tcyl) $(Tin) $(maxlevel) $(iter_fp) $(ratio_Rbmin) $(ratio_Rbmax) $(ratio_dist_x) $(ratio_dist_y) $(ratio_front_x) \
