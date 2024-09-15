@@ -4,6 +4,7 @@
 #define DEBUG_MODE_POISSON
 #define DEBUG_HEAT
 #define DEBUG_MULTIGRID
+#define RELATIVE_RES
 #define HEAT_TRANSFER
 #define REACTION_MODEL REACTION_MODEL_NON_AUTOCATALYTIC
 #define VISCOSITY_MODEL VISCOSITY_MODEL_DUSI
@@ -21,6 +22,7 @@ scalar mu_cell[];
 scalar Phi_visc[], Phi_src[];
 scalar temp_cyl[];
 scalar levelset[];
+scalar fss[];
 
 static coord vel_s = {0, 0, 0};
 //#include "curvature_partstr.h"
@@ -46,6 +48,8 @@ double Fr; //Froude number Fr = sqrt(u^2/(g*cyl_diam))
 int maxlevel = 9;
 int minlevel = 5;
 int LEVEL = 9;
+int nmax = 1;
+int Nsb = 3;
 double maxDT, maxDT0;
 double mu_max = 0, nu_max = 0;
 double feps = 1e-10, fseps = 1e-10, ueps = 1e-5, rhoeps = 1e-10, Teps = 1e-5, aeps = 1e-5, mueps=1e-5;
@@ -70,10 +74,12 @@ int main(int argc, char * argv[]) {
     maxDT0 = 2.5e-3;
 
     N_smooth = 1; //three-phase-rheology.h
+    RELATIVE_RES_TOLERANCE = 0.01;
 
     stokes = true;
     stokes_heat = true;
     viscDissipation = false;
+    relative_residual_poisson = true;
 
     m_bp = 1; // Brinkman layer resolution
     mbpT = 1;
@@ -135,6 +141,12 @@ int main(int argc, char * argv[]) {
     }
     if (argc > 13) {
         is_extrapolated = atoi(argv[13]);
+    }
+    if (argc > 14) {
+        nmax = atoi(argv[14]);
+    }
+    if (argc > 15) {
+        Nsb = atoi(argv[15]);
     }
 
 	fprintf(
@@ -204,7 +216,7 @@ int main(int argc, char * argv[]) {
         "Dim-less nums: Re=%g,  Fr=%g\n"
         "Solver:        DTmax=%g, CFL=%g, CFL_ARR=%g, NITERMIN=%d,  NITERMAX=%d,\n"
         "               TOLERANCE_P=%g, TOLERANCE_V=%g, TOLERANCE_T=%g\n"
-        "               is_extrapolated=%d\n"
+        "               is_extrapolated=%d nmax=%d\n"
         "ADAPT:         minlevel=%d,  maxlevel=%d, feps=%g, fseps=%g, ueps=%g, Teps=%g, aeps=%g\n"
         "OUTPUT:        dt_vtk=%g,    number of procs=%d,   prefix=%s\n",
         mu0, mu1, mu2, mu3, rho1, rho2, rho3,
@@ -219,11 +231,12 @@ int main(int argc, char * argv[]) {
         Ggrav_ndim, Uin,
         Re, Fr,
         DT, CFL, CFL_ARR, NITERMIN, NITERMAX,
-        TOLERANCE_P, TOLERANCE_V, TOLERANCE_T, is_extrapolated,
+        TOLERANCE_P, TOLERANCE_V, TOLERANCE_T, is_extrapolated, nmax,
         minlevel, maxlevel, feps, fseps, ueps, Teps, aeps,
         dt_vtk, npe(), prefix
     );
 
+    fss.refine = fss.prolongation = fraction_refine;
     fs.refine = fs.prolongation = fraction_refine;
     f.refine = f.prolongation = fraction_refine;
 #ifdef _MPI
@@ -291,29 +304,42 @@ alpha_doc[top] = neumann(0);
 double xmin_center = 0, xmax_center = 0;
 
 // Cylinder with radii 1
-double r_inner = 0.5;
-double r_outer = 1;
-double r_between = 0.75;
-double geometry_ring(double x, double y, double z){
-    double r = sqrt (sq (x) + sq (y));
-    if (r > r_between){
-        return r_outer - r;
-    } else {
-        return r - r_inner;
-    }
-    return 1 - sqrt (sq (x) + sq (y));
-}
+//double r_inner = 0.5;
+
+//double r_between = 0.75;
+//double geometry_ring(double x, double y, double z){
+//    double r = sqrt (sq (x) + sq (y));
+//    if (r > r_between){
+//        return r_outer - r;
+//    } else {
+//        return r - r_inner;
+//    }
+//    return 1 - sqrt (sq (x) + sq (y));
+//}
 
 // Cylinder with radii 1
-double geometry_cylinder(double x, double y, double z){
+double r_outer = 1;
+double geometry_cylinder(double x, double y, double z, double r_outer){
     return r_outer - sqrt (sq (x) + sq (y));
 }
 
-
-void solid_func(scalar fs){
+void solid_func_ring(scalar fs){
+    double mindelta = L0 / (1 << maxlevel);
     vertex scalar phi[];
     foreach_vertex() {
-        phi[] = geometry_ring(x, y, z);
+        double phi1 = geometry_cylinder(x, y, z, r_outer);
+        double phi2 = geometry_cylinder(x, y, z, r_outer - Nsb * mindelta);
+        phi[] = min(phi1, -phi2);
+    }
+    boundary ((scalar *){phi});
+    fractions (phi, fs);
+    boundary({fs});
+}
+
+void solid_func_cylinder(scalar fs){
+    vertex scalar phi[];
+    foreach_vertex() {
+        phi[] = geometry_cylinder(x, y, z, r_outer);
     }
     boundary ((scalar *){phi});
     fractions (phi, fs);
@@ -323,7 +349,7 @@ void solid_func(scalar fs){
 
 void calculate_T_target(scalar T, scalar fs, double T_solid, scalar T_target){
     foreach(){
-        T_target[] = T[];
+        T_target[] = (1 - fs[]) * T[] + fs[] * T_target[];
     }
     boundary({T_target});
 }
@@ -337,7 +363,8 @@ event init (t = 0) {
         int it = 0;
         scalar fs_smoothed[];
         do {
-            solid_func(fs);
+            solid_func_ring(fs);
+            solid_func_cylinder(fss);
             filter_scalar(fs, fs_smoothed);
             foreach()
                 T[] = T_BC;
@@ -347,13 +374,13 @@ event init (t = 0) {
             f[] = 1;
             alpha_doc[] = 0;
             foreach_dimension() u.x[] = 0;
-            levelset[] = geometry_cylinder(x, y, z);
+            levelset[] = geometry_cylinder(x, y, z, r_outer);
             T_target[] = T_solid;
         }
-        boundary({f, fs, alpha_doc, temp_cyl, levelset, u.x, u.y});
+        boundary({f, fs, fss, alpha_doc, temp_cyl, levelset, u.x, u.y});
         if (is_extrapolated){
-            calculate_T_target(T, fs, T_solid, T_target);
-            update_T_target(levelset, T_target, fs, T_solid=T_solid, cfl=0.5, nmax=10);
+            calculate_T_target(T, fss, T_solid, T_target);
+            update_T_target(levelset, T_target, fss, T_solid=T_solid, cfl=0.5, nmax=200);
         }
     }else{
         FILE *popen(const char *cmd_str, const char *mode);
@@ -395,10 +422,15 @@ event init (t = 0) {
     }
 }
 
-event set_penalization(i++){
+event set_penalization (i++) {
     double new_eta_s = 1e-5;
     double new_m_bp = 0;
     set_penalization_parameters (mu, rho, new_m_bp, new_eta_s);
+    //    new_m_bp = 1;
+    //    double new_eta_T = sq(dt);
+    //    double mindelta = L0 / (1 << maxlevel);
+    //    double new_chi_conductivity = sq(new_m_bp*mindelta)/new_eta_T;
+
     new_m_bp = 0.5;
     double new_eta_T = 0;
     double new_chi_conductivity = kappa1 / (rho1 * Cp1);
@@ -411,7 +443,7 @@ event print_maxlevel (i++) {
 
 void calc_mu(scalar mu_cell){
     foreach(){
-        mu_cell[] = mu(f[], fs[], alpha_doc[], T[]);
+        mu_cell[] = mu(f[], fss[], alpha_doc[], T[]);
     }
 }
 
@@ -420,17 +452,16 @@ event properties(i++){
     if (viscDissipation)
         dissipation (Phi_visc, u, mu = mu);
     foreach(){
-        Phi_src[] = f[]*(1 - fs[])*rho1*Htr*KT(T[])*FR(alpha_doc[]);
+        Phi_src[] = f[]*(1 - fss[])*rho1*Htr*KT(T[])*FR(alpha_doc[]);
     }
     boundary({Phi_src});
 }
 
 event chem_conductivity_term (i++){
     if (is_extrapolated){
-        calculate_T_target(T, fs, T_solid, T_target);
-        int nmax = 5;
+        calculate_T_target(T, fss, T_solid, T_target);
         fprintf(ferr, "Extrapolation of T with nmax=%d\n", nmax);
-        update_T_target(levelset, T_target, fs=fs, T_solid=T_solid, cfl=0.5, nmax=nmax);
+        update_T_target(levelset, T_target, fs=fss, T_solid=T_solid, cfl=0.5, nmax=nmax);
     }
 }
 
@@ -478,8 +509,8 @@ event logoutput(t += 0.1){
 //    }
 //
 //    output_htg(
-//        (scalar *){T, T_target, alpha_doc, p, fs, f, l, rhov, mu_cell, divutmp, levelset, fnn, H},
-//        (vector *){u, g, uf, dbp, total_rhs, residual_of_u, divtauu, alpha, alphamv, kappa, gff, nn},
+//        (scalar *){T, T_target, alpha_doc, p, fs, fss, f, l, rhov, mu_cell, divutmp, levelset},
+//        (vector *){u, g, uf, dbp, total_rhs, residual_of_u, divtauu, alpha, alphamv, kappa},
 //        path, maxlevel_str, iter_fp, t
 //    );
 //    iter_fp++;
@@ -491,19 +522,19 @@ event logoutput(t += 0.1){
 /**
 We adapt according to the error on the embedded geometry, velocity and
 tracer fields. */
-#define ADAPT_SCALARS {fs, T, alpha_doc}
-#define ADAPT_EPS_SCALARS {fseps, Teps, aeps}
+#define ADAPT_SCALARS {fs, fss, T, alpha_doc}
+#define ADAPT_EPS_SCALARS {fseps, fseps, Teps, aeps}
 
 event adapt (i++){
 	double eps_arr[] = ADAPT_EPS_SCALARS;
 	MinMaxValues((scalar *) ADAPT_SCALARS, eps_arr);
 	adapt_wavelet ((scalar *) ADAPT_SCALARS, eps_arr, maxlevel = maxlevel, minlevel = minlevel);
     foreach(){
-        levelset[] = geometry_cylinder(x, y, z);
+        levelset[] = geometry_cylinder(x, y, z, r_outer);
     }
     boundary({levelset});
     if (i%100) count_cells(t, i);
 }
 
 
-event stop(t = 5);
+event stop(t = 3);

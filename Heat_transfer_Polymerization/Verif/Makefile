@@ -16,7 +16,7 @@ Ncx=2
 Ncy=3
 TOLERANCE_P=1e-9
 TOLERANCE_V=1e-9
-TOLERANCE_T=1e-8
+TOLERANCE_T=1e-9
 Htr=355000 #355000
 Arrhenius_const=0 #80600   0
 Ea_by_R=7700 #already divided by 8.31  =  7697=64000/8.314
@@ -31,6 +31,8 @@ parallel=4
 ind=L0
 prefix=A_0
 is_extrapolated=1
+nmax=10
+Nsb=3
 
 dumpname=dump-1.05384e-05
 args=$(Tcyl) $(Tin) $(maxlevel) $(iter_fp) $(ratio_Rbmin) $(ratio_Rbmax) $(ratio_dist_x) $(ratio_dist_y) $(ratio_front_x) \
@@ -38,7 +40,7 @@ $(cyl_x) $(Nb) $(Ncx) $(Ncy) $(TOLERANCE_P) $(TOLERANCE_V) $(TOLERANCE_T) \
 $(Htr) $(Arrhenius_const) $(Ea_by_R) $(dev_r) $(dev_x) $(dev_y) $(shift_x) $(shift_y) $(non_saturated) $(ind)
 
 args_short=$(Tcyl) $(Tin) $(maxlevel) $(iter_fp) $(TOLERANCE_P) $(TOLERANCE_V) $(TOLERANCE_T) \
-$(Htr) $(Arrhenius_const) $(Ea_by_R) $(ind) $(prefix) $(is_extrapolated)
+$(Htr) $(Arrhenius_const) $(Ea_by_R) $(ind) $(prefix) $(is_extrapolated) $(nmax) $(Nsb)
 
 #run:=mpirun -np $(parallel)  ./a.out $(args) > out$(ind) 2> log$(ind)
 run_short:=mpirun -np $(parallel)  ./a.out $(args_short) > out_$(prefix) 2> log_$(prefix)
