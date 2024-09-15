@@ -319,7 +319,7 @@ double xmin_center = 0, xmax_center = 0;
 
 // Cylinder with radii 1
 double r_outer = 1;
-double geometry_cylinder(double x, double y, double z, double r_outer){
+double geometry_cylinder(double x, double y, double z){
     return r_outer - sqrt (sq (x) + sq (y));
 }
 
@@ -327,8 +327,8 @@ void solid_func_ring(scalar fs){
     double mindelta = L0 / (1 << maxlevel);
     vertex scalar phi[];
     foreach_vertex() {
-        double phi1 = geometry_cylinder(x, y, z, r_outer);
-        double phi2 = geometry_cylinder(x, y, z, r_outer - Nsb * mindelta);
+        double phi1 = geometry_cylinder(x, y, z);
+        double phi2 = geometry_cylinder(x, y, z) - Nsb * mindelta;
         phi[] = min(phi1, -phi2);
     }
     boundary ((scalar *){phi});
