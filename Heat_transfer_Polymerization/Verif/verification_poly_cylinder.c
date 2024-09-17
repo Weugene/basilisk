@@ -34,7 +34,7 @@ static coord vel_s = {0, 0, 0};
 int snapshot_i = 1000;
 int iter_fp = 0;
 int is_extrapolated = 0;
-double dt_vtk = 1;
+double dt_vtk = 0.1;
 double Uin, Tin, T_solid, Tam;
 double RhoR, RhoRS, MuR, MuRS, CpR, CpRS, KappaR, KappaRS;
 double Rho1, Rho2, Rho3;
@@ -65,7 +65,6 @@ int main(int argc, char * argv[]) {
         "./a.out T_solid, Tin, maxlevel, iter_fp, TOLERANCE_P, TOLERANCE_V, TOLERANCE_T, Htr, "
         "Arrhenius_const, Ea_by_R, subname prefix is_extrapolated\n"
     );
-    double TOLERANCE0 = 1e-9;
     NITERMIN = 1;
     NITERMAX = 100;
     CFL = 0.4;
@@ -212,7 +211,7 @@ int main(int argc, char * argv[]) {
         "               Uin=%g, Tin=%g, T_solid=%g, Tam=%g,\n"
         "               Htr=%g, Arrhenius_const=%g, Ea_by_R=%g, Eeta_by_Rg=%g,\n"
         "               L0=%g, channel_diam=%g, maxDT0=%g for maxlevel=8, maxDT=%g for maxlevel=%d\n"
-        "               Ggrav_ndim=%g Uin=%g\n"
+        "               Ggrav_ndim=%g Uin=%g,\n"
         "Dim-less nums: Re=%g,  Fr=%g\n"
         "Solver:        DTmax=%g, CFL=%g, CFL_ARR=%g, NITERMIN=%d,  NITERMAX=%d,\n"
         "               TOLERANCE_P=%g, TOLERANCE_V=%g, TOLERANCE_T=%g\n"
@@ -300,7 +299,6 @@ f[top]   = dirichlet(1);
 fs[top]   = dirichlet(0);
 alpha_doc[top] = neumann(0);
 
-#define mynorm(v) (sqrt(sq(v.x) + sq(v.y)))
 double xmin_center = 0, xmax_center = 0;
 
 // Cylinder with radii 1
@@ -339,15 +337,19 @@ void solid_func_ring(scalar fs){
 void solid_func_cylinder(scalar fs){
     vertex scalar phi[];
     foreach_vertex() {
-        phi[] = geometry_cylinder(x, y, z, r_outer);
+        phi[] = geometry_cylinder(x, y, z);
     }
     boundary ((scalar *){phi});
     fractions (phi, fs);
     boundary({fs});
 }
 
+double T_target_fun(double x, double y, double z){
+    return T_solid;
+}
 
-void calculate_T_target(scalar T, scalar fs, double T_solid, scalar T_target){
+
+void calculate_T_target(scalar fs, scalar T, scalar T_target){
     foreach(){
         T_target[] = (1 - fs[]) * T[] + fs[] * T_target[];
     }
@@ -374,13 +376,15 @@ event init (t = 0) {
             f[] = 1;
             alpha_doc[] = 0;
             foreach_dimension() u.x[] = 0;
-            levelset[] = geometry_cylinder(x, y, z, r_outer);
+            levelset[] = geometry_cylinder(x, y, z);
             T_target[] = T_solid;
         }
-        boundary({f, fs, fss, alpha_doc, temp_cyl, levelset, u.x, u.y});
+        boundary({f, alpha_doc, T_target, levelset, u.x, u.y});
         if (is_extrapolated){
-            calculate_T_target(T, fss, T_solid, T_target);
-            update_T_target(levelset, T_target, fss, T_solid=T_solid, cfl=0.5, nmax=200);
+            calculate_T_target(fss, T, T_target);
+            solid_function target_fun[1] = {T_target_fun};
+            update_targets(levelset, targets={T_target}, fss=fss, fs=fs, target_fun=target_fun, cfl=0.5, nmax=200);
+//            update_T_target(levelset, T_target, fss, T_solid=T_solid, cfl=0.5, nmax=200);
         }
     }else{
         FILE *popen(const char *cmd_str, const char *mode);
@@ -398,7 +402,7 @@ event init (t = 0) {
             perror("popen");
             exit(EXIT_FAILURE);
         }
-        int k = 0;
+//        int k = 0;
         while (fgets(result, sizeof(result), cmd)) {
             printf ("%s", result);
             // file_timesteps[k++] = atof(result);
@@ -459,9 +463,12 @@ event properties(i++){
 
 event chem_conductivity_term (i++){
     if (is_extrapolated){
-        calculate_T_target(T, fss, T_solid, T_target);
+        calculate_T_target(fss, T, T_target);
         fprintf(ferr, "Extrapolation of T with nmax=%d\n", nmax);
-        update_T_target(levelset, T_target, fs=fss, T_solid=T_solid, cfl=0.5, nmax=nmax);
+        // Array of function pointers for the corresponding solid values
+        solid_function target_fun[1] = {T_target_fun};
+        update_targets(levelset, targets={T_target}, fss=fss, fs=fs, target_fun=target_fun, cfl=0.5, nmax=nmax);
+//        update_T_target(levelset, T_target, fs=fss, T_solid=T_solid, cfl=0.5, nmax=nmax);
     }
 }
 
@@ -496,27 +503,24 @@ event logoutput(t += 0.1){
     }
 }
 
-//#define VTK_SCALARS {rhov, T, T_target, alpha_doc, mu_cell, u.x, u.y, p, Phi_visc, Phi_src, uf.x, levelset}
-//#define VTK_EPS_SCALARS {rhoeps, Teps, Teps, aeps, mueps, ueps, ueps, feps, feps, feps, ueps, feps}
-//event vtk_file (t += dt_vtk)
-//{
-//    char path[] = "res"; // no slash at the end!!
-//    char maxlevel_str[100];
-//    sprintf(maxlevel_str, "%s_%d", prefix, maxlevel);
-//    scalar l[];
-//    foreach() {
-//        l[] = level;
-//    }
-//
-//    output_htg(
-//        (scalar *){T, T_target, alpha_doc, p, fs, fss, f, l, rhov, mu_cell, divutmp, levelset},
-//        (vector *){u, g, uf, dbp, total_rhs, residual_of_u, divtauu, alpha, alphamv, kappa},
-//        path, maxlevel_str, iter_fp, t
-//    );
-//    iter_fp++;
-////    double eps_arr[] = VTK_EPS_SCALARS;
-////    MinMaxValues((scalar *) VTK_SCALARS, eps_arr);
-//}
+#define VTK_SCALARS {rhov, T, T_target, alpha_doc, mu_cell, Phi_src, levelset}
+#define VTK_EPS_SCALARS {rhoeps, Teps, Teps, aeps, mueps, feps, feps}
+//event vtk_file (i += 1)
+event vtk_file (t += dt_vtk)
+{
+    char path[] = "res"; // no slash at the end!!
+    char maxlevel_str[100];
+    sprintf(maxlevel_str, "%s_%d", prefix, maxlevel);
+
+    output_htg(
+        (scalar *){T, T_target, alpha_doc, p, fs, fss, rhov, mu_cell, levelset},
+        (vector *){alpha, alphamv, kappa},
+        path, maxlevel_str, iter_fp, t
+    );
+    iter_fp++;
+    double eps_arr[] = VTK_EPS_SCALARS;
+    MinMaxValues((scalar *) VTK_SCALARS, eps_arr);
+}
 
 
 /**
@@ -530,7 +534,7 @@ event adapt (i++){
 	MinMaxValues((scalar *) ADAPT_SCALARS, eps_arr);
 	adapt_wavelet ((scalar *) ADAPT_SCALARS, eps_arr, maxlevel = maxlevel, minlevel = minlevel);
     foreach(){
-        levelset[] = geometry_cylinder(x, y, z, r_outer);
+        levelset[] = geometry_cylinder(x, y, z);
     }
     boundary({levelset});
     if (i%100) count_cells(t, i);

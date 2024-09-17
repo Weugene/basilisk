@@ -31,8 +31,8 @@ parallel=4
 ind=L0
 prefix=A_0
 is_extrapolated=1
-nmax=2
-Nsb=2
+nmax=4
+Nsb=4
 
 dumpname=dump-1.05384e-05
 args=$(Tcyl) $(Tin) $(maxlevel) $(iter_fp) $(ratio_Rbmin) $(ratio_Rbmax) $(ratio_dist_x) $(ratio_dist_y) $(ratio_front_x) \
@@ -45,8 +45,9 @@ $(Htr) $(Arrhenius_const) $(Ea_by_R) $(ind) $(prefix) $(is_extrapolated) $(nmax)
 #run:=mpirun -np $(parallel)  ./a.out $(args) > out$(ind) 2> log$(ind)
 run_short:=mpirun -np $(parallel)  ./a.out $(args_short) > out_$(prefix) 2> log_$(prefix)
 run_serial:=./a.out $(args_short)
-#compile:=qcc -g -O0 -events
-compile:=CC99='mpicc -std=c99' qcc -O3 -D_MPI=1 -events
+#compile:=qcc -g -O0 -events -Wall
+#compile:=CC99='mpicc -std=c99' qcc -O0 -g -D_MPI=1 -events -Wall -fsanitize=address,undefined -fno-omit-frame-pointer
+compile:=CC99='mpicc -std=c99' qcc -O3 -D_MPI=1 -events -Wall
 remove:=rm -rf .qcc*
 
 all: verify
