@@ -15,10 +15,10 @@ Nb=5
 Ncx=2
 Ncy=3
 TOLERANCE_P=1e-9
-TOLERANCE_V=1e-9
+TOLERANCE_V=1e-8
 TOLERANCE_T=1e-9
 Htr=355000 #355000
-Arrhenius_const=0 #80600   0
+Arrhenius_const=80600 #80600   0
 Ea_by_R=7700 #already divided by 8.31  =  7697=64000/8.314
 dev_r=0.
 dev_x=0.
@@ -29,7 +29,7 @@ non_saturated=0
 
 parallel=4
 ind=L0
-prefix=A_0
+prefix=A_0_couette
 is_extrapolated=1
 nmax=4
 Nsb=4

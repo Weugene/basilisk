@@ -63,7 +63,7 @@ int main(int argc, char * argv[]) {
     fprintf(
         ferr,
         "./a.out T_solid, Tin, maxlevel, iter_fp, TOLERANCE_P, TOLERANCE_V, TOLERANCE_T, Htr, "
-        "Arrhenius_const, Ea_by_R, subname prefix is_extrapolated\n"
+        "Arrhenius_const, Ea_by_R, subname prefix is_extrapolated nmax Nsb\n"
     );
     NITERMIN = 1;
     NITERMAX = 100;
