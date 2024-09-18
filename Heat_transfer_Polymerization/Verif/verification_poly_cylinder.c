@@ -384,7 +384,7 @@ event init (t = 0) {
             calculate_T_target(fss, T, T_target);
             solid_function target_fun[1] = {T_target_fun};
             update_targets(levelset, targets={T_target}, fss=fss, fs=fs, target_fun=target_fun, cfl=0.5, nmax=200);
-//            update_T_target(levelset, T_target, fss, T_solid=T_solid, cfl=0.5, nmax=200);
+//            update_T_target(levelset, T_target, fss=fss, fs=fs, T_solid=T_solid, cfl=0.5, nmax=200);
         }
     }else{
         FILE *popen(const char *cmd_str, const char *mode);
@@ -468,7 +468,7 @@ event chem_conductivity_term (i++){
         // Array of function pointers for the corresponding solid values
         solid_function target_fun[1] = {T_target_fun};
         update_targets(levelset, targets={T_target}, fss=fss, fs=fs, target_fun=target_fun, cfl=0.5, nmax=nmax);
-//        update_T_target(levelset, T_target, fs=fss, T_solid=T_solid, cfl=0.5, nmax=nmax);
+//        update_T_target(levelset, T_target, fss=fss, fs=fs, T_solid=T_solid, cfl=0.5, nmax=nmax);
     }
 }
 
@@ -509,7 +509,7 @@ event logoutput(t += 0.1){
 event vtk_file (t += dt_vtk)
 {
     char path[] = "res"; // no slash at the end!!
-    char maxlevel_str[100];
+    char maxlevel_str[150];
     sprintf(maxlevel_str, "%s_%d", prefix, maxlevel);
 
     output_htg(
