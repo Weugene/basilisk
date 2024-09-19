@@ -35,7 +35,7 @@ int snapshot_i = 1000;
 int iter_fp = 0;
 int is_extrapolated = 0;
 double dt_vtk = 0.02;
-double Uin, Tin, T_solid, Tam;
+double Uin, Tin, T_bottom, T_top, Tam;
 double RhoR, RhoRS, MuR, MuRS, CpR, CpRS, KappaR, KappaRS;
 double Rho1, Rho2, Rho3;
 double Mu0, Mu1, Mu2, Mu3;
@@ -69,7 +69,7 @@ char prefix[100];
 int main(int argc, char * argv[]) {
     fprintf(
         ferr,
-        "./a.out T_solid, Tin, maxlevel, iter_fp, TOLERANCE_P, TOLERANCE_V, TOLERANCE_T, Htr, "
+        "./a.out T_bottom, T_top, Tin, maxlevel, iter_fp, TOLERANCE_P, TOLERANCE_V, TOLERANCE_T, Htr, "
         "Arrhenius_const, Ea_by_R, subname prefix is_extrapolated nmax Nsb\n"
     );
     NITERMIN = 1;
@@ -99,7 +99,7 @@ int main(int argc, char * argv[]) {
 // Physical parameters
 	Uin = 1e-2;
     channel_diam = 0.2, channel_length = 3*channel_diam;
-	Tin = 300, T_solid = 400, Tam = 300;
+	Tin = 300, T_bottom= 300, T_top = 400, Tam = 300;
     // Gorthala, R., Roux, J. A., & Vaughan, J. G. (1994).
     // Resin Flow, Cure and Heat Transfer Analysis for Pultrusion Process.
     // Journal of Composite Materials, 28(6), 486–506.
@@ -119,41 +119,43 @@ int main(int argc, char * argv[]) {
     Ggrav = 0; // m/s^2
 
     if (argc > 1)
-        T_solid = atof(argv[1]);
+        T_bottom = atof(argv[1]);
     if (argc > 2)
-        Tin = atof(argv[2]);
-    Mu0 = 3.85e-7, Mu1 = Mu0*exp(Eeta_by_Rg/Tin), Mu2 = 1.963e-5, Mu3 = Mu0*exp(Eeta_by_Rg/T_solid)*Rho3/Rho1;//air at 50C //Mu2 = 1.963e-5
-	if (argc > 3)
-        maxlevel = atoi(argv[3]);
-    if (argc > 4)
-        iter_fp = atoi(argv[4]);
-	if (argc > 5)
-        TOLERANCE_P = atof(argv[5]);
-    if (argc > 6)
-        TOLERANCE_V = atof(argv[6]);
+        T_top = atof(argv[2]);
+    if (argc > 3)
+        Tin = atof(argv[3]);
+    Mu0 = 3.85e-7, Mu1 = Mu0*exp(Eeta_by_Rg/Tin), Mu2 = 1.963e-5, Mu3 = Mu0*exp(Eeta_by_Rg/T_top)*Rho3/Rho1;//air at 50C //Mu2 = 1.963e-5
+	if (argc > 4)
+        maxlevel = atoi(argv[4]);
+    if (argc > 5)
+        iter_fp = atoi(argv[5]);
+	if (argc > 6)
+        TOLERANCE_P = atof(argv[6]);
     if (argc > 7)
-        TOLERANCE_T = atof(argv[7]);
-	if (argc > 8)
-		Htr = atof(argv[8]);
+        TOLERANCE_V = atof(argv[7]);
+    if (argc > 8)
+        TOLERANCE_T = atof(argv[8]);
 	if (argc > 9)
-		Arrhenius_const = atof(argv[9]);
+		Htr = atof(argv[9]);
 	if (argc > 10)
-		Ea_by_R = atof(argv[10]);
-    if (argc > 11) {
-        strcpy(subname, argv[11]);
+		Arrhenius_const = atof(argv[10]);
+	if (argc > 11)
+		Ea_by_R = atof(argv[11]);
+    if (argc > 12) {
+        strcpy(subname, argv[12]);
         sprintf (logname, "log%s", subname);
     }
-    if (argc > 12) {
-        strcpy(prefix, argv[12]);
-    }
     if (argc > 13) {
-        is_extrapolated = atoi(argv[13]);
+        strcpy(prefix, argv[13]);
     }
     if (argc > 14) {
-        nmax = atoi(argv[14]);
+        is_extrapolated = atoi(argv[14]);
     }
     if (argc > 15) {
-        Nsb = atoi(argv[15]);
+        nmax = atoi(argv[15]);
+    }
+    if (argc > 16) {
+        Nsb = atoi(argv[16]);
     }
 
 	fprintf(
@@ -161,14 +163,14 @@ int main(int argc, char * argv[]) {
         "Props(SI): Mu0=%g, Mu1=%g, Mu2=%g, Mu3=%g, Rho1=%g, Rho2=%g,  Rho3=%g,\n"
         "           nu1=%g, nu2=%g, nu3=%g,\n"
         "           Kappa1=%g, Kappa2=%g, Kappa3=%g, CP1=%g, CP2=%g, CP3=%g,\n"
-        "           Uin=%g, time*=%g, Tin=%g, T_solid=%g, Tam=%g,\n"
+        "           Uin=%g, time*=%g, Tin=%g, T_bottom=%g, T_top=%g, Tam=%g,\n"
         "           Htr=%g, Arrhenius=%g, Ea_by_R=%g, n_degree=%g,\n"
         "           Eeta_by_Rg=%g, chi=%g\n"
         "Geometry: channel_diam=%g,  domainSize=%g\n",
         Mu0, Mu1, Mu2, Mu3, Rho1, Rho2, Rho3,
         Mu1/Rho1, Mu2/Rho2, Mu3/Rho3,
         Kappa1, Kappa2, Kappa3, CP1, CP2, CP3,
-        Uin, channel_diam/Uin, Tin, T_solid, Tam,
+        Uin, channel_diam/Uin, Tin, T_bottom, T_top, Tam,
         Htr, Arrhenius_const, Ea_by_R, n_degree,
         Eeta_by_Rg, chi,
         channel_diam, channel_length
@@ -200,7 +202,8 @@ int main(int argc, char * argv[]) {
 	Ggrav_ndim = 1./sq(Fr);
 	Uin = 1;
     Tam /= Tin;
-	T_solid /= Tin;
+    T_bottom /= Tin;
+    T_top /= Tin;
 	Tin  /= Tin;
 	channel_diam = 1;
     T_target = temp_cyl;
@@ -216,7 +219,7 @@ int main(int argc, char * argv[]) {
         "               Cp1=%g, Cp2=%g, Cp3=%g,\n"
         "               RhoR=%g, RhoRS=%g, MuR=%g, MuRS=%g,\n"
         "               KappaR=%g, KappaRS=%g, CpR=%g, CpRS=%g\n"
-        "               Uin=%g, Tin=%g, T_solid=%g, Tam=%g,\n"
+        "               Uin=%g, Tin=%g, T_bottom=%g, T_top=%g, Tam=%g,\n"
         "               Htr=%g, Arrhenius_const=%g, Ea_by_R=%g, Eeta_by_Rg=%g,\n"
         "               L0=%g, channel_diam=%g, maxDT0=%g for maxlevel=8, maxDT=%g for maxlevel=%d\n"
         "               Ggrav_ndim=%g Uin=%g,\n"
@@ -233,7 +236,7 @@ int main(int argc, char * argv[]) {
        Cp1, Cp2, Cp3,
        RhoR, RhoRS, MuR, MuRS,
        KappaR, KappaRS, CpR, CpRS,
-       Uin, Tin, T_solid, Tam,
+       Uin, Tin, T_bottom, T_top, Tam,
        Htr, Arrhenius_const, Ea_by_R, Eeta_by_Rg,
        L0, channel_diam, maxDT0, maxDT, maxlevel,
        Ggrav_ndim, Uin,
@@ -283,10 +286,9 @@ int main(int argc, char * argv[]) {
 //#define T_BC ( (fabs(y) <= 0.5) ? 0.5 * (T_solid + Tin) - 0.5 * (T_solid - Tin) * cos(2*pi*y) :  T_solid   )
 //#define T_BC ( (fabs(y) <= 0.5) ? 0.5 * (T_solid + Tin) - 0.5 * (T_solid - Tin) * cos(pi*(y + 0.5)) :  \
 //               (y < -0.5) ? Tin : T_solid   ) // Smoothed
-//#define T_BC ( (fabs(y) <= 0.5) ? 0.5 * (T_solid + Tin) + 0.5 * (T_solid - Tin) * cos(2*pi*m_hump*(y + 0.5)) :  \
-//               (y < -0.5) ? T_solid : T_solid   ) // Smoothed with hump
-#define T_BC ( T_solid + (Tin - T_solid)*(hump(y - 0.05, 0.05) + hump(y + 0.05, 0.05) )) // Smoothed with 2 humps
-
+#define T_BC ( (fabs(y) <= 0.5) ? 0.5 * (T_bottom + T_top) - 0.5 * (T_top - T_bottom) * cos(pi*(y + 0.5)) :  \
+               (y < -0.5) ? T_bottom : T_top   ) // Smoothed with hump
+//#define T_BC ( T_solid + (Tin - T_solid)*(hump(y - 0.05, 0.05) + hump(y + 0.05, 0.05) )) // Smoothed with 2 humps
 
 u.n[bottom] = dirichlet(0);
 u.t[bottom] = dirichlet(u_BC);
@@ -337,27 +339,12 @@ void solid_func(scalar fs){
     boundary({fs});
 }
 
-double exact_solution(double x, double y, double z, double t){
-    double se = sqrt(etaT);
-    double D1 = (T_solid - Tin)/(1.0 + 2.0*se);
-    double D2 = 0.5*(Tin + T_solid);
-    double A2 = se*D1;
-    double B1 = -se*D1;
-
-    if (y < -0.5)
-        return A2*exp((y + 0.5)/se) + Tin;
-    else if (y < 0.5)
-        return D1*y + D2;
-    else
-        return B1*exp(-(y - 0.5)/se) + T_solid;
-}
-
 double T_target_fun(double x, double y, double z){
-    return T_solid;
+    return (y > 0) ? T_top : T_bottom;
 }
 
 double U_target_fun_x(double x, double y, double z){
-    return u_BC;
+    return (y > 0) ? Uin : 0;
 }
 
 void calculate_targets(scalar fs, scalar T, scalar T_target, vector u, vector target_U){

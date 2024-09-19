@@ -2,6 +2,8 @@ CFLAGS=-DDUMP=1 -O3 #-events
 CLIBS=-lm
 
 Tcyl=500
+Tbottom=300
+Ttop=500
 Tin=300
 maxlevel=8
 iter_fp=0
@@ -15,7 +17,7 @@ Nb=5
 Ncx=2
 Ncy=3
 TOLERANCE_P=1e-9
-TOLERANCE_V=1e-8
+TOLERANCE_V=1e-9
 TOLERANCE_T=1e-9
 Htr=355000 #355000
 Arrhenius_const=80600 #80600   0
@@ -42,8 +44,12 @@ $(Htr) $(Arrhenius_const) $(Ea_by_R) $(dev_r) $(dev_x) $(dev_y) $(shift_x) $(shi
 args_short=$(Tcyl) $(Tin) $(maxlevel) $(iter_fp) $(TOLERANCE_P) $(TOLERANCE_V) $(TOLERANCE_T) \
 $(Htr) $(Arrhenius_const) $(Ea_by_R) $(ind) $(prefix) $(is_extrapolated) $(nmax) $(Nsb)
 
+args_couette=$(Tbottom) $(Ttop) $(Tin) $(maxlevel) $(iter_fp) $(TOLERANCE_P) $(TOLERANCE_V) $(TOLERANCE_T) \
+$(Htr) $(Arrhenius_const) $(Ea_by_R) $(ind) $(prefix) $(is_extrapolated) $(nmax) $(Nsb)
+
 #run:=mpirun -np $(parallel)  ./a.out $(args) > out$(ind) 2> log$(ind)
-run_short:=mpirun -np $(parallel)  ./a.out $(args_short) > out_$(prefix) 2> log_$(prefix)
+run_short:=mpirun -np $(parallel) ./a.out $(args_short) > out_$(prefix) 2> log_$(prefix)
+run_couette:=mpirun -np $(parallel) ./a.out $(args_couette) > out_$(prefix) 2> log_$(prefix)
 run_serial:=./a.out $(args_short)
 #compile:=qcc -g -O0 -events -Wall
 #compile:=CC99='mpicc -std=c99' qcc -O0 -g -D_MPI=1 -events -Wall -fsanitize=address,undefined -fno-omit-frame-pointer
@@ -69,3 +75,7 @@ verify_couette:
 	$(remove)
 	$(compile)  verification_poly_couette.c -lm
 	$(run_short)
+verify_couette_different_T:
+	$(remove)
+	$(compile)  verification_poly_couette_different_T.c -lm
+	$(run_couette)
