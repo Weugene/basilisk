@@ -1,9 +1,9 @@
 CFLAGS=-DDUMP=1 -O3 #-events
 CLIBS=-lm
 
-Tcyl=600
+Tcyl=500
 Tin=300
-maxlevel=6
+maxlevel=8
 iter_fp=0
 ratio_Rbmin=0.166666
 ratio_Rbmax=0.6

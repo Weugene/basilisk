@@ -33,7 +33,7 @@ vector target_Uv[];
 int snapshot_i = 1000;
 int iter_fp = 0;
 int is_extrapolated = 0;
-double dt_vtk = 0.1;
+double dt_vtk = 0.02;
 double Uin, Tin, T_solid, Tam;
 double RhoR, RhoRS, MuR, MuRS, CpR, CpRS, KappaR, KappaRS;
 double Rho1, Rho2, Rho3;
@@ -74,8 +74,8 @@ int main(int argc, char * argv[]) {
     NITERMIN = 1;
     NITERMAX = 100;
     CFL = 0.4;
-    CFL_ARR = 0.5;
-    double DT0 = 5e-3;
+    CFL_ARR = 0.01;
+    double DT0 = 1e-3;
     maxDT0 = 2.5e-3;
 
     N_smooth = 1; //three-phase-rheology.h
@@ -96,7 +96,7 @@ int main(int argc, char * argv[]) {
     sprintf(logname, "log_saturated_1");
 // Physical parameters
 	Uin = 1e-2;
-    channel_diam = 0.2, channel_length = 20*channel_diam;
+    channel_diam = 0.2, channel_length = 3*channel_diam;
 	Tin = 300, T_solid = 400, Tam = 300;
     // Gorthala, R., Roux, J. A., & Vaughan, J. G. (1994).
     // Resin Flow, Cure and Heat Transfer Analysis for Pultrusion Process.
@@ -154,7 +154,6 @@ int main(int argc, char * argv[]) {
         Nsb = atoi(argv[15]);
     }
 
-    channel_length = (2.0/(1.0 - pow(2.0, 1 - maxlevel)))*channel_diam;
 	fprintf(
         ferr,
         "Props(SI): Mu0=%g, Mu1=%g, Mu2=%g, Mu3=%g, Rho1=%g, Rho2=%g,  Rho3=%g,\n"
@@ -485,7 +484,7 @@ event chem_conductivity_term (i++){
     }
 }
 
-event logoutput(t += 0.1){
+event logoutput(t += 0.01){
     FILE *fp;
     const int Nvar = 7;
     const int Ninterp = 1001;
@@ -494,13 +493,13 @@ event logoutput(t += 0.1){
     coord loc[Ninterp];
     double v[Nvar*Ninterp];
     for (int i = 0; i < Ninterp; i++){
-        loc[i].y = 0.5*L0*i/(Ninterp - 1.0);
+        loc[i].y = Y0 + L0*i/(Ninterp - 1.0);
         loc[i].x = loc[i].z = 0;
     }
     sprintf(name_vtu, "couette_polymerization_basilisk%s.csv", prefix);
     if (firstWrite == 0 && pid() == 0){
         fp = fopen(name_vtu, "w");
-        fprintf (fp, "x,t,maxlevel,T,alpha,u.x,mu,T_target,target_Uv.x,p\n");
+        fprintf (fp, "x,y,t,maxlevel,T,alpha,u.x,mu,T_target,target_Uv.x,p\n");
         fclose(fp);
         firstWrite++;
     }
@@ -508,11 +507,11 @@ event logoutput(t += 0.1){
     interpolate_array ((scalar*) {T, alpha_doc, u.x, mu_cell, T_target, target_Uv.x, p}, loc, Ninterp, v, true);
     if (pid() == 0){
         fp = fopen(name_vtu, "a");
-        for (int i = 0; i < Ninterp; i++){
+        for (int i = 1; i < Ninterp-1; i++){
             int ii = i*Nvar;
             fprintf (
-                fp, "%g,%g,%d,%g,%g,%g,%g,%g\n",
-                loc[i].x, t, maxlevel, v[ii], v[ii+1], v[ii+2], v[ii+3], v[ii+4], v[ii+5], v[ii+6]
+                fp, "%g,%g,%g,%d,%g,%g,%g,%g,%g,%g,%g\n",
+                loc[i].x, loc[i].y, t, maxlevel, v[ii], v[ii+1], v[ii+2], v[ii+3], v[ii+4], v[ii+5], v[ii+6]
             );
         }
         fclose(fp);
@@ -537,6 +536,18 @@ event vtk_file (t += dt_vtk)
     MinMaxValues((scalar *) VTK_SCALARS, eps_arr);
 }
 
+event stop_if_polymerized(i++){
+    double max_alpha_doc = 0;
+    // Find the maximum value of alpha_doc
+    foreach(reduction(max:max_alpha_doc)){
+        if (alpha_doc[] > max_alpha_doc) max_alpha_doc = alpha_doc[];
+    }
+    // If max_alpha_doc exceeds the threshold, stop the simulation
+    if (max_alpha_doc > 0.5){
+        fprintf(ferr, "The resin is fully polymerized with max_alpha_doc=%g\n", max_alpha_doc);
+        return 1;
+    }
+}
 
 /**
 We adapt according to the error on the embedded geometry, velocity and
