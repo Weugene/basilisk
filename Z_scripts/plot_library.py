@@ -8,6 +8,7 @@ from types import ModuleType
 from matplotlib import pyplot as plt
 from statsmodels.nonparametric.smoothers_lowess import lowess as sm_lowess
 
+
 class Line:
     def __init__(self, x, y, name, style, color, marker=None, secondary_axis=False, **kwargs):
         self.x: list = x
@@ -55,6 +56,7 @@ class Line:
         else:
             return {key: input_dict[key] for key in input_dict if key in input_dict}
 
+
 def set_ax_design(
         ax,
         xlabel: dict = None,
@@ -97,7 +99,6 @@ def set_ax_design(
     if set_ytick_labels is not None:
         ax.yaxis.set_ticklabels(set_ytick_labels)
 
-
     # Setting the range for the x-axis
     if xrange:
         ax.axis(xmin=xrange[0], xmax=xrange[1])  # Set the x-axis to display
@@ -110,6 +111,7 @@ def set_ax_design(
     if axis_visibility:
         for direction, visibility in axis_visibility.items():
             ax.spines[direction].set_visible(visibility)
+
 
 def plot_matplotlib(
         lines: list[Line],
@@ -144,7 +146,24 @@ def plot_matplotlib(
 ):
     fig, ax1 = plt.subplots()
     ax1.set_aspect(aspect)
-    set_ax_design(ax1, xlabel=xlabel, ylabel=ylabel, xaxis=xaxis, yaxis=yaxis, xtick_params=xtick_params, ytick_params=ytick_params, xrange=xrange, yrange=yrange, axis_visibility=axis_visibility, set_xticks=set_xticks, set_yticks=set_yticks, set_xtick_labels=set_xtick_labels, set_ytick_labels=set_ytick_labels)
+    set_ax_design(
+        ax1,
+        xlabel=xlabel,
+        ylabel=ylabel,
+        xaxis=xaxis,
+        yaxis=yaxis,
+        xtick_params=xtick_params,
+        ytick_params=ytick_params,
+        xrange=xrange,
+        yrange=yrange,
+        axis_visibility=axis_visibility,
+        set_xticks=set_xticks,
+        set_yticks=set_yticks,
+        set_xtick_labels=set_xtick_labels,
+        set_ytick_labels=set_ytick_labels
+    )
+    ax = ax1
+    ax2 = ax1
     if secondary_axis_needed:
         ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
         ax2.set_aspect(aspect)
@@ -198,8 +217,11 @@ def plot_matplotlib(
     # Show plot
     #fig.show()
     # Compress image
-    command = f"gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dPDFSETTINGS=/screen -dNOPAUSE -dBATCH -sOutputFile={compressed_image_name} {original_image_name}"
-    os.system(command)
+    command = f"gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dPDFSETTINGS=/screen " \
+              f"-dNOPAUSE -dBATCH -sOutputFile={compressed_image_name} {original_image_name}"
+    if os.system(command) == 0:
+        os.system(f"rm {original_image_name}")
+
 
 def sort_names(image_files):
     file_names = [os.path.basename(string) for string in image_files]
@@ -209,10 +231,12 @@ def sort_names(image_files):
     image_files = [t[1] for t in times]
     return image_files
 
+
 def give_time(file) -> float:
     filename = os.path.basename(file)
     time = re.findall(r"\d+\.\d+", filename)[0]
     return float(time)
+
 
 def interpolate_by_ngb(arr, mask_val=None, fun=None):
     mask = np.isnan(arr) if mask_val is None else arr == mask_val
@@ -220,6 +244,7 @@ def interpolate_by_ngb(arr, mask_val=None, fun=None):
         mask = fun(arr) | mask
     arr[mask] = np.interp(np.flatnonzero(mask), np.flatnonzero(~mask), arr[~mask])
     return arr
+
 
 def signal_filtering(x_original, y_original, intervals: list[list[int, int]], **kwargs):
     x_in = x_original.copy()
@@ -233,6 +258,7 @@ def signal_filtering(x_original, y_original, intervals: list[list[int, int]], **
         x_in[ind] = sm_x
         y_in[ind] = sm_y
     return x_in, y_in
+
 
 class NumpyEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -249,5 +275,5 @@ class NumpyEncoder(json.JSONEncoder):
         # print(obj)
         try:
             return json.JSONEncoder.default(self, obj)
-        except:
-            return None
+        except Exception:
+            return
