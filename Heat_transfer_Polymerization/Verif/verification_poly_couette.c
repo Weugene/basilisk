@@ -285,7 +285,7 @@ int main(int argc, char * argv[]) {
 //               (y < -0.5) ? Tin : T_solid   ) // Smoothed
 //#define T_BC ( (fabs(y) <= 0.5) ? 0.5 * (T_solid + Tin) + 0.5 * (T_solid - Tin) * cos(2*pi*m_hump*(y + 0.5)) :  \
 //               (y < -0.5) ? T_solid : T_solid   ) // Smoothed with hump
-#define T_BC ( T_solid + (Tin - T_solid)*(hump(y - 0.05, 0.05) + hump(y + 0.05, 0.05) )) // Smoothed with 2 humps
+#define T_BC ( T_solid + (Tin - T_solid)*(hump(y - 0.2, 0.2) + hump(y + 0.2, 0.2) )) // Smoothed with 2 humps
 
 
 u.n[bottom] = dirichlet(0);
