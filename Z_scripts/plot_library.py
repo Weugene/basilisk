@@ -128,7 +128,9 @@ def plot_matplotlib(
         path: str,
         title: str = None,
         vertical: list = None,
+        vertical_style: dict = None,
         horizontal: list = None,
+        horizontal_style: dict = None,
         legend_props: dict | None = None,
         secondary_axis_needed: bool = False,
         second_axis: dict = None,
@@ -179,10 +181,18 @@ def plot_matplotlib(
             ax.text(*args, **kwargs)
 
     # Adding vertical lines and filling the area between them
-    if vertical and len(vertical) == 2 and horizontal and len(horizontal) == 2:
-        # ax1.axvline(x=vertical[0], color='red', linestyle='-')
-        # ax1.axvline(x=vertical[1], color='red', linestyle='-')
-        ax.axvspan(*vertical, alpha=0.3, color='red', lw=0, zorder=-10)
+    if vertical:
+        if isinstance(vertical[0], list):
+            for v in vertical:
+                ax.axvspan(*v, **vertical_style)
+        else:
+            ax.axvspan(*vertical, **vertical_style)
+    if horizontal:
+        if isinstance(horizontal[0], list):
+            for h in horizontal:
+                ax.axhspan(*h, **horizontal_style)
+        else:
+            ax.axhspan(*horizontal, **horizontal_style)
     if grid is not None:
         grid['linestyle'] = '--'
         ax1.grid(**grid)
