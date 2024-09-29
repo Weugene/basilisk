@@ -429,7 +429,7 @@ event init (t = 0) {
 event set_penalization (i++) {
     double new_eta_s = 1e-5;
     double new_m_bp = 0;
-    set_penalization_parameters (mu, rho, new_m_bp, new_eta_s);
+    set_penalization_parameters (mu, rho, fs, new_m_bp, new_eta_s);
     //    new_m_bp = 1;
     //    double new_eta_T = sq(dt);
     //    double mindelta = L0 / (1 << maxlevel);
