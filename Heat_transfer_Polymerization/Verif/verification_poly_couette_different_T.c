@@ -555,4 +555,4 @@ event adapt (i++){
 }
 
 
-event stop(t = 3);
+event stop(t = 0.5);
