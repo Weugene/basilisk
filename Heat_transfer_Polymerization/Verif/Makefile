@@ -31,7 +31,7 @@ non_saturated=0
 
 parallel=4
 ind=L0
-prefix=A_0_couette
+prefix=A_0_wall
 is_extrapolated=1
 nmax=4
 Nsb=4
@@ -65,7 +65,7 @@ verify:
 verify_wall:
 	$(remove)
 	$(compile)  verification_poly_wall.c -lm
-	$(run)
+	$(run_short)
 verify_cylinder:
 	$(remove)
 	$(compile)  verification_poly_cylinder.c -lm
