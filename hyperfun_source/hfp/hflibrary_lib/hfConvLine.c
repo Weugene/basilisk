@@ -1,12 +1,12 @@
 /*==============================================================================
 
- Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa 
+ Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa
  Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,7 +17,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -37,7 +37,7 @@
 #                 end - ending points coordinate array
 #                 begin - beginning points coordinate array
 #                 x - points coordinate array
-# 
+#
 #    Call      :  hfConvLine(x,begin,end,S,T);
 #
 #    Test file :  myline.hf
@@ -94,7 +94,7 @@ double hfConvLine(double* f_a, String_Array_T* str_param) {
 
   for(n=0;n<N;n++) {
     l = sqrt(SQ(end[3*n] - begin[3*n]) + SQ(end[3*n+1] - begin[3*n+1]) + SQ(end[3*n+2] - begin[3*n+2]));
-    
+
     if(l == 0.0) {
       printf("ERROR:Tips of the segment take same coordinate!\n");
       exit (EXIT_FAILURE);
@@ -103,15 +103,15 @@ double hfConvLine(double* f_a, String_Array_T* str_param) {
     ax = (end[3*n] - begin[3*n]) / l;
     ay = (end[3*n+1] - begin[3*n+1]) / l;
     az = (end[3*n+2] - begin[3*n+2]) / l;
-    
+
     dx = x[0] - begin[3*n];
     dy = x[1] - begin[3*n+1];
     dz = x[2] - begin[3*n+2];
-    
+
     xx = dx*ax + dy*ay + dz*az;
     p = sqrt(1 + S[n]*S[n] * ( dx*dx + dy*dy + dz*dz - xx*xx));
     q = sqrt(1 + S[n]*S[n] * ( dx*dx + dy*dy + dz*dz + l*l - 2*l*xx ));
-    
+
     f += xx / (2*p*p*(p*p + S[n]*S[n]*xx*xx)) + (l - xx) / (2*p*p*q*q)
       + (atan(S[n]*xx/p) + atan(S[n]*(l - xx)/p)) / (2*S[n]*p*p*p);
 

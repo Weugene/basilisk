@@ -15,4 +15,3 @@ jet_dischargejose:
 #	CC99='mpicc -std=c99' qcc $(CFLAGS)  -D_MPI=1  jet_dischargejose.c $(CINCL) $(CLIBS)
 #	mpirun -np 5 ./a.out
 #	mvlc movie.mp4
-

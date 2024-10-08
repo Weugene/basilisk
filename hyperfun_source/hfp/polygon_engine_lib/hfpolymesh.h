@@ -1,7 +1,7 @@
 /*==============================================================================
 
 Copyright 1999 Eric Fausett
-Copyright 2003-2004 Pierre-Alain Fayolle, Benjamin Schmitt 
+Copyright 2003-2004 Pierre-Alain Fayolle, Benjamin Schmitt
 Copyright 2007-2008 Oleg Fryazinov, Denis Kravtsov
 
 This Work or file is part of the greater total Work, software or group of
@@ -9,16 +9,16 @@ files named HyperFun Polygonizer.
 
 The implemented polygonization algorithm is described in
 
-Pasko A.A., Pilyugin V.V., Pokrovskiy V.N. 
-"Geometric modeling in the analysis of trivariate functions", 
-Communications of Joint Insititute of Nuclear Research, P10-86-310, 
+Pasko A.A., Pilyugin V.V., Pokrovskiy V.N.
+"Geometric modeling in the analysis of trivariate functions",
+Communications of Joint Insititute of Nuclear Research, P10-86-310,
 Dubna, Russia, 1986 (in Russian).
 
-Pasko A.A., Pilyugin V.V., Pokrovskiy V.N. 
+Pasko A.A., Pilyugin V.V., Pokrovskiy V.N.
 "Geometric modeling in the analysis of trivariate functions",
-Computers and Graphics, vol.12, Nos.3/4, 1988, pp.457-465. 
+Computers and Graphics, vol.12, Nos.3/4, 1988, pp.457-465.
 
-HyperFun Polygonizer can be redistributed and/or modified under the terms 
+HyperFun Polygonizer can be redistributed and/or modified under the terms
 of the CGPL, The Common Good Public License as published by and at CGPL.org
 (http://CGPL.org).  It is released under version 1.0 Beta of the License
 until the 1.0 version is released after which either version 1.0 of the
@@ -29,7 +29,7 @@ WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
 CGPL, The Common Good Public License for more information.)
 
-You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+You should have received a copy of the CGPL along with HyperFun Polygonizer;
 if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -48,7 +48,7 @@ if not, see -  http://CGPL.org to get a copy of the License.
 #include <map>
 #include <string>
 
-#include <cmath>  
+#include <cmath>
 
 #include "hfinterpreter.h"
 #include "hftimer.h"
@@ -162,7 +162,7 @@ public:
 	public:
 		TriData();
 		~TriData();
-		//Initilization 
+		//Initilization
 
 		/*********ADDED FOR ATTRIBUTES*/
 		/*----Added for refinement---*/
@@ -179,7 +179,7 @@ public:
 		void initTNormal();
 
 		/**Modified by schmitt :03 May 2001
-		/**Call inside the hfpolymesh class. 
+		/**Call inside the hfpolymesh class.
 		/**No need to use a double *, and copy it into a vector data type*/
 		void setVNormal(int , std::vector<double>);
 		void setTNormal(int , std::vector<double>);
@@ -258,7 +258,7 @@ private:
 	void CreateVNormals();
 	void CreateTNormals();
 
-	/* ADDED FOR ATTRIBUTES REFINEMENT*/		
+	/* ADDED FOR ATTRIBUTES REFINEMENT*/
 	void Refinement();
 	int FindPositiveValue1(std::vector<double> *, std::vector<double>, std::vector<double>,std::vector<double> );
 	int FindPositiveValue2(std::vector<double> *vertex,std::vector<double> step,std::vector< std::vector<double> > cube,std::vector<double>);
@@ -290,7 +290,7 @@ private:
 	void AddFace6ToCell(int li, int lj, int lk);
 
 	//**********   PRIVATE MEMBERS   **********
-	bool itsSearch;			
+	bool itsSearch;
 	double itsSearchPer;
 
 	bool itsReduce;

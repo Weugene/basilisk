@@ -15,4 +15,3 @@ Rayleigh-Taylor:
 	CC99='mpicc -std=c99' qcc $(CFLAGS)  -D_MPI=1  Rayleigh-Taylor.c $(CINCL) $(CLIBS)
 	mpirun -np 5 ./a.out
 #	mvlc movie.mp4
-

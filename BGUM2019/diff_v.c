@@ -12,7 +12,7 @@ Results:
 ![The level of refinement](diff_v/level.mp4)
 */
 #include "diffusion.h"
-#include "run.h" 
+#include "run.h"
 
 scalar s[];
 
@@ -22,14 +22,14 @@ int main() {
 }
 
 event init (t = 0) {
-  foreach() 
-    s[] = exp(-(sq(x - 0.5) + sq(y - 0.5))*10.); 
+  foreach()
+    s[] = exp(-(sq(x - 0.5) + sq(y - 0.5))*10.);
 }
 
 event mov (t += 0.1) {
   output_ppm (s, file = "s.mp4", n = 256, min = -1, max = 1);
   scalar lev[];
-  foreach() 
+  foreach()
     lev[] = level; //`level` is available in the grid iterator
   output_ppm (lev, file = "level.mp4", n = 256, max = 6);
 }
@@ -55,7 +55,7 @@ event diff (i++) {
 /**
    We "switch on" adaptivity with this event:
 */
-event adapt (i++) 
+event adapt (i++)
   adapt_wavelet ({s}, (double[]){0.01}, 6);
 
 event stop (t = 10);

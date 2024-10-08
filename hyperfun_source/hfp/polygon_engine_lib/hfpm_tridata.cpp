@@ -1,7 +1,7 @@
 /*==============================================================================
 
 Copyright 1999 Eric Fausett
-Copyright 2003-2004 Pierre-Alain Fayolle, Benjamin Schmitt 
+Copyright 2003-2004 Pierre-Alain Fayolle, Benjamin Schmitt
 Copyright 2007-2008 Oleg Fryazinov, Denis Kravtsov
 
 This Work or file is part of the greater total Work, software or group of
@@ -9,16 +9,16 @@ files named HyperFun Polygonizer.
 
 The implemented polygonization algorithm is described in
 
-Pasko A.A., Pilyugin V.V., Pokrovskiy V.N. 
-"Geometric modeling in the analysis of trivariate functions", 
-Communications of Joint Insititute of Nuclear Research, P10-86-310, 
+Pasko A.A., Pilyugin V.V., Pokrovskiy V.N.
+"Geometric modeling in the analysis of trivariate functions",
+Communications of Joint Insititute of Nuclear Research, P10-86-310,
 Dubna, Russia, 1986 (in Russian).
 
-Pasko A.A., Pilyugin V.V., Pokrovskiy V.N. 
+Pasko A.A., Pilyugin V.V., Pokrovskiy V.N.
 "Geometric modeling in the analysis of trivariate functions",
-Computers and Graphics, vol.12, Nos.3/4, 1988, pp.457-465. 
+Computers and Graphics, vol.12, Nos.3/4, 1988, pp.457-465.
 
-HyperFun Polygonizer can be redistributed and/or modified under the terms 
+HyperFun Polygonizer can be redistributed and/or modified under the terms
 of the CGPL, The Common Good Public License as published by and at CGPL.org
 (http://CGPL.org).  It is released under version 1.0 Beta of the License
 until the 1.0 version is released after which either version 1.0 of the
@@ -29,7 +29,7 @@ WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
 CGPL, The Common Good Public License for more information.)
 
-You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+You should have received a copy of the CGPL along with HyperFun Polygonizer;
 if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -51,7 +51,7 @@ HFPolyMesh::TriData::~TriData()
 /****ADDED FOR ATTRIBUTES : int s coresponds to itsSSize*/
 /*void HFPolyMesh::TriData::guessSize(int tNum,int s){
 int vNum=(int)tNum/2;
-guessSize(tNum, vNum,s);		
+guessSize(tNum, vNum,s);
 }*/
 
 
@@ -253,9 +253,9 @@ std::vector<double> HFPolyMesh::TriData::calcTNormal(int t)
 	ttri[1]=itsEVertices[itsTEdges[t][0]][1];
 
 	int test=itsEVertices[itsTEdges[t][1]][0];
-	if ((test!=ttri[0]) && (test!=ttri[1])) 
+	if ((test!=ttri[0]) && (test!=ttri[1]))
 		ttri[2]=test;
-	else 
+	else
 		ttri[2]=itsEVertices[itsTEdges[t][1]][1];
 	tA[0] = getVertex(ttri[0], 0) - getVertex(ttri[1], 0);
 	tA[1] = getVertex(ttri[0], 1) - getVertex(ttri[1], 1);
@@ -423,9 +423,9 @@ void HFPolyMesh::TriData::ccwTriangles(){
 			itsTRev[t]=false;
 /*
 		//		if(fabs(direction)<0.001) cout << "direction: " << direction << "\n";
-		if(direction>0) 
+		if(direction>0)
 			itsTRev[t]=false;
-		else 
+		else
 			itsTRev[t]=true;
 */
 	}
@@ -581,7 +581,7 @@ double HFPolyMesh::TriData::getTNormal(int v, int x){
 double HFPolyMesh::TriData::getFunctVal(int v){
 	//No v index Checking!! Be careful!!
 	return itsVFVal[v];
-}	
+}
 
 vector<int> HFPolyMesh::TriData::getTriangle(int t){
 	//No t index Checking!! Be careful!!
@@ -596,7 +596,7 @@ vector<int> HFPolyMesh::TriData::getTriangle(int t){
 		ret[2]=ret[1];
 		ret[1]=tmpr;
 	}
-	return ret;	
+	return ret;
 }
 
 int HFPolyMesh::TriData::getTriangle(int t, int vnum){
@@ -614,7 +614,7 @@ int HFPolyMesh::TriData::getTriangle(int t, int vnum){
 				return test;
 			}
 			else
-				return itsEVertices[itsTEdges[t][0]][1];			
+				return itsEVertices[itsTEdges[t][0]][1];
 			break;
 		case 2:
 			if(itsTRev[t])
@@ -624,7 +624,7 @@ int HFPolyMesh::TriData::getTriangle(int t, int vnum){
 				if((test!=itsEVertices[itsTEdges[t][0]][0]) && (test!=itsEVertices[itsTEdges[t][0]][1])) ;
 				else test=itsEVertices[itsTEdges[t][1]][1];
 				return test;
-			}			
+			}
 			break;
 		default:
 			return 0;
@@ -674,7 +674,7 @@ double HFPolyMesh::TriData::edgeLength(int v1, int v2){
 	x1 *= x1;
 	x2 *= x2;
 	double ret = x0+x1+x2;
-	return sqrt(ret);	
+	return sqrt(ret);
 }
 
 
@@ -683,7 +683,7 @@ double HFPolyMesh::TriData::edgeLength(int v1, int v2){
 /***i.e. if the function value is negative
 /***One has to find the closest vertex along the
 /***normal where it is positive*/
-//double HFPolyMesh::TriData::getVal(int i){ 
+//double HFPolyMesh::TriData::getVal(int i){
 //	return itsVFVal[i];
 //}
 
@@ -693,7 +693,7 @@ void HFPolyMesh::TriData::ReplaceVertex(int i,vector<double> x,double val,double
 	itsVCoordinates[i][2]=x[2];
 	itsVFVal[i]=val;
 
-	for(int j=0;j<itsSSize;j++) 
+	for(int j=0;j<itsSSize;j++)
 		itsSAttributes[i][j] = attr[j];
 
 

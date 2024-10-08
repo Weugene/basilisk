@@ -388,7 +388,3 @@ event adapt (i++){
     adapt_wavelet ((scalar *) ADAPT_SCALARS, eps_arr, maxlevel = maxlevel, minlevel = 5);
     //    calc_solid(fs, n_sol, target_U);
 }
-
-
-
-

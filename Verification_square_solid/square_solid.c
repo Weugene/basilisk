@@ -136,7 +136,7 @@ void bubbles (scalar f)
                     phi[] = intersection (phi[], (sq(x + xp - xc[i]) + sq(y + yp - yc[i]) - sq(R[i])));
         //phi[] = -phi[];
     }
-    
+
     boundary ({phi});
     fractions (phi, f, ff);
 }

@@ -1,17 +1,16 @@
 # state file generated using paraview version 5.8.0
-
 # ----------------------------------------------------------------
 # setup views used in the visualization
 # ----------------------------------------------------------------
-
 # trace generated using paraview version 5.8.0
 #
-# To ensure correct image size when batch processing, please search 
+# To ensure correct image size when batch processing, please search
 # for and uncomment the line `# renderView*.ViewSize = [*,*]`
+# import the simple module from the paraview
+from __future__ import annotations
 
-#### import the simple module from the paraview
 from paraview.simple import *
-#### disable automatic camera reset on 'Show'
+# disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
 # get the material library
@@ -60,7 +59,8 @@ SetActiveView(renderView1)
 # ----------------------------------------------------------------
 
 # create a new 'PVD Reader'
-tube_bp_from_dumppvd = PVDReader(FileName='/Users/weugene/basilisk/work/tube/tube_bp_from_dump.pvd')
+tube_bp_from_dumppvd = PVDReader(
+    FileName='/Users/weugene/basilisk/work/tube/tube_bp_from_dump.pvd')
 tube_bp_from_dumppvd.CellArrays = ['p', 'fs', 'f', 'l', 'residual_of_p', 'u.x']
 
 # create a new 'Cell Data to Point Data'
@@ -79,7 +79,8 @@ integrateVariables1 = IntegrateVariables(Input=calculator1)
 # ----------------------------------------------------------------
 
 # show data from integrateVariables1
-integrateVariables1Display = Show(integrateVariables1, spreadSheetView1, 'SpreadSheetRepresentation')
+integrateVariables1Display = Show(
+    integrateVariables1, spreadSheetView1, 'SpreadSheetRepresentation')
 
 # ----------------------------------------------------------------
 # finally, restore active source

@@ -115,7 +115,7 @@ event init(t = 0) {
             foreach() {
                 fs[] = (sq(y+L0/4)+sq(x) < sq(L0/4)) ? 1 : 0;
                 f[] = (sq(x) + sq(y-L0*0.5/8) < sq(L0/8)) ? 1 : 0;
-                f[] *= (1 - fs[]); 
+                f[] *= (1 - fs[]);
 		tmp[] = f[] + 2*fs[];
                 u.x[] = 0.0;
                 u.y[] = 0.0;

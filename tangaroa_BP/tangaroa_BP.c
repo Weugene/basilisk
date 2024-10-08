@@ -41,10 +41,10 @@ performances. */
 #include "navier-stokes/perfs.h"
 #include "../src_local/output_vtu_foreach.h"
 /**
-## Importing the geometry 
+## Importing the geometry
 
 This function computes the solid fraction given a pointer to an STL
-file, a tolerance (maximum relative error on distance) and a 
+file, a tolerance (maximum relative error on distance) and a
 maximum level. */
 
 void fraction_from_stl (scalar f, FILE * fp, double eps, int maxlevel){
@@ -56,7 +56,7 @@ void fraction_from_stl (scalar f, FILE * fp, double eps, int maxlevel){
 	double maxl = -HUGE;
 	foreach_dimension() if (max.x - min.x > maxl)
 	maxl = max.x - min.x;
-  
+
 	/**
 	We initialize the distance field on the coarse initial mesh and
 	refine it adaptively until the threshold error (on distance) is

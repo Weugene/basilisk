@@ -1,7 +1,7 @@
 /**
 # Stokes flow through a complex porous medium
 
-The medium is periodic and described using embedded boundaries. 
+The medium is periodic and described using embedded boundaries.
 
 This tests mainly the robustness of the representation of embedded
 boundaries and the convergence of the viscous and Poisson

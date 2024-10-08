@@ -60,7 +60,7 @@ class FaceFactory {
 	{{-1, 3,-1,-1}, null},
 	{{-1, 0,-1,-1}, null},
 	{{ 3,-1,-1,-1}, null},
-	{{-1,-1,-1,-1}, null} 
+	{{-1,-1,-1,-1}, null}
     };
 
     // Clockwise

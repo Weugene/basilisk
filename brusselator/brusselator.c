@@ -83,7 +83,7 @@ event init (i = 0)
   is perturbed by a random noise in [-0.01:0.01]. */
 
   foreach() {
-    C1[] = ka ; 
+    C1[] = ka ;
     C2[] = kb/ka + 0.01*noise();
   }
   boundary ({C1, C2});
@@ -135,7 +135,7 @@ event integration (i++)
   And use the diffusion solver to advance the system from $t$ to $t+dt$. */
 
   scalar r[], beta[];
-  
+
   foreach() {
     r[] = k*ka;
     beta[] = k*(C1[]*C2[] - kb - 1.);

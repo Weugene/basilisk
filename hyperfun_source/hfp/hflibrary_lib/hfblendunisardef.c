@@ -12,7 +12,7 @@ double hfDBlendUni(double *f_a, String_Array_T *str_param)
 {
  double f1,f2,r;
  double xt,yt,d;
- 
+
  r = f_a[0];
  f2 = f_a[1];
  f1 = f_a[2];

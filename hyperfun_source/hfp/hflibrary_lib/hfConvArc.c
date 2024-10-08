@@ -1,12 +1,12 @@
 /*==============================================================================
 
- Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa 
+ Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa
  Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,7 +17,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -40,7 +40,7 @@
 #                 radius - arc radius
 #                 center - center of arc
 #                 x - points coordinate array
-# 
+#
 #    Call      :  hfConvArc(x,center,radius,theta,axis,angle,S,T);
 #
 #    Test file :  myarc.hf
@@ -120,7 +120,7 @@ double hfConvArc(double* f_a, String_Array_T* str_param) {
     cx = center[3*n];    /* Center of Arc */
     cy = center[3*n+1];
     cz = center[3*n+2];
- 
+
     r = radius[n];
     angle[n] += EPS;  /* avoid error */
 
@@ -153,7 +153,7 @@ double hfConvArc(double* f_a, String_Array_T* str_param) {
     if(theta[n] > 180.0) {
       over_th = (theta[n] - 180.0)*rd;
       theta[n] = 180.0;
-      
+
       /* rotate by -angle */
       tempx = (c + ii * one_c)*(x[0]-cx) + (-ks + ij * one_c)*(x[1]-cy) + (js + ki * one_c)*(x[2]-cz);
       tempy = (ks + ij * one_c)*(x[0]-cx) +  (c + jj * one_c)*(x[1]-cy) + (-is + jk * one_c)*(x[2]-cz);
@@ -179,10 +179,10 @@ double hfConvArc(double* f_a, String_Array_T* str_param) {
       p2 = -QU(r)*QU(S[n]) + 2.0*SQ(r)*SQ(S[n])*(SQ(S[n])*(d2 - 2.0*SQ(over_z)) - 1.0) - SQ(1.0 + SQ(S[n])*d2);
       p1 = (p2 < 0.0) ? sqrt(-p2) : sqrt(p2);
       p3 = p1*p2;
-      
+
       f1 = (b*over_y) / (over_x*p2*(a*over_x-b))
 	+ (a*(SQ(over_x) + SQ(over_y))*sin(over_th) - b*over_y) / (over_x*p2*(a*(over_x*cos(over_th) + over_y*sin(over_th)) - b));
-      
+
       if(p2 < 0.0)
 	f2 = 2.0*b*(atan(-a*over_y/p1) + atan((a*over_y - (a*over_x + b)*tan(over_th/2.0)) / p1)) / p3;
       else

@@ -38,7 +38,7 @@ pf[right] = dirichlet(0);
 pf[bottom] = dirichlet(0);
 pf[top] = dirichlet(0);
 /**
-We initialize a vortex dipole with centered location `{xo, yo}` 
+We initialize a vortex dipole with centered location `{xo, yo}`
 */
 
 event init (t = 0) {
@@ -87,7 +87,7 @@ adapt_wavelet ({u.x, u.y}, (double[]){0.01, 0.01}, 10);
 /**
 ##Output
 
-First, movies are generated. 
+First, movies are generated.
 */
 event movie ( t += 0.1 ; t <= 10){
 scalar omega[];

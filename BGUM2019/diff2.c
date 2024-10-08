@@ -6,7 +6,7 @@
 ![Its is compatible with adaptivity too!](diff2/level.mp4)
 
 We closely follow the [previous](diff.c) [examples](diff_v.c) from
-this tutorial. 
+this tutorial.
 */
 
 #include "diffusion2.h"
@@ -27,8 +27,8 @@ int main() {
 }
 
 event init (t = 0) {
-  foreach() 
-    s[] = exp(-(sq(x - 0.5) + sq(y - 0.5))*10.); 
+  foreach()
+    s[] = exp(-(sq(x - 0.5) + sq(y - 0.5))*10.);
 }
 
 event mov (t += 0.1) {
@@ -54,4 +54,3 @@ event adapt (i++)
   adapt_wavelet ({s}, (double[]){0.01}, 6);
 
 event stop (t = 10);
-

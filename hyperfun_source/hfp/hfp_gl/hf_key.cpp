@@ -6,7 +6,7 @@ Copyright 2007-2008 Oleg Fryazinov
 This Work or file is part of the greater total Work, software or group of
 files named HyperFun Polygonizer.
 
-HyperFun Polygonizer can be redistributed and/or modified under the terms 
+HyperFun Polygonizer can be redistributed and/or modified under the terms
 of the CGPL, The Common Good Public License as published by and at CGPL.org
 (http://CGPL.org).  It is released under version 1.0 Beta of the License
 until the 1.0 version is released after which either version 1.0 of the
@@ -17,7 +17,7 @@ WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
 CGPL, The Common Good Public License for more information.)
 
-You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+You should have received a copy of the CGPL along with HyperFun Polygonizer;
 if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -55,13 +55,13 @@ void OutputString(int x, int y, char *string) {
 	glColor3f(0, 0, 0);
 	glRasterPos2f(x, y);
 	len = (int)strlen(string);
-	// for (i = 0; i < len; i++) glutBitmapCharacter(GLUT_BITMAP_9_BY_15, string[i]); GLUT_BITMAP_TIMES_ROMAN_10 
+	// for (i = 0; i < len; i++) glutBitmapCharacter(GLUT_BITMAP_9_BY_15, string[i]); GLUT_BITMAP_TIMES_ROMAN_10
 	for (i = 0; i < len; i++) glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, string[i]);
 }
 
 
 void displaytext(void) {
-	glDisable(GL_LIGHTING); 
+	glDisable(GL_LIGHTING);
 	glViewport(0, 0, width, 70);
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
@@ -108,7 +108,7 @@ void keyboard(unsigned char key, int x, int y)
   case 'Y':
 	  glRotatef(15.,0.0,1.0,0.0);
 	  break;
-  case 'z':  
+  case 'z':
 	  glRotatef(-15.,0.0,0.0,1.0);
 	  break;
   case 'Z':
@@ -116,7 +116,7 @@ void keyboard(unsigned char key, int x, int y)
 	  break;
 
 	  // for scaling the model
-  case 's':  
+  case 's':
 	  glScalef(0.95,0.95,0.95);
 	  break;
   case 'S':
@@ -126,10 +126,10 @@ void keyboard(unsigned char key, int x, int y)
 	  // Light
   case 'l':
   case 'L':
-	  HF_LIGHT_TYPE=(1+ HF_LIGHT_TYPE)%2;l=1;break; 
+	  HF_LIGHT_TYPE=(1+ HF_LIGHT_TYPE)%2;l=1;break;
 	  break;
 
-	  // Wireframe or surface or both 
+	  // Wireframe or surface or both
   case 'w':
   case 'W':
 	  HF_FACE_LINE_FILL=(1+HF_FACE_LINE_FILL)%3;
@@ -169,7 +169,7 @@ void keyboard(unsigned char key, int x, int y)
 	  }
 	  else{
 		  hfAxes = glGenLists (3);
-		  glNewList(hfAxes, GL_COMPILE); 
+		  glNewList(hfAxes, GL_COMPILE);
 		  CreateAxes();
 		  glEndList();
 		  HF_SHOW_AXES=1;
@@ -190,7 +190,7 @@ void keyboard(unsigned char key, int x, int y)
 	// and they were not displayed
 	if((HF_NORMAL==1)&&(HF_SHOW_NORMAL==1)&&(first_normal_show==0)){
 		hfNormals = glGenLists (2);
-		glNewList(hfNormals, GL_COMPILE); 
+		glNewList(hfNormals, GL_COMPILE);
 		DrawNormal();
 		glEndList();
 		first_normal_show=1;

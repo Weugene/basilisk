@@ -71,13 +71,13 @@ $\phi=\sigma\kappa$. */
 
 event acceleration (i++)
 {
-  
+
   /**
   We check for all VOF interfaces for which $\sigma$ is non-zero. */
 
   for (scalar f in interfaces)
     if (f.sigma) {
-      
+
       /**
       If $\phi$ is already allocated, we add $\sigma\kappa$, otherwise
       we allocate a new field and set it to $\sigma\kappa$. */

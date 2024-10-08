@@ -58,4 +58,3 @@ event init (i = 0) {
 //![X component of normal vector](nx.png)
 //
 //![Y component of normal vector](ny.png)
-

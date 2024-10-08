@@ -48,7 +48,7 @@ public class PovrayOut {
 
 	lookAt = new double[3];
 	pos = new double[3];
-	
+
 	lookAt[0] = (min[0] + max[0])/2.0;
 	lookAt[1] = (min[1] + max[1])/2.0;
 	lookAt[2] = (min[2] + max[2])/2.0;
@@ -67,17 +67,17 @@ public class PovrayOut {
 	    fw.write("}\n");
 
 	    fw.write("camera {\n");
-	    fw.write(" location < " + pos[0] + ", " + 
+	    fw.write(" location < " + pos[0] + ", " +
 		     pos[1] + ", " + pos[2] + " >\n");
-	    
-	    fw.write(" look_at < " + lookAt[0] + ", " + 
+
+	    fw.write(" look_at < " + lookAt[0] + ", " +
 		     lookAt[1] + ", " + lookAt[2] + " >\n");
 	    fw.write("}\n");
-	    
+
 	    fw.write("light_source {\n");
-	    fw.write("< " + pos[0] + ", " + pos[1] + ", " + 
+	    fw.write("< " + pos[0] + ", " + pos[1] + ", " +
 		     pos[2] + " >\n" + " color 1\n" + "}\n");
-	    	    
+
 	    fw.write("mesh {\n");
 
 	    for (int i=0; i<indices.length / 3; i++){
@@ -88,72 +88,72 @@ public class PovrayOut {
 		x=vertices[indices[3*i]].x;
 		y=vertices[indices[3*i]].y;
 		z=vertices[indices[3*i]].z;
-		
+
 		if (Math.abs(x)<=1e-5) x=0;
 		if (Math.abs(y)<=1e-5) y=0;
 		if (Math.abs(z)<=1e-5) z=0;
-		
+
 		fw.write(" < " + x + ", " +
 			 y + ", " + z + " >, ");
-		
+
 		x=normals[indices[3*i]].x;
 		y=normals[indices[3*i]].y;
 		z=normals[indices[3*i]].z;
-		
+
 		if (Math.abs(x)<=1e-5) x=0;
 		if (Math.abs(y)<=1e-5) y=0;
 		if (Math.abs(z)<=1e-5) z=0;
-		
-		fw.write("< " + x + ", " + y + 
+
+		fw.write("< " + x + ", " + y +
 			 ", " + z + " >\n");
 
 		x=vertices[indices[3*i+1]].x;
 		y=vertices[indices[3*i+1]].y;
 		z=vertices[indices[3*i+1]].z;
-		
+
 		if (Math.abs(x)<=1e-5) x=0;
 		if (Math.abs(y)<=1e-5) y=0;
 		if (Math.abs(z)<=1e-5) z=0;
 
-		fw.write(" < " + x + ", " + 
-			 y + ", " + z + 
+		fw.write(" < " + x + ", " +
+			 y + ", " + z +
 			 " >, ");
-		
+
 		x=normals[indices[3*i+1]].x;
 		y=normals[indices[3*i+1]].y;
 		z=normals[indices[3*i+1]].z;
-		
+
 		if (Math.abs(x)<=1e-5) x=0;
 		if (Math.abs(y)<=1e-5) y=0;
 		if (Math.abs(z)<=1e-5) z=0;
 
-		fw.write("< " + x + ", " + 
-			 y + ", " + 
-			 z + " >\n"); 
+		fw.write("< " + x + ", " +
+			 y + ", " +
+			 z + " >\n");
 
 		x=vertices[indices[3*i+2]].x;
 		y=vertices[indices[3*i+2]].y;
 		z=vertices[indices[3*i+2]].z;
-		
+
 		if (Math.abs(x)<=1e-5) x=0;
 		if (Math.abs(y)<=1e-5) y=0;
 		if (Math.abs(z)<=1e-5) z=0;
 
-		fw.write(" < " + x + ", " + 
+		fw.write(" < " + x + ", " +
 			 y + ", " + z + " >, ");
 
 		x=normals[indices[3*i+2]].x;
 		y=normals[indices[3*i+2]].y;
 		z=normals[indices[3*i+2]].z;
-		
+
 		if (Math.abs(x)<=1e-5) x=0;
 		if (Math.abs(y)<=1e-5) y=0;
 		if (Math.abs(z)<=1e-5) z=0;
 
-		fw.write("< " + x + ", " + 
-			 y + ", " + z + 
+		fw.write("< " + x + ", " +
+			 y + ", " + z +
 			 " >\n");
-		
+
 		//fw.write(" texture { Green }\n");
 		fw.write("}\n");
 	    }

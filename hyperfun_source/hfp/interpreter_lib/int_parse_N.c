@@ -7,7 +7,7 @@
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -18,7 +18,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -34,7 +34,7 @@
   -- Last revised at: 09/11/2001
   --				30 septembre 2003
   --
-  -- Modifications: 
+  -- Modifications:
 					* added parsing for s array attributes;
 					* added possibility to parse both definition of functions with
 					or without s array; e.g. my_model(x[],a[]) and
@@ -44,7 +44,7 @@
 					but a local variable on the stack
 					the index computed was wrong; it was computed as:
 					index += p_pns->X_dim + p_pns->A_dim
-					whereas it should have been: index += ..... + p_pns->S_dim;                  
+					whereas it should have been: index += ..... + p_pns->S_dim;
 */
 
 
@@ -204,14 +204,14 @@ int HF_For_Bool(char*              p_program,
 
       /* GENERATING CODE END *****************************************************/
       break;
-      
+
     case LeftParenToken:
       HF_get_token(p_program, p_sps);
       memory_status = HF_Get_Bool_Expr(p_program, p_pns, p_error_list, p_sps, NAMES, p_er);
 
 
 
-			
+
 			if (!memory_status || *p_er)
 				return memory_status;
 
@@ -253,7 +253,7 @@ int HF_For_Compare(char*              p_program,
   memory_status = HF_For_Bool(p_program, p_pns, p_error_list, p_sps, NAMES, p_er);
 
 
-	
+
 
 	if (!memory_status || *p_er)
 		return memory_status;
@@ -298,7 +298,7 @@ int HF_For_Compare(char*              p_program,
 	}
       memory_status = HF_GEN_CODE(p_pns, oper, g_line, g_pos);
 
-		
+
 
 			if (!memory_status) return memory_status;
 
@@ -400,7 +400,7 @@ PN_T* HF_Body_By_Index(PN_List_T* p_lib, int index)
   PN_NODE_T* current;
 
 	if (p_lib == NULL) return NULL;
-  
+
 	current = p_lib->first;
   for(i=0;(current != NULL) && (i < index);i++)
     current = current->next;
@@ -447,12 +447,12 @@ int HF_For_Power(char*              p_program,
       HF_get_token(p_program, p_sps);
       memory_status = HF_For_Power(p_program, p_pns, p_error_list, p_sps, NAMES, p_er);
 
-			
+
 			if (!memory_status || *p_er)
 				return memory_status;
 
 
-      /* 
+      /*
 	 After function return we process unary operation
       */
       /* GENERATING CODE:*********************************************************/
@@ -540,7 +540,7 @@ int HF_For_Power(char*              p_program,
 	  memory_status = HF_Get_Expression(p_program, p_pns, p_error_list, p_sps, NAMES, p_er);
 
 
-		
+
 		if (!memory_status || *p_er)
 			return memory_status;
 
@@ -565,14 +565,14 @@ int HF_For_Power(char*              p_program,
 
 		if (!memory_status)
 			return memory_status;
-	  
+
 	  memory_status = HF_GEN_CODE(p_pns, first, g_line, g_pos);
 
 		if (!memory_status)
 			return memory_status;
 
 	  memory_status = HF_GEN_CODE(p_pns, I_ARRAY, g_line, g_pos);
-		
+
 		if (!memory_status)
 			return memory_status;
 
@@ -585,7 +585,7 @@ int HF_For_Power(char*              p_program,
 	      /* GENERATING CODE:*********************************************************/
 	      memory_status = HF_GEN_CODE(p_pns, -index-1, g_line, g_pos);
 
-				
+
 				if (!memory_status)
 					return memory_status;
 
@@ -608,11 +608,11 @@ int HF_For_Power(char*              p_program,
 	      g_pos  = p_sps->lexem_start_position;
 
 	      p_ibody = HF_Find_body_in_library(&(p_pns->other_body_code_list), p_sps->str_buffer);
-	      
+
 	      if(p_ibody == NULL)
-		{ 
-		  
-		  
+		{
+
+
 		  p_ibody = HF_Find_body_in_library(HF_local_library, p_sps->str_buffer);
 		  if(p_ibody != NULL)
 		    {/* found that body is already defined in the same program */
@@ -632,7 +632,7 @@ int HF_For_Power(char*              p_program,
 		      p_ibody = HF_Find_body_in_library(HF_library, p_sps->str_buffer);
 		      if(p_ibody != NULL)
 			{/* body is present in the global library */
-			  p_ibody = HF_Copy_PNS(p_ibody); 
+			  p_ibody = HF_Copy_PNS(p_ibody);
 			  if(p_ibody == NULL)
 			    {
 			      memory_status = 0;
@@ -757,7 +757,7 @@ int HF_For_Power(char*              p_program,
 		      amount = p_pns->X_dim;
 		      index  = 0;
 		    }
-		  else 
+		  else
 		    {
 		      if(p_sps->lexem_code == AIdToken)
 			{
@@ -771,13 +771,13 @@ int HF_For_Power(char*              p_program,
 					{
 							amount = p_pns->S_dim;
 							index  = p_pns->X_dim + p_pns->A_dim;
-					} 
+					}
 				else
 				{
 			  found = HF_Find_In_Name_Array(NAMES, p_sps->str_buffer, &index, &amount, &flag);
 			  if(found && (flag==Array))
 			    {
-					
+
 			      index  += p_pns->X_dim + p_pns->A_dim + p_pns->S_dim;
 			    }
 			  else
@@ -813,7 +813,7 @@ int HF_For_Power(char*              p_program,
 		  {
 			  amount = 1;/*;p_pns->S_dim;*/
 
-			if (amount != p_ibody->S_dim) 
+			if (amount != p_ibody->S_dim)
 			{
 				memory_status = HF_Add_To_ER_List(p_error_list,
 					Error_Strings[Wrong_Number_Of_Items_In_Array],
@@ -822,7 +822,7 @@ int HF_For_Power(char*              p_program,
 				*p_er = 1;
 				return memory_status;
 			}
-					  
+
 			  index = p_pns->X_dim + p_pns->A_dim;
 g_line_3 = p_sps->lexem_start_line;
 					g_pos_3  = p_sps->lexem_start_position;
@@ -843,9 +843,9 @@ g_line_3 = p_sps->lexem_start_line;
 
 		HF_get_token(p_program, p_sps);
 
-		
 
-		if((p_sps->lexem_code == IdentifierToken) || (p_sps->lexem_code == XIdToken) 
+
+		if((p_sps->lexem_code == IdentifierToken) || (p_sps->lexem_code == XIdToken)
 					                              || (p_sps->lexem_code == AIdToken)
 												  || (p_sps->lexem_code == SIdToken)) /* VAVAVA */
 
@@ -914,7 +914,7 @@ g_line_3 = p_sps->lexem_start_line;
 													  p_sps->lexem_start_position);
 					*p_er = 1;
 					return memory_status;
-				}										  
+				}
 		//
 NO_S_ARRAY:	      HF_get_token(p_program, p_sps);
 	      /************************************************************************/
@@ -999,7 +999,7 @@ NO_S_ARRAY:	      HF_get_token(p_program, p_sps);
                       ((p_sps->lexem_code == IdentifierToken) ||
                        (p_sps->lexem_code == XIdToken)        ||
                        (p_sps->lexem_code == AIdToken) ||
-					   (p_sps->lexem_code == SIdToken) ))        /* VAVAVA */		   
+					   (p_sps->lexem_code == SIdToken) ))        /* VAVAVA */
 		    {/* In this case we should interpret arg as ARRAY */
 		      if(p_sps->lexem_code == XIdToken)
 			{
@@ -1046,7 +1046,7 @@ NO_S_ARRAY:	      HF_get_token(p_program, p_sps);
 						return memory_status;
 
 		      memory_status = HF_GEN_CODE(p_pns, index, p_sps->lexem_start_line, p_sps->lexem_start_position);
-					
+
 					if (!memory_status)
 						return memory_status;
 
@@ -1105,7 +1105,7 @@ NO_S_ARRAY:	      HF_get_token(p_program, p_sps);
 				return memory_status;
 
 			memory_status = HF_GEN_CODE(p_pns, FUNC_unary_tilda+1+function_index, g_line, g_pos);
-	
+
 			if (!memory_status)
 				return memory_status;
 
@@ -1152,7 +1152,7 @@ NO_S_ARRAY:	      HF_get_token(p_program, p_sps);
 	memory_status = HF_GEN_CODE(p_pns, p_pns->X_dim, g_line, g_pos);
 	if (!memory_status)
 		return memory_status;
-	
+
 	memory_status = HF_GEN_CODE(p_pns, 0, g_line, g_pos);
 	if (!memory_status)
 		return memory_status;
@@ -1218,7 +1218,7 @@ NO_S_ARRAY:	      HF_get_token(p_program, p_sps);
 		return memory_status;
 
 	memory_status = HF_GEN_CODE(p_pns, I_ARRAY, g_line, g_pos);
-	
+
 	if (!memory_status)
 		return memory_status;
 
@@ -1372,7 +1372,7 @@ int HF_For_Sum(char*              p_program,
 
 			if (!memory_status)
 				return memory_status;
-			
+
 			/* GENERATING CODE END *****************************************************/
 
       oper = p_sps->lexem_code;
@@ -1480,7 +1480,7 @@ int HF_Get_If_Operator(char*              p_program,
 	if (!memory_status)
 		return memory_status;
 	memory_status = HF_GEN_CODE(p_pns, 0, g_line, g_pos);/* Reserve for bool end index */
-  
+
 	if (!memory_status)
 		return memory_status;
 
@@ -1746,13 +1746,13 @@ int HF_Get_Whole_Array_Assign_Operator(char*              p_program,
 		return memory_status;
 
   memory_status = HF_GEN_CODE(p_pns, index, g_line, g_pos);
-	
+
 	if (!memory_status)
 		return memory_status;
-	
+
 	memory_status = HF_GEN_CODE(p_pns, p_pns->constant_values.amount, g_line, g_pos);
 
-	
+
 	if (!memory_status)
 		return memory_status;
 
@@ -2103,7 +2103,7 @@ int HF_Get_Whole_SArray_Assign_Operator(char*              p_program,
       return memory_status;
 
      /* VAVAVA No need for index in NAMES! */
-/*   memory_status = HF_GEN_CODE(p_pns, index, g_line, g_pos); 
+/*   memory_status = HF_GEN_CODE(p_pns, index, g_line, g_pos);
    if(!memory_status)
       return memory_status;
 */
@@ -2512,8 +2512,8 @@ int HF_Get_Array_Decl(char*              p_program,
 	}
 
       memory_status = HF_Add_To_Name_Array(NAMES, p_sps->str_buffer, start_index, HF_round(p_sps->real_value), Array);
-			
-			
+
+
 			if (!memory_status)
 				return memory_status;
 
@@ -2565,7 +2565,7 @@ int HF_Get_Body_Def(char*              p_program,
   while(p_sps->lexem_code == ArrayToken)
     {
       memory_status = HF_Get_Array_Decl(p_program, p_pns, p_error_list, p_sps, &NAMES, &er_array);/* Process array declarations */
-	  
+
       if(!memory_status)
 	goto label_exit;
     }
@@ -2677,14 +2677,14 @@ int HF_Get_X_A(char*              p_program,
     -- Function description:
     --  Function retrieves the body description from program.
   */
-/* VAVAVA_NEW 
+/* VAVAVA_NEW
      HF program argument list must now have either of two forms, e.g.:
 	     my_model(x[4], a[2]) {  -- as in v.1.0
 	and
 		 my_model(x[4], a[2], s[3]) { -- as in v.1.2
  - NB: the function name remains the same: HF_Get_X_A (not HF_Get_X_A_S) !
 */
-/* VAVAVA_NEW NB! 29.10.01: Now it is possible not to use obligotary s[1], 
+/* VAVAVA_NEW NB! 29.10.01: Now it is possible not to use obligotary s[1],
 	if there are no s array; however, it works as if s[1] is present */
 
   int memory_status = 1;
@@ -2808,13 +2808,13 @@ int HF_Get_X_A(char*              p_program,
 /* VAVAVA_NEW Possibly, there are no s array, so ')' expected */
 
 	if(p_sps->lexem_code == RightParenToken)
-		{	
+		{
 
 /* VAVAVA_NEW We act as if 's[1]' is present */
 
 			p_pns->S_dim = HF_round(1.0);
 			p_pns->stack_size += p_pns->S_dim;
-			
+
 			goto HF_GET_X_A_End;
 		}
 
@@ -2928,12 +2928,12 @@ int HF_CreateNewPNS(PN_T** p_p_pns)
   HF_Int_Array_Init(&((*p_p_pns)->index_to_lexem));
   HF_Double_Array_Init(&((*p_p_pns)->constant_values));
   HF_String_Array_Init(&((*p_p_pns)->str_param));
-  
+
   HF_Init_PN_List(&((*p_p_pns)->other_body_code_list));
-  
+
   return_value = HF_Int_Array_Make(&((*p_p_pns)->code_list), 20);
   assert (return_value != 0 );
-  
+
 
   return_value = HF_Int_Array_Make(&((*p_p_pns)->index_to_lexem), 40);
   assert (return_value != 0 );
@@ -2957,7 +2957,7 @@ PN_T* HF_Copy_PNS(PN_T* p_pns)
   if (!return_value)
 		return NULL;
 
-  //#endif /* DEBUG */  
+  //#endif /* DEBUG */
   result->body_name = malloc(strlen(p_pns->body_name)+1);
   //  assert(0);
   if(result->body_name == NULL)
@@ -2967,14 +2967,14 @@ PN_T* HF_Copy_PNS(PN_T* p_pns)
   else
     {
       strncpy(result->body_name, p_pns->body_name, strlen(p_pns->body_name)+1);
-      
+
       result->X_dim = p_pns->X_dim;
       result->A_dim = p_pns->A_dim;
 	  result->S_dim = p_pns->S_dim;   /* VAVAVA */
 
       result->stack_size = p_pns->stack_size;
       result->ad_size = p_pns->ad_size;
-      
+
       status = HF_Copy_Int_Array(&(p_pns->code_list), &(result->code_list));
       if(status)
 		status = HF_Copy_Int_Array(&(p_pns->index_to_lexem), &(result->index_to_lexem));
@@ -2982,7 +2982,7 @@ PN_T* HF_Copy_PNS(PN_T* p_pns)
 		status = HF_Copy_Double_Array(&(p_pns->constant_values), &(result->constant_values));
       if( status )
 		status = HF_Copy_String_Array(&(p_pns->str_param), &(result->str_param));
-      
+
       if(status)
 		status = HF_Copy_PNS_List(&(p_pns->other_body_code_list), &(result->other_body_code_list));
     }
@@ -3004,7 +3004,7 @@ void HF_DeletePNS(PN_T** p_p_pns)
       /* Delete all fileds */
       if((*p_p_pns)->body_name != NULL)
 	  { free((*p_p_pns)->body_name); }
-      
+
 	  (*p_p_pns)->body_name = NULL;
 
 
@@ -3013,10 +3013,10 @@ void HF_DeletePNS(PN_T** p_p_pns)
       HF_Delete_Int_Array(&((*p_p_pns)->index_to_lexem));
 
       HF_Delete_Double_Array(&((*p_p_pns)->constant_values));
-      
+
 	  if((*p_p_pns)->str_param.data != NULL)
 	  { HF_Delete_String_Array(&((*p_p_pns)->str_param)); }
-      
+
       HF_Empty_PN_List(&((*p_p_pns)->other_body_code_list));
       if (*p_p_pns!=NULL)
 	  { free(*p_p_pns); }
@@ -3041,7 +3041,7 @@ int HF_parse(char*        p_program,
   /* Returns 0, if memory allocation fails;                     */
   ScanParamStruct_T sps;
   PN_T*   p_pns = NULL;
-  
+
   int memory_status = 1;
 
   HF_local_library = p_pn_list;
@@ -3072,11 +3072,11 @@ int HF_parse(char*        p_program,
 
   /* START TO WORK */
   HF_get_token(p_program, &sps);
-  
+
   while((sps.lexem_code != EndOfParseToken))
     {
       memory_status = HF_CreateNewPNS(&p_pns);
-      
+
 	  if(!memory_status)
 		break;
 
@@ -3138,18 +3138,18 @@ int HF_parse(char*        p_program,
 
 	if(!memory_status)
     {
-		HF_DeletePNS(&p_pns); 
+		HF_DeletePNS(&p_pns);
 		HF_Empty_PN_List(p_pn_list);
 		HF_Empty_ER_List(p_er_list);
-     
+
     }
 	else
 	{
 		if(HF_Was_Error(p_er_list))
 		{
-			HF_DeletePNS(&p_pns); 
+			HF_DeletePNS(&p_pns);
 			HF_Empty_PN_List(p_pn_list);
-	 
+
 		}
 	}
 

@@ -2395,7 +2395,7 @@ void cache_shrink (Cache * c)
 #line 639 "/home/weugene/basilisk/src/grid/tree.h"
 
 static inline bool has_local_children (Point point)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 641 "/home/weugene/basilisk/src/grid/tree.h"
 
    { foreach_child()
@@ -2405,7 +2405,7 @@ static inline bool has_local_children (Point point)
 }
 
 static inline void cache_append_face (Point point, unsigned short flags)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 649 "/home/weugene/basilisk/src/grid/tree.h"
 
   Tree * q = ((Tree *)grid);
@@ -2629,7 +2629,7 @@ static void update_cache_f (void)
 
 #define foreach_face_generic()\
   { if (((Tree *)grid)->dirty) update_cache_f(); };\
-  foreach_cache(((Tree *)grid)->faces) 
+  foreach_cache(((Tree *)grid)->faces)
 #line 841
 
 #define end_foreach_face_generic() end_foreach_cache()
@@ -2742,7 +2742,7 @@ static void update_depth (int inc)
 }
 
 static void alloc_children (Point point)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 954 "/home/weugene/basilisk/src/grid/tree.h"
 
   if (point.level == grid->depth)
@@ -2782,7 +2782,7 @@ static void alloc_children (Point point)
 }
 #line 1039 "/home/weugene/basilisk/src/grid/tree.h"
 static void free_children (Point point)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 1040 "/home/weugene/basilisk/src/grid/tree.h"
 
 
@@ -2806,7 +2806,7 @@ static void free_children (Point point)
 
 
 void increment_neighbors (Point point)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 1062 "/home/weugene/basilisk/src/grid/tree.h"
 
   ((Tree *)grid)->dirty = true;
@@ -2819,7 +2819,7 @@ void increment_neighbors (Point point)
 }
 
 void decrement_neighbors (Point point)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 1073 "/home/weugene/basilisk/src/grid/tree.h"
 
   ((Tree *)grid)->dirty = true;
@@ -2944,7 +2944,7 @@ void realloc_scalar (void)
 static inline void no_restriction (Point point, scalar s);
 
 static bool normal_neighbor (Point point, scalar * scalars, vector * vectors)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 1229 "/home/weugene/basilisk/src/grid/tree.h"
 
   for (int k = 1; k <= 2; k++)
@@ -3020,7 +3020,7 @@ static bool normal_neighbor (Point point, scalar * scalars, vector * vectors)
 
 static bool diagonal_neighbor_2D (Point point,
       scalar * scalars, vector * vectors)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 1257 "/home/weugene/basilisk/src/grid/tree.h"
 
 
@@ -3129,7 +3129,7 @@ static bool diagonal_neighbor_2D (Point point,
 
 static bool diagonal_neighbor_3D (Point point,
       scalar * scalars, vector * vectors)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 1298 "/home/weugene/basilisk/src/grid/tree.h"
 
 
@@ -3181,7 +3181,7 @@ static bool diagonal_neighbor_3D (Point point,
 #line 1344
 
 static Point tangential_neighbor_x (Point point, bool * zn)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 1346 "/home/weugene/basilisk/src/grid/tree.h"
 
   for (int k = 1; k <= 2; k++)
@@ -3203,7 +3203,7 @@ static Point tangential_neighbor_x (Point point, bool * zn)
 #line 1344
 
 static Point tangential_neighbor_y (Point point, bool * zn)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 1346 "/home/weugene/basilisk/src/grid/tree.h"
 
   for (int k = 1; k <= 2; k++)
@@ -3225,7 +3225,7 @@ static Point tangential_neighbor_y (Point point, bool * zn)
 #line 1344
 
 static Point tangential_neighbor_z (Point point, bool * zn)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 1346 "/home/weugene/basilisk/src/grid/tree.h"
 
   for (int k = 1; k <= 2; k++)
@@ -3246,7 +3246,7 @@ static Point tangential_neighbor_z (Point point, bool * zn)
 }
 
 
-static inline bool is_boundary_point (Point point) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+static inline bool is_boundary_point (Point point) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 1365 "/home/weugene/basilisk/src/grid/tree.h"
 
   return (cell.pid < 0);
@@ -3419,7 +3419,7 @@ static void box_boundary_level (const Boundary * b, scalar * list, int l)
 #define VT _attribute[s.i].v.y
 
 static double masked_average (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 1451 "/home/weugene/basilisk/src/grid/tree.h"
 
   double sum = 0., n = 0.;
@@ -3433,7 +3433,7 @@ static double masked_average (Point point, scalar s)
 #line 1459
 
 static double masked_average_x (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 1461 "/home/weugene/basilisk/src/grid/tree.h"
 
   double sum = 0., n = 0.;
@@ -3446,7 +3446,7 @@ static double masked_average_x (Point point, scalar s)
 #line 1459
 
 static double masked_average_y (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 1461 "/home/weugene/basilisk/src/grid/tree.h"
 
   double sum = 0., n = 0.;
@@ -3459,7 +3459,7 @@ static double masked_average_y (Point point, scalar s)
 #line 1459
 
 static double masked_average_z (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 1461 "/home/weugene/basilisk/src/grid/tree.h"
 
   double sum = 0., n = 0.;
@@ -4380,14 +4380,14 @@ void cartesian_boundary_flux (vector * list)
 }
 
 static double symmetry (Point point, Point neighbor, scalar s, void * data)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 311 "/home/weugene/basilisk/src/grid/cartesian-common.h"
 
   return val(s,0,0,0);
 }
 
 static double antisymmetry (Point point, Point neighbor, scalar s, void * data)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 316 "/home/weugene/basilisk/src/grid/cartesian-common.h"
 
   return -val(s,0,0,0);
@@ -4665,7 +4665,7 @@ static void debug_plot (FILE * fp, const char * name, const char * cells,
 }
 
 void cartesian_debug (Point point)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 522 "/home/weugene/basilisk/src/grid/cartesian-common.h"
 
   char name[80] = "cells";
@@ -4746,7 +4746,7 @@ struct _interpolate {
 };
 
 static double interpolate_linear (Point point, struct _interpolate p)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 626 "/home/weugene/basilisk/src/grid/cartesian-common.h"
 
   scalar v = p.v;
@@ -4767,7 +4767,7 @@ static double interpolate_linear (Point point, struct _interpolate p)
 
 double interpolate (struct _interpolate p)
 { trace ("interpolate", "/home/weugene/basilisk/src/grid/cartesian-common.h", 658);
-  Point point = locate ((struct _locate){p.x, p.y, p.z});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+  Point point = locate ((struct _locate){p.x, p.y, p.z});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 659 "/home/weugene/basilisk/src/grid/cartesian-common.h"
 
   if (point.level < 0)
@@ -4780,7 +4780,7 @@ void interpolate_array (scalar * list, coord * a, int n, double * v, bool linear
 { trace ("interpolate_array", "/home/weugene/basilisk/src/grid/cartesian-common.h", 667);
   int j = 0;
   for (int i = 0; i < n; i++) {
-    Point point = locate ((struct _locate){a[i].x, a[i].y, a[i].z});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+    Point point = locate ((struct _locate){a[i].x, a[i].y, a[i].z});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 670 "/home/weugene/basilisk/src/grid/cartesian-common.h"
 
     if (point.level >= 0) {
@@ -4841,7 +4841,7 @@ bid new_bid()
 
 
 static double periodic_bc (Point point, Point neighbor, scalar s, void * data)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 721 "/home/weugene/basilisk/src/grid/cartesian-common.h"
 
   return nodata;
@@ -4902,7 +4902,7 @@ void periodic (int dir)
 void (* restriction) (scalar *);
 
 static inline void restriction_average (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 27 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 
   double sum = 0.;
@@ -4912,7 +4912,7 @@ static inline void restriction_average (Point point, scalar s)
 }
 
 static inline void restriction_volume_average (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 35 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 
 if (!is_constant(cm)) {
@@ -4947,7 +4947,7 @@ NOT_UNUSED(_const_cm);
  }}
 
 static inline void face_average (Point point, vector v)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 43 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 
   {
@@ -4999,14 +4999,14 @@ static inline void face_average (Point point, vector v)
 }
 
 static inline void restriction_face (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 61 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 
   face_average (point, _attribute[s.i].v);
 }
 
 static inline void restriction_vertex (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 66 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 
   for (int i = 0; i <= 1; i++) {
@@ -5021,11 +5021,11 @@ static inline void restriction_vertex (Point point, scalar s)
   }
 }
 
-static inline void no_restriction (Point point, scalar s) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+static inline void no_restriction (Point point, scalar s) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 78 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 }
 
-static inline void no_data (Point point, scalar s) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+static inline void no_data (Point point, scalar s) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 81 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 
    { foreach_child()
@@ -5083,7 +5083,7 @@ void inverse_wavelet (scalar s, scalar w)
 }
 
 static inline double bilinear (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 125 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 
 
@@ -5103,7 +5103,7 @@ static inline double bilinear (Point point, scalar s)
 }
 
 static inline void refine_bilinear (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 143 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 
    { foreach_child()
@@ -5116,7 +5116,7 @@ static inline double quadratic (double a, double b, double c)
 }
 
 static inline double biquadratic (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 154 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 
 #line 169 "/home/weugene/basilisk/src/grid/multigrid-common.h"
@@ -5126,7 +5126,7 @@ static inline double biquadratic (Point point, scalar s)
 }
 
 static inline double biquadratic_vertex (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 175 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 
 
@@ -5141,7 +5141,7 @@ static inline double biquadratic_vertex (Point point, scalar s)
 }
 
 static inline void refine_biquadratic (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 188 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 
    { foreach_child()
@@ -5149,7 +5149,7 @@ static inline void refine_biquadratic (Point point, scalar s)
 }
 
 static inline void refine_linear (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 194 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 
 if (!is_constant(cm)) {
@@ -5256,7 +5256,7 @@ NOT_UNUSED(_const_cm);
  }}
 
 static inline void refine_reset (Point point, scalar v)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 214 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 
    { foreach_child()
@@ -5264,7 +5264,7 @@ static inline void refine_reset (Point point, scalar v)
 }
 
 static inline void refine_injection (Point point, scalar v)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 220 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 
   double val = val(v,0,0,0);
@@ -5305,7 +5305,7 @@ static vector multigrid_init_face_vector (vector v, const char * name)
 }
 
 void multigrid_debug (Point point)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 251 "/home/weugene/basilisk/src/grid/multigrid-common.h"
 
   cartesian_debug (point);
@@ -5472,7 +5472,7 @@ void subtree_size (scalar size, bool leaves)
 
 #line 21 "/home/weugene/basilisk/src/grid/tree-common.h"
 int refine_cell (Point point, scalar * list, int flag, Cache * refined)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 22 "/home/weugene/basilisk/src/grid/tree-common.h"
 
   int nr = 0;
@@ -5551,7 +5551,7 @@ int refine_cell (Point point, scalar * list, int flag, Cache * refined)
 
 
 bool coarsen_cell (Point point, scalar * list)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 99 "/home/weugene/basilisk/src/grid/tree-common.h"
 
 
@@ -5591,7 +5591,7 @@ bool coarsen_cell (Point point, scalar * list)
 }
 
 void coarsen_cell_recursive (Point point, scalar * list)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 137 "/home/weugene/basilisk/src/grid/tree-common.h"
 
 
@@ -5847,7 +5847,7 @@ static scalar tree_init_scalar (scalar s, const char * name)
 }
 
 static void prolongation_vertex (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 409 "/home/weugene/basilisk/src/grid/tree-common.h"
 
 
@@ -5925,7 +5925,7 @@ static scalar tree_init_vertex_scalar (scalar s, const char * name)
 #line 449
 
 static void refine_face_x (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 451 "/home/weugene/basilisk/src/grid/tree-common.h"
 
   vector v = _attribute[s.i].v;
@@ -5956,7 +5956,7 @@ static void refine_face_x (Point point, scalar s)
 #line 449
 
 static void refine_face_y (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 451 "/home/weugene/basilisk/src/grid/tree-common.h"
 
   vector v = _attribute[s.i].v;
@@ -5987,7 +5987,7 @@ static void refine_face_y (Point point, scalar s)
 #line 449
 
 static void refine_face_z (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 451 "/home/weugene/basilisk/src/grid/tree-common.h"
 
   vector v = _attribute[s.i].v;
@@ -6017,7 +6017,7 @@ static void refine_face_z (Point point, scalar s)
 }
 
 void refine_face (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 479 "/home/weugene/basilisk/src/grid/tree-common.h"
 
   vector v = _attribute[s.i].v;
@@ -6034,7 +6034,7 @@ void refine_face (Point point, scalar s)
 }
 
 void refine_face_solenoidal (Point point, scalar s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 486 "/home/weugene/basilisk/src/grid/tree-common.h"
 
   refine_face (point, s);
@@ -6291,7 +6291,7 @@ static void tree_boundary_level (scalar * list, int l)
   }
 }
 
-double treex (Point point) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+double treex (Point point) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 682 "/home/weugene/basilisk/src/grid/tree-common.h"
 
   if (level == 0)
@@ -6306,7 +6306,7 @@ double treex (Point point) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(
   return treex(parent) + i/(1 << 2*(level - 1));
 }
 
-double treey (Point point) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+double treey (Point point) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 695 "/home/weugene/basilisk/src/grid/tree-common.h"
 
   if (level == 0)
@@ -6453,7 +6453,7 @@ static void cache_level_init (CacheLevel * c)
 }
 
 static void rcv_append (Point point, Rcv * rcv)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 39 "/home/weugene/basilisk/src/grid/tree-mpi.h"
 
   if (level > rcv->depth) {
@@ -6527,7 +6527,7 @@ static Rcv * rcv_pid_pointer (RcvPid * p, int pid)
 }
 
 static void rcv_pid_append (RcvPid * p, int pid, Point point)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 108 "/home/weugene/basilisk/src/grid/tree-mpi.h"
 
   rcv_append (point, rcv_pid_pointer (p, pid));
@@ -7098,7 +7098,7 @@ static void snd_rcv_free (SndRcv * p)
 }
 
 static bool is_root (Point point)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 655 "/home/weugene/basilisk/src/grid/tree-mpi.h"
 
   if ((!is_leaf (cell) && cell.neighbors && cell.pid >= 0))
@@ -7110,7 +7110,7 @@ static bool is_root (Point point)
 
 
 static bool is_local_prolongation (Point point, Point p)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 665 "/home/weugene/basilisk/src/grid/tree-mpi.h"
 
 
@@ -7154,7 +7154,7 @@ static void append_pid (Array * pids, int pid)
 }
 
 static int locals_pids (Point point, Array * pids)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 691 "/home/weugene/basilisk/src/grid/tree-mpi.h"
 
   if (is_leaf(cell)) {
@@ -7184,7 +7184,7 @@ static int locals_pids (Point point, Array * pids)
 }
 
 static int root_pids (Point point, Array * pids)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 719 "/home/weugene/basilisk/src/grid/tree-mpi.h"
 
    { foreach_child()
@@ -7275,7 +7275,7 @@ void check_snd_rcv_matrix (SndRcv * sndrcv, const char * name)
 }
 
 static bool has_local_child (Point point)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 808 "/home/weugene/basilisk/src/grid/tree-mpi.h"
 
    { foreach_child()
@@ -8385,11 +8385,11 @@ timing timer_timing (timer t, int i, size_t tnc, double * mpi)
   s.real = timer_elapsed (t);
   if (tnc == 0) {
     double n = 0;
-     { 
+     {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _n = n; 
+double _n = n;
 #line 69
 foreach(){
 
@@ -8467,11 +8467,11 @@ typedef struct {
 norm normf (scalar f)
 {
   double avg = 0., rms = 0., max = 0., volume = 0.;
-   { 
+   {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _max = max; double _avg = avg; double _rms = rms; double _volume = volume; 
+double _max = max; double _avg = avg; double _rms = rms; double _volume = volume;
 #line 135
 
 if (!is_constant(cm)) {
@@ -8546,11 +8546,11 @@ typedef struct {
 stats statsf (scalar f)
 {
   double min = 1e100, max = -1e100, sum = 0., sum2 = 0., volume = 0.;
-   { 
+   {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _sum = sum; double _sum2 = sum2; double _volume = volume; double _max = max; double _min = min; 
+double _sum = sum; double _sum2 = sum2; double _volume = volume; double _max = max; double _min = min;
 #line 163
 
 if (!is_constant(cm)) {
@@ -8750,11 +8750,11 @@ void vorticity (const vector u, scalar omega)
 double change (scalar s, scalar sn)
 {
   double max = 0.;
-   { 
+   {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _max = max; 
+double _max = max;
 #line 293
 
 if (!is_constant(cm)) {
@@ -8839,7 +8839,7 @@ void output_field (struct OutputField p)
    field[i][len*j + k++] = interpolate ((struct _interpolate){s, x, y});
       }
       else {
- Point point = locate ((struct _locate){x, y});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+ Point point = locate ((struct _locate){x, y});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 62 "/home/weugene/basilisk/src/output.h"
 
  int k = 0;
@@ -8910,7 +8910,7 @@ void output_matrix (struct OutputMatrix p)
       if (p.linear)
  v = interpolate ((struct _interpolate){p.f, xp, yp});
       else {
- Point point = locate ((struct _locate){xp, yp});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+ Point point = locate ((struct _locate){xp, yp});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 157 "/home/weugene/basilisk/src/output.h"
 
  assert (point.level >= 0);
@@ -9271,7 +9271,7 @@ void output_ppm (struct OutputPPM p)
   v = interpolate ((struct _interpolate){p.f, xp, yp, p.z});
      }
      else {
-       Point point = locate ((struct _locate){xp, yp, p.z});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+       Point point = locate ((struct _locate){xp, yp, p.z});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 599 "/home/weugene/basilisk/src/output.h"
 
        if (point.level < 0 || val(p.mask,0,0,0) < 0.)
@@ -9283,7 +9283,7 @@ void output_ppm (struct OutputPPM p)
    else if (p.linear)
      v = interpolate ((struct _interpolate){p.f, xp, yp, p.z});
    else {
-     Point point = locate ((struct _locate){xp, yp, p.z});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+     Point point = locate ((struct _locate){xp, yp, p.z});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 609 "/home/weugene/basilisk/src/output.h"
 
      v = point.level >= 0 ? val(p.f,0,0,0) : nodata;
@@ -9366,7 +9366,7 @@ void output_grd (struct OutputGRD p)
      v = interpolate ((struct _interpolate){p.f, xp, yp});
  }
  else {
-   Point point = locate ((struct _locate){xp, yp});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+   Point point = locate ((struct _locate){xp, yp});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 720 "/home/weugene/basilisk/src/output.h"
 
    if (point.level < 0 || val(p.mask,0,0,0) < 0.)
@@ -9378,7 +9378,7 @@ void output_grd (struct OutputGRD p)
       else if (p.linear)
  v = interpolate ((struct _interpolate){p.f, xp, yp});
       else {
- Point point = locate ((struct _locate){xp, yp});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+ Point point = locate ((struct _locate){xp, yp});  int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 730 "/home/weugene/basilisk/src/output.h"
 
  v = point.level >= 0 ? val(p.f,0,0,0) : nodata;
@@ -9938,11 +9938,11 @@ double timestep (const vector u, double dtmax)
 {
   static double previous = 0.;
   dtmax /= CFL;
-   { 
+   {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _dtmax = dtmax; 
+double _dtmax = dtmax;
 #line 6
 
 if (!is_constant(cm)) {
@@ -10093,7 +10093,7 @@ void tracer_fluxes (scalar f,
 
 
 
-   { 
+   {
 if (!is_constant(fm.x) && !is_constant(src)) {
 #undef val_fm_x
 #define val_fm_x(a,i,j,k) val(a,i,j,k)
@@ -10689,7 +10689,7 @@ void advection (struct Advection p)
     vector flux= new_face_vector("flux");
     tracer_fluxes (f, p.u, flux, p.dt, src);
 
-     { 
+     {
 if (!is_constant(cm)) {
 #undef val_cm
 #define val_cm(a,i,j,k) val(a,i,j,k)
@@ -10877,11 +10877,11 @@ mgstats mg_solve (struct MGSolve p)
 
   mgstats s = {0};
   double sum = 0.;
-   { 
+   {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _sum = sum; 
+double _sum = sum;
 #line 165
 foreach (){
 
@@ -10989,7 +10989,7 @@ static void relax (scalar * al, scalar * bl, int l, void * data)
 
 
 
-   { 
+   {
 if (!is_constant(lambda) && !is_constant(alpha.x)) {
 #undef val_lambda
 #define val_lambda(a,i,j,k) val(a,i,j,k)
@@ -11216,7 +11216,7 @@ static double residual (scalar * al, scalar * bl, scalar * resl, void * data)
 
 
   vector g= new_face_vector("g");
-   { 
+   {
 if (!is_constant(alpha.x)) {
 #undef val_alpha_x
 #define val_alpha_x(a,i,j,k) val(a,i,j,k)
@@ -11302,11 +11302,11 @@ foreach_face_generic() { int ig = -1; VARIABLES;  if (is_face_x()) {
 #line 361
  end_foreach_face(); } }
   boundary_flux (((vector []){{g.x,g.y,g.z},{{-1},{-1},{-1}}}));
-   { 
+   {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _maxres = maxres; 
+double _maxres = maxres;
 #line 363
 
 if (!is_constant(lambda)) {
@@ -11464,7 +11464,7 @@ mgstats project (struct Project q)
 
 
 
-   { 
+   {
 if (!is_constant(alpha.x)) {
 #undef val_alpha_x
 #define val_alpha_x(a,i,j,k) val(a,i,j,k)
@@ -11578,7 +11578,7 @@ static void relax_viscosity (scalar * a, scalar * b, int l, void * data)
   vector w = u;
 
 
-   { 
+   {
 if (!is_constant(rho) && !is_constant(mu.x)) {
 #undef val_rho
 #define val_rho(a,i,j,k) val(a,i,j,k)
@@ -12069,7 +12069,7 @@ static double residual_viscosity (scalar * a, scalar * b, scalar * resl,
 #line 98
  {
     vector taux= new_face_vector("taux");
-     { 
+     {
 if (!is_constant(mu.x)) {
 #undef val_mu_x
 #define val_mu_x(a,i,j,k) val(a,i,j,k)
@@ -12131,7 +12131,7 @@ foreach_face_generic() { int ig = -1; VARIABLES;  if (is_face_x()) {
 #line 101
  end_foreach_face(); } }
 
-       { 
+       {
 if (!is_constant(mu.x)) {
 #undef val_mu_x
 #define val_mu_x(a,i,j,k) val(a,i,j,k)
@@ -12198,7 +12198,7 @@ foreach_face_generic() { int jg = -1; VARIABLES;  if (is_face_y()) {
  end_foreach_face(); } }
 
 
-       { 
+       {
 if (!is_constant(mu.x)) {
 #undef val_mu_x
 #define val_mu_x(a,i,j,k) val(a,i,j,k)
@@ -12265,11 +12265,11 @@ foreach_face_generic() { int kg = -1; VARIABLES;  if (is_face_z()) {
  end_foreach_face(); } }
 
     boundary_flux (((vector []){{taux.x,taux.y,taux.z},{{-1},{-1},{-1}}}));
-     { 
+     {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _maxres = maxres; 
+double _maxres = maxres;
 #line 115
 
 if (!is_constant(rho)) {
@@ -12339,7 +12339,7 @@ mpi_all_reduce_double (maxres, MPI_MAX);
 #line 98
  {
     vector taux= new_face_vector("taux");
-     { 
+     {
 if (!is_constant(mu.y)) {
 #undef val_mu_y
 #define val_mu_y(a,k,i,j) val(a,k,i,j)
@@ -12401,7 +12401,7 @@ foreach_face_generic() { int ig = -1; VARIABLES;  if (is_face_y()) {
 #line 101
  end_foreach_face(); } }
 
-       { 
+       {
 if (!is_constant(mu.y)) {
 #undef val_mu_y
 #define val_mu_y(a,k,i,j) val(a,k,i,j)
@@ -12468,7 +12468,7 @@ foreach_face_generic() { int jg = -1; VARIABLES;  if (is_face_z()) {
  end_foreach_face(); } }
 
 
-       { 
+       {
 if (!is_constant(mu.y)) {
 #undef val_mu_y
 #define val_mu_y(a,k,i,j) val(a,k,i,j)
@@ -12535,11 +12535,11 @@ foreach_face_generic() { int kg = -1; VARIABLES;  if (is_face_x()) {
  end_foreach_face(); } }
 
     boundary_flux (((vector []){{taux.x,taux.y,taux.z},{{-1},{-1},{-1}}}));
-     { 
+     {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _maxres = maxres; 
+double _maxres = maxres;
 #line 115
 
 if (!is_constant(rho)) {
@@ -12609,7 +12609,7 @@ mpi_all_reduce_double (maxres, MPI_MAX);
 #line 98
  {
     vector taux= new_face_vector("taux");
-     { 
+     {
 if (!is_constant(mu.z)) {
 #undef val_mu_z
 #define val_mu_z(a,j,k,i) val(a,j,k,i)
@@ -12671,7 +12671,7 @@ foreach_face_generic() { int ig = -1; VARIABLES;  if (is_face_z()) {
 #line 101
  end_foreach_face(); } }
 
-       { 
+       {
 if (!is_constant(mu.z)) {
 #undef val_mu_z
 #define val_mu_z(a,j,k,i) val(a,j,k,i)
@@ -12738,7 +12738,7 @@ foreach_face_generic() { int jg = -1; VARIABLES;  if (is_face_x()) {
  end_foreach_face(); } }
 
 
-       { 
+       {
 if (!is_constant(mu.z)) {
 #undef val_mu_z
 #define val_mu_z(a,j,k,i) val(a,j,k,i)
@@ -12805,11 +12805,11 @@ foreach_face_generic() { int kg = -1; VARIABLES;  if (is_face_y()) {
  end_foreach_face(); } }
 
     boundary_flux (((vector []){{taux.x,taux.y,taux.z},{{-1},{-1},{-1}}}));
-     { 
+     {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _maxres = maxres; 
+double _maxres = maxres;
 #line 115
 
 if (!is_constant(rho)) {
@@ -12945,17 +12945,17 @@ vector uf= {{8},{9},{10}};
 mgstats mgp, mgpf, mgu;
 bool stokes = false;
 #line 91 "/home/weugene/basilisk/src/navier-stokes/centered.h"
-static void _set_boundary0 (void) { _attribute[p.i].boundary[right] = _boundary0; _attribute[p.i].boundary_homogeneous[right] = _boundary0_homogeneous; } 
-static void _set_boundary1 (void) { _attribute[p.i].boundary[left] = _boundary1; _attribute[p.i].boundary_homogeneous[left] = _boundary1_homogeneous; } 
+static void _set_boundary0 (void) { _attribute[p.i].boundary[right] = _boundary0; _attribute[p.i].boundary_homogeneous[right] = _boundary0_homogeneous; }
+static void _set_boundary1 (void) { _attribute[p.i].boundary[left] = _boundary1; _attribute[p.i].boundary_homogeneous[left] = _boundary1_homogeneous; }
 #line 101 "/home/weugene/basilisk/src/navier-stokes/centered.h"
-static void _set_boundary2 (void) { _attribute[p.i].boundary[top] = _boundary2; _attribute[p.i].boundary_homogeneous[top] = _boundary2_homogeneous; } 
-static void _set_boundary3 (void) { _attribute[p.i].boundary[bottom] = _boundary3; _attribute[p.i].boundary_homogeneous[bottom] = _boundary3_homogeneous; } 
+static void _set_boundary2 (void) { _attribute[p.i].boundary[top] = _boundary2; _attribute[p.i].boundary_homogeneous[top] = _boundary2_homogeneous; }
+static void _set_boundary3 (void) { _attribute[p.i].boundary[bottom] = _boundary3; _attribute[p.i].boundary_homogeneous[bottom] = _boundary3_homogeneous; }
 
 
-static void _set_boundary4 (void) { _attribute[p.i].boundary[front] = _boundary4; _attribute[p.i].boundary_homogeneous[front] = _boundary4_homogeneous; } 
-static void _set_boundary5 (void) { _attribute[p.i].boundary[back] = _boundary5; _attribute[p.i].boundary_homogeneous[back] = _boundary5_homogeneous; } 
+static void _set_boundary4 (void) { _attribute[p.i].boundary[front] = _boundary4; _attribute[p.i].boundary_homogeneous[front] = _boundary4_homogeneous; }
+static void _set_boundary5 (void) { _attribute[p.i].boundary[back] = _boundary5; _attribute[p.i].boundary_homogeneous[back] = _boundary5_homogeneous; }
 #line 126 "/home/weugene/basilisk/src/navier-stokes/centered.h"
-static int defaults_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i = 0);   *ip = i; *tp = t;   return ret; } static int defaults (const int i, const double t, Event * _ev) { trace ("defaults", "/home/weugene/basilisk/src/navier-stokes/centered.h", 126); 
+static int defaults_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i = 0);   *ip = i; *tp = t;   return ret; } static int defaults (const int i, const double t, Event * _ev) { trace ("defaults", "/home/weugene/basilisk/src/navier-stokes/centered.h", 126);
 {
 
   CFL = 0.8;
@@ -12974,7 +12974,7 @@ static int defaults_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; d
   }
   else if (!is_constant(alpha.x)) {
     vector alphav = alpha;
-     { 
+     {
 if (!is_constant(fm.x)) {
 #undef val_fm_x
 #define val_fm_x(a,i,j,k) val(a,i,j,k)
@@ -13069,7 +13069,7 @@ foreach_face_generic() { int ig = -1; VARIABLES;  if (is_face_x()) {
 
   _attribute[uf.x.i].refine = refine_face_solenoidal;
 #line 173 "/home/weugene/basilisk/src/navier-stokes/centered.h"
- end_trace("defaults", "/home/weugene/basilisk/src/navier-stokes/centered.h", 173); } return 0; } 
+ end_trace("defaults", "/home/weugene/basilisk/src/navier-stokes/centered.h", 173); } return 0; }
 
 
 
@@ -13077,11 +13077,11 @@ foreach_face_generic() { int ig = -1; VARIABLES;  if (is_face_x()) {
 
 double dtmax;
 
-static int init_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i = 0);   *ip = i; *tp = t;   return ret; } static int init (const int i, const double t, Event * _ev) { trace ("init", "/home/weugene/basilisk/src/navier-stokes/centered.h", 181); 
+static int init_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i = 0);   *ip = i; *tp = t;   return ret; } static int init (const int i, const double t, Event * _ev) { trace ("init", "/home/weugene/basilisk/src/navier-stokes/centered.h", 181);
 {
   boundary ((scalar *)((vector []){{u.x,u.y,u.z},{{-1},{-1},{-1}}}));
   trash (((vector []){{uf.x,uf.y,uf.z},{{-1},{-1},{-1}}}));
-   { 
+   {
 if (!is_constant(fm.x)) {
 #undef val_fm_x
 #define val_fm_x(a,i,j,k) val(a,i,j,k)
@@ -13179,13 +13179,13 @@ foreach_face_generic() { int ig = -1; VARIABLES;  if (is_face_x()) {
 
   dtmax = DT;
   event ("stability");
- end_trace("init", "/home/weugene/basilisk/src/navier-stokes/centered.h", 200); } return 0; } 
+ end_trace("init", "/home/weugene/basilisk/src/navier-stokes/centered.h", 200); } return 0; }
 #line 209 "/home/weugene/basilisk/src/navier-stokes/centered.h"
-static int set_dtmax_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int set_dtmax (const int i, const double t, Event * _ev) { trace ("set_dtmax", "/home/weugene/basilisk/src/navier-stokes/centered.h", 209);  dtmax = DT; end_trace("set_dtmax", "/home/weugene/basilisk/src/navier-stokes/centered.h", 209);  return 0; } 
+static int set_dtmax_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int set_dtmax (const int i, const double t, Event * _ev) { trace ("set_dtmax", "/home/weugene/basilisk/src/navier-stokes/centered.h", 209);  dtmax = DT; end_trace("set_dtmax", "/home/weugene/basilisk/src/navier-stokes/centered.h", 209);  return 0; }
 
 static int stability_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int stability (const int i, const double t, Event * _ev) { trace ("stability", "/home/weugene/basilisk/src/navier-stokes/centered.h", 211);  {
   dt = dtnext (stokes ? dtmax : timestep (uf, dtmax));
- end_trace("stability", "/home/weugene/basilisk/src/navier-stokes/centered.h", 213); } return 0; } 
+ end_trace("stability", "/home/weugene/basilisk/src/navier-stokes/centered.h", 213); } return 0; }
 
 
 
@@ -13193,9 +13193,9 @@ static int stability_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; 
 
 
 
-static int vof_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int vof (const int i, const double t, Event * _ev) { trace ("vof", "/home/weugene/basilisk/src/navier-stokes/centered.h", 221); ; end_trace("vof", "/home/weugene/basilisk/src/navier-stokes/centered.h", 221);  return 0; } 
-static int tracer_advection_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int tracer_advection (const int i, const double t, Event * _ev) { trace ("tracer_advection", "/home/weugene/basilisk/src/navier-stokes/centered.h", 222); ; end_trace("tracer_advection", "/home/weugene/basilisk/src/navier-stokes/centered.h", 222);  return 0; } 
-static int tracer_diffusion_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int tracer_diffusion (const int i, const double t, Event * _ev) { trace ("tracer_diffusion", "/home/weugene/basilisk/src/navier-stokes/centered.h", 223); ; end_trace("tracer_diffusion", "/home/weugene/basilisk/src/navier-stokes/centered.h", 223);  return 0; } 
+static int vof_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int vof (const int i, const double t, Event * _ev) { trace ("vof", "/home/weugene/basilisk/src/navier-stokes/centered.h", 221); ; end_trace("vof", "/home/weugene/basilisk/src/navier-stokes/centered.h", 221);  return 0; }
+static int tracer_advection_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int tracer_advection (const int i, const double t, Event * _ev) { trace ("tracer_advection", "/home/weugene/basilisk/src/navier-stokes/centered.h", 222); ; end_trace("tracer_advection", "/home/weugene/basilisk/src/navier-stokes/centered.h", 222);  return 0; }
+static int tracer_diffusion_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int tracer_diffusion (const int i, const double t, Event * _ev) { trace ("tracer_diffusion", "/home/weugene/basilisk/src/navier-stokes/centered.h", 223); ; end_trace("tracer_diffusion", "/home/weugene/basilisk/src/navier-stokes/centered.h", 223);  return 0; }
 
 
 
@@ -13204,7 +13204,7 @@ static int tracer_diffusion_expr0 (int * ip, double * tp, Event * _ev) {  int i 
 
 static int properties_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int properties (const int i, const double t, Event * _ev) { trace ("properties", "/home/weugene/basilisk/src/navier-stokes/centered.h", 230);  {
   boundary (((scalar []){alpha.x,alpha.y,alpha.z,mu.x,mu.y,mu.z,rho,{-1}}));
- end_trace("properties", "/home/weugene/basilisk/src/navier-stokes/centered.h", 232); } return 0; } 
+ end_trace("properties", "/home/weugene/basilisk/src/navier-stokes/centered.h", 232); } return 0; }
 #line 244 "/home/weugene/basilisk/src/navier-stokes/centered.h"
 void prediction()
 {
@@ -13295,7 +13295,7 @@ void prediction()
   boundary ((scalar *)((vector []){{du.x,du.y,du.z},{{-1},{-1},{-1}}}));
 
   trash (((vector []){{uf.x,uf.y,uf.z},{{-1},{-1},{-1}}}));
-   { 
+   {
 if (!is_constant(fm.x)) {
 #undef val_fm_x
 #define val_fm_x(a,i,j,k) val(a,i,j,k)
@@ -13481,14 +13481,14 @@ foreach_face_generic() { int ig = -1; VARIABLES;  if (is_face_x()) {
   delete ((scalar *)((vector []){{du.x,du.y,du.z},{{-1},{-1},{-1}}}));
 }
 #line 307 "/home/weugene/basilisk/src/navier-stokes/centered.h"
-static int advection_term_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int advection_term (const int i, const double t, Event * _ev) { trace ("advection_term", "/home/weugene/basilisk/src/navier-stokes/centered.h", 307); 
+static int advection_term_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int advection_term (const int i, const double t, Event * _ev) { trace ("advection_term", "/home/weugene/basilisk/src/navier-stokes/centered.h", 307);
 {
   if (!stokes) {
     prediction();
     mgpf = project ((struct Project){uf, pf, alpha, dt/2., mgpf.nrelax});
     advection ((struct Advection){(scalar *)((vector []){{u.x,u.y,u.z},{{-1},{-1},{-1}}}), uf, dt, (scalar *)((vector []){{g.x,g.y,g.z},{{-1},{-1},{-1}}})});
   }
- end_trace("advection_term", "/home/weugene/basilisk/src/navier-stokes/centered.h", 314); } return 0; } 
+ end_trace("advection_term", "/home/weugene/basilisk/src/navier-stokes/centered.h", 314); } return 0; }
 
 
 
@@ -13515,7 +13515,7 @@ static void correction (double dt)
   boundary ((scalar *)((vector []){{u.x,u.y,u.z},{{-1},{-1},{-1}}}));
 }
 #line 337 "/home/weugene/basilisk/src/navier-stokes/centered.h"
-static int viscous_term_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int viscous_term (const int i, const double t, Event * _ev) { trace ("viscous_term", "/home/weugene/basilisk/src/navier-stokes/centered.h", 337); 
+static int viscous_term_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int viscous_term (const int i, const double t, Event * _ev) { trace ("viscous_term", "/home/weugene/basilisk/src/navier-stokes/centered.h", 337);
 {
   if (constant(mu.x) != 0.) {
     correction (dt);
@@ -13551,12 +13551,12 @@ static int viscous_term_expr0 (int * ip, double * tp, Event * _ev) {  int i = *i
 #line 352
  end_foreach_face(); }
   }
- end_trace("viscous_term", "/home/weugene/basilisk/src/navier-stokes/centered.h", 354); } return 0; } 
+ end_trace("viscous_term", "/home/weugene/basilisk/src/navier-stokes/centered.h", 354); } return 0; }
 #line 373 "/home/weugene/basilisk/src/navier-stokes/centered.h"
-static int acceleration_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int acceleration (const int i, const double t, Event * _ev) { trace ("acceleration", "/home/weugene/basilisk/src/navier-stokes/centered.h", 373); 
+static int acceleration_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int acceleration (const int i, const double t, Event * _ev) { trace ("acceleration", "/home/weugene/basilisk/src/navier-stokes/centered.h", 373);
 {
   trash (((vector []){{uf.x,uf.y,uf.z},{{-1},{-1},{-1}}}));
-   { 
+   {
 if (!is_constant(fm.x) && !is_constant(a.x)) {
 #undef val_fm_x
 #define val_fm_x(a,i,j,k) val(a,i,j,k)
@@ -13802,7 +13802,7 @@ foreach_face_generic() { int ig = -1; VARIABLES;  if (is_face_x()) {
 #line 377
  end_foreach_face(); } }
   boundary ((scalar *)((vector []){{uf.x,uf.y,uf.z},{a.x,a.y,a.z},{{-1},{-1},{-1}}}));
- end_trace("acceleration", "/home/weugene/basilisk/src/navier-stokes/centered.h", 379); } return 0; } 
+ end_trace("acceleration", "/home/weugene/basilisk/src/navier-stokes/centered.h", 379); } return 0; }
 #line 388 "/home/weugene/basilisk/src/navier-stokes/centered.h"
 void centered_gradient (scalar p, vector g)
 {
@@ -13812,7 +13812,7 @@ void centered_gradient (scalar p, vector g)
 
 
   vector gf= new_face_vector("gf");
-   { 
+   {
 if (!is_constant(fm.x) && !is_constant(a.x) && !is_constant(alpha.x)) {
 #undef val_fm_x
 #define val_fm_x(a,i,j,k) val(a,i,j,k)
@@ -14460,7 +14460,7 @@ foreach_face_generic() { int ig = -1; VARIABLES;  if (is_face_x()) {
 
 
   trash (((vector []){{g.x,g.y,g.z},{{-1},{-1},{-1}}}));
-   { 
+   {
 if (!is_constant(fm.x)) {
 #undef val_fm_x
 #define val_fm_x(a,i,j,k) val(a,i,j,k)
@@ -14539,7 +14539,7 @@ foreach(){
 
 
 
-static int projection_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int projection (const int i, const double t, Event * _ev) { trace ("projection", "/home/weugene/basilisk/src/navier-stokes/centered.h", 416); 
+static int projection_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int projection (const int i, const double t, Event * _ev) { trace ("projection", "/home/weugene/basilisk/src/navier-stokes/centered.h", 416);
 {
   mgp = project ((struct Project){uf, p, alpha, dt, mgp.nrelax});
   centered_gradient (p, g);
@@ -14548,13 +14548,13 @@ static int projection_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip;
 
 
   correction (dt);
- end_trace("projection", "/home/weugene/basilisk/src/navier-stokes/centered.h", 425); } return 0; } 
+ end_trace("projection", "/home/weugene/basilisk/src/navier-stokes/centered.h", 425); } return 0; }
 
 
 
 
 
-static int end_timestep_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int end_timestep (const int i, const double t, Event * _ev) { trace ("end_timestep", "/home/weugene/basilisk/src/navier-stokes/centered.h", 431); ; end_trace("end_timestep", "/home/weugene/basilisk/src/navier-stokes/centered.h", 431);  return 0; } 
+static int end_timestep_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int end_timestep (const int i, const double t, Event * _ev) { trace ("end_timestep", "/home/weugene/basilisk/src/navier-stokes/centered.h", 431); ; end_trace("end_timestep", "/home/weugene/basilisk/src/navier-stokes/centered.h", 431);  return 0; }
 #line 441 "/home/weugene/basilisk/src/navier-stokes/centered.h"
 static int adapt_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int adapt (const int i, const double t, Event * _ev) { trace ("adapt", "/home/weugene/basilisk/src/navier-stokes/centered.h", 441);  {
 
@@ -14565,7 +14565,7 @@ static int adapt_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; doub
 
 
   event ("properties");
- end_trace("adapt", "/home/weugene/basilisk/src/navier-stokes/centered.h", 450); } return 0; } 
+ end_trace("adapt", "/home/weugene/basilisk/src/navier-stokes/centered.h", 450); } return 0; }
 #line 33 "sessile3D.c"
 #line 1 "contact.h"
 #line 1 "/home/weugene/basilisk/src/contact.h"
@@ -15392,7 +15392,7 @@ void plane_center (coord m, double alpha, double a, coord * p)
 #line 1 "/home/weugene/basilisk/src/myc.h"
 #line 16 "/home/weugene/basilisk/src/myc.h"
 coord mycs (Point point, scalar c)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 17 "/home/weugene/basilisk/src/myc.h"
 
   double m1,m2,m[4][3],t0,t1,t2;
@@ -15531,7 +15531,7 @@ coord mycs (Point point, scalar c)
 #line 22 "/home/weugene/basilisk/src/fractions.h"
 #line 41 "/home/weugene/basilisk/src/fractions.h"
 void fraction_refine (Point point, scalar c)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 42 "/home/weugene/basilisk/src/fractions.h"
 
 
@@ -15585,7 +15585,7 @@ void fraction_refine (Point point, scalar c)
 
 
 static void alpha_refine (Point point, scalar alpha)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 86 "/home/weugene/basilisk/src/fractions.h"
 
   vector n = _attribute[alpha.i].n;
@@ -16053,7 +16053,7 @@ void fractions (struct Fractions a)
  delete (((scalar []){p.x,p.y,p.z,{-1}}));  { if (!(a.s).x.i) delete (((scalar []){s.x,s.y,s.z,{-1}})); }  end_trace("fractions", "/home/weugene/basilisk/src/fractions.h", 346); }
 #line 384 "/home/weugene/basilisk/src/fractions.h"
 coord youngs_normal (Point point, scalar c)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 385 "/home/weugene/basilisk/src/fractions.h"
 
   coord n;
@@ -16100,7 +16100,7 @@ coord youngs_normal (Point point, scalar c)
 
 
 coord facet_normal (Point point, scalar c, vector s)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 408 "/home/weugene/basilisk/src/fractions.h"
 
   if (s.x.i >= 0) {
@@ -16273,11 +16273,11 @@ void output_facets (struct OutputFacets p)
 double interface_area (scalar c)
 { trace ("interface_area", "/home/weugene/basilisk/src/fractions.h", 551);
   double area = 0.;
-   { 
+   {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _area = area; 
+double _area = area;
 #line 553
 foreach (){
 
@@ -16302,7 +16302,7 @@ mpi_all_reduce_double (area, MPI_SUM);
 #line 1 "/home/weugene/basilisk/src/curvature.h"
 #line 12 "/home/weugene/basilisk/src/curvature.h"
 static void curvature_restriction (Point point, scalar kappa)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 13 "/home/weugene/basilisk/src/curvature.h"
 
   double k = 0., s = 0.;
@@ -16319,7 +16319,7 @@ static void curvature_restriction (Point point, scalar kappa)
 
 
 static void curvature_prolongation (Point point, scalar kappa)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 28 "/home/weugene/basilisk/src/curvature.h"
 
    { foreach_child() {
@@ -16349,7 +16349,7 @@ static inline int orientation (double H) {
 }
 #line 49 "/home/weugene/basilisk/src/heights.h"
 static void half_column (Point point, scalar c, vector h, vector cs, int j)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 50 "/home/weugene/basilisk/src/heights.h"
 
 
@@ -16759,7 +16759,7 @@ static void column_propagation (vector h)
 #line 291
 
 static void refine_h_x (Point point, scalar h)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 293 "/home/weugene/basilisk/src/heights.h"
 
 
@@ -16807,7 +16807,7 @@ static void refine_h_x (Point point, scalar h)
 #line 291
 
 static void refine_h_y (Point point, scalar h)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 293 "/home/weugene/basilisk/src/heights.h"
 
 
@@ -16855,7 +16855,7 @@ static void refine_h_y (Point point, scalar h)
 #line 291
 
 static void refine_h_z (Point point, scalar h)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 293 "/home/weugene/basilisk/src/heights.h"
 
 
@@ -17084,7 +17084,7 @@ void heights (scalar c, vector h)
 #line 104
 
 static double kappa_z (Point point, vector h)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 106 "/home/weugene/basilisk/src/curvature.h"
 
   int ori = orientation(val(h.z,0,0,0));
@@ -17117,7 +17117,7 @@ static double kappa_z (Point point, vector h)
 #line 104
 
 static double kappa_x (Point point, vector h)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 106 "/home/weugene/basilisk/src/curvature.h"
 
   int ori = orientation(val(h.x,0,0,0));
@@ -17150,7 +17150,7 @@ static double kappa_x (Point point, vector h)
 #line 104
 
 static double kappa_y (Point point, vector h)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 106 "/home/weugene/basilisk/src/curvature.h"
 
   int ori = orientation(val(h.y,0,0,0));
@@ -17185,7 +17185,7 @@ static double kappa_y (Point point, vector h)
 #line 135
 
 static coord normal2_z (Point point, vector h)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 137 "/home/weugene/basilisk/src/curvature.h"
 
   scalar hz = h.z;
@@ -17227,7 +17227,7 @@ static coord normal2_z (Point point, vector h)
 #line 135
 
 static coord normal2_x (Point point, vector h)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 137 "/home/weugene/basilisk/src/curvature.h"
 
   scalar hz = h.x;
@@ -17269,7 +17269,7 @@ static coord normal2_x (Point point, vector h)
 #line 135
 
 static coord normal2_y (Point point, vector h)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 137 "/home/weugene/basilisk/src/curvature.h"
 
   scalar hz = h.y;
@@ -17312,7 +17312,7 @@ static coord normal2_y (Point point, vector h)
 
 #line 160
 
-static coord normal_z (Point point, vector h) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+static coord normal_z (Point point, vector h) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 161 "/home/weugene/basilisk/src/curvature.h"
 
   coord n = normal2_z (point, h);
@@ -17334,7 +17334,7 @@ static coord normal_z (Point point, vector h) { int ig = 0; NOT_UNUSED(ig); int 
 }
 #line 160
 
-static coord normal_x (Point point, vector h) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+static coord normal_x (Point point, vector h) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 161 "/home/weugene/basilisk/src/curvature.h"
 
   coord n = normal2_x (point, h);
@@ -17356,7 +17356,7 @@ static coord normal_x (Point point, vector h) { int ig = 0; NOT_UNUSED(ig); int 
 }
 #line 160
 
-static coord normal_y (Point point, vector h) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+static coord normal_y (Point point, vector h) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 161 "/home/weugene/basilisk/src/curvature.h"
 
   coord n = normal2_y (point, h);
@@ -17378,7 +17378,7 @@ static coord normal_y (Point point, vector h) { int ig = 0; NOT_UNUSED(ig); int 
 }
 #line 179 "/home/weugene/basilisk/src/curvature.h"
 static double height_curvature (Point point, scalar c, vector h)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 180 "/home/weugene/basilisk/src/curvature.h"
 
 
@@ -17471,7 +17471,7 @@ static double height_curvature (Point point, scalar c, vector h)
 
 
 coord height_normal (Point point, scalar c, vector h)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 258 "/home/weugene/basilisk/src/curvature.h"
 
 
@@ -17538,7 +17538,7 @@ coord height_normal (Point point, scalar c, vector h)
 #line 301
 
 coord height_normal_z (Point point, vector h)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 303 "/home/weugene/basilisk/src/curvature.h"
 
   coord nx = normal2_x (point, h);
@@ -17556,7 +17556,7 @@ coord height_normal_z (Point point, vector h)
 #line 301
 
 coord height_normal_x (Point point, vector h)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 303 "/home/weugene/basilisk/src/curvature.h"
 
   coord nx = normal2_y (point, h);
@@ -17574,7 +17574,7 @@ coord height_normal_x (Point point, vector h)
 #line 301
 
 coord height_normal_y (Point point, vector h)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 303 "/home/weugene/basilisk/src/curvature.h"
 
   coord nx = normal2_z (point, h);
@@ -17803,7 +17803,7 @@ static int independents (coord * p, int n)
 
 
 static double height_curvature_fit (Point point, scalar c, vector h)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 361 "/home/weugene/basilisk/src/curvature.h"
 
 
@@ -17946,7 +17946,7 @@ static double height_curvature_fit (Point point, scalar c, vector h)
 
 
 static double centroids_curvature_fit (Point point, scalar c)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 454 "/home/weugene/basilisk/src/curvature.h"
 
 
@@ -17992,7 +17992,7 @@ static double centroids_curvature_fit (Point point, scalar c)
 }
 #line 500 "/home/weugene/basilisk/src/curvature.h"
 static inline bool interfacial (Point point, scalar c)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 501 "/home/weugene/basilisk/src/curvature.h"
 
   if (val(c,0,0,0) >= 1.) {
@@ -18071,11 +18071,11 @@ cstats curvature (struct Curvature p)
   scalar k= new_scalar("k");
   scalar_clone (k, kappa);
 
-   { 
+   {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _sh = sh; double _sf = sf; 
+double _sh = sh; double _sf = sf;
 #line 569
 foreach(){
 
@@ -18108,11 +18108,11 @@ mpi_all_reduce_double (sf, MPI_SUM);
  }
   boundary (((scalar []){k,{-1}}));
 
-   { 
+   {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _sa = sa; double _sc = sc; 
+double _sa = sa; double _sc = sc;
 #line 588
 foreach (){
 
@@ -18176,7 +18176,7 @@ mpi_all_reduce_double (sc, MPI_SUM);
 #line 651
 
 static double pos_x (Point point, vector h, coord * G, coord * Z)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 653 "/home/weugene/basilisk/src/curvature.h"
 
   if (fabs(height(val(h.x,0,0,0))) > 1.)
@@ -18199,7 +18199,7 @@ static double pos_x (Point point, vector h, coord * G, coord * Z)
 #line 651
 
 static double pos_y (Point point, vector h, coord * G, coord * Z)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 653 "/home/weugene/basilisk/src/curvature.h"
 
   if (fabs(height(val(h.y,0,0,0))) > 1.)
@@ -18222,7 +18222,7 @@ static double pos_y (Point point, vector h, coord * G, coord * Z)
 #line 651
 
 static double pos_z (Point point, vector h, coord * G, coord * Z)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 653 "/home/weugene/basilisk/src/curvature.h"
 
   if (fabs(height(val(h.z,0,0,0))) > 1.)
@@ -18251,7 +18251,7 @@ static double pos_z (Point point, vector h, coord * G, coord * Z)
 
 static double height_position (Point point, scalar f, vector h,
           coord * G, coord * Z)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 672 "/home/weugene/basilisk/src/curvature.h"
 
 
@@ -18377,7 +18377,7 @@ void position (struct Position p)
 
 
 coord interface_normal (Point point, scalar c)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 23 "/home/weugene/basilisk/src/contact.h"
 
   coord n;
@@ -18392,19 +18392,19 @@ static int init_0_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; dou
   if (interfaces) for (scalar c = *interfaces, *_i90 = interfaces; ((scalar *)&c)->i >= 0; c = *++_i90)
     if (_attribute[c.i].height.x.i)
       heights (c, _attribute[c.i].height);
- end_trace("init_0", "/home/weugene/basilisk/src/contact.h", 49); } return 0; } 
+ end_trace("init_0", "/home/weugene/basilisk/src/contact.h", 49); } return 0; }
 
 static int vof_0_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int vof_0 (const int i, const double t, Event * _ev) { trace ("vof_0", "/home/weugene/basilisk/src/contact.h", 51);  {
   if (interfaces) for (scalar c = *interfaces, *_i91 = interfaces; ((scalar *)&c)->i >= 0; c = *++_i91)
     if (_attribute[c.i].height.x.i)
       heights (c, _attribute[c.i].height);
- end_trace("vof_0", "/home/weugene/basilisk/src/contact.h", 55); } return 0; } 
+ end_trace("vof_0", "/home/weugene/basilisk/src/contact.h", 55); } return 0; }
 #line 91 "/home/weugene/basilisk/src/contact.h"
 
 #line 91
 
 static double contact_z (Point point, scalar h, double theta)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 93 "/home/weugene/basilisk/src/contact.h"
 
   if (h.i == _attribute[h.i].v.z.i) {
@@ -18455,7 +18455,7 @@ static double contact_z (Point point, scalar h, double theta)
 #line 91
 
 static double contact_x (Point point, scalar h, double theta)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 93 "/home/weugene/basilisk/src/contact.h"
 
   if (h.i == _attribute[h.i].v.x.i) {
@@ -18506,7 +18506,7 @@ static double contact_x (Point point, scalar h, double theta)
 #line 91
 
 static double contact_y (Point point, scalar h, double theta)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 93 "/home/weugene/basilisk/src/contact.h"
 
   if (h.i == _attribute[h.i].v.y.i) {
@@ -18556,7 +18556,7 @@ static double contact_y (Point point, scalar h, double theta)
 }
 
 double contact_angle_ (Point point, Point neighbor, scalar h, double theta)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 115 "/home/weugene/basilisk/src/contact.h"
 
   if (neighbor.i != point.i)
@@ -18585,13 +18585,13 @@ extern double dt;
 
 
 
-static int defaults_0_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i = 0);   *ip = i; *tp = t;   return ret; } static int defaults_0 (const int i, const double t, Event * _ev) { trace ("defaults_0", "/home/weugene/basilisk/src/vof.h", 51); 
+static int defaults_0_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i = 0);   *ip = i; *tp = t;   return ret; } static int defaults_0 (const int i, const double t, Event * _ev) { trace ("defaults_0", "/home/weugene/basilisk/src/vof.h", 51);
 {
 
   if (interfaces) for (scalar c = *interfaces, *_i92 = interfaces; ((scalar *)&c)->i >= 0; c = *++_i92)
     _attribute[c.i].refine = _attribute[c.i].prolongation = fraction_refine;
 
- end_trace("defaults_0", "/home/weugene/basilisk/src/vof.h", 57); } return 0; } 
+ end_trace("defaults_0", "/home/weugene/basilisk/src/vof.h", 57); } return 0; }
 
 
 
@@ -18600,7 +18600,7 @@ static int defaults_0_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip;
 static int stability_0_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int stability_0 (const int i, const double t, Event * _ev) { trace ("stability_0", "/home/weugene/basilisk/src/vof.h", 63);  {
   if (CFL > 0.5)
     CFL = 0.5;
- end_trace("stability_0", "/home/weugene/basilisk/src/vof.h", 66); } return 0; } 
+ end_trace("stability_0", "/home/weugene/basilisk/src/vof.h", 66); } return 0; }
 #line 80 "/home/weugene/basilisk/src/vof.h"
 
 #line 80
@@ -18662,11 +18662,11 @@ static void sweep_x (scalar c, scalar cc)
 
   reconstruction (c, n, alpha);
 
-   { 
+   {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _cfl = cfl; 
+double _cfl = cfl;
 #line 142
 
 if (!is_constant(fm.x) && !is_constant(cm)) {
@@ -19027,7 +19027,7 @@ mpi_all_reduce_double (cfl, MPI_MAX);
       "WARNING: CFL must be <= 0.5 for VOF (cfl - 0.5 = %g)\n",
       cfl - 0.5), fflush (ferr);
 #line 265 "/home/weugene/basilisk/src/vof.h"
-   { 
+   {
 if (!is_constant(cm)) {
 #undef val_cm
 #define val_cm(a,i,j,k) val(a,i,j,k)
@@ -19128,11 +19128,11 @@ static void sweep_y (scalar c, scalar cc)
 
   reconstruction (c, n, alpha);
 
-   { 
+   {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _cfl = cfl; 
+double _cfl = cfl;
 #line 142
 
 if (!is_constant(fm.y) && !is_constant(cm)) {
@@ -19493,7 +19493,7 @@ mpi_all_reduce_double (cfl, MPI_MAX);
       "WARNING: CFL must be <= 0.5 for VOF (cfl - 0.5 = %g)\n",
       cfl - 0.5), fflush (ferr);
 #line 265 "/home/weugene/basilisk/src/vof.h"
-   { 
+   {
 if (!is_constant(cm)) {
 #undef val_cm
 #define val_cm(a,k,i,j) val(a,k,i,j)
@@ -19594,11 +19594,11 @@ static void sweep_z (scalar c, scalar cc)
 
   reconstruction (c, n, alpha);
 
-   { 
+   {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _cfl = cfl; 
+double _cfl = cfl;
 #line 142
 
 if (!is_constant(fm.z) && !is_constant(cm)) {
@@ -19959,7 +19959,7 @@ mpi_all_reduce_double (cfl, MPI_MAX);
       "WARNING: CFL must be <= 0.5 for VOF (cfl - 0.5 = %g)\n",
       cfl - 0.5), fflush (ferr);
 #line 265 "/home/weugene/basilisk/src/vof.h"
-   { 
+   {
 if (!is_constant(cm)) {
 #undef val_cm
 #define val_cm(a,j,k,i) val(a,j,k,i)
@@ -20040,8 +20040,8 @@ void vof_advection (scalar * interfaces, int i)
    delete (((scalar []){cc,{-1}})); }
 }
 
-static int vof_1_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int vof_1 (const int i, const double t, Event * _ev) { trace ("vof_1", "/home/weugene/basilisk/src/vof.h", 312); 
-  vof_advection (interfaces, i); end_trace("vof_1", "/home/weugene/basilisk/src/vof.h", 313);  return 0; } 
+static int vof_1_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int vof_1 (const int i, const double t, Event * _ev) { trace ("vof_1", "/home/weugene/basilisk/src/vof.h", 312);
+  vof_advection (interfaces, i); end_trace("vof_1", "/home/weugene/basilisk/src/vof.h", 313);  return 0; }
 #line 35 "sessile3D.c"
 
 scalar f= {11}, * interfaces = ((scalar []){{11},{-1}});
@@ -20088,14 +20088,14 @@ static int defaults_1_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip;
  end_foreach_face(); }
     boundary ((scalar *)((vector []){{a.x,a.y,a.z},{{-1},{-1},{-1}}}));
   }
- end_trace("defaults_1", "/home/weugene/basilisk/src/iforce.h", 37); } return 0; } 
+ end_trace("defaults_1", "/home/weugene/basilisk/src/iforce.h", 37); } return 0; }
 
 
 
 
 
 
-static int acceleration_0_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int acceleration_0 (const int i, const double t, Event * _ev) { trace ("acceleration_0", "/home/weugene/basilisk/src/iforce.h", 44); 
+static int acceleration_0_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int acceleration_0 (const int i, const double t, Event * _ev) { trace ("acceleration_0", "/home/weugene/basilisk/src/iforce.h", 44);
 {
 
 
@@ -20125,7 +20125,7 @@ static int acceleration_0_expr0 (int * ip, double * tp, Event * _ev) {  int i = 
   boundary (list);
 #line 87 "/home/weugene/basilisk/src/iforce.h"
   vector ia = a;
-   { 
+   {
 if (!is_constant(alpha.x) && !is_constant(fm.x)) {
 #undef val_alpha_x
 #define val_alpha_x(a,i,j,k) val(a,i,j,k)
@@ -20535,7 +20535,7 @@ foreach_face_generic() { int ig = -1; VARIABLES;  if (is_face_x()) {
     _attribute[f.i].phi.i = 0;
   }
   pfree (list,__func__,__FILE__,__LINE__);
- end_trace("acceleration_0", "/home/weugene/basilisk/src/iforce.h", 131); } return 0; } 
+ end_trace("acceleration_0", "/home/weugene/basilisk/src/iforce.h", 131); } return 0; }
 #line 16 "/home/weugene/basilisk/src/tension.h"
 
 
@@ -20553,11 +20553,11 @@ static int stability_1_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip
 
 
   double amin = HUGE, amax = -HUGE, dmin = HUGE;
-   { 
+   {
 #undef OMP_PARALLEL
 #define OMP_PARALLEL()
 OMP(omp parallel) {
-double _amin = amin; double _amax = amax; double _dmin = dmin; 
+double _amin = amin; double _amax = amax; double _dmin = dmin;
 #line 43
 
 if (!is_constant(alpha.x) && !is_constant(fm.x)) {
@@ -20865,7 +20865,7 @@ mpi_all_reduce_double (dmin, MPI_MIN);
     if (dt < dtmax)
       dtmax = dt;
   }
- end_trace("stability_1", "/home/weugene/basilisk/src/tension.h", 62); } return 0; } 
+ end_trace("stability_1", "/home/weugene/basilisk/src/tension.h", 62); } return 0; }
 
 
 
@@ -20873,7 +20873,7 @@ mpi_all_reduce_double (dmin, MPI_MIN);
 
 
 
-static int acceleration_1_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int acceleration_1 (const int i, const double t, Event * _ev) { trace ("acceleration_1", "/home/weugene/basilisk/src/tension.h", 70); 
+static int acceleration_1_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int acceleration_1 (const int i, const double t, Event * _ev) { trace ("acceleration_1", "/home/weugene/basilisk/src/tension.h", 70);
 {
 
 
@@ -20895,7 +20895,7 @@ static int acceleration_1_expr0 (int * ip, double * tp, Event * _ev) {  int i = 
  _attribute[f.i].phi = phi;
       }
     }
- end_trace("acceleration_1", "/home/weugene/basilisk/src/tension.h", 92); } return 0; } 
+ end_trace("acceleration_1", "/home/weugene/basilisk/src/tension.h", 92); } return 0; }
 #line 39 "sessile3D.c"
 #line 1 "view.h"
 #line 1 "/home/weugene/basilisk/src/view.h"
@@ -22066,7 +22066,7 @@ static void end_draw_lines()
   view->reversed = _reversed;
 }
 
-static inline double interp (Point point, coord p, scalar col) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+static inline double interp (Point point, coord p, scalar col) { int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 402 "/home/weugene/basilisk/src/draw.h"
 
   struct _interpolate _r = { col, x + p.x*Delta, y + p.y*Delta, z + p.z*Delta };
@@ -22120,7 +22120,7 @@ struct _draw_vof {
 
 
 static bool cfilter (Point point, scalar c, double cmin)
-{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES; 
+{ int ig = 0; NOT_UNUSED(ig); int jg = 0; NOT_UNUSED(jg); int kg = 0; NOT_UNUSED(kg); POINT_VARIABLES;
 #line 538 "/home/weugene/basilisk/src/draw.h"
 
   double cmin1 = 4.*cmin;
@@ -23392,8 +23392,8 @@ bool load (struct _load p) {
 double theta0 = 45;
 
 vector h= {{12},{13},{14}};
-static void _set_boundary6 (void) { _attribute[h.y.i].boundary[back] = _boundary6; _attribute[h.y.i].boundary_homogeneous[back] = _boundary6_homogeneous; } 
-static void _set_boundary7 (void) { _attribute[h.z.i].boundary[back] = _boundary7; _attribute[h.z.i].boundary_homogeneous[back] = _boundary7_homogeneous; } 
+static void _set_boundary6 (void) { _attribute[h.y.i].boundary[back] = _boundary6; _attribute[h.y.i].boundary_homogeneous[back] = _boundary6_homogeneous; }
+static void _set_boundary7 (void) { _attribute[h.z.i].boundary[back] = _boundary7; _attribute[h.z.i].boundary_homogeneous[back] = _boundary7_homogeneous; }
 
 
 
@@ -23427,20 +23427,20 @@ int main()
 
 
 
-static int init_1_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (t = 0);   *ip = i; *tp = t;   return ret; } static int init_1 (const int i, const double t, Event * _ev) { trace ("init_1", "sessile3D.c", 84); 
+static int init_1_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (t = 0);   *ip = i; *tp = t;   return ret; } static int init_1 (const int i, const double t, Event * _ev) { trace ("init_1", "sessile3D.c", 84);
 {
   do { scalar phi= new_vertex_scalar("phi");  { foreach_vertex(){
 
 #line 86 "sessile3D.c"
  val(phi,0,0,0) = - (sq(x) + sq(y) + sq(z) - sq(0.5)); } end_foreach_vertex(); } boundary (((scalar []){phi,{-1}})); fractions ((struct Fractions){phi, f});  delete (((scalar []){phi,{-1}})); } while(0);
- end_trace("init_1", "sessile3D.c", 87); } return 0; } 
+ end_trace("init_1", "sessile3D.c", 87); } return 0; }
 
 
 
 
 
 
-static int logfile_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i += 10);   *ip = i; *tp = t;   return ret; } static int logfile_expr1 (int * ip, double * tp, Event * _ev) {   int i = *ip; double t = *tp;   int ret = ( t <= 10);   *ip = i; *tp = t;   return ret; } static int logfile (const int i, const double t, Event * _ev) { trace ("logfile", "sessile3D.c", 94); 
+static int logfile_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i += 10);   *ip = i; *tp = t;   return ret; } static int logfile_expr1 (int * ip, double * tp, Event * _ev) {   int i = *ip; double t = *tp;   int ret = ( t <= 10);   *ip = i; *tp = t;   return ret; } static int logfile (const int i, const double t, Event * _ev) { trace ("logfile", "sessile3D.c", 94);
 {
   scalar kappa= new_scalar("kappa");
   cstats cs = curvature ((struct Curvature){f, kappa});
@@ -23457,9 +23457,9 @@ static int logfile_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; do
   fflush (fout);
   if (s.stddev < 1e-2)
     { int _ret =  1; delete (((scalar []){kappa,{-1}}));  end_trace("logfile", "sessile3D.c", 107);  return _ret; }
- delete (((scalar []){kappa,{-1}}));  end_trace("logfile", "sessile3D.c", 108); } return 0; } 
+ delete (((scalar []){kappa,{-1}}));  end_trace("logfile", "sessile3D.c", 108); } return 0; }
 #line 124 "sessile3D.c"
-static int end_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (t = 1234567890);   *ip = i; *tp = t;   return ret; } static int end (const int i, const double t, Event * _ev) { trace ("end", "sessile3D.c", 124); 
+static int end_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (t = 1234567890);   *ip = i; *tp = t;   return ret; } static int end (const int i, const double t, Event * _ev) { trace ("end", "sessile3D.c", 124);
 {
   scalar kappa= new_scalar("kappa");
   curvature ((struct Curvature){f, kappa});
@@ -23467,13 +23467,13 @@ static int end_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double
   double R = s.volume/s.sum, V = 4.*statsf(f).sum;
   fprintf (ferr, "%d %g %.5g %.3g %.5g %.3g %.5g\n",
     N, theta0, R, s.stddev, V, normf(u.x).max, t);
- delete (((scalar []){kappa,{-1}}));  end_trace("end", "sessile3D.c", 132); } return 0; } 
+ delete (((scalar []){kappa,{-1}}));  end_trace("end", "sessile3D.c", 132); } return 0; }
 
 
 
 
 
-static int movie_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i += 5);   *ip = i; *tp = t;   return ret; } static int movie_expr1 (int * ip, double * tp, Event * _ev) {   int i = *ip; double t = *tp;   int ret = ( t <= 3);   *ip = i; *tp = t;   return ret; } static int movie (const int i, const double t, Event * _ev) { trace ("movie", "sessile3D.c", 138); 
+static int movie_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i += 5);   *ip = i; *tp = t;   return ret; } static int movie_expr1 (int * ip, double * tp, Event * _ev) {   int i = *ip; double t = *tp;   int ret = ( t <= 3);   *ip = i; *tp = t;   return ret; } static int movie (const int i, const double t, Event * _ev) { trace ("movie", "sessile3D.c", 138);
 {
   if (theta0 == 30.) {
     view ((struct _view_set){.fov = 26.6776, .quat = {0.474458,0.144142,0.234923,0.836017},
@@ -23495,7 +23495,7 @@ static int movie_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; doub
     } end_mirror(); }
     save ((struct _save){"movie.mp4"});
   }
- end_trace("movie", "sessile3D.c", 160); } return 0; } 
+ end_trace("movie", "sessile3D.c", 160); } return 0; }
 #line 171 "sessile3D.c"
 static int adapt_0_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; double t = *tp;  int ret = (i++);   *ip = i; *tp = t;   return ret; } static int adapt_0 (const int i, const double t, Event * _ev) { trace ("adapt_0", "sessile3D.c", 171);  {
 
@@ -23510,9 +23510,9 @@ static int adapt_0_expr0 (int * ip, double * tp, Event * _ev) {  int i = *ip; do
 
 
 
- delete (((scalar []){f1,{-1}}));  end_trace("adapt_0", "sessile3D.c", 181); } return 0; } 
+ delete (((scalar []){f1,{-1}}));  end_trace("adapt_0", "sessile3D.c", 181); } return 0; }
 #line 91 "/home/weugene/basilisk/src/navier-stokes/centered.h"
-static double _boundary0 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+static double _boundary0 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 90 "/home/weugene/basilisk/src/navier-stokes/centered.h"
 
 if (!is_constant(a.x) && !is_constant(fm.x) && !is_constant(alpha.x)) {
@@ -23994,7 +23994,7 @@ NOT_UNUSED(_const_alpha);
 #undef coarse_alpha_z
 #define coarse_alpha_z(a,i,j,k) _const_alpha.z
 #line 91
-return  neumann ((val_a_x(a.x,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0))*val_fm_x(fm.x,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0))/val_alpha_x(alpha.x,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0)))); } return 0.; } static double _boundary0_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+return  neumann ((val_a_x(a.x,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0))*val_fm_x(fm.x,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0))/val_alpha_x(alpha.x,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0)))); } return 0.; } static double _boundary0_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 90 "/home/weugene/basilisk/src/navier-stokes/centered.h"
 
 if (!is_constant(a.x) && !is_constant(fm.x) && !is_constant(alpha.x)) {
@@ -24478,7 +24478,7 @@ NOT_UNUSED(_const_alpha);
 #line 91
 return  neumann_homogeneous(); } return 0.; }
 #line 92 "/home/weugene/basilisk/src/navier-stokes/centered.h"
-static double _boundary1 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+static double _boundary1 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 91 "/home/weugene/basilisk/src/navier-stokes/centered.h"
 
 if (!is_constant(a.x) && !is_constant(fm.x) && !is_constant(alpha.x)) {
@@ -24960,7 +24960,7 @@ NOT_UNUSED(_const_alpha);
 #undef coarse_alpha_z
 #define coarse_alpha_z(a,i,j,k) _const_alpha.z
 #line 92
-return  neumann (- (val_a_x(a.x,0,0,0)*val_fm_x(fm.x,0,0,0)/val_alpha_x(alpha.x,0,0,0))); } return 0.; } static double _boundary1_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+return  neumann (- (val_a_x(a.x,0,0,0)*val_fm_x(fm.x,0,0,0)/val_alpha_x(alpha.x,0,0,0))); } return 0.; } static double _boundary1_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 91 "/home/weugene/basilisk/src/navier-stokes/centered.h"
 
 if (!is_constant(a.x) && !is_constant(fm.x) && !is_constant(alpha.x)) {
@@ -25444,7 +25444,7 @@ NOT_UNUSED(_const_alpha);
 #line 92
 return  neumann_homogeneous(); } return 0.; }
 #line 101 "/home/weugene/basilisk/src/navier-stokes/centered.h"
-static double _boundary2 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+static double _boundary2 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 100 "/home/weugene/basilisk/src/navier-stokes/centered.h"
 
 if (!is_constant(a.x) && !is_constant(fm.x) && !is_constant(alpha.x)) {
@@ -25926,7 +25926,7 @@ NOT_UNUSED(_const_alpha);
 #undef coarse_alpha_z
 #define coarse_alpha_z(a,i,j,k) _const_alpha.z
 #line 101
-return  neumann ((val_a_y(a.y,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0))*val_fm_y(fm.y,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0))/val_alpha_y(alpha.y,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0)))); } return 0.; } static double _boundary2_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+return  neumann ((val_a_y(a.y,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0))*val_fm_y(fm.y,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0))/val_alpha_y(alpha.y,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0)))); } return 0.; } static double _boundary2_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 100 "/home/weugene/basilisk/src/navier-stokes/centered.h"
 
 if (!is_constant(a.x) && !is_constant(fm.x) && !is_constant(alpha.x)) {
@@ -26410,7 +26410,7 @@ NOT_UNUSED(_const_alpha);
 #line 101
 return  neumann_homogeneous(); } return 0.; }
 #line 102 "/home/weugene/basilisk/src/navier-stokes/centered.h"
-static double _boundary3 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+static double _boundary3 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 101 "/home/weugene/basilisk/src/navier-stokes/centered.h"
 
 if (!is_constant(a.x) && !is_constant(fm.x) && !is_constant(alpha.x)) {
@@ -26892,7 +26892,7 @@ NOT_UNUSED(_const_alpha);
 #undef coarse_alpha_z
 #define coarse_alpha_z(a,i,j,k) _const_alpha.z
 #line 102
-return  neumann (- (val_a_y(a.y,0,0,0)*val_fm_y(fm.y,0,0,0)/val_alpha_y(alpha.y,0,0,0))); } return 0.; } static double _boundary3_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+return  neumann (- (val_a_y(a.y,0,0,0)*val_fm_y(fm.y,0,0,0)/val_alpha_y(alpha.y,0,0,0))); } return 0.; } static double _boundary3_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 101 "/home/weugene/basilisk/src/navier-stokes/centered.h"
 
 if (!is_constant(a.x) && !is_constant(fm.x) && !is_constant(alpha.x)) {
@@ -27376,7 +27376,7 @@ NOT_UNUSED(_const_alpha);
 #line 102
 return  neumann_homogeneous(); } return 0.; }
 #line 105 "/home/weugene/basilisk/src/navier-stokes/centered.h"
-static double _boundary4 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+static double _boundary4 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 104 "/home/weugene/basilisk/src/navier-stokes/centered.h"
 
 if (!is_constant(a.x) && !is_constant(fm.x) && !is_constant(alpha.x)) {
@@ -27858,7 +27858,7 @@ NOT_UNUSED(_const_alpha);
 #undef coarse_alpha_z
 #define coarse_alpha_z(a,i,j,k) _const_alpha.z
 #line 105
-return  neumann ((val_a_z(a.z,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0))*val_fm_z(fm.z,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0))/val_alpha_z(alpha.z,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0)))); } return 0.; } static double _boundary4_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+return  neumann ((val_a_z(a.z,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0))*val_fm_z(fm.z,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0))/val_alpha_z(alpha.z,(ig > 0 ? 1 : ig < 0 ? -1 : 0),(jg > 0 ? 1 : jg < 0 ? -1 : 0),(kg > 0 ? 1 : kg < 0 ? -1 : 0)))); } return 0.; } static double _boundary4_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 104 "/home/weugene/basilisk/src/navier-stokes/centered.h"
 
 if (!is_constant(a.x) && !is_constant(fm.x) && !is_constant(alpha.x)) {
@@ -28342,7 +28342,7 @@ NOT_UNUSED(_const_alpha);
 #line 105
 return  neumann_homogeneous(); } return 0.; }
 #line 106 "/home/weugene/basilisk/src/navier-stokes/centered.h"
-static double _boundary5 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+static double _boundary5 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 105 "/home/weugene/basilisk/src/navier-stokes/centered.h"
 
 if (!is_constant(a.x) && !is_constant(fm.x) && !is_constant(alpha.x)) {
@@ -28824,7 +28824,7 @@ NOT_UNUSED(_const_alpha);
 #undef coarse_alpha_z
 #define coarse_alpha_z(a,i,j,k) _const_alpha.z
 #line 106
-return  neumann (- (val_a_z(a.z,0,0,0)*val_fm_z(fm.z,0,0,0)/val_alpha_z(alpha.z,0,0,0))); } return 0.; } static double _boundary5_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+return  neumann (- (val_a_z(a.z,0,0,0)*val_fm_z(fm.z,0,0,0)/val_alpha_z(alpha.z,0,0,0))); } return 0.; } static double _boundary5_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 105 "/home/weugene/basilisk/src/navier-stokes/centered.h"
 
 if (!is_constant(a.x) && !is_constant(fm.x) && !is_constant(alpha.x)) {
@@ -29308,15 +29308,15 @@ NOT_UNUSED(_const_alpha);
 #line 106
 return  neumann_homogeneous(); } return 0.; }
 #line 49 "sessile3D.c"
-static double _boundary6 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+static double _boundary6 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 48 "sessile3D.c"
-return  contact_angle_ (point, neighbor, _s, theta0*pi/180.); return 0.; } static double _boundary6_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+return  contact_angle_ (point, neighbor, _s, theta0*pi/180.); return 0.; } static double _boundary6_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 48 "sessile3D.c"
 return  contact_angle_ (point, neighbor, _s, theta0*pi/180.); return 0.; }
 #line 50 "sessile3D.c"
-static double _boundary7 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+static double _boundary7 (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 49 "sessile3D.c"
-return  contact_angle_ (point, neighbor, _s, theta0*pi/180.); return 0.; } static double _boundary7_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES; 
+return  contact_angle_ (point, neighbor, _s, theta0*pi/180.); return 0.; } static double _boundary7_homogeneous (Point point, Point neighbor, scalar _s, void * data) { int ig = neighbor.i - point.i;  if (ig == 0) ig = _attribute[_s.i].d.x;  NOT_UNUSED(ig); int jg = neighbor.j - point.j;  if (jg == 0) jg = _attribute[_s.i].d.y;  NOT_UNUSED(jg); int kg = neighbor.k - point.k;  if (kg == 0) kg = _attribute[_s.i].d.z;  NOT_UNUSED(kg); POINT_VARIABLES;
 #line 49 "sessile3D.c"
 return  contact_angle_ (point, neighbor, _s, theta0*pi/180.); return 0.; }
 size_t datasize = 15*sizeof (double);

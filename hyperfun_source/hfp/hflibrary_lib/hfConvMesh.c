@@ -1,12 +1,12 @@
 /*==============================================================================
 
- Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa 
+ Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa
  Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,7 +17,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -34,10 +34,10 @@
 #
 #    Parameters:  T - threshold value
 #                 S - control value for width of the kernel
-#                 tri - index of each triangle coordinate 
+#                 tri - index of each triangle coordinate
 #                 vect - triangle coordinate array
 #                 x - points coordinate array
-# 
+#
 #    Call      :  hfConvMesh(x,vect,tri,S,T);
 #
 #    Test file :  mymesh.hf
@@ -82,7 +82,7 @@ double hfConvMesh(double* f_a, String_Array_T* str_param) {
   double a1, a2, h;
   double tempx, tempy, tempz;
   double A2, A, B2, B, C2, C, g, q, w, m, k, f=0.0, arc1, arc2, arc3;
-  double n1, n2, n3, n4, n5, n6; 
+  double n1, n2, n3, n4, n5, n6;
   int array_index,dim;
   int N;  /* the number of primitive */
 

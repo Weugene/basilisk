@@ -2152,7 +2152,7 @@ typedef struct {
 Array * array_new()
 {
   Array * a = ((Array *) malloc((1)*sizeof(Array)));
-  a->p = 
+  a->p =
 # 375 "/Users/weugene/basilisk/src/common.h" 3 4
         ((void *)0)
 # 375 "/Users/weugene/basilisk/src/common.h"
@@ -2173,13 +2173,13 @@ void array_append (Array * a, void * elem, size_t size)
     a->max += ((size) > (4096) ? (size) : (4096));
     a->p = realloc(a->p,a->max);
   }
-  
+
 # 392 "/Users/weugene/basilisk/src/common.h" 3 4
  __builtin___memcpy_chk (
 # 392 "/Users/weugene/basilisk/src/common.h"
  ((char *)a->p) + a->len
 # 392 "/Users/weugene/basilisk/src/common.h" 3 4
- , 
+ ,
 # 392 "/Users/weugene/basilisk/src/common.h"
  elem, size
 # 392 "/Users/weugene/basilisk/src/common.h" 3 4
@@ -2303,7 +2303,7 @@ fegetexcept (void)
 {
   static fenv_t fenv;
 
-  return fegetenv (&fenv) ? -1 : (fenv.__control & 
+  return fegetenv (&fenv) ? -1 : (fenv.__control &
 # 164 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
                                                   0x003f
 # 164 "/Users/weugene/basilisk/src/fp_osx.h"
@@ -2314,7 +2314,7 @@ int
 feenableexcept (unsigned int excepts)
 {
   static fenv_t fenv;
-  unsigned int new_excepts = excepts & 
+  unsigned int new_excepts = excepts &
 # 171 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
                                       0x003f
 # 171 "/Users/weugene/basilisk/src/fp_osx.h"
@@ -2322,7 +2322,7 @@ feenableexcept (unsigned int excepts)
                old_excepts;
 
   if ( fegetenv (&fenv) ) return -1;
-  old_excepts = fenv.__control & 
+  old_excepts = fenv.__control &
 # 175 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
                                 0x003f
 # 175 "/Users/weugene/basilisk/src/fp_osx.h"
@@ -2339,7 +2339,7 @@ int
 fedisableexcept (unsigned int excepts)
 {
   static fenv_t fenv;
-  unsigned int new_excepts = excepts & 
+  unsigned int new_excepts = excepts &
 # 188 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
                                       0x003f
 # 188 "/Users/weugene/basilisk/src/fp_osx.h"
@@ -2347,7 +2347,7 @@ fedisableexcept (unsigned int excepts)
                old_excepts;
 
   if ( fegetenv (&fenv) ) return -1;
-  old_excepts = fenv.__control & 
+  old_excepts = fenv.__control &
 # 192 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
                                 0x003f
 # 192 "/Users/weugene/basilisk/src/fp_osx.h"
@@ -2447,42 +2447,42 @@ fhdl ( int sig, siginfo_t *sip, ucontext_t *scp )
 
 
 
-    case 
+    case
 # 268 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
         1
 # 268 "/Users/weugene/basilisk/src/fp_osx.h"
                   : fe_code = 1; break;
-    case 
+    case
 # 269 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
         5
 # 269 "/Users/weugene/basilisk/src/fp_osx.h"
                   : fe_code = 2; break;
-    case 
+    case
 # 270 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
         2
 # 270 "/Users/weugene/basilisk/src/fp_osx.h"
                   : fe_code = 3; break;
-    case 
+    case
 # 271 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
         3
 # 271 "/Users/weugene/basilisk/src/fp_osx.h"
                   : fe_code = 4; break;
-    case 
+    case
 # 272 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
         4
 # 272 "/Users/weugene/basilisk/src/fp_osx.h"
                   : fe_code = 5; break;
-    case 
+    case
 # 273 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
         6
 # 273 "/Users/weugene/basilisk/src/fp_osx.h"
                   : fe_code = 6; break;
-    case 
+    case
 # 274 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
         7
 # 274 "/Users/weugene/basilisk/src/fp_osx.h"
                   : fe_code = 7; break;
-    case 
+    case
 # 275 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
         8
 # 275 "/Users/weugene/basilisk/src/fp_osx.h"
@@ -2490,9 +2490,9 @@ fhdl ( int sig, siginfo_t *sip, ucontext_t *scp )
             default: fe_code = 9;
    }
 
-  if ( sig == 
+  if ( sig ==
 # 279 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
-             8 
+             8
 # 279 "/Users/weugene/basilisk/src/fp_osx.h"
                     )
   {
@@ -2508,12 +2508,12 @@ fhdl ( int sig, siginfo_t *sip, ucontext_t *scp )
     printf ("MXCSR:   0x%08X\n", mxcsr);
 # 300 "/Users/weugene/basilisk/src/fp_osx.h"
     printf ("signal:  SIGFPE with code %s\n", fe_code_name[fe_code]);
-    printf ("invalid flag:    0x%04X\n", excepts & 
+    printf ("invalid flag:    0x%04X\n", excepts &
 # 301 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
                                                   0x0001
 # 301 "/Users/weugene/basilisk/src/fp_osx.h"
                                                             );
-    printf ("divByZero flag:  0x%04X\n", excepts & 
+    printf ("divByZero flag:  0x%04X\n", excepts &
 # 302 "/Users/weugene/basilisk/src/fp_osx.h" 3 4
                                                   0x0004
 # 302 "/Users/weugene/basilisk/src/fp_osx.h"
@@ -2529,26 +2529,26 @@ fhdl ( int sig, siginfo_t *sip, ucontext_t *scp )
 
 static void set_fpe (void) {
   int64_t lnan = 0x7ff0000000000001;
-  
+
 # 825 "/Users/weugene/basilisk/src/common.h" 3 4
  (__builtin_expect(!(
 # 825 "/Users/weugene/basilisk/src/common.h"
  sizeof (int64_t) == sizeof (double)
 # 825 "/Users/weugene/basilisk/src/common.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/common.h", 825, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/common.h", 825,
 # 825 "/Users/weugene/basilisk/src/common.h"
  "sizeof (int64_t) == sizeof (double)"
 # 825 "/Users/weugene/basilisk/src/common.h" 3 4
  ) : (void)0)
 # 825 "/Users/weugene/basilisk/src/common.h"
                                              ;
-  
+
 # 826 "/Users/weugene/basilisk/src/common.h" 3 4
  __builtin___memcpy_chk (
 # 826 "/Users/weugene/basilisk/src/common.h"
  &undefined
 # 826 "/Users/weugene/basilisk/src/common.h" 3 4
- , 
+ ,
 # 826 "/Users/weugene/basilisk/src/common.h"
  &lnan, sizeof (double)
 # 826 "/Users/weugene/basilisk/src/common.h" 3 4
@@ -2576,7 +2576,7 @@ typedef struct {
   int depth;
   int maxdepth;
 } Grid;
-Grid * grid = 
+Grid * grid =
 # 843 "/Users/weugene/basilisk/src/common.h" 3 4
              ((void *)0)
 # 843 "/Users/weugene/basilisk/src/common.h"
@@ -2618,11 +2618,11 @@ struct { int x, y, z; } Period = {
 # 877 "/Users/weugene/basilisk/src/common.h" 3 4
                                  0
 # 877 "/Users/weugene/basilisk/src/common.h"
-                                      , 
+                                      ,
 # 877 "/Users/weugene/basilisk/src/common.h" 3 4
                                         0
 # 877 "/Users/weugene/basilisk/src/common.h"
-                                             , 
+                                             ,
 # 877 "/Users/weugene/basilisk/src/common.h" 3 4
                                                0
 # 877 "/Users/weugene/basilisk/src/common.h"
@@ -2675,7 +2675,7 @@ double zero (double s0, double s1, double s2) { return 0.; }
 
 int nboundary = 2*2;
 # 934 "/Users/weugene/basilisk/src/common.h"
-double * _constant = 
+double * _constant =
 # 934 "/Users/weugene/basilisk/src/common.h" 3 4
                     ((void *)0)
 # 934 "/Users/weugene/basilisk/src/common.h"
@@ -2694,7 +2694,7 @@ struct _Boundary {
   void (* restriction) (const Boundary * b, scalar * list, int l);
 };
 
-static Boundary ** boundaries = 
+static Boundary ** boundaries =
 # 12 "/Users/weugene/basilisk/src/grid/boundaries.h" 3 4
                                ((void *)0)
 # 12 "/Users/weugene/basilisk/src/grid/boundaries.h"
@@ -2708,7 +2708,7 @@ void add_boundary (Boundary * b) {
   }
   boundaries = (Boundary * *) realloc(boundaries,(len + 2)*sizeof(Boundary *));
   boundaries[len] = b;
-  boundaries[len+1] = 
+  boundaries[len+1] =
 # 22 "/Users/weugene/basilisk/src/grid/boundaries.h" 3 4
                      ((void *)0)
 # 22 "/Users/weugene/basilisk/src/grid/boundaries.h"
@@ -2725,7 +2725,7 @@ void free_boundaries() {
     else
       free(b);
   free(boundaries);
-  boundaries = 
+  boundaries =
 # 35 "/Users/weugene/basilisk/src/grid/boundaries.h" 3 4
               ((void *)0)
 # 35 "/Users/weugene/basilisk/src/grid/boundaries.h"
@@ -2758,9 +2758,9 @@ typedef struct {
 
   } d;
   vector v;
-  
+
 # 960 "/Users/weugene/basilisk/src/common.h" 3 4
- _Bool 
+ _Bool
 # 960 "/Users/weugene/basilisk/src/common.h"
       face, nodump;
 # 17 "/Users/weugene/basilisk/src/grid/multigrid-common.h"
@@ -2819,19 +2819,19 @@ scalar * list_add (scalar * list, scalar s)
 
 int list_lookup (scalar * l, scalar s)
 {
-  if (l != 
+  if (l !=
 # 1003 "/Users/weugene/basilisk/src/common.h" 3 4
           ((void *)0)
 # 1003 "/Users/weugene/basilisk/src/common.h"
               )
     if (l) for (scalar s1 = *l, *_i2 = l; ((scalar *)&s1)->i >= 0; s1 = *++_i2)
       if (s1.i == s.i)
- return 
+ return
 # 1006 "/Users/weugene/basilisk/src/common.h" 3 4
        1
 # 1006 "/Users/weugene/basilisk/src/common.h"
            ;
-  return 
+  return
 # 1007 "/Users/weugene/basilisk/src/common.h" 3 4
         0
 # 1007 "/Users/weugene/basilisk/src/common.h"
@@ -2840,12 +2840,12 @@ int list_lookup (scalar * l, scalar s)
 
 scalar * list_copy (scalar * l)
 {
-  scalar * list = 
+  scalar * list =
 # 1012 "/Users/weugene/basilisk/src/common.h" 3 4
                  ((void *)0)
 # 1012 "/Users/weugene/basilisk/src/common.h"
                      ;
-  if (l != 
+  if (l !=
 # 1013 "/Users/weugene/basilisk/src/common.h" 3 4
           ((void *)0)
 # 1013 "/Users/weugene/basilisk/src/common.h"
@@ -2891,11 +2891,11 @@ vector * vectors_append (vector * list, vector v)
 vector * vectors_add (vector * list, vector v)
 {
   if (list) for (vector w = *list, *_i7 = list; ((scalar *)&w)->i >= 0; w = *++_i7) {
-    
+
 # 1055 "/Users/weugene/basilisk/src/common.h" 3 4
-   _Bool 
+   _Bool
 # 1055 "/Users/weugene/basilisk/src/common.h"
-        id = 
+        id =
 # 1055 "/Users/weugene/basilisk/src/common.h" 3 4
              1
 # 1055 "/Users/weugene/basilisk/src/common.h"
@@ -2904,7 +2904,7 @@ vector * vectors_add (vector * list, vector v)
 # 1056 "/Users/weugene/basilisk/src/common.h"
 
       if (w.x.i != v.x.i)
- id = 
+ id =
 # 1058 "/Users/weugene/basilisk/src/common.h" 3 4
      0
 # 1058 "/Users/weugene/basilisk/src/common.h"
@@ -2912,7 +2912,7 @@ vector * vectors_add (vector * list, vector v)
 # 1056 "/Users/weugene/basilisk/src/common.h"
 
       if (w.y.i != v.y.i)
- id = 
+ id =
 # 1058 "/Users/weugene/basilisk/src/common.h" 3 4
      0
 # 1058 "/Users/weugene/basilisk/src/common.h"
@@ -2925,12 +2925,12 @@ vector * vectors_add (vector * list, vector v)
 
 vector * vectors_copy (vector * l)
 {
-  vector * list = 
+  vector * list =
 # 1067 "/Users/weugene/basilisk/src/common.h" 3 4
                  ((void *)0)
 # 1067 "/Users/weugene/basilisk/src/common.h"
                      ;
-  if (l != 
+  if (l !=
 # 1068 "/Users/weugene/basilisk/src/common.h" 3 4
           ((void *)0)
 # 1068 "/Users/weugene/basilisk/src/common.h"
@@ -2942,7 +2942,7 @@ vector * vectors_copy (vector * l)
 
 vector * vectors_from_scalars (scalar * s)
 {
-  vector * list = 
+  vector * list =
 # 1076 "/Users/weugene/basilisk/src/common.h" 3 4
                  ((void *)0)
 # 1076 "/Users/weugene/basilisk/src/common.h"
@@ -2952,13 +2952,13 @@ vector * vectors_from_scalars (scalar * s)
     {
 # 1079 "/Users/weugene/basilisk/src/common.h"
  {
-      
+
 # 1080 "/Users/weugene/basilisk/src/common.h" 3 4
      (__builtin_expect(!(
 # 1080 "/Users/weugene/basilisk/src/common.h"
      s->i >= 0
 # 1080 "/Users/weugene/basilisk/src/common.h" 3 4
-     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/common.h", 1080, 
+     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/common.h", 1080,
 # 1080 "/Users/weugene/basilisk/src/common.h"
      "s->i >= 0"
 # 1080 "/Users/weugene/basilisk/src/common.h" 3 4
@@ -2969,13 +2969,13 @@ vector * vectors_from_scalars (scalar * s)
     }
 # 1079 "/Users/weugene/basilisk/src/common.h"
  {
-      
+
 # 1080 "/Users/weugene/basilisk/src/common.h" 3 4
      (__builtin_expect(!(
 # 1080 "/Users/weugene/basilisk/src/common.h"
      s->i >= 0
 # 1080 "/Users/weugene/basilisk/src/common.h" 3 4
-     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/common.h", 1080, 
+     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/common.h", 1080,
 # 1080 "/Users/weugene/basilisk/src/common.h"
      "s->i >= 0"
 # 1080 "/Users/weugene/basilisk/src/common.h" 3 4
@@ -3008,7 +3008,7 @@ tensor * tensors_append (tensor * list, tensor t)
 
 tensor * tensors_from_vectors (vector * v)
 {
-  tensor * list = 
+  tensor * list =
 # 1107 "/Users/weugene/basilisk/src/common.h" 3 4
                  ((void *)0)
 # 1107 "/Users/weugene/basilisk/src/common.h"
@@ -3018,13 +3018,13 @@ tensor * tensors_from_vectors (vector * v)
     {
 # 1110 "/Users/weugene/basilisk/src/common.h"
  {
-      
+
 # 1111 "/Users/weugene/basilisk/src/common.h" 3 4
      (__builtin_expect(!(
 # 1111 "/Users/weugene/basilisk/src/common.h"
      v->x.i >= 0
 # 1111 "/Users/weugene/basilisk/src/common.h" 3 4
-     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/common.h", 1111, 
+     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/common.h", 1111,
 # 1111 "/Users/weugene/basilisk/src/common.h"
      "v->x.i >= 0"
 # 1111 "/Users/weugene/basilisk/src/common.h" 3 4
@@ -3035,13 +3035,13 @@ tensor * tensors_from_vectors (vector * v)
     }
 # 1110 "/Users/weugene/basilisk/src/common.h"
  {
-      
+
 # 1111 "/Users/weugene/basilisk/src/common.h" 3 4
      (__builtin_expect(!(
 # 1111 "/Users/weugene/basilisk/src/common.h"
      v->y.i >= 0
 # 1111 "/Users/weugene/basilisk/src/common.h" 3 4
-     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/common.h", 1111, 
+     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/common.h", 1111,
 # 1111 "/Users/weugene/basilisk/src/common.h"
      "v->y.i >= 0"
 # 1111 "/Users/weugene/basilisk/src/common.h" 3 4
@@ -3055,7 +3055,7 @@ tensor * tensors_from_vectors (vector * v)
   return list;
 }
 
-scalar * all = 
+scalar * all =
 # 1119 "/Users/weugene/basilisk/src/common.h" 3 4
               ((void *)0)
 # 1119 "/Users/weugene/basilisk/src/common.h"
@@ -3091,7 +3091,7 @@ struct _Event {
   Event * next;
 };
 
-static Event * Events = 
+static Event * Events =
 # 1151 "/Users/weugene/basilisk/src/common.h" 3 4
                        ((void *)0)
 # 1151 "/Users/weugene/basilisk/src/common.h"
@@ -3119,7 +3119,7 @@ timer timer_start (void)
 {
   timer t;
   t.c = clock();
-  gettimeofday (&t.tv, 
+  gettimeofday (&t.tv,
 # 1175 "/Users/weugene/basilisk/src/common.h" 3 4
                       ((void *)0)
 # 1175 "/Users/weugene/basilisk/src/common.h"
@@ -3133,7 +3133,7 @@ timer timer_start (void)
 double timer_elapsed (timer t)
 {
   struct timeval tvend;
-  gettimeofday (&tvend, 
+  gettimeofday (&tvend,
 # 1185 "/Users/weugene/basilisk/src/common.h" 3 4
                        ((void *)0)
 # 1185 "/Users/weugene/basilisk/src/common.h"
@@ -3153,7 +3153,7 @@ scalar zeroc= {65536 + 5};
  vector fm = {{65536 + 2},{65536 + 3}};
  scalar cm = {(65536 + 4)};
 # 1213 "/Users/weugene/basilisk/src/common.h"
-static FILE ** qpopen_pipes = 
+static FILE ** qpopen_pipes =
 # 1213 "/Users/weugene/basilisk/src/common.h" 3 4
                              ((void *)0)
 # 1213 "/Users/weugene/basilisk/src/common.h"
@@ -3170,7 +3170,7 @@ FILE * qpopen (const char * command, const char * type)
     while (i && *i) { n++; i++; }
     qpopen_pipes = (FILE * *) realloc(qpopen_pipes,(n + 2)*sizeof(FILE *));
     qpopen_pipes[n] = fp;
-    qpopen_pipes[n+1] = 
+    qpopen_pipes[n+1] =
 # 1226 "/Users/weugene/basilisk/src/common.h" 3 4
                        ((void *)0)
 # 1226 "/Users/weugene/basilisk/src/common.h"
@@ -3201,7 +3201,7 @@ static void qpclose_all()
     i++;
   }
   free(qpopen_pipes);
-  qpopen_pipes = 
+  qpopen_pipes =
 # 1253 "/Users/weugene/basilisk/src/common.h" 3 4
                 ((void *)0)
 # 1253 "/Users/weugene/basilisk/src/common.h"
@@ -3216,7 +3216,7 @@ static void qpclose_all()
 FILE * lfopen (const char * name, const char * mode)
 {
   char fname[80];
-  
+
 # 1264 "/Users/weugene/basilisk/src/common.h" 3 4
  __builtin___sprintf_chk (
 # 1264 "/Users/weugene/basilisk/src/common.h"
@@ -3226,7 +3226,7 @@ FILE * lfopen (const char * name, const char * mode)
 # 1264 "/Users/weugene/basilisk/src/common.h"
  fname
 # 1264 "/Users/weugene/basilisk/src/common.h" 3 4
- , 2 > 1 ? 1 : 0), 
+ , 2 > 1 ? 1 : 0),
 # 1264 "/Users/weugene/basilisk/src/common.h"
  "%s-%d", name, 0
 # 1264 "/Users/weugene/basilisk/src/common.h" 3 4
@@ -3335,26 +3335,26 @@ typedef struct {
 Mempool * mempool_new (size_t poolsize, size_t size)
 {
 
-  
+
 # 26 "/Users/weugene/basilisk/src/grid/mempool.h" 3 4
  (__builtin_expect(!(
 # 26 "/Users/weugene/basilisk/src/grid/mempool.h"
  poolsize % 8 == 0
 # 26 "/Users/weugene/basilisk/src/grid/mempool.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/mempool.h", 26, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/mempool.h", 26,
 # 26 "/Users/weugene/basilisk/src/grid/mempool.h"
  "poolsize % 8 == 0"
 # 26 "/Users/weugene/basilisk/src/grid/mempool.h" 3 4
  ) : (void)0)
 # 26 "/Users/weugene/basilisk/src/grid/mempool.h"
                            ;
-  
+
 # 27 "/Users/weugene/basilisk/src/grid/mempool.h" 3 4
  (__builtin_expect(!(
 # 27 "/Users/weugene/basilisk/src/grid/mempool.h"
  size >= sizeof(FreeBlock)
 # 27 "/Users/weugene/basilisk/src/grid/mempool.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/mempool.h", 27, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/mempool.h", 27,
 # 27 "/Users/weugene/basilisk/src/grid/mempool.h"
  "size >= sizeof(FreeBlock)"
 # 27 "/Users/weugene/basilisk/src/grid/mempool.h" 3 4
@@ -3386,7 +3386,7 @@ void * mempool_alloc (Mempool * m)
   if (!m->first) {
 
     Pool * p = (Pool *) malloc(m->poolsize);
-    p->next = 
+    p->next =
 # 53 "/Users/weugene/basilisk/src/grid/mempool.h" 3 4
              ((void *)0)
 # 53 "/Users/weugene/basilisk/src/grid/mempool.h"
@@ -3398,7 +3398,7 @@ void * mempool_alloc (Mempool * m)
     m->last = p;
     m->first = m->lastb = ((char *)m->last) + sizeof(Pool);
     FreeBlock * b = (FreeBlock *) m->first;
-    b->next = 
+    b->next =
 # 61 "/Users/weugene/basilisk/src/grid/mempool.h" 3 4
              ((void *)0)
 # 61 "/Users/weugene/basilisk/src/grid/mempool.h"
@@ -3411,14 +3411,14 @@ void * mempool_alloc (Mempool * m)
     m->lastb += m->size;
     next = m->lastb;
     if (next + m->size > ((char *) m->last) + m->poolsize)
-      next = 
+      next =
 # 70 "/Users/weugene/basilisk/src/grid/mempool.h" 3 4
             ((void *)0)
 # 70 "/Users/weugene/basilisk/src/grid/mempool.h"
                 ;
     else {
       FreeBlock * b = (FreeBlock *) next;
-      b->next = 
+      b->next =
 # 73 "/Users/weugene/basilisk/src/grid/mempool.h" 3 4
                ((void *)0)
 # 73 "/Users/weugene/basilisk/src/grid/mempool.h"
@@ -3437,13 +3437,13 @@ void * mempool_alloc (Mempool * m)
 void * mempool_alloc0 (Mempool * m)
 {
   void * ret = mempool_alloc (m);
-  
+
 # 88 "/Users/weugene/basilisk/src/grid/mempool.h" 3 4
  __builtin___memset_chk (
 # 88 "/Users/weugene/basilisk/src/grid/mempool.h"
  ret
 # 88 "/Users/weugene/basilisk/src/grid/mempool.h" 3 4
- , 
+ ,
 # 88 "/Users/weugene/basilisk/src/grid/mempool.h"
  0, m->size
 # 88 "/Users/weugene/basilisk/src/grid/mempool.h" 3 4
@@ -3537,22 +3537,22 @@ static void refarray (void * p, size_t len, size_t size) {
   (*refcount)++;
 }
 
-static 
+static
 # 97 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-      _Bool 
+      _Bool
 # 97 "/Users/weugene/basilisk/src/grid/tree.h"
            unrefarray (void * p, size_t len, size_t size) {
   int * refcount = (int *)(((char *)p) + len*size);
   (*refcount)--;
   if (*refcount == 0) {
     free(p);
-    return 
+    return
 # 102 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
           1
 # 102 "/Users/weugene/basilisk/src/grid/tree.h"
               ;
   }
-  return 
+  return
 # 104 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
         0
 # 104 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -3623,7 +3623,7 @@ static Layer * new_layer (int depth)
   Layer * l = ((Layer *) malloc((1)*sizeof(Layer)));
   l->len = _size (depth);
   if (depth == 0)
-    l->pool = 
+    l->pool =
 # 158 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
              ((void *)0)
 # 158 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -3669,9 +3669,9 @@ static void layer_add_row (Layer * l, int i, int j)
 
 }
 
-static 
+static
 # 216 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-      _Bool 
+      _Bool
 # 216 "/Users/weugene/basilisk/src/grid/tree.h"
            layer_remove_row (Layer * l, int i, int j)
 {
@@ -3680,26 +3680,26 @@ static
 
 
   if (unrefarray (l->m[i], l->len, sizeof (char *))) {
-    assign_periodic_x ((void **) l->m, i, l->len - 2*2, 
+    assign_periodic_x ((void **) l->m, i, l->len - 2*2,
 # 223 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                                                        ((void *)0)
 # 223 "/Users/weugene/basilisk/src/grid/tree.h"
                                                            );
     if (--l->nc == 0) {
       destroy_layer (l);
-      return 
+      return
 # 226 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
             1
 # 226 "/Users/weugene/basilisk/src/grid/tree.h"
                 ;
     }
-    
+
 # 228 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
    (__builtin_expect(!(
 # 228 "/Users/weugene/basilisk/src/grid/tree.h"
    l->nc >= 0
 # 228 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-   ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree.h", 228, 
+   ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree.h", 228,
 # 228 "/Users/weugene/basilisk/src/grid/tree.h"
    "l->nc >= 0"
 # 228 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
@@ -3707,7 +3707,7 @@ static
 # 228 "/Users/weugene/basilisk/src/grid/tree.h"
                       ;
   }
-  return 
+  return
 # 230 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
         0
 # 230 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -3731,9 +3731,9 @@ typedef struct {
 
   CacheLevel * restriction;
 
-  
+
 # 250 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
- _Bool 
+ _Bool
 # 250 "/Users/weugene/basilisk/src/grid/tree.h"
       dirty;
 } Tree;
@@ -3775,13 +3775,13 @@ static void cache_level_shrink (CacheLevel * c)
 {
   if (c->nm > (c->n/128 + 1)*128) {
     c->nm = (c->n/128 + 1)*128;
-    
+
 # 290 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
    (__builtin_expect(!(
 # 290 "/Users/weugene/basilisk/src/grid/tree.h"
    c->nm > c->n
 # 290 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-   ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree.h", 290, 
+   ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree.h", 290,
 # 290 "/Users/weugene/basilisk/src/grid/tree.h"
    "c->nm > c->n"
 # 290 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
@@ -3853,9 +3853,9 @@ void cache_shrink (Cache * c)
 # 31 "/Users/weugene/basilisk/src/grid/neighbors.h"
 # 639 "/Users/weugene/basilisk/src/grid/tree.h"
 
-static inline 
+static inline
 # 640 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-             _Bool 
+             _Bool
 # 640 "/Users/weugene/basilisk/src/grid/tree.h"
                   has_local_children (Point point)
 { int ig = 0; (void)(ig); int jg = 0; (void)(jg); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;
@@ -3863,12 +3863,12 @@ static inline
 
    { { int _i = 2*point.i - 2, _j = 2*point.j - 2; point.level++; for (int _k = 0; _k < 2; _k++) { point.i = _i + _k; for (int _l = 0; _l < 2; _l++) { point.j = _j + _l; ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;
     if ((((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]))))).pid == 0))
-      return 
+      return
 # 644 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
             1
 # 644 "/Users/weugene/basilisk/src/grid/tree.h"
                 ; } } point.i = (_i + 2)/2; point.j = (_j + 2)/2; point.level--;}; }
-  return 
+  return
 # 645 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
         0
 # 645 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4042,7 +4042,7 @@ static void update_cache_f (void)
     cache_level_shrink (&q->restriction[l]);
 }
 
-  q->dirty = 
+  q->dirty =
 # 820 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
             0
 # 820 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4136,13 +4136,13 @@ static void alloc_children (Point point)
     layer_add_row (L, i, 0);
     int j = 2*point.j - 2;
     for (int l = 0; l < 2; l++, j++) {
-      
+
 # 976 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
      (__builtin_expect(!(
 # 976 "/Users/weugene/basilisk/src/grid/tree.h"
      !L->m[i][j]
 # 976 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree.h", 976, 
+     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree.h", 976,
 # 976 "/Users/weugene/basilisk/src/grid/tree.h"
      "!L->m[i][j]"
 # 976 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
@@ -4172,13 +4172,13 @@ static void free_children (Point point)
 
   Layer * L = ((Tree *)grid)->L[point.level + 1];
   int i = 2*point.i - 2, nl = L->len - 2*2;
-  
+
 # 1026 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
  (__builtin_expect(!(
 # 1026 "/Users/weugene/basilisk/src/grid/tree.h"
  L->m[i][2*point.j - 2]
 # 1026 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree.h", 1026, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree.h", 1026,
 # 1026 "/Users/weugene/basilisk/src/grid/tree.h"
  "L->m[i][2*point.j - 2]"
 # 1026 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
@@ -4189,19 +4189,19 @@ static void free_children (Point point)
   for (int k = 0; k < 2; k++, i++) {
     int j = 2*point.j - 2;
     for (int l = 0; l < 2; l++, j++)
-      assign_periodic_y ((void **) L->m[i], j, nl, 
+      assign_periodic_y ((void **) L->m[i], j, nl,
 # 1031 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                                                   ((void *)0)
 # 1031 "/Users/weugene/basilisk/src/grid/tree.h"
                                                       );
     if (layer_remove_row (L, i, j)) {
-      
+
 # 1033 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
      (__builtin_expect(!(
 # 1033 "/Users/weugene/basilisk/src/grid/tree.h"
      point.level + 1 == grid->depth
 # 1033 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree.h", 1033, 
+     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree.h", 1033,
 # 1033 "/Users/weugene/basilisk/src/grid/tree.h"
      "point.level + 1 == grid->depth"
 # 1033 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
@@ -4217,7 +4217,7 @@ void increment_neighbors (Point point)
 { int ig = 0; (void)(ig); int jg = 0; (void)(jg); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;
 # 1062 "/Users/weugene/basilisk/src/grid/tree.h"
 
-  ((Tree *)grid)->dirty = 
+  ((Tree *)grid)->dirty =
 # 1063 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                          1
 # 1063 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4234,7 +4234,7 @@ void decrement_neighbors (Point point)
 { int ig = 0; (void)(ig); int jg = 0; (void)(jg); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;
 # 1073 "/Users/weugene/basilisk/src/grid/tree.h"
 
-  ((Tree *)grid)->dirty = 
+  ((Tree *)grid)->dirty =
 # 1074 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                          1
 # 1074 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4319,13 +4319,13 @@ void realloc_scalar (void)
      char * new = (char *) mempool_alloc (L->pool);
      for (int k = 0; k < 2; k++)
        for (int o = 0; o < 2; o++) {
-  
+
 # 1183 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
  __builtin___memcpy_chk (
 # 1183 "/Users/weugene/basilisk/src/grid/tree.h"
  new
 # 1183 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
- , 
+ ,
 # 1183 "/Users/weugene/basilisk/src/grid/tree.h"
  L->m[i+k][j+o], oldlen
 # 1183 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
@@ -4351,9 +4351,9 @@ void realloc_scalar (void)
 # 1226 "/Users/weugene/basilisk/src/grid/tree.h"
 static inline void no_restriction (Point point, scalar s);
 
-static 
+static
 # 1228 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-      _Bool 
+      _Bool
 # 1228 "/Users/weugene/basilisk/src/grid/tree.h"
            normal_neighbor (Point point, scalar * scalars, vector * vectors)
 { int ig = 0; (void)(ig); int jg = 0; (void)(jg); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;
@@ -4368,21 +4368,21 @@ static
    Point neighbor = (Point) { point.i + i, point.j + 0, point.level };
    int id = (- (*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).pid - 1);
    if (scalars) for (scalar s = *scalars, *_i12 = scalars; ((scalar *)&s)->i >= 0; s = *++_i12)
-     ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[s.i] = _attribute[s.i].boundary[id](neighbor, point, s, 
+     ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[s.i] = _attribute[s.i].boundary[id](neighbor, point, s,
 # 1237 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                                                                     ((void *)0)
 # 1237 "/Users/weugene/basilisk/src/grid/tree.h"
                                                                         );
    if (vectors) for (vector v = *vectors, *_i13 = vectors; ((scalar *)&v)->i >= 0; v = *++_i13) {
      scalar vn = v.x;
-     ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[v.x.i] = _attribute[vn.i].boundary[id](neighbor, point, v.x, 
+     ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[v.x.i] = _attribute[vn.i].boundary[id](neighbor, point, v.x,
 # 1240 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                                                                          ((void *)0)
 # 1240 "/Users/weugene/basilisk/src/grid/tree.h"
                                                                              );
 
      scalar vt = v.y;
-     ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[v.y.i] = _attribute[vt.i].boundary[id](neighbor, point, v.y, 
+     ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[v.y.i] = _attribute[vt.i].boundary[id](neighbor, point, v.y,
 # 1243 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                                                                          ((void *)0)
 # 1243 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4393,7 +4393,7 @@ static
 
 
    }
-   return 
+   return
 # 1250 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
          1
 # 1250 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4406,21 +4406,21 @@ static
    Point neighbor = (Point) { point.i + 0, point.j + i, point.level };
    int id = (- (*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).pid - 1);
    if (scalars) for (scalar s = *scalars, *_i12 = scalars; ((scalar *)&s)->i >= 0; s = *++_i12)
-     ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[s.i] = _attribute[s.i].boundary[id](neighbor, point, s, 
+     ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[s.i] = _attribute[s.i].boundary[id](neighbor, point, s,
 # 1237 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                                                                     ((void *)0)
 # 1237 "/Users/weugene/basilisk/src/grid/tree.h"
                                                                         );
    if (vectors) for (vector v = *vectors, *_i13 = vectors; ((scalar *)&v)->i >= 0; v = *++_i13) {
      scalar vn = v.x;
-     ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[v.y.i] = _attribute[vn.i].boundary[id](neighbor, point, v.y, 
+     ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[v.y.i] = _attribute[vn.i].boundary[id](neighbor, point, v.y,
 # 1240 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                                                                          ((void *)0)
 # 1240 "/Users/weugene/basilisk/src/grid/tree.h"
                                                                              );
 
      scalar vt = v.y;
-     ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[v.x.i] = _attribute[vt.i].boundary[id](neighbor, point, v.x, 
+     ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[v.x.i] = _attribute[vt.i].boundary[id](neighbor, point, v.x,
 # 1243 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                                                                          ((void *)0)
 # 1243 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4431,22 +4431,22 @@ static
 
 
    }
-   return 
+   return
 # 1250 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
          1
 # 1250 "/Users/weugene/basilisk/src/grid/tree.h"
              ;
  }}
-  return 
+  return
 # 1252 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
         0
 # 1252 "/Users/weugene/basilisk/src/grid/tree.h"
              ;
 }
 
-static 
+static
 # 1255 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-      _Bool 
+      _Bool
 # 1255 "/Users/weugene/basilisk/src/grid/tree.h"
            diagonal_neighbor_2D (Point point,
       scalar * scalars, vector * vectors)
@@ -4509,30 +4509,30 @@ static
 
 
      }
-     return 
+     return
 # 1290 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
            1
 # 1290 "/Users/weugene/basilisk/src/grid/tree.h"
                ;
    }
 
-  return 
+  return
 # 1293 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
         0
 # 1293 "/Users/weugene/basilisk/src/grid/tree.h"
              ;
 }
 
-static 
+static
 # 1296 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-      _Bool 
+      _Bool
 # 1296 "/Users/weugene/basilisk/src/grid/tree.h"
            diagonal_neighbor_3D (Point point,
       scalar * scalars, vector * vectors)
 { int ig = 0; (void)(ig); int jg = 0; (void)(jg); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;
 # 1298 "/Users/weugene/basilisk/src/grid/tree.h"
 # 1340 "/Users/weugene/basilisk/src/grid/tree.h"
-  return 
+  return
 # 1340 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
         0
 # 1340 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4540,9 +4540,9 @@ static
 }
 # 1344 "/Users/weugene/basilisk/src/grid/tree.h"
 
-static Point tangential_neighbor_x (Point point, 
+static Point tangential_neighbor_x (Point point,
 # 1345 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-                                                _Bool 
+                                                _Bool
 # 1345 "/Users/weugene/basilisk/src/grid/tree.h"
                                                      * zn)
 { int ig = 0; (void)(ig); int jg = 0; (void)(jg); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;
@@ -4551,7 +4551,7 @@ static Point tangential_neighbor_x (Point point,
   for (int k = 1; k <= 1; k++)
     for (int j = -k; j <= k; j += 2*k) {
       if (((point.i+0 >= 0 && point.i+0 < (1 << point.level) + 2*2 && ((Tree *)grid)->L[point.level]->m[point.i+0] && point.j+j >= 0 && point.j+j < (1 << point.level) + 2*2 && ((Tree *)grid)->L[point.level]->m[point.i+0][point.j+j]) && !((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+j])))).pid < 0)) || ((point.i+-1 >= 0 && point.i+-1 < (1 << point.level) + 2*2 && ((Tree *)grid)->L[point.level]->m[point.i+-1] && point.j+j >= 0 && point.j+j < (1 << point.level) + 2*2 && ((Tree *)grid)->L[point.level]->m[point.i+-1][point.j+j]) && !((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+-1][point.j+j])))).pid < 0))) {
- *zn = 
+ *zn =
 # 1350 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
       0
 # 1350 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4570,9 +4570,9 @@ static Point tangential_neighbor_x (Point point,
 }
 # 1344 "/Users/weugene/basilisk/src/grid/tree.h"
 
-static Point tangential_neighbor_y (Point point, 
+static Point tangential_neighbor_y (Point point,
 # 1345 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-                                                _Bool 
+                                                _Bool
 # 1345 "/Users/weugene/basilisk/src/grid/tree.h"
                                                      * zn)
 { int ig = 0; (void)(ig); int jg = 0; (void)(jg); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;
@@ -4581,7 +4581,7 @@ static Point tangential_neighbor_y (Point point,
   for (int k = 1; k <= 1; k++)
     for (int j = -k; j <= k; j += 2*k) {
       if (((point.i+j >= 0 && point.i+j < (1 << point.level) + 2*2 && ((Tree *)grid)->L[point.level]->m[point.i+j] && point.j+0 >= 0 && point.j+0 < (1 << point.level) + 2*2 && ((Tree *)grid)->L[point.level]->m[point.i+j][point.j+0]) && !((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+j][point.j+0])))).pid < 0)) || ((point.i+j >= 0 && point.i+j < (1 << point.level) + 2*2 && ((Tree *)grid)->L[point.level]->m[point.i+j] && point.j+-1 >= 0 && point.j+-1 < (1 << point.level) + 2*2 && ((Tree *)grid)->L[point.level]->m[point.i+j][point.j+-1]) && !((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+j][point.j+-1])))).pid < 0))) {
- *zn = 
+ *zn =
 # 1350 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
       0
 # 1350 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4600,9 +4600,9 @@ static Point tangential_neighbor_y (Point point,
 }
 
 
-static inline 
+static inline
 # 1365 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-             _Bool 
+             _Bool
 # 1365 "/Users/weugene/basilisk/src/grid/tree.h"
                   is_boundary_point (Point point) { int ig = 0; (void)(ig); int jg = 0; (void)(jg); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;
 # 1365 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4613,16 +4613,16 @@ static inline
 static void box_boundary_level (const Boundary * b, scalar * list, int l)
 {
   ;
-  scalar * scalars = 
+  scalar * scalars =
 # 1372 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                     ((void *)0)
 # 1372 "/Users/weugene/basilisk/src/grid/tree.h"
                         ;
-  vector * vectors = 
+  vector * vectors =
 # 1373 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                     ((void *)0)
 # 1373 "/Users/weugene/basilisk/src/grid/tree.h"
-                        , * faces = 
+                        , * faces =
 # 1373 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                                     ((void *)0)
 # 1373 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4669,7 +4669,7 @@ static void box_boundary_level (const Boundary * b, scalar * list, int l)
      if (faces) for (vector v = *faces, *_i19 = faces; ((scalar *)&v)->i >= 0; v = *++_i19) {
        scalar vn = v.x;
        if (_attribute[vn.i].boundary[id])
-  ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+(i + 1)/2][point.j+0]) + sizeof(Cell)))[v.x.i] = _attribute[vn.i].boundary[id](neighbor, point, v.x, 
+  ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+(i + 1)/2][point.j+0]) + sizeof(Cell)))[v.x.i] = _attribute[vn.i].boundary[id](neighbor, point, v.x,
 # 1407 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                                                                               ((void *)0)
 # 1407 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4679,9 +4679,9 @@ static void box_boundary_level (const Boundary * b, scalar * list, int l)
 
    else if (i == -1) {
 
-     
+
 # 1413 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-    _Bool 
+    _Bool
 # 1413 "/Users/weugene/basilisk/src/grid/tree.h"
          zn;
      Point neighbor = tangential_neighbor_x (point, &zn);
@@ -4694,7 +4694,7 @@ static void box_boundary_level (const Boundary * b, scalar * list, int l)
 
 
 
-  ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[v.x.i] = _attribute[vt.i].boundary[id](neighbor, point, v.x, 
+  ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[v.x.i] = _attribute[vt.i].boundary[id](neighbor, point, v.x,
 # 1424 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                                                                       ((void *)0)
 # 1424 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4717,7 +4717,7 @@ static void box_boundary_level (const Boundary * b, scalar * list, int l)
      if (faces) for (vector v = *faces, *_i19 = faces; ((scalar *)&v)->i >= 0; v = *++_i19) {
        scalar vn = v.x;
        if (_attribute[vn.i].boundary[id])
-  ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+(i + 1)/2]) + sizeof(Cell)))[v.y.i] = _attribute[vn.i].boundary[id](neighbor, point, v.y, 
+  ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+(i + 1)/2]) + sizeof(Cell)))[v.y.i] = _attribute[vn.i].boundary[id](neighbor, point, v.y,
 # 1407 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                                                                               ((void *)0)
 # 1407 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4727,9 +4727,9 @@ static void box_boundary_level (const Boundary * b, scalar * list, int l)
 
    else if (i == -1) {
 
-     
+
 # 1413 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-    _Bool 
+    _Bool
 # 1413 "/Users/weugene/basilisk/src/grid/tree.h"
          zn;
      Point neighbor = tangential_neighbor_y (point, &zn);
@@ -4742,7 +4742,7 @@ static void box_boundary_level (const Boundary * b, scalar * list, int l)
 
 
 
-  ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[v.y.i] = _attribute[vt.i].boundary[id](neighbor, point, v.y, 
+  ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[v.y.i] = _attribute[vt.i].boundary[id](neighbor, point, v.y,
 # 1424 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                                                                       ((void *)0)
 # 1424 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4805,12 +4805,12 @@ static double masked_average_y (Point point, scalar s)
 static void masked_boundary_restriction (const Boundary * b,
       scalar * list, int l)
 {
-  scalar * scalars = 
+  scalar * scalars =
 # 1473 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                     ((void *)0)
 # 1473 "/Users/weugene/basilisk/src/grid/tree.h"
                         ;
-  vector * faces = 
+  vector * faces =
 # 1474 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
                   ((void *)0)
 # 1474 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4897,7 +4897,7 @@ void free_grid (void)
   free_cache (q->boundary);
   free_cache (q->restriction);
   free(q);
-  grid = 
+  grid =
 # 1588 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
         ((void *)0)
 # 1588 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4910,13 +4910,13 @@ static void refine_level (int depth);
 void init_grid (int n)
 { ;
 
-  
+
 # 1597 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
  (__builtin_expect(!(
 # 1597 "/Users/weugene/basilisk/src/grid/tree.h"
  sizeof(Cell) % 8 == 0
 # 1597 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree.h", 1597, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree.h", 1597,
 # 1597 "/Users/weugene/basilisk/src/grid/tree.h"
  "sizeof(Cell) % 8 == 0"
 # 1597 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
@@ -4945,7 +4945,7 @@ void init_grid (int n)
 
   q->L = ((Layer * *) malloc((2)*sizeof(Layer *)));
 
-  q->L[0] = 
+  q->L[0] =
 # 1616 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
            ((void *)0)
 # 1616 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -4976,7 +4976,7 @@ void init_grid (int n)
   q->prolongation = ((CacheLevel *) calloc(1,sizeof(CacheLevel)));
   q->boundary = ((CacheLevel *) calloc(1,sizeof(CacheLevel)));
   q->restriction = ((CacheLevel *) calloc(1,sizeof(CacheLevel)));
-  q->dirty = 
+  q->dirty =
 # 1679 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
             1
 # 1679 "/Users/weugene/basilisk/src/grid/tree.h"
@@ -5026,9 +5026,9 @@ void check_two_one (void)
 
 
 
-     
+
 # 1723 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-    (__builtin_expect(!(0), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree.h", 1723, 
+    (__builtin_expect(!(0), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree.h", 1723,
 # 1723 "/Users/weugene/basilisk/src/grid/tree.h"
     "false"
 # 1723 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
@@ -5076,7 +5076,7 @@ Point locate (struct _locate p)
 
 
 # 1763 "/Users/weugene/basilisk/src/grid/tree.h" 3 4
-_Bool 
+_Bool
 # 1763 "/Users/weugene/basilisk/src/grid/tree.h"
     tree_is_full()
 {
@@ -5117,7 +5117,7 @@ static void init_event (Event * ev)
     else
       ev->t = ev->arrayt[0];
     ev->a = 1;
-    ev->expr[1] = 
+    ev->expr[1] =
 # 23 "/Users/weugene/basilisk/src/grid/events.h" 3 4
                  ((void *)0)
 # 23 "/Users/weugene/basilisk/src/grid/events.h"
@@ -5125,15 +5125,15 @@ static void init_event (Event * ev)
   }
   else {
     if (ev->nexpr > 0) {
-      Expr init = 
+      Expr init =
 # 27 "/Users/weugene/basilisk/src/grid/events.h" 3 4
                  ((void *)0)
 # 27 "/Users/weugene/basilisk/src/grid/events.h"
-                     , cond = 
+                     , cond =
 # 27 "/Users/weugene/basilisk/src/grid/events.h" 3 4
                               ((void *)0)
 # 27 "/Users/weugene/basilisk/src/grid/events.h"
-                                  , inc = 
+                                  , inc =
 # 27 "/Users/weugene/basilisk/src/grid/events.h" 3 4
                                           ((void *)0)
 # 27 "/Users/weugene/basilisk/src/grid/events.h"
@@ -5197,26 +5197,26 @@ static int event_finished (Event * ev)
 }
 
 void event_register (Event event) {
-  
+
 # 87 "/Users/weugene/basilisk/src/grid/events.h" 3 4
  (__builtin_expect(!(
 # 87 "/Users/weugene/basilisk/src/grid/events.h"
  Events
 # 87 "/Users/weugene/basilisk/src/grid/events.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/events.h", 87, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/events.h", 87,
 # 87 "/Users/weugene/basilisk/src/grid/events.h"
  "Events"
 # 87 "/Users/weugene/basilisk/src/grid/events.h" 3 4
  ) : (void)0)
 # 87 "/Users/weugene/basilisk/src/grid/events.h"
                 ;
-  
+
 # 88 "/Users/weugene/basilisk/src/grid/events.h" 3 4
  (__builtin_expect(!(
 # 88 "/Users/weugene/basilisk/src/grid/events.h"
  !event.last
 # 88 "/Users/weugene/basilisk/src/grid/events.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/events.h", 88, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/events.h", 88,
 # 88 "/Users/weugene/basilisk/src/grid/events.h"
  "!event.last"
 # 88 "/Users/weugene/basilisk/src/grid/events.h" 3 4
@@ -5226,13 +5226,13 @@ void event_register (Event event) {
   int n = 0, parent = -1;
   for (Event * ev = Events; !ev->last; ev++) {
     if (!strcmp (event.name, ev->name)) {
-      
+
 # 92 "/Users/weugene/basilisk/src/grid/events.h" 3 4
      (__builtin_expect(!(
 # 92 "/Users/weugene/basilisk/src/grid/events.h"
      parent < 0
 # 92 "/Users/weugene/basilisk/src/grid/events.h" 3 4
-     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/events.h", 92, 
+     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/events.h", 92,
 # 92 "/Users/weugene/basilisk/src/grid/events.h"
      "parent < 0"
 # 92 "/Users/weugene/basilisk/src/grid/events.h" 3 4
@@ -5246,12 +5246,12 @@ void event_register (Event event) {
   if (parent < 0) {
     Events = (Event *) realloc(Events,(n + 2)*sizeof(Event));
     Events[n] = event;
-    Events[n].next = 
+    Events[n].next =
 # 100 "/Users/weugene/basilisk/src/grid/events.h" 3 4
                     ((void *)0)
 # 100 "/Users/weugene/basilisk/src/grid/events.h"
                         ;
-    Events[n + 1].last = 
+    Events[n + 1].last =
 # 101 "/Users/weugene/basilisk/src/grid/events.h" 3 4
                         1
 # 101 "/Users/weugene/basilisk/src/grid/events.h"
@@ -5270,7 +5270,7 @@ void event_register (Event event) {
 static int event_cond (Event * ev, int i, double t)
 {
   if (!ev->expr[1])
-    return 
+    return
 # 116 "/Users/weugene/basilisk/src/grid/events.h" 3 4
           1
 # 116 "/Users/weugene/basilisk/src/grid/events.h"
@@ -5278,9 +5278,9 @@ static int event_cond (Event * ev, int i, double t)
   return (* ev->expr[1]) (&i, &t, ev);
 }
 # 131 "/Users/weugene/basilisk/src/grid/events.h"
-static int event_do (Event * ev, 
+static int event_do (Event * ev,
 # 131 "/Users/weugene/basilisk/src/grid/events.h" 3 4
-                                _Bool 
+                                _Bool
 # 131 "/Users/weugene/basilisk/src/grid/events.h"
                                      action)
 {
@@ -5288,11 +5288,11 @@ static int event_do (Event * ev,
     return event_finished (ev);
   if (iter == ev->i || fabs (t - ev->t) <= 1e-9) {
     if (action) {
-      
+
 # 137 "/Users/weugene/basilisk/src/grid/events.h" 3 4
-     _Bool 
+     _Bool
 # 137 "/Users/weugene/basilisk/src/grid/events.h"
-          finished = 
+          finished =
 # 137 "/Users/weugene/basilisk/src/grid/events.h" 3 4
                      0
 # 137 "/Users/weugene/basilisk/src/grid/events.h"
@@ -5302,7 +5302,7 @@ static int event_do (Event * ev,
 
 
  if ((* e->action) (iter, t, e))
-   finished = 
+   finished =
 # 143 "/Users/weugene/basilisk/src/grid/events.h" 3 4
              1
 # 143 "/Users/weugene/basilisk/src/grid/events.h"
@@ -5339,7 +5339,7 @@ static int event_do (Event * ev,
 
 static void end_event_do (
 # 174 "/Users/weugene/basilisk/src/grid/events.h" 3 4
-                         _Bool 
+                         _Bool
 # 174 "/Users/weugene/basilisk/src/grid/events.h"
                               action)
 {
@@ -5359,7 +5359,7 @@ static void end_event_do (
 
 int events (
 # 190 "/Users/weugene/basilisk/src/grid/events.h" 3 4
-           _Bool 
+           _Bool
 # 190 "/Users/weugene/basilisk/src/grid/events.h"
                 action)
 {
@@ -5416,13 +5416,13 @@ double dtnext (double dt)
 {
   if (tnext != ((double)1e30) && tnext > t) {
     unsigned int n = (tnext - t)/dt;
-    
+
 # 245 "/Users/weugene/basilisk/src/grid/events.h" 3 4
    (__builtin_expect(!(
 # 245 "/Users/weugene/basilisk/src/grid/events.h"
    n < 0x7fffffff
 # 245 "/Users/weugene/basilisk/src/grid/events.h" 3 4
-   ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/events.h", 245, 
+   ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/events.h", 245,
 # 245 "/Users/weugene/basilisk/src/grid/events.h"
    "n < INT_MAX"
 # 245 "/Users/weugene/basilisk/src/grid/events.h" 3 4
@@ -5634,7 +5634,7 @@ static int gdb()
 {
   if (last_point.level >= 0) {
     debug (last_point);
-    fputc ('\n', 
+    fputc ('\n',
 # 10 "/Users/weugene/basilisk/src/grid/fpe.h" 3 4
                 __stderrp
 # 10 "/Users/weugene/basilisk/src/grid/fpe.h"
@@ -5646,7 +5646,7 @@ static int gdb()
                     );
   }
   char command[80];
-  
+
 # 14 "/Users/weugene/basilisk/src/grid/fpe.h" 3 4
  __builtin___sprintf_chk (
 # 14 "/Users/weugene/basilisk/src/grid/fpe.h"
@@ -5656,12 +5656,12 @@ static int gdb()
 # 14 "/Users/weugene/basilisk/src/grid/fpe.h"
  command
 # 14 "/Users/weugene/basilisk/src/grid/fpe.h" 3 4
- , 2 > 1 ? 1 : 0), 
+ , 2 > 1 ? 1 : 0),
 # 14 "/Users/weugene/basilisk/src/grid/fpe.h"
  "exec xterm -e 'gdb -p %d' & xterm -e 'gnuplot plot -'", getpid()
 # 14 "/Users/weugene/basilisk/src/grid/fpe.h" 3 4
  )
-             
+
 # 15 "/Users/weugene/basilisk/src/grid/fpe.h"
             ;
   return system (command);
@@ -5704,10 +5704,10 @@ void catch_fpe (void)
   struct sigaction act;
   act.
 # 42 "/Users/weugene/basilisk/src/grid/fpe.h" 3 4
-     __sigaction_u.__sa_handler 
+     __sigaction_u.__sa_handler
 # 42 "/Users/weugene/basilisk/src/grid/fpe.h"
                 = caught_fpe;
-  
+
 # 43 "/Users/weugene/basilisk/src/grid/fpe.h" 3 4
  (*(
 # 43 "/Users/weugene/basilisk/src/grid/fpe.h"
@@ -5718,32 +5718,32 @@ void catch_fpe (void)
                            ;
   act.sa_flags = 0;
   last_point.level = -1;
-  sigaction (8, &act, 
+  sigaction (8, &act,
 # 46 "/Users/weugene/basilisk/src/grid/fpe.h" 3 4
                      ((void *)0)
 # 46 "/Users/weugene/basilisk/src/grid/fpe.h"
                          );
   act.
 # 47 "/Users/weugene/basilisk/src/grid/fpe.h" 3 4
-     __sigaction_u.__sa_handler 
+     __sigaction_u.__sa_handler
 # 47 "/Users/weugene/basilisk/src/grid/fpe.h"
                 = caught_segfault;
-  sigaction (11, &act, 
+  sigaction (11, &act,
 # 48 "/Users/weugene/basilisk/src/grid/fpe.h" 3 4
                       ((void *)0)
 # 48 "/Users/weugene/basilisk/src/grid/fpe.h"
                           );
   act.
 # 49 "/Users/weugene/basilisk/src/grid/fpe.h" 3 4
-     __sigaction_u.__sa_handler 
+     __sigaction_u.__sa_handler
 # 49 "/Users/weugene/basilisk/src/grid/fpe.h"
                 = caught_abort;
-  act.sa_flags = 
+  act.sa_flags =
 # 50 "/Users/weugene/basilisk/src/grid/fpe.h" 3 4
                 0x0004
 # 50 "/Users/weugene/basilisk/src/grid/fpe.h"
                             ;
-  sigaction (6, &act, 
+  sigaction (6, &act,
 # 51 "/Users/weugene/basilisk/src/grid/fpe.h" 3 4
                      ((void *)0)
 # 51 "/Users/weugene/basilisk/src/grid/fpe.h"
@@ -5766,13 +5766,13 @@ scalar new_scalar (const char * name)
     }
 
 
-  
+
 # 51 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
  (__builtin_expect(!(
 # 51 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
  nvar < 65536
 # 51 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/cartesian-common.h", 51, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/cartesian-common.h", 51,
 # 51 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
  "nvar < _NVARMAX"
 # 51 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -5781,13 +5781,13 @@ scalar new_scalar (const char * name)
                          ;
   datasize += sizeof(double); nvar++;
   _attribute = (_Attributes *) realloc(_attribute,(nvar)*sizeof(_Attributes));
-  
+
 # 54 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
  __builtin___memset_chk (
 # 54 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
  &_attribute[nvar-1]
 # 54 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
- , 
+ ,
 # 54 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
  0, sizeof (_Attributes)
 # 54 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -5819,7 +5819,7 @@ static vector alloc_vector (const char * name)
   {
 # 73 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
  {
-    
+
 # 74 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
    __builtin___sprintf_chk (
 # 74 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -5829,7 +5829,7 @@ static vector alloc_vector (const char * name)
 # 74 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    cname
 # 74 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-   , 2 > 1 ? 1 : 0), 
+   , 2 > 1 ? 1 : 0),
 # 74 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    ext.x, name
 # 74 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -5840,7 +5840,7 @@ static vector alloc_vector (const char * name)
   }
 # 73 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
  {
-    
+
 # 74 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
    __builtin___sprintf_chk (
 # 74 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -5850,7 +5850,7 @@ static vector alloc_vector (const char * name)
 # 74 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    cname
 # 74 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-   , 2 > 1 ? 1 : 0), 
+   , 2 > 1 ? 1 : 0),
 # 74 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    ext.y, name
 # 74 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -5865,7 +5865,7 @@ static vector alloc_vector (const char * name)
 vector new_vector (const char * name)
 {
   vector v = alloc_vector (name);
-  init_vector (v, 
+  init_vector (v,
 # 83 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                  ((void *)0)
 # 83 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -5876,7 +5876,7 @@ vector new_vector (const char * name)
 vector new_face_vector (const char * name)
 {
   vector v = alloc_vector (name);
-  init_face_vector (v, 
+  init_face_vector (v,
 # 90 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                       ((void *)0)
 # 90 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -5892,7 +5892,7 @@ tensor new_tensor (const char * name)
   {
 # 99 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
  {
-    
+
 # 100 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
    __builtin___sprintf_chk (
 # 100 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -5902,7 +5902,7 @@ tensor new_tensor (const char * name)
 # 100 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    cname
 # 100 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-   , 2 > 1 ? 1 : 0), 
+   , 2 > 1 ? 1 : 0),
 # 100 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    ext.x, name
 # 100 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -5913,7 +5913,7 @@ tensor new_tensor (const char * name)
   }
 # 99 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
  {
-    
+
 # 100 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
    __builtin___sprintf_chk (
 # 100 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -5923,7 +5923,7 @@ tensor new_tensor (const char * name)
 # 100 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    cname
 # 100 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-   , 2 > 1 ? 1 : 0), 
+   , 2 > 1 ? 1 : 0),
 # 100 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    ext.y, name
 # 100 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -5932,7 +5932,7 @@ tensor new_tensor (const char * name)
                                ;
     t.y = new_vector (cname);
   }}
-  init_tensor (t, 
+  init_tensor (t,
 # 103 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                  ((void *)0)
 # 103 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -5948,7 +5948,7 @@ tensor new_symmetric_tensor (const char * name)
   {
 # 112 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
  {
-    
+
 # 113 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
    __builtin___sprintf_chk (
 # 113 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -5958,7 +5958,7 @@ tensor new_symmetric_tensor (const char * name)
 # 113 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    cname
 # 113 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-   , 2 > 1 ? 1 : 0), 
+   , 2 > 1 ? 1 : 0),
 # 113 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    ext.x, name
 # 113 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -5969,7 +5969,7 @@ tensor new_symmetric_tensor (const char * name)
   }
 # 112 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
  {
-    
+
 # 113 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
    __builtin___sprintf_chk (
 # 113 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -5979,7 +5979,7 @@ tensor new_symmetric_tensor (const char * name)
 # 113 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    cname
 # 113 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-   , 2 > 1 ? 1 : 0), 
+   , 2 > 1 ? 1 : 0),
 # 113 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    ext.y, name
 # 113 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -5989,7 +5989,7 @@ tensor new_symmetric_tensor (const char * name)
     t.y.y = new_scalar(cname);
   }}
 
-    
+
 # 117 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
    __builtin___sprintf_chk (
 # 117 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -5999,7 +5999,7 @@ tensor new_symmetric_tensor (const char * name)
 # 117 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    cname
 # 117 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-   , 2 > 1 ? 1 : 0), 
+   , 2 > 1 ? 1 : 0),
 # 117 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    "%s.x.y", name
 # 117 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -6009,7 +6009,7 @@ tensor new_symmetric_tensor (const char * name)
     t.x.y = new_scalar(cname);
     t.y.x = t.x.y;
 # 132 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
-  init_tensor (t, 
+  init_tensor (t,
 # 132 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                  ((void *)0)
 # 132 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6078,7 +6078,7 @@ void scalar_clone (scalar a, scalar b)
 
 scalar * list_clone (scalar * l)
 {
-  scalar * list = 
+  scalar * list =
 # 187 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                  ((void *)0)
 # 187 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6107,7 +6107,7 @@ scalar * list_clone (scalar * l)
 
 void delete (scalar * list)
 {
-  if (all == 
+  if (all ==
 # 206 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
             ((void *)0)
 # 206 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6117,17 +6117,17 @@ void delete (scalar * list)
   if (list) for (scalar f = *list, *_i27 = list; ((scalar *)&f)->i >= 0; f = *++_i27) {
     if (_attribute[f.i].delete)
       _attribute[f.i].delete (f);
-    free(_attribute[f.i].name); _attribute[f.i].name = 
+    free(_attribute[f.i].name); _attribute[f.i].name =
 # 212 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                                                                                    ((void *)0)
 # 212 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
                                                                                        ;
-    free(_attribute[f.i].boundary); _attribute[f.i].boundary = 
+    free(_attribute[f.i].boundary); _attribute[f.i].boundary =
 # 213 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                                                                                            ((void *)0)
 # 213 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
                                                                                                ;
-    free(_attribute[f.i].boundary_homogeneous); _attribute[f.i].boundary_homogeneous = 
+    free(_attribute[f.i].boundary_homogeneous); _attribute[f.i].boundary_homogeneous =
 # 214 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                                                                                                                    ((void *)0)
 # 214 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6151,7 +6151,7 @@ void delete (scalar * list)
 
 typedef void (* free_solver_func) (void);
 
-static Array * free_solver_funcs = 
+static Array * free_solver_funcs =
 # 234 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                                   ((void *)0)
 # 234 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6174,7 +6174,7 @@ void free_solver()
   }
 
   delete (all);
-  free(all); all = 
+  free(all); all =
 # 253 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                                                ((void *)0)
 # 253 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6188,17 +6188,17 @@ void free_solver()
     }
   }
 
-  free(Events); Events = 
+  free(Events); Events =
 # 263 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                                                      ((void *)0)
 # 263 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
                                                          ;
-  free(_attribute); _attribute = 
+  free(_attribute); _attribute =
 # 264 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                                                              ((void *)0)
 # 264 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
                                                                  ;
-  free(_constant); _constant = 
+  free(_constant); _constant =
 # 265 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                                                            ((void *)0)
 # 265 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6216,13 +6216,13 @@ void (* boundary_flux) (vector *);
 
 void boundary (scalar * list)
 { ;
-  if (list == 
+  if (list ==
 # 287 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
              ((void *)0)
 # 287 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
                  )
     { ; ; return; }
-  vector * listf = 
+  vector * listf =
 # 289 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                   ((void *)0)
 # 289 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6288,7 +6288,7 @@ scalar cartesian_init_scalar (scalar s, const char * name)
   for (int b = 0; b < nboundary; b++)
     _attribute[s.i].boundary[b] = _attribute[s.i].boundary_homogeneous[b] =
       b < 2*2 ? default_scalar_bc[b] : symmetry;
-  _attribute[s.i].gradient = 
+  _attribute[s.i].gradient =
 # 347 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                             ((void *)0)
 # 347 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6304,7 +6304,7 @@ scalar cartesian_init_scalar (scalar s, const char * name)
     _attribute[s.i].d.y = 0;
     _attribute[s.i].v.y.i = -1;
   }}
-  _attribute[s.i].face = 
+  _attribute[s.i].face =
 # 352 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                         0
 # 352 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6322,7 +6322,7 @@ scalar cartesian_init_vertex_scalar (scalar s, const char * name)
 
     _attribute[s.i].d.y = -1;}
   for (int d = 0; d < nboundary; d++)
-    _attribute[s.i].boundary[d] = _attribute[s.i].boundary_homogeneous[d] = 
+    _attribute[s.i].boundary[d] = _attribute[s.i].boundary_homogeneous[d] =
 # 361 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                                                                            ((void *)0)
 # 361 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6344,7 +6344,7 @@ vector cartesian_init_vector (vector v, const char * name)
  {
     if (name) {
       char cname[strlen(name) + 3];
-      
+
 # 377 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
      __builtin___sprintf_chk (
 # 377 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6354,7 +6354,7 @@ vector cartesian_init_vector (vector v, const char * name)
 # 377 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
      cname
 # 377 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-     , 2 > 1 ? 1 : 0), 
+     , 2 > 1 ? 1 : 0),
 # 377 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
      "%s%s", name, ext.x
 # 377 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -6364,7 +6364,7 @@ vector cartesian_init_vector (vector v, const char * name)
       init_scalar (v.x, cname);
     }
     else
-      init_scalar (v.x, 
+      init_scalar (v.x,
 # 381 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                        ((void *)0)
 # 381 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6375,7 +6375,7 @@ vector cartesian_init_vector (vector v, const char * name)
  {
     if (name) {
       char cname[strlen(name) + 3];
-      
+
 # 377 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
      __builtin___sprintf_chk (
 # 377 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6385,7 +6385,7 @@ vector cartesian_init_vector (vector v, const char * name)
 # 377 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
      cname
 # 377 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-     , 2 > 1 ? 1 : 0), 
+     , 2 > 1 ? 1 : 0),
 # 377 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
      "%s%s", name, ext.y
 # 377 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -6395,7 +6395,7 @@ vector cartesian_init_vector (vector v, const char * name)
       init_scalar (v.y, cname);
     }
     else
-      init_scalar (v.y, 
+      init_scalar (v.y,
 # 381 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                        ((void *)0)
 # 381 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6416,7 +6416,7 @@ vector cartesian_init_face_vector (vector v, const char * name)
 # 394 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
  {
     _attribute[v.x.i].d.x = -1;
-    _attribute[v.x.i].face = 
+    _attribute[v.x.i].face =
 # 396 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                             1
 # 396 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6425,14 +6425,14 @@ vector cartesian_init_face_vector (vector v, const char * name)
 # 394 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
  {
     _attribute[v.y.i].d.y = -1;
-    _attribute[v.y.i].face = 
+    _attribute[v.y.i].face =
 # 396 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                             1
 # 396 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
                                 ;
   }}
   for (int d = 0; d < nboundary; d++)
-    _attribute[v.x.i].boundary[d] = _attribute[v.x.i].boundary_homogeneous[d] = 
+    _attribute[v.x.i].boundary[d] = _attribute[v.x.i].boundary_homogeneous[d] =
 # 399 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                                                                                ((void *)0)
 # 399 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6448,7 +6448,7 @@ tensor cartesian_init_tensor (tensor t, const char * name)
  {
     if (name) {
       char cname[strlen(name) + 3];
-      
+
 # 409 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
      __builtin___sprintf_chk (
 # 409 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6458,7 +6458,7 @@ tensor cartesian_init_tensor (tensor t, const char * name)
 # 409 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
      cname
 # 409 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-     , 2 > 1 ? 1 : 0), 
+     , 2 > 1 ? 1 : 0),
 # 409 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
      "%s%s", name, ext.x
 # 409 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -6468,7 +6468,7 @@ tensor cartesian_init_tensor (tensor t, const char * name)
       init_vector (t.x, cname);
     }
     else
-      init_vector (t.x, 
+      init_vector (t.x,
 # 413 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                        ((void *)0)
 # 413 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6478,7 +6478,7 @@ tensor cartesian_init_tensor (tensor t, const char * name)
  {
     if (name) {
       char cname[strlen(name) + 3];
-      
+
 # 409 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
      __builtin___sprintf_chk (
 # 409 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6488,7 +6488,7 @@ tensor cartesian_init_tensor (tensor t, const char * name)
 # 409 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
      cname
 # 409 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-     , 2 > 1 ? 1 : 0), 
+     , 2 > 1 ? 1 : 0),
 # 409 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
      "%s%s", name, ext.y
 # 409 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -6498,7 +6498,7 @@ tensor cartesian_init_tensor (tensor t, const char * name)
       init_vector (t.y, cname);
     }
     else
-      init_vector (t.y, 
+      init_vector (t.y,
 # 413 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                        ((void *)0)
 # 413 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6532,7 +6532,7 @@ struct OutputCells {
 
 void output_cells (struct OutputCells p)
 {
-  if (!p.fp) p.fp = 
+  if (!p.fp) p.fp =
 # 443 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                    __stdoutp
 # 443 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6540,11 +6540,11 @@ void output_cells (struct OutputCells p)
    { { if (((Tree *)grid)->dirty) update_cache_f(); }; { { int ig = 0, jg = 0, kg = 0; (void)(ig); (void)(jg); (void)(kg); Point point = {2,2,0}; int _k; unsigned short _flags; (void)(_flags); for (_k = 0; _k < ((Tree *)grid)->leaves.n; _k++) { point.i = ((Tree *)grid)->leaves.p[_k].i; point.j = ((Tree *)grid)->leaves.p[_k].j; point.level = ((Tree *)grid)->leaves.p[_k].level; _flags = ((Tree *)grid)->leaves.p[_k].flags; double Delta = L0*(1./(1 << point.level)); double Delta_x = Delta; double Delta_y = Delta; double x = (ig/2. + (point.i - 2) + 0.5)*Delta + X0; (void)(x); double y = (jg/2. + (point.j - 2) + 0.5)*Delta + Y0; (void)(y); double z = 0.; (void)(z); (void)(Delta); (void)(Delta_x); (void)(Delta_y); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;{
 # 444 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
  {
-    
+
 # 445 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-   _Bool 
+   _Bool
 # 445 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
-        inside = 
+        inside =
 # 445 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                  1
 # 445 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6555,7 +6555,7 @@ void output_cells (struct OutputCells p)
 
       if (inside && p.size > 0. &&
    (o.x > p.c.x + p.size || o.x < p.c.x - p.size))
- inside = 
+ inside =
 # 450 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
          0
 # 450 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6564,7 +6564,7 @@ void output_cells (struct OutputCells p)
 
       if (inside && p.size > 0. &&
    (o.y > p.c.y + p.size || o.y < p.c.y - p.size))
- inside = 
+ inside =
 # 450 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
          0
 # 450 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6625,7 +6625,7 @@ void cartesian_debug (Point point)
 
   char name[80] = "cells";
   if (0 > 0)
-    
+
 # 525 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
    __builtin___sprintf_chk (
 # 525 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6635,7 +6635,7 @@ void cartesian_debug (Point point)
 # 525 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    name
 # 525 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-   , 2 > 1 ? 1 : 0), 
+   , 2 > 1 ? 1 : 0),
 # 525 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    "cells-%d", 0
 # 525 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -6648,7 +6648,7 @@ void cartesian_debug (Point point)
 
   char stencil[80] = "stencil";
   if (0 > 0)
-    
+
 # 532 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
    __builtin___sprintf_chk (
 # 532 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6658,7 +6658,7 @@ void cartesian_debug (Point point)
 # 532 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    stencil
 # 532 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-   , 2 > 1 ? 1 : 0), 
+   , 2 > 1 ? 1 : 0),
 # 532 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    "stencil-%d", 0
 # 532 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -6776,9 +6776,9 @@ double interpolate (struct _interpolate p)
  ; }
 
 
-void interpolate_array (scalar * list, coord * a, int n, double * v, 
+void interpolate_array (scalar * list, coord * a, int n, double * v,
 # 666 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-                                                                    _Bool 
+                                                                    _Bool
 # 666 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
                                                                          linear)
 { ;
@@ -6826,9 +6826,9 @@ bid new_bid()
 
  _attribute[v.x.i].boundary[b] = _attribute[v.x.i].boundary_homogeneous[b] = symmetry;}
       _attribute[v.x.i].boundary[b] = _attribute[v.x.i].boundary_homogeneous[b] =
- _attribute[v.x.i].face ? 
+ _attribute[v.x.i].face ?
 # 712 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-                         ((void *)0) 
+                         ((void *)0)
 # 712 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
                               : antisymmetry;
     }
@@ -6854,7 +6854,7 @@ static void periodic_boundary (int d)
   if (all) for (scalar s = *all, *_i38 = all; ((scalar *)&s)->i >= 0; s = *++_i38)
     if (_attribute[s.i].face) {
       vector v = _attribute[s.i].v;
-      _attribute[v.x.i].boundary[d] = _attribute[v.x.i].boundary_homogeneous[d] = 
+      _attribute[v.x.i].boundary[d] = _attribute[v.x.i].boundary_homogeneous[d] =
 # 734 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                                                                                  ((void *)0)
 # 734 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -6870,13 +6870,13 @@ void periodic (int dir)
 
 
 
-    
+
 # 746 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
    (__builtin_expect(!(
 # 746 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    dir <= bottom
 # 746 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
-   ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/cartesian-common.h", 746, 
+   ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/cartesian-common.h", 746,
 # 746 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
    "dir <= bottom"
 # 746 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
@@ -6890,7 +6890,7 @@ void periodic (int dir)
   int c = dir/2;
   periodic_boundary (2*c);
   periodic_boundary (2*c + 1);
-  (&Period.x)[c] = 
+  (&Period.x)[c] =
 # 754 "/Users/weugene/basilisk/src/grid/cartesian-common.h" 3 4
                   1
 # 754 "/Users/weugene/basilisk/src/grid/cartesian-common.h"
@@ -7159,13 +7159,13 @@ if (!((cm).i >= 65536)) {
       ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[s.i] += child.y*g.y*((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+-child.y]) + sizeof(Cell)))[cm.i]/cmc;}
     sum -= ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[cm.i];
   } } } point.i = (_i + 2)/2; point.j = (_j + 2)/2; point.level--;}; }
-  
+
 # 210 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
  (__builtin_expect(!(
 # 210 "/Users/weugene/basilisk/src/grid/multigrid-common.h"
  fabs(sum) < 1e-10
 # 210 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/multigrid-common.h", 210, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/multigrid-common.h", 210,
 # 210 "/Users/weugene/basilisk/src/grid/multigrid-common.h"
  "fabs(sum) < 1e-10"
 # 210 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
@@ -7208,13 +7208,13 @@ const double _const_cm = _constant[cm.i -65536];
       ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[s.i] += child.y*g.y*_const_cm/cmc;}
     sum -= _const_cm;
   } } } point.i = (_i + 2)/2; point.j = (_j + 2)/2; point.level--;}; }
-  
+
 # 210 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
  (__builtin_expect(!(
 # 210 "/Users/weugene/basilisk/src/grid/multigrid-common.h"
  fabs(sum) < 1e-10
 # 210 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/multigrid-common.h", 210, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/multigrid-common.h", 210,
 # 210 "/Users/weugene/basilisk/src/grid/multigrid-common.h"
  "fabs(sum) < 1e-10"
 # 210 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
@@ -7279,7 +7279,7 @@ void multigrid_debug (Point point)
   if (point.level > 0) {
     char name[80] = "coarse";
     if (0 > 0)
-      
+
 # 258 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
      __builtin___sprintf_chk (
 # 258 "/Users/weugene/basilisk/src/grid/multigrid-common.h"
@@ -7289,7 +7289,7 @@ void multigrid_debug (Point point)
 # 258 "/Users/weugene/basilisk/src/grid/multigrid-common.h"
      name
 # 258 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
-     , 2 > 1 ? 1 : 0), 
+     , 2 > 1 ? 1 : 0),
 # 258 "/Users/weugene/basilisk/src/grid/multigrid-common.h"
      "coarse-%d", 0
 # 258 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
@@ -7321,7 +7321,7 @@ void multigrid_debug (Point point)
   if ((((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]))))).neighbors > 0)) {
     char name[80] = "fine";
     if (0 > 0)
-      
+
 # 308 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
      __builtin___sprintf_chk (
 # 308 "/Users/weugene/basilisk/src/grid/multigrid-common.h"
@@ -7331,7 +7331,7 @@ void multigrid_debug (Point point)
 # 308 "/Users/weugene/basilisk/src/grid/multigrid-common.h"
      name
 # 308 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
-     , 2 > 1 ? 1 : 0), 
+     , 2 > 1 ? 1 : 0),
 # 308 "/Users/weugene/basilisk/src/grid/multigrid-common.h"
      "fine-%d", 0
 # 308 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
@@ -7373,15 +7373,15 @@ void multigrid_debug (Point point)
 
 static void multigrid_restriction (scalar * list)
 {
-  scalar * listdef = 
+  scalar * listdef =
 # 370 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
                     ((void *)0)
 # 370 "/Users/weugene/basilisk/src/grid/multigrid-common.h"
-                        , * listc = 
+                        , * listc =
 # 370 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
                                     ((void *)0)
 # 370 "/Users/weugene/basilisk/src/grid/multigrid-common.h"
-                                        , * list2 = 
+                                        , * list2 =
 # 370 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
                                                     ((void *)0)
 # 370 "/Users/weugene/basilisk/src/grid/multigrid-common.h"
@@ -7441,9 +7441,9 @@ void multigrid_methods()
 
 
 
-void subtree_size (scalar size, 
+void subtree_size (scalar size,
 # 419 "/Users/weugene/basilisk/src/grid/multigrid-common.h" 3 4
-                               _Bool 
+                               _Bool
 # 419 "/Users/weugene/basilisk/src/grid/multigrid-common.h"
                                     leaves)
 {
@@ -7534,7 +7534,7 @@ int refine_cell (Point point, scalar * list, int flag, Cache * refined)
 
 
 # 98 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
-_Bool 
+_Bool
 # 98 "/Users/weugene/basilisk/src/grid/tree-common.h"
     coarsen_cell (Point point, scalar * list)
 { int ig = 0; (void)(ig); int jg = 0; (void)(jg); double Delta = L0*(1./(1 << point.level)); double Delta_x = Delta; double Delta_y = Delta; double x = (ig/2. + (point.i - 2) + 0.5)*Delta + X0; (void)(x); double y = (jg/2. + (point.j - 2) + 0.5)*Delta + Y0; (void)(y); double z = 0.; (void)(z); (void)(Delta); (void)(Delta_x); (void)(Delta_y); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;
@@ -7546,7 +7546,7 @@ _Bool
   int pid = (*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).pid;
    { { int _i = 2*point.i - 2, _j = 2*point.j - 2; point.level++; for (int _k = 0; _k < 2; _k++) { point.i = _i + _k; for (int _l = 0; _l < 2; _l++) { point.j = _j + _l; double Delta = L0*(1./(1 << point.level)); double Delta_x = Delta; double Delta_y = Delta; double x = (ig/2. + (point.i - 2) + 0.5)*Delta + X0; (void)(x); double y = (jg/2. + (point.j - 2) + 0.5)*Delta + Y0; (void)(y); double z = 0.; (void)(z); (void)(Delta); (void)(Delta_x); (void)(Delta_y); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;
     if ((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).neighbors || ((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).pid < 0 && (*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).pid != pid))
-      return 
+      return
 # 106 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
             0
 # 106 "/Users/weugene/basilisk/src/grid/tree-common.h"
@@ -7566,7 +7566,7 @@ _Bool
 
   decrement_neighbors (point);
 # 133 "/Users/weugene/basilisk/src/grid/tree-common.h"
-  return 
+  return
 # 133 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
         1
 # 133 "/Users/weugene/basilisk/src/grid/tree-common.h"
@@ -7585,13 +7585,13 @@ void coarsen_cell_recursive (Point point, scalar * list)
  if ((!(((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]))))).flags & leaf) && (*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).neighbors && (*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).pid >= 0))
    coarsen_cell_recursive (point, list); } } point.i = _i; point.j = _j;}; } } } point.i = (_i + 2)/2; point.j = (_j + 2)/2; point.level--;}; }
 
-  
+
 # 146 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
  (__builtin_expect(!(
 # 146 "/Users/weugene/basilisk/src/grid/tree-common.h"
  coarsen_cell (point, list)
 # 146 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree-common.h", 146, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree-common.h", 146,
 # 146 "/Users/weugene/basilisk/src/grid/tree-common.h"
  "coarsen_cell (point, list)"
 # 146 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
@@ -7619,7 +7619,7 @@ struct Adapt {
 
 astats adapt_wavelet (struct Adapt p)
 { ;
-  if (p.list == 
+  if (p.list ==
 # 168 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
                ((void *)0)
 # 168 "/Users/weugene/basilisk/src/grid/tree-common.h"
@@ -7634,7 +7634,7 @@ astats adapt_wavelet (struct Adapt p)
   }
 
   astats st = {0, 0};
-  scalar * listc = 
+  scalar * listc =
 # 179 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
                   ((void *)0)
 # 179 "/Users/weugene/basilisk/src/grid/tree-common.h"
@@ -7668,15 +7668,15 @@ astats adapt_wavelet (struct Adapt p)
    continue;
  }
 
- 
+
 # 207 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
-_Bool 
+_Bool
 # 207 "/Users/weugene/basilisk/src/grid/tree-common.h"
      local = (((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]))))).pid == 0);
  if (!local)
     { { int _i = 2*point.i - 2, _j = 2*point.j - 2; point.level++; for (int _k = 0; _k < 2; _k++) { point.i = _i + _k; for (int _l = 0; _l < 2; _l++) { point.j = _j + _l; double Delta = L0*(1./(1 << point.level)); double Delta_x = Delta; double Delta_y = Delta; double x = (ig/2. + (point.i - 2) + 0.5)*Delta + X0; (void)(x); double y = (jg/2. + (point.j - 2) + 0.5)*Delta + Y0; (void)(y); double z = 0.; (void)(z); (void)(Delta); (void)(Delta_x); (void)(Delta_y); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;
      if ((((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]))))).pid == 0))
-       local = 
+       local =
 # 211 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
               1
 # 211 "/Users/weugene/basilisk/src/grid/tree-common.h"
@@ -7776,7 +7776,7 @@ static void refine_level (int depth)
 # 320 "/Users/weugene/basilisk/src/grid/tree-common.h"
 
       if (level < depth) {
- refine_cell (point, 
+ refine_cell (point,
 # 322 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
                     ((void *)0)
 # 322 "/Users/weugene/basilisk/src/grid/tree-common.h"
@@ -7802,7 +7802,7 @@ static void refine_level (int depth)
 # 359 "/Users/weugene/basilisk/src/grid/tree-common.h"
 static void halo_flux (vector * list)
 {
-  vector * listv = 
+  vector * listv =
 # 361 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
                   ((void *)0)
 # 361 "/Users/weugene/basilisk/src/grid/tree-common.h"
@@ -8039,19 +8039,19 @@ static void tree_boundary_level (scalar * list, int l)
     return;
   }
 
-  scalar * listdef = 
+  scalar * listdef =
 # 561 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
                     ((void *)0)
 # 561 "/Users/weugene/basilisk/src/grid/tree-common.h"
-                        , * listc = 
+                        , * listc =
 # 561 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
                                     ((void *)0)
 # 561 "/Users/weugene/basilisk/src/grid/tree-common.h"
-                                        , * list2 = 
+                                        , * list2 =
 # 561 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
                                                     ((void *)0)
 # 561 "/Users/weugene/basilisk/src/grid/tree-common.h"
-                                                        , * vlist = 
+                                                        , * vlist =
 # 561 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
                                                                     ((void *)0)
 # 561 "/Users/weugene/basilisk/src/grid/tree-common.h"
@@ -8138,12 +8138,12 @@ static void tree_boundary_level (scalar * list, int l)
     free(list2);
   }
 
-  scalar * listr = 
+  scalar * listr =
 # 655 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
                   ((void *)0)
 # 655 "/Users/weugene/basilisk/src/grid/tree-common.h"
                       ;
-  vector * listf = 
+  vector * listf =
 # 656 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
                   ((void *)0)
 # 656 "/Users/weugene/basilisk/src/grid/tree-common.h"
@@ -8224,13 +8224,13 @@ void tree_check()
 # 716 "/Users/weugene/basilisk/src/grid/tree-common.h"
  {
     if ((((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]))))).flags & leaf)) {
-      
+
 # 718 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
      (__builtin_expect(!(
 # 718 "/Users/weugene/basilisk/src/grid/tree-common.h"
      (*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).pid >= 0
 # 718 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
-     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree-common.h", 718, 
+     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree-common.h", 718,
 # 718 "/Users/weugene/basilisk/src/grid/tree-common.h"
      "cell.pid >= 0"
 # 718 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
@@ -8240,13 +8240,13 @@ void tree_check()
       nleaves++;
     }
     if ((((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]))))).pid == 0))
-      
+
 # 722 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
      (__builtin_expect(!(
 # 722 "/Users/weugene/basilisk/src/grid/tree-common.h"
      (((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]))))).flags & active) || (!(((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]))))).flags & leaf) && !(*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).neighbors && (*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).pid >= 0)
 # 722 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
-     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree-common.h", 722, 
+     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree-common.h", 722,
 # 722 "/Users/weugene/basilisk/src/grid/tree-common.h"
      "is_active(cell) || (!is_leaf(cell) && !cell.neighbors && cell.pid >= 0)"
 # 722 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
@@ -8260,13 +8260,13 @@ void tree_check()
      { { int _nn = 1 + 0 ? 1 + 0 : 2; int _i = point.i, _j = point.j; for (int _k = - _nn; _k <= _nn; _k++) { point.i = _i + _k; for (int _l = - _nn; _l <= _nn; _l++) { point.j = _j + _l; double Delta = L0*(1./(1 << point.level)); double Delta_x = Delta; double Delta_y = Delta; double x = (ig/2. + (point.i - 2) + 0.5)*Delta + X0; (void)(x); double y = (jg/2. + (point.j - 2) + 0.5)*Delta + Y0; (void)(y); double z = 0.; (void)(z); (void)(Delta); (void)(Delta_x); (void)(Delta_y); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;
       if ((point.i+0 >= 0 && point.i+0 < (1 << point.level) + 2*2 && ((Tree *)grid)->L[point.level]->m[point.i+0] && point.j+0 >= 0 && point.j+0 < (1 << point.level) + 2*2 && ((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) && (!(((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]))))).flags & leaf) && (*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).neighbors && (*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).pid >= 0))
  neighbors++; } } point.i = _i; point.j = _j;}; }
-    
+
 # 730 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
    (__builtin_expect(!(
 # 730 "/Users/weugene/basilisk/src/grid/tree-common.h"
    (*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).neighbors == neighbors
 # 730 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
-   ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree-common.h", 730, 
+   ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree-common.h", 730,
 # 730 "/Users/weugene/basilisk/src/grid/tree-common.h"
    "cell.neighbors == neighbors"
 # 730 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
@@ -8276,13 +8276,13 @@ void tree_check()
 
 
     if (!(*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).neighbors)
-      
+
 # 734 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
      (__builtin_expect(!(
 # 734 "/Users/weugene/basilisk/src/grid/tree-common.h"
      !(level < (grid->depth) && point.i > 0 && point.i <= (1 << level) + 2 && point.j > 0 && point.j <= (1 << level) + 2 && ((Tree *)grid)->L[point.level+1]->m[2*point.i-2 +0] && ((Tree *)grid)->L[point.level+1]->m[2*point.i-2 +0][2*point.j-2 +0])
 # 734 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
-     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree-common.h", 734, 
+     ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree-common.h", 734,
 # 734 "/Users/weugene/basilisk/src/grid/tree-common.h"
      "!allocated_child(0,0,0)"
 # 734 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
@@ -8301,13 +8301,13 @@ void tree_check()
     else
       continue;
   } } if (point.level < grid->depth) { { _s++; stack[_s].l = point.level; stack[_s].i = point.i; stack[_s].j = point.j; stack[_s].stage = 1; }; { _s++; stack[_s].l = point.level + 1; stack[_s].i = (2*point.i - 2); stack[_s].j = (2*point.j - 2); stack[_s].stage = 0; }; } break; } case 1: { _s++; stack[_s].l = point.level; stack[_s].i = point.i; stack[_s].j = point.j; stack[_s].stage = 2; }; { _s++; stack[_s].l = point.level + 1; stack[_s].i = (2*point.i - 2); stack[_s].j = ((2*point.j - 2) + 1); stack[_s].stage = 0; }; break; case 2: { _s++; stack[_s].l = point.level; stack[_s].i = point.i; stack[_s].j = point.j; stack[_s].stage = 3; }; { _s++; stack[_s].l = point.level + 1; stack[_s].i = ((2*point.i - 2) + 1); stack[_s].j = (2*point.j - 2); stack[_s].stage = 0; }; break; case 3: { _s++; stack[_s].l = point.level + 1; stack[_s].i = ((2*point.i - 2) + 1); stack[_s].j = ((2*point.j - 2) + 1); stack[_s].stage = 0; }; break; } } } }; }
-  
+
 # 745 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
  (__builtin_expect(!(
 # 745 "/Users/weugene/basilisk/src/grid/tree-common.h"
  nactive == reachable
 # 745 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree-common.h", 745, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree-common.h", 745,
 # 745 "/Users/weugene/basilisk/src/grid/tree-common.h"
  "nactive == reachable"
 # 745 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
@@ -8324,13 +8324,13 @@ void tree_check()
       reachable++;
       continue;
     } } if (point.level < grid->depth) { { _s++; stack[_s].l = point.level; stack[_s].i = point.i; stack[_s].j = point.j; stack[_s].stage = 1; }; { _s++; stack[_s].l = point.level + 1; stack[_s].i = (2*point.i - 2); stack[_s].j = (2*point.j - 2); stack[_s].stage = 0; }; } break; } case 1: { _s++; stack[_s].l = point.level; stack[_s].i = point.i; stack[_s].j = point.j; stack[_s].stage = 2; }; { _s++; stack[_s].l = point.level + 1; stack[_s].i = (2*point.i - 2); stack[_s].j = ((2*point.j - 2) + 1); stack[_s].stage = 0; }; break; case 2: { _s++; stack[_s].l = point.level; stack[_s].i = point.i; stack[_s].j = point.j; stack[_s].stage = 3; }; { _s++; stack[_s].l = point.level + 1; stack[_s].i = ((2*point.i - 2) + 1); stack[_s].j = (2*point.j - 2); stack[_s].stage = 0; }; break; case 3: { _s++; stack[_s].l = point.level + 1; stack[_s].i = ((2*point.i - 2) + 1); stack[_s].j = ((2*point.j - 2) + 1); stack[_s].stage = 0; }; break; } } } }; }
-  
+
 # 754 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
  (__builtin_expect(!(
 # 754 "/Users/weugene/basilisk/src/grid/tree-common.h"
  nleaves == reachable
 # 754 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree-common.h", 754, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/grid/tree-common.h", 754,
 # 754 "/Users/weugene/basilisk/src/grid/tree-common.h"
  "nleaves == reachable"
 # 754 "/Users/weugene/basilisk/src/grid/tree-common.h" 3 4
@@ -8508,7 +8508,7 @@ double _n = n;
 
 void timer_print (timer t, int i, size_t tnc)
 {
-  timing s = timer_timing (t, i, tnc, 
+  timing s = timer_timing (t, i, tnc,
 # 106 "/Users/weugene/basilisk/src/utils.h" 3 4
                                      ((void *)0)
 # 106 "/Users/weugene/basilisk/src/utils.h"
@@ -8696,13 +8696,13 @@ double minmod2 (double s0, double s1, double s2)
 # 237 "/Users/weugene/basilisk/src/utils.h"
 void gradients (scalar * f, vector * g)
 {
-  
+
 # 239 "/Users/weugene/basilisk/src/utils.h" 3 4
  (__builtin_expect(!(
 # 239 "/Users/weugene/basilisk/src/utils.h"
  list_len(f) == vectors_len(g)
 # 239 "/Users/weugene/basilisk/src/utils.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/utils.h", 239, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/utils.h", 239,
 # 239 "/Users/weugene/basilisk/src/utils.h"
  "list_len(f) == vectors_len(g)"
 # 239 "/Users/weugene/basilisk/src/utils.h" 3 4
@@ -8844,13 +8844,13 @@ vector lookup_vector (const char * name)
 {
   if (name) {
     char component[strlen(name) + 3];
-    
+
 # 321 "/Users/weugene/basilisk/src/utils.h" 3 4
    __builtin___strcpy_chk (
 # 321 "/Users/weugene/basilisk/src/utils.h"
    component
 # 321 "/Users/weugene/basilisk/src/utils.h" 3 4
-   , 
+   ,
 # 321 "/Users/weugene/basilisk/src/utils.h"
    name
 # 321 "/Users/weugene/basilisk/src/utils.h" 3 4
@@ -8861,13 +8861,13 @@ vector lookup_vector (const char * name)
    , 2 > 1 ? 1 : 0))
 # 321 "/Users/weugene/basilisk/src/utils.h"
                            ;
-    
+
 # 322 "/Users/weugene/basilisk/src/utils.h" 3 4
    __builtin___strcat_chk (
 # 322 "/Users/weugene/basilisk/src/utils.h"
    component
 # 322 "/Users/weugene/basilisk/src/utils.h" 3 4
-   , 
+   ,
 # 322 "/Users/weugene/basilisk/src/utils.h"
    ".x"
 # 322 "/Users/weugene/basilisk/src/utils.h" 3 4
@@ -8891,9 +8891,9 @@ struct OutputField {
   scalar * list;
   FILE * fp;
   int n;
-  
+
 # 41 "/Users/weugene/basilisk/src/output.h" 3 4
- _Bool 
+ _Bool
 # 41 "/Users/weugene/basilisk/src/output.h"
       linear;
   double box[2][2];
@@ -8904,7 +8904,7 @@ void output_field (struct OutputField p)
 { ;
   if (!p.list) p.list = all;
   if (p.n == 0) p.n = N;
-  if (!p.fp) p.fp = 
+  if (!p.fp) p.fp =
 # 50 "/Users/weugene/basilisk/src/output.h" 3 4
                    __stdoutp
 # 50 "/Users/weugene/basilisk/src/output.h"
@@ -8978,9 +8978,9 @@ struct OutputMatrix {
   scalar f;
   FILE * fp;
   int n;
-  
+
 # 144 "/Users/weugene/basilisk/src/output.h" 3 4
- _Bool 
+ _Bool
 # 144 "/Users/weugene/basilisk/src/output.h"
       linear;
 };
@@ -8989,7 +8989,7 @@ struct OutputMatrix {
 void output_matrix (struct OutputMatrix p)
 { ;
   if (p.n == 0) p.n = N;
-  if (!p.fp) p.fp = 
+  if (!p.fp) p.fp =
 # 151 "/Users/weugene/basilisk/src/output.h" 3 4
                    __stdoutp
 # 151 "/Users/weugene/basilisk/src/output.h"
@@ -9012,13 +9012,13 @@ void output_matrix (struct OutputMatrix p)
  Point point = locate ((struct _locate){xp, yp}); int ig = 0; (void)(ig); int jg = 0; (void)(jg); double Delta = L0*(1./(1 << point.level)); double Delta_x = Delta; double Delta_y = Delta; double x = (ig/2. + (point.i - 2) + 0.5)*Delta + X0; (void)(x); double y = (jg/2. + (point.j - 2) + 0.5)*Delta + Y0; (void)(y); double z = 0.; (void)(z); (void)(Delta); (void)(Delta_x); (void)(Delta_y); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;
 # 167 "/Users/weugene/basilisk/src/output.h"
 
- 
+
 # 168 "/Users/weugene/basilisk/src/output.h" 3 4
 (__builtin_expect(!(
 # 168 "/Users/weugene/basilisk/src/output.h"
 point.level >= 0
 # 168 "/Users/weugene/basilisk/src/output.h" 3 4
-), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/output.h", 168, 
+), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/output.h", 168,
 # 168 "/Users/weugene/basilisk/src/output.h"
 "point.level >= 0"
 # 168 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9155,13 +9155,13 @@ color colormap_color (double cmap[127][3],
     i = val*(127 - 1);
     coef = val*(127 - 1) - i;
   }
-  
+
 # 302 "/Users/weugene/basilisk/src/output.h" 3 4
  (__builtin_expect(!(
 # 302 "/Users/weugene/basilisk/src/output.h"
  i < 127 - 1
 # 302 "/Users/weugene/basilisk/src/output.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/output.h", 302, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/output.h", 302,
 # 302 "/Users/weugene/basilisk/src/output.h"
  "i < 127 - 1"
 # 302 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9176,7 +9176,7 @@ color colormap_color (double cmap[127][3],
 # 321 "/Users/weugene/basilisk/src/output.h"
 static const char * extension (const char * file, const char * ext) {
   int len = strlen(file);
-  return len > 4 && !strcmp (file + len - 4, ext) ? file + len - 4 : 
+  return len > 4 && !strcmp (file + len - 4, ext) ? file + len - 4 :
 # 323 "/Users/weugene/basilisk/src/output.h" 3 4
                                                                     ((void *)0)
 # 323 "/Users/weugene/basilisk/src/output.h"
@@ -9189,7 +9189,7 @@ static const char * is_animation (const char * file) {
       (ext = extension (file, ".ogv")) ||
       (ext = extension (file, ".gif")))
     return ext;
-  return 
+  return
 # 332 "/Users/weugene/basilisk/src/output.h" 3 4
         ((void *)0)
 # 332 "/Users/weugene/basilisk/src/output.h"
@@ -9204,7 +9204,7 @@ static struct {
 # 339 "/Users/weugene/basilisk/src/output.h" 3 4
                     ((void *)0)
 # 339 "/Users/weugene/basilisk/src/output.h"
-                        , 
+                        ,
 # 339 "/Users/weugene/basilisk/src/output.h" 3 4
                           ((void *)0)
 # 339 "/Users/weugene/basilisk/src/output.h"
@@ -9218,12 +9218,12 @@ static void open_image_cleanup()
   }
   free(open_image_data.fp);
   free(open_image_data.names);
-  open_image_data.fp = 
+  open_image_data.fp =
 # 349 "/Users/weugene/basilisk/src/output.h" 3 4
                       ((void *)0)
 # 349 "/Users/weugene/basilisk/src/output.h"
                           ;
-  open_image_data.names = 
+  open_image_data.names =
 # 350 "/Users/weugene/basilisk/src/output.h" 3 4
                          ((void *)0)
 # 350 "/Users/weugene/basilisk/src/output.h"
@@ -9236,34 +9236,34 @@ static FILE * open_image_lookup (const char * file)
   for (int i = 0; i < open_image_data.n; i++)
     if (!strcmp (file, open_image_data.names[i]))
       return open_image_data.fp[i];
-  return 
+  return
 # 359 "/Users/weugene/basilisk/src/output.h" 3 4
         ((void *)0)
 # 359 "/Users/weugene/basilisk/src/output.h"
             ;
 }
 
-static 
+static
 # 362 "/Users/weugene/basilisk/src/output.h" 3 4
-      _Bool 
+      _Bool
 # 362 "/Users/weugene/basilisk/src/output.h"
            which (const char * command)
 {
   char * s = getenv ("PATH");
   if (!s)
-    return 
+    return
 # 366 "/Users/weugene/basilisk/src/output.h" 3 4
           0
 # 366 "/Users/weugene/basilisk/src/output.h"
                ;
   char path[strlen(s) + 1];
-  
+
 # 368 "/Users/weugene/basilisk/src/output.h" 3 4
  __builtin___strcpy_chk (
 # 368 "/Users/weugene/basilisk/src/output.h"
  path
 # 368 "/Users/weugene/basilisk/src/output.h" 3 4
- , 
+ ,
 # 368 "/Users/weugene/basilisk/src/output.h"
  s
 # 368 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9277,13 +9277,13 @@ static
   s = strtok (path, ":");
   while (s) {
     char f[strlen(s) + strlen(command) + 2];
-    
+
 # 372 "/Users/weugene/basilisk/src/output.h" 3 4
    __builtin___strcpy_chk (
 # 372 "/Users/weugene/basilisk/src/output.h"
    f
 # 372 "/Users/weugene/basilisk/src/output.h" 3 4
-   , 
+   ,
 # 372 "/Users/weugene/basilisk/src/output.h"
    s
 # 372 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9294,13 +9294,13 @@ static
    , 2 > 1 ? 1 : 0))
 # 372 "/Users/weugene/basilisk/src/output.h"
                 ;
-    
+
 # 373 "/Users/weugene/basilisk/src/output.h" 3 4
    __builtin___strcat_chk (
 # 373 "/Users/weugene/basilisk/src/output.h"
    f
 # 373 "/Users/weugene/basilisk/src/output.h" 3 4
-   , 
+   ,
 # 373 "/Users/weugene/basilisk/src/output.h"
    "/"
 # 373 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9311,13 +9311,13 @@ static
    , 2 > 1 ? 1 : 0))
 # 373 "/Users/weugene/basilisk/src/output.h"
                   ;
-    
+
 # 374 "/Users/weugene/basilisk/src/output.h" 3 4
    __builtin___strcat_chk (
 # 374 "/Users/weugene/basilisk/src/output.h"
    f
 # 374 "/Users/weugene/basilisk/src/output.h" 3 4
-   , 
+   ,
 # 374 "/Users/weugene/basilisk/src/output.h"
    command
 # 374 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9331,7 +9331,7 @@ static
     FILE * fp = fopen (f, "r");
     if (fp) {
       fclose (fp);
-      return 
+      return
 # 378 "/Users/weugene/basilisk/src/output.h" 3 4
             1
 # 378 "/Users/weugene/basilisk/src/output.h"
@@ -9343,7 +9343,7 @@ static
 # 380 "/Users/weugene/basilisk/src/output.h"
                    , ":");
   }
-  return 
+  return
 # 382 "/Users/weugene/basilisk/src/output.h" 3 4
         0
 # 382 "/Users/weugene/basilisk/src/output.h"
@@ -9353,13 +9353,13 @@ static
 static FILE * ppm_fallback (const char * file, const char * mode)
 {
   char filename[strlen(file) + 5];
-  
+
 # 388 "/Users/weugene/basilisk/src/output.h" 3 4
  __builtin___strcpy_chk (
 # 388 "/Users/weugene/basilisk/src/output.h"
  filename
 # 388 "/Users/weugene/basilisk/src/output.h" 3 4
- , 
+ ,
 # 388 "/Users/weugene/basilisk/src/output.h"
  file
 # 388 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9370,13 +9370,13 @@ static FILE * ppm_fallback (const char * file, const char * mode)
  , 2 > 1 ? 1 : 0))
 # 388 "/Users/weugene/basilisk/src/output.h"
                         ;
-  
+
 # 389 "/Users/weugene/basilisk/src/output.h" 3 4
  __builtin___strcat_chk (
 # 389 "/Users/weugene/basilisk/src/output.h"
  filename
 # 389 "/Users/weugene/basilisk/src/output.h" 3 4
- , 
+ ,
 # 389 "/Users/weugene/basilisk/src/output.h"
  ".ppm"
 # 389 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9400,13 +9400,13 @@ static FILE * ppm_fallback (const char * file, const char * mode)
 
 FILE * open_image (const char * file, const char * options)
 {
-  
+
 # 403 "/Users/weugene/basilisk/src/output.h" 3 4
  (__builtin_expect(!(
 # 403 "/Users/weugene/basilisk/src/output.h"
  0 == 0
 # 403 "/Users/weugene/basilisk/src/output.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/output.h", 403, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/output.h", 403,
 # 403 "/Users/weugene/basilisk/src/output.h"
  "pid() == 0"
 # 403 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9422,13 +9422,13 @@ FILE * open_image (const char * file, const char * options)
     int len = strlen ("ppm2???    ") + strlen (file) +
       (options ? strlen (options) : 0);
     char command[len];
-    
+
 # 413 "/Users/weugene/basilisk/src/output.h" 3 4
    __builtin___strcpy_chk (
 # 413 "/Users/weugene/basilisk/src/output.h"
    command
 # 413 "/Users/weugene/basilisk/src/output.h" 3 4
-   , 
+   ,
 # 413 "/Users/weugene/basilisk/src/output.h"
    "ppm2"
 # 413 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9438,13 +9438,13 @@ FILE * open_image (const char * file, const char * options)
 # 413 "/Users/weugene/basilisk/src/output.h" 3 4
    , 2 > 1 ? 1 : 0))
 # 413 "/Users/weugene/basilisk/src/output.h"
-                           ; 
+                           ;
 # 413 "/Users/weugene/basilisk/src/output.h" 3 4
                              __builtin___strcat_chk (
 # 413 "/Users/weugene/basilisk/src/output.h"
                              command
 # 413 "/Users/weugene/basilisk/src/output.h" 3 4
-                             , 
+                             ,
 # 413 "/Users/weugene/basilisk/src/output.h"
                              ext + 1
 # 413 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9459,7 +9459,7 @@ FILE * open_image (const char * file, const char * options)
     static int has_ffmpeg = -1;
     if (has_ffmpeg < 0) {
       if (which (command) && (which ("ffmpeg") || which ("avconv")))
- has_ffmpeg = 
+ has_ffmpeg =
 # 418 "/Users/weugene/basilisk/src/output.h" 3 4
              1
 # 418 "/Users/weugene/basilisk/src/output.h"
@@ -9472,7 +9472,7 @@ FILE * open_image (const char * file, const char * options)
              ,
    "open_image(): cannot find '%s' or 'ffmpeg'/'avconv'\n"
    "  falling back to raw PPM outputs\n", command);
- has_ffmpeg = 
+ has_ffmpeg =
 # 423 "/Users/weugene/basilisk/src/output.h" 3 4
              0
 # 423 "/Users/weugene/basilisk/src/output.h"
@@ -9482,18 +9482,18 @@ FILE * open_image (const char * file, const char * options)
     if (!has_ffmpeg)
       return ppm_fallback (file, "a");
 
-    static 
+    static
 # 429 "/Users/weugene/basilisk/src/output.h" 3 4
-          _Bool 
+          _Bool
 # 429 "/Users/weugene/basilisk/src/output.h"
-               added = 
+               added =
 # 429 "/Users/weugene/basilisk/src/output.h" 3 4
                        0
 # 429 "/Users/weugene/basilisk/src/output.h"
                             ;
     if (!added) {
       free_solver_func_add (open_image_cleanup);
-      added = 
+      added =
 # 432 "/Users/weugene/basilisk/src/output.h" 3 4
              1
 # 432 "/Users/weugene/basilisk/src/output.h"
@@ -9504,13 +9504,13 @@ FILE * open_image (const char * file, const char * options)
     open_image_data.names[open_image_data.n - 1] = strdup(file);
 
     if (options) {
-      
+
 # 439 "/Users/weugene/basilisk/src/output.h" 3 4
      __builtin___strcat_chk (
 # 439 "/Users/weugene/basilisk/src/output.h"
      command
 # 439 "/Users/weugene/basilisk/src/output.h" 3 4
-     , 
+     ,
 # 439 "/Users/weugene/basilisk/src/output.h"
      " "
 # 439 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9521,13 +9521,13 @@ FILE * open_image (const char * file, const char * options)
      , 2 > 1 ? 1 : 0))
 # 439 "/Users/weugene/basilisk/src/output.h"
                           ;
-      
+
 # 440 "/Users/weugene/basilisk/src/output.h" 3 4
      __builtin___strcat_chk (
 # 440 "/Users/weugene/basilisk/src/output.h"
      command
 # 440 "/Users/weugene/basilisk/src/output.h" 3 4
-     , 
+     ,
 # 440 "/Users/weugene/basilisk/src/output.h"
      options
 # 440 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9539,13 +9539,13 @@ FILE * open_image (const char * file, const char * options)
 # 440 "/Users/weugene/basilisk/src/output.h"
                               ;
     }
-    
+
 # 442 "/Users/weugene/basilisk/src/output.h" 3 4
    __builtin___strcat_chk (
 # 442 "/Users/weugene/basilisk/src/output.h"
    command
 # 442 "/Users/weugene/basilisk/src/output.h" 3 4
-   , 
+   ,
 # 442 "/Users/weugene/basilisk/src/output.h"
    !strcmp (ext, ".mp4") ? " " : " > "
 # 442 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9556,13 +9556,13 @@ FILE * open_image (const char * file, const char * options)
    , 2 > 1 ? 1 : 0))
 # 442 "/Users/weugene/basilisk/src/output.h"
                                                         ;
-    
+
 # 443 "/Users/weugene/basilisk/src/output.h" 3 4
    __builtin___strcat_chk (
 # 443 "/Users/weugene/basilisk/src/output.h"
    command
 # 443 "/Users/weugene/basilisk/src/output.h" 3 4
-   , 
+   ,
 # 443 "/Users/weugene/basilisk/src/output.h"
    file
 # 443 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9580,7 +9580,7 @@ FILE * open_image (const char * file, const char * options)
     static int has_convert = -1;
     if (has_convert < 0) {
       if (which ("convert"))
- has_convert = 
+ has_convert =
 # 451 "/Users/weugene/basilisk/src/output.h" 3 4
               1
 # 451 "/Users/weugene/basilisk/src/output.h"
@@ -9593,7 +9593,7 @@ FILE * open_image (const char * file, const char * options)
              ,
    "open_image(): cannot find 'convert'\n"
    "  falling back to raw PPM outputs\n");
- has_convert = 
+ has_convert =
 # 456 "/Users/weugene/basilisk/src/output.h" 3 4
               0
 # 456 "/Users/weugene/basilisk/src/output.h"
@@ -9606,13 +9606,13 @@ FILE * open_image (const char * file, const char * options)
     int len = strlen ("convert ppm:-   ") + strlen (file) +
       (options ? strlen (options) : 0);
     char command[len];
-    
+
 # 465 "/Users/weugene/basilisk/src/output.h" 3 4
    __builtin___strcpy_chk (
 # 465 "/Users/weugene/basilisk/src/output.h"
    command
 # 465 "/Users/weugene/basilisk/src/output.h" 3 4
-   , 
+   ,
 # 465 "/Users/weugene/basilisk/src/output.h"
    "convert ppm:- "
 # 465 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9624,13 +9624,13 @@ FILE * open_image (const char * file, const char * options)
 # 465 "/Users/weugene/basilisk/src/output.h"
                                      ;
     if (options) {
-      
+
 # 467 "/Users/weugene/basilisk/src/output.h" 3 4
      __builtin___strcat_chk (
 # 467 "/Users/weugene/basilisk/src/output.h"
      command
 # 467 "/Users/weugene/basilisk/src/output.h" 3 4
-     , 
+     ,
 # 467 "/Users/weugene/basilisk/src/output.h"
      options
 # 467 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9641,13 +9641,13 @@ FILE * open_image (const char * file, const char * options)
      , 2 > 1 ? 1 : 0))
 # 467 "/Users/weugene/basilisk/src/output.h"
                               ;
-      
+
 # 468 "/Users/weugene/basilisk/src/output.h" 3 4
      __builtin___strcat_chk (
 # 468 "/Users/weugene/basilisk/src/output.h"
      command
 # 468 "/Users/weugene/basilisk/src/output.h" 3 4
-     , 
+     ,
 # 468 "/Users/weugene/basilisk/src/output.h"
      " "
 # 468 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9659,13 +9659,13 @@ FILE * open_image (const char * file, const char * options)
 # 468 "/Users/weugene/basilisk/src/output.h"
                           ;
     }
-    
+
 # 470 "/Users/weugene/basilisk/src/output.h" 3 4
    __builtin___strcat_chk (
 # 470 "/Users/weugene/basilisk/src/output.h"
    command
 # 470 "/Users/weugene/basilisk/src/output.h" 3 4
-   , 
+   ,
 # 470 "/Users/weugene/basilisk/src/output.h"
    file
 # 470 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9682,13 +9682,13 @@ FILE * open_image (const char * file, const char * options)
 
 void close_image (const char * file, FILE * fp)
 {
-  
+
 # 477 "/Users/weugene/basilisk/src/output.h" 3 4
  (__builtin_expect(!(
 # 477 "/Users/weugene/basilisk/src/output.h"
  0 == 0
 # 477 "/Users/weugene/basilisk/src/output.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/output.h", 477, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/output.h", 477,
 # 477 "/Users/weugene/basilisk/src/output.h"
  "pid() == 0"
 # 477 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -9711,9 +9711,9 @@ struct OutputPPM {
   int n;
   char * file;
   double min, max, spread, z;
-  
+
 # 558 "/Users/weugene/basilisk/src/output.h" 3 4
- _Bool 
+ _Bool
 # 558 "/Users/weugene/basilisk/src/output.h"
       linear;
   double box[2][2];
@@ -9753,7 +9753,7 @@ void output_ppm (struct OutputPPM p)
   double cmap[127][3];
   p.map (cmap);
   {
-   
+
       for (int j = 0; j < ny; j++) {
  double yp = Delta*j + p.box[0][1] + Delta/2.;
  for (int i = 0; i < p.n; i++) {
@@ -9794,7 +9794,7 @@ void output_ppm (struct OutputPPM p)
 
 
 
-    if (!p.fp) p.fp = 
+    if (!p.fp) p.fp =
 # 633 "/Users/weugene/basilisk/src/output.h" 3 4
                      __stdoutp
 # 633 "/Users/weugene/basilisk/src/output.h"
@@ -9823,9 +9823,9 @@ struct OutputGRD {
   scalar f;
   FILE * fp;
   double Delta;
-  
+
 # 688 "/Users/weugene/basilisk/src/output.h" 3 4
- _Bool 
+ _Bool
 # 688 "/Users/weugene/basilisk/src/output.h"
       linear;
   double box[2][2];
@@ -9836,7 +9836,7 @@ struct OutputGRD {
 void output_grd (struct OutputGRD p)
 { ;
 
-  if (!p.fp) p.fp = 
+  if (!p.fp) p.fp =
 # 697 "/Users/weugene/basilisk/src/output.h" 3 4
                    __stdoutp
 # 697 "/Users/weugene/basilisk/src/output.h"
@@ -9907,17 +9907,17 @@ struct OutputGfs {
   scalar * list;
   double t;
   char * file;
-  
+
 # 785 "/Users/weugene/basilisk/src/output.h" 3 4
- _Bool 
+ _Bool
 # 785 "/Users/weugene/basilisk/src/output.h"
       translate;
 };
 
 static char * replace (const char * input, int target, int with,
-         
+
 # 789 "/Users/weugene/basilisk/src/output.h" 3 4
-        _Bool 
+        _Bool
 # 789 "/Users/weugene/basilisk/src/output.h"
              translate)
 {
@@ -9943,26 +9943,26 @@ void output_gfs (struct OutputGfs p)
 { ;
   char * fname = p.file;
 # 827 "/Users/weugene/basilisk/src/output.h"
-  
+
 # 827 "/Users/weugene/basilisk/src/output.h" 3 4
- _Bool 
+ _Bool
 # 827 "/Users/weugene/basilisk/src/output.h"
-      opened = 
+      opened =
 # 827 "/Users/weugene/basilisk/src/output.h" 3 4
                0
 # 827 "/Users/weugene/basilisk/src/output.h"
                     ;
-  if (p.fp == 
+  if (p.fp ==
 # 828 "/Users/weugene/basilisk/src/output.h" 3 4
              ((void *)0)
 # 828 "/Users/weugene/basilisk/src/output.h"
                  ) {
-    if (fname == 
+    if (fname ==
 # 829 "/Users/weugene/basilisk/src/output.h" 3 4
                 ((void *)0)
 # 829 "/Users/weugene/basilisk/src/output.h"
                     )
-      p.fp = 
+      p.fp =
 # 830 "/Users/weugene/basilisk/src/output.h" 3 4
             __stdoutp
 # 830 "/Users/weugene/basilisk/src/output.h"
@@ -9972,7 +9972,7 @@ void output_gfs (struct OutputGfs p)
       exit (1);
     }
     else
-      opened = 
+      opened =
 # 836 "/Users/weugene/basilisk/src/output.h" 3 4
               1
 # 836 "/Users/weugene/basilisk/src/output.h"
@@ -9990,9 +9990,9 @@ void output_gfs (struct OutputGfs p)
 
 
 
-  if (list != 
+  if (list !=
 # 850 "/Users/weugene/basilisk/src/output.h" 3 4
-             ((void *)0) 
+             ((void *)0)
 # 850 "/Users/weugene/basilisk/src/output.h"
                   && list[0].i != -1) {
     scalar s = list[0];
@@ -10088,9 +10088,9 @@ struct Dump {
   char * file;
   scalar * list;
   FILE * fp;
-  
+
 # 1014 "/Users/weugene/basilisk/src/output.h" 3 4
- _Bool 
+ _Bool
 # 1014 "/Users/weugene/basilisk/src/output.h"
       unbuffered;
 };
@@ -10108,11 +10108,11 @@ static const int dump_version =
 
 static scalar * dump_list (scalar * lista)
 {
-  scalar * list = ((cm).i >= 65536) ? 
+  scalar * list = ((cm).i >= 65536) ?
 # 1030 "/Users/weugene/basilisk/src/output.h" 3 4
-                                   ((void *)0) 
+                                   ((void *)0)
 # 1030 "/Users/weugene/basilisk/src/output.h"
-                                        : list_concat (((scalar []){cm,{-1}}), 
+                                        : list_concat (((scalar []){cm,{-1}}),
 # 1030 "/Users/weugene/basilisk/src/output.h" 3 4
                                                                                ((void *)0)
 # 1030 "/Users/weugene/basilisk/src/output.h"
@@ -10152,26 +10152,26 @@ static void dump_header (FILE * fp, struct DumpHeader * header, scalar * list)
 void dump (struct Dump p)
 { ;
   FILE * fp = p.fp;
-  char def[] = "dump", * file = p.file ? p.file : p.fp ? 
+  char def[] = "dump", * file = p.file ? p.file : p.fp ?
 # 1066 "/Users/weugene/basilisk/src/output.h" 3 4
-                                                        ((void *)0) 
+                                                        ((void *)0)
 # 1066 "/Users/weugene/basilisk/src/output.h"
                                                              : def;
 
-  char * name = 
+  char * name =
 # 1068 "/Users/weugene/basilisk/src/output.h" 3 4
                ((void *)0)
 # 1068 "/Users/weugene/basilisk/src/output.h"
                    ;
   if (file) {
     name = (char *) malloc(strlen(file) + 2);
-    
+
 # 1071 "/Users/weugene/basilisk/src/output.h" 3 4
    __builtin___strcpy_chk (
 # 1071 "/Users/weugene/basilisk/src/output.h"
    name
 # 1071 "/Users/weugene/basilisk/src/output.h" 3 4
-   , 
+   ,
 # 1071 "/Users/weugene/basilisk/src/output.h"
    file
 # 1071 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -10183,13 +10183,13 @@ void dump (struct Dump p)
 # 1071 "/Users/weugene/basilisk/src/output.h"
                       ;
     if (!p.unbuffered)
-      
+
 # 1073 "/Users/weugene/basilisk/src/output.h" 3 4
      __builtin___strcat_chk (
 # 1073 "/Users/weugene/basilisk/src/output.h"
      name
 # 1073 "/Users/weugene/basilisk/src/output.h" 3 4
-     , 
+     ,
 # 1073 "/Users/weugene/basilisk/src/output.h"
      "~"
 # 1073 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -10200,7 +10200,7 @@ void dump (struct Dump p)
      , 2 > 1 ? 1 : 0))
 # 1073 "/Users/weugene/basilisk/src/output.h"
                        ;
-    if ((fp = fopen (name, "w")) == 
+    if ((fp = fopen (name, "w")) ==
 # 1074 "/Users/weugene/basilisk/src/output.h" 3 4
                                    ((void *)0)
 # 1074 "/Users/weugene/basilisk/src/output.h"
@@ -10209,13 +10209,13 @@ void dump (struct Dump p)
       exit (1);
     }
   }
-  
+
 # 1079 "/Users/weugene/basilisk/src/output.h" 3 4
  (__builtin_expect(!(
 # 1079 "/Users/weugene/basilisk/src/output.h"
  fp
 # 1079 "/Users/weugene/basilisk/src/output.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/output.h", 1079, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/output.h", 1079,
 # 1079 "/Users/weugene/basilisk/src/output.h"
  "fp"
 # 1079 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -10230,7 +10230,7 @@ void dump (struct Dump p)
           dump_version };
   dump_header (fp, &header, list);
 
-  subtree_size (size, 
+  subtree_size (size,
 # 1088 "/Users/weugene/basilisk/src/output.h" 3 4
                      0
 # 1088 "/Users/weugene/basilisk/src/output.h"
@@ -10264,33 +10264,33 @@ void dump (struct Dump p)
 # 1193 "/Users/weugene/basilisk/src/output.h"
 
 # 1193 "/Users/weugene/basilisk/src/output.h" 3 4
-_Bool 
+_Bool
 # 1193 "/Users/weugene/basilisk/src/output.h"
     restore (struct Dump p)
 { ;
   FILE * fp = p.fp;
   char * file = p.file;
-  if (file && (fp = fopen (file, "r")) == 
+  if (file && (fp = fopen (file, "r")) ==
 # 1197 "/Users/weugene/basilisk/src/output.h" 3 4
                                          ((void *)0)
 # 1197 "/Users/weugene/basilisk/src/output.h"
                                              )
-    { 
+    {
 # 1198 "/Users/weugene/basilisk/src/output.h" 3 4
-     _Bool 
+     _Bool
 # 1198 "/Users/weugene/basilisk/src/output.h"
-          _ret = 
+          _ret =
 # 1198 "/Users/weugene/basilisk/src/output.h" 3 4
                   0
 # 1198 "/Users/weugene/basilisk/src/output.h"
                        ; ; return _ret; }
-  
+
 # 1199 "/Users/weugene/basilisk/src/output.h" 3 4
  (__builtin_expect(!(
 # 1199 "/Users/weugene/basilisk/src/output.h"
  fp
 # 1199 "/Users/weugene/basilisk/src/output.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/output.h", 1199, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/output.h", 1199,
 # 1199 "/Users/weugene/basilisk/src/output.h"
  "fp"
 # 1199 "/Users/weugene/basilisk/src/output.h" 3 4
@@ -10316,15 +10316,15 @@ _Bool
     (*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).pid = 0;
     (*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0])))).flags |= active;
   } } if (point.level < grid->depth) { { _s++; stack[_s].l = point.level; stack[_s].i = point.i; stack[_s].j = point.j; stack[_s].stage = 1; }; { _s++; stack[_s].l = point.level + 1; stack[_s].i = (2*point.i - 2); stack[_s].j = (2*point.j - 2); stack[_s].stage = 0; }; } break; } case 1: { _s++; stack[_s].l = point.level; stack[_s].i = point.i; stack[_s].j = point.j; stack[_s].stage = 2; }; { _s++; stack[_s].l = point.level + 1; stack[_s].i = (2*point.i - 2); stack[_s].j = ((2*point.j - 2) + 1); stack[_s].stage = 0; }; break; case 2: { _s++; stack[_s].l = point.level; stack[_s].i = point.i; stack[_s].j = point.j; stack[_s].stage = 3; }; { _s++; stack[_s].l = point.level + 1; stack[_s].i = ((2*point.i - 2) + 1); stack[_s].j = (2*point.j - 2); stack[_s].stage = 0; }; break; case 3: { _s++; stack[_s].l = point.level + 1; stack[_s].i = ((2*point.i - 2) + 1); stack[_s].j = ((2*point.j - 2) + 1); stack[_s].stage = 0; }; break; } } } }; }
-  ((Tree *)grid)->dirty = 
+  ((Tree *)grid)->dirty =
 # 1210 "/Users/weugene/basilisk/src/output.h" 3 4
                          1
 # 1210 "/Users/weugene/basilisk/src/output.h"
                              ;
 # 1231 "/Users/weugene/basilisk/src/output.h"
-  
+
 # 1231 "/Users/weugene/basilisk/src/output.h" 3 4
- _Bool 
+ _Bool
 # 1231 "/Users/weugene/basilisk/src/output.h"
       restore_all = (p.list == all);
   scalar * list = dump_list (p.list ? p.list : all);
@@ -10354,7 +10354,7 @@ _Bool
       exit (1);
     }
 
-    scalar * input = 
+    scalar * input =
 # 1251 "/Users/weugene/basilisk/src/output.h" 3 4
                     ((void *)0)
 # 1251 "/Users/weugene/basilisk/src/output.h"
@@ -10381,11 +10381,11 @@ _Bool
       name[len] = '\0';
 
       if (i > 0) {
- 
+
 # 1266 "/Users/weugene/basilisk/src/output.h" 3 4
-_Bool 
+_Bool
 # 1266 "/Users/weugene/basilisk/src/output.h"
-     found = 
+     found =
 # 1266 "/Users/weugene/basilisk/src/output.h" 3 4
              0
 # 1266 "/Users/weugene/basilisk/src/output.h"
@@ -10393,7 +10393,7 @@ _Bool
  if (list) for (scalar s = *list, *_i81 = list; ((scalar *)&s)->i >= 0; s = *++_i81)
    if (!strcmp (_attribute[s.i].name, name)) {
      input = list_append (input, s);
-     found = 
+     found =
 # 1270 "/Users/weugene/basilisk/src/output.h" 3 4
             1
 # 1270 "/Users/weugene/basilisk/src/output.h"
@@ -10427,9 +10427,9 @@ _Bool
     size (o[3]);
   }
 # 1306 "/Users/weugene/basilisk/src/output.h"
-  scalar * listm = ((cm).i >= 65536) ? 
+  scalar * listm = ((cm).i >= 65536) ?
 # 1306 "/Users/weugene/basilisk/src/output.h" 3 4
-                                    ((void *)0) 
+                                    ((void *)0)
 # 1306 "/Users/weugene/basilisk/src/output.h"
                                          : (scalar *)((vector []){{fm.x,fm.y},{{-1},{-1}}});
 
@@ -10448,7 +10448,7 @@ _Bool
       exit (1);
     }
 
-    fseek (fp, sizeof(double), 
+    fseek (fp, sizeof(double),
 # 1317 "/Users/weugene/basilisk/src/output.h" 3 4
                               1
 # 1317 "/Users/weugene/basilisk/src/output.h"
@@ -10467,7 +10467,7 @@ _Bool
  ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[s.i] = val;
     }
     if (!(flags & leaf) && (((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]))))).flags & leaf))
-      refine_cell (point, listm, 0, 
+      refine_cell (point, listm, 0,
 # 1328 "/Users/weugene/basilisk/src/output.h" 3 4
                                    ((void *)0)
 # 1328 "/Users/weugene/basilisk/src/output.h"
@@ -10479,7 +10479,7 @@ _Bool
 
   boundary (listm);
 
-  scalar * other = 
+  scalar * other =
 # 1336 "/Users/weugene/basilisk/src/output.h" 3 4
                   ((void *)0)
 # 1336 "/Users/weugene/basilisk/src/output.h"
@@ -10519,11 +10519,11 @@ _Bool
 # 1354 "/Users/weugene/basilisk/src/output.h"
               );
 
-  { 
+  {
 # 1356 "/Users/weugene/basilisk/src/output.h" 3 4
-   _Bool 
+   _Bool
 # 1356 "/Users/weugene/basilisk/src/output.h"
-        _ret = 
+        _ret =
 # 1356 "/Users/weugene/basilisk/src/output.h" 3 4
                 1
 # 1356 "/Users/weugene/basilisk/src/output.h"
@@ -10958,13 +10958,13 @@ void advection (struct Advection p)
       lsrc = list_append (lsrc, zero);
   }
 
-  
+
 # 93 "/Users/weugene/basilisk/src/bcg.h" 3 4
  (__builtin_expect(!(
 # 93 "/Users/weugene/basilisk/src/bcg.h"
  list_len(p.tracers) == list_len(lsrc)
 # 93 "/Users/weugene/basilisk/src/bcg.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/bcg.h", 93, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/bcg.h", 93,
 # 93 "/Users/weugene/basilisk/src/bcg.h"
  "list_len(p.tracers) == list_len(lsrc)"
 # 93 "/Users/weugene/basilisk/src/bcg.h" 3 4
@@ -13455,9 +13455,9 @@ vector uf= {{14},{15}};
 mgstats mgp, mgpf, mgu;
 
 # 85 "./../src_local/centered-weugene.h" 3 4
-_Bool 
+_Bool
 # 85 "./../src_local/centered-weugene.h"
-    stokes = 
+    stokes =
 # 85 "./../src_local/centered-weugene.h" 3 4
              0
 # 85 "./../src_local/centered-weugene.h"
@@ -13477,7 +13477,7 @@ static int defaults_expr0 (int * ip, double * tp, Event * _ev) { int i = *ip; do
 
 
 
-  _attribute[p.i].nodump = _attribute[pf.i].nodump = 
+  _attribute[p.i].nodump = _attribute[pf.i].nodump =
 # 146 "./../src_local/centered-weugene.h" 3 4
                                                     1
 # 146 "./../src_local/centered-weugene.h"
@@ -15846,7 +15846,7 @@ enum FeedbackFormat {
 float * gl_feedback_begin (unsigned buffersize);
 
 # 39 "/Users/weugene/basilisk/src/gl/utils.h" 3 4
-_Bool 
+_Bool
 # 39 "/Users/weugene/basilisk/src/gl/utils.h"
        gl_feedback_end (float * f,
       FILE * fp,
@@ -15989,9 +15989,9 @@ void input_pgm (struct InputPGM p)
 static void next_char (FILE * fp, int target)
 {
   int c = fgetc(fp), para = 0;
-  while (c != 
+  while (c !=
 # 110 "/Users/weugene/basilisk/src/input.h" 3 4
-             (-1) 
+             (-1)
 # 110 "/Users/weugene/basilisk/src/input.h"
                  && (c != target || para > 0)) {
     if (c == '{') para++;
@@ -16014,9 +16014,9 @@ static int next_string (FILE * fp, const char * target)
   char s[slen + 1];
   s[slen] = '\0';
   int len = 0, c = fgetc (fp);
-  while (c != 
+  while (c !=
 # 127 "/Users/weugene/basilisk/src/input.h" 3 4
-             (-1) 
+             (-1)
 # 127 "/Users/weugene/basilisk/src/input.h"
                  && len < slen) {
     if (c == '{') para++;
@@ -16024,9 +16024,9 @@ static int next_string (FILE * fp, const char * target)
     s[len++] = c;
     c = fgetc (fp);
   }
-  while (c != 
+  while (c !=
 # 133 "/Users/weugene/basilisk/src/input.h" 3 4
-             (-1) 
+             (-1)
 # 133 "/Users/weugene/basilisk/src/input.h"
                  && para >= 0) {
     if (!strcmp (s, target) && para == 0)
@@ -16048,26 +16048,26 @@ void input_gfs (struct OutputGfs p)
 { ;
   ;
 
-  
+
 # 171 "/Users/weugene/basilisk/src/input.h" 3 4
- _Bool 
+ _Bool
 # 171 "/Users/weugene/basilisk/src/input.h"
-      opened = 
+      opened =
 # 171 "/Users/weugene/basilisk/src/input.h" 3 4
                0
 # 171 "/Users/weugene/basilisk/src/input.h"
                     ;
-  if (p.fp == 
+  if (p.fp ==
 # 172 "/Users/weugene/basilisk/src/input.h" 3 4
              ((void *)0)
 # 172 "/Users/weugene/basilisk/src/input.h"
                  ) {
-    if (p.file == 
+    if (p.file ==
 # 173 "/Users/weugene/basilisk/src/input.h" 3 4
                  ((void *)0)
 # 173 "/Users/weugene/basilisk/src/input.h"
                      )
-      p.fp = 
+      p.fp =
 # 174 "/Users/weugene/basilisk/src/input.h" 3 4
             __stdinp
 # 174 "/Users/weugene/basilisk/src/input.h"
@@ -16077,18 +16077,18 @@ void input_gfs (struct OutputGfs p)
       exit (1);
     }
     else
-      opened = 
+      opened =
 # 180 "/Users/weugene/basilisk/src/input.h" 3 4
               1
 # 180 "/Users/weugene/basilisk/src/input.h"
                   ;
   }
-  
+
 # 182 "/Users/weugene/basilisk/src/input.h" 3 4
- _Bool 
+ _Bool
 # 182 "/Users/weugene/basilisk/src/input.h"
       input_all = (p.list == all);
-  if (p.list == 
+  if (p.list ==
 # 183 "/Users/weugene/basilisk/src/input.h" 3 4
                ((void *)0)
 # 183 "/Users/weugene/basilisk/src/input.h"
@@ -16103,9 +16103,9 @@ void input_gfs (struct OutputGfs p)
   char * s = ((char *) malloc((1)*sizeof(char)));
   int len = 0;
   int c = fgetc(p.fp);
-  while (c != 
+  while (c !=
 # 194 "/Users/weugene/basilisk/src/input.h" 3 4
-             (-1) 
+             (-1)
 # 194 "/Users/weugene/basilisk/src/input.h"
                  && c != '}') {
     s[len++] = c;
@@ -16146,23 +16146,23 @@ void input_gfs (struct OutputGfs p)
   while (strchr (" \t", *s1))
     s1++;
 
-  scalar * input = 
+  scalar * input =
 # 221 "/Users/weugene/basilisk/src/input.h" 3 4
                   ((void *)0)
 # 221 "/Users/weugene/basilisk/src/input.h"
                       ;
   s1 = strtok (s1, ", \t");
   while (s1) {
-    char * name = replace (s1, '_', '.', 
+    char * name = replace (s1, '_', '.',
 # 224 "/Users/weugene/basilisk/src/input.h" 3 4
                                         0
 # 224 "/Users/weugene/basilisk/src/input.h"
                                              );
-    
+
 # 225 "/Users/weugene/basilisk/src/input.h" 3 4
-   _Bool 
+   _Bool
 # 225 "/Users/weugene/basilisk/src/input.h"
-        found = 
+        found =
 # 225 "/Users/weugene/basilisk/src/input.h" 3 4
                 0
 # 225 "/Users/weugene/basilisk/src/input.h"
@@ -16170,7 +16170,7 @@ void input_gfs (struct OutputGfs p)
     if (p.list) for (scalar s = *p.list, *_i91 = p.list; ((scalar *)&s)->i >= 0; s = *++_i91)
       if (!((s).i >= 65536) && _attribute[s.i].name && !strcmp (_attribute[s.i].name, name)) {
  input = list_append (input, s);
- found = 
+ found =
 # 229 "/Users/weugene/basilisk/src/input.h" 3 4
         1
 # 229 "/Users/weugene/basilisk/src/input.h"
@@ -16227,7 +16227,7 @@ void input_gfs (struct OutputGfs p)
   next_char (p.fp, '\n');
 
   scalar * listm = ((scalar []){cm,fm.x,fm.y,{-1}});
-  scalar * listr = !((cm).i >= 65536) ? listm : 
+  scalar * listr = !((cm).i >= 65536) ? listm :
 # 270 "/Users/weugene/basilisk/src/input.h" 3 4
                                              ((void *)0)
 # 270 "/Users/weugene/basilisk/src/input.h"
@@ -16247,7 +16247,7 @@ void input_gfs (struct OutputGfs p)
       exit (1);
     }
     if (!(flags & (1 << 4)) && (((*((Cell *)((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]))))).flags & leaf))
-      refine_cell (point, listr, 0, 
+      refine_cell (point, listr, 0,
 # 280 "/Users/weugene/basilisk/src/input.h" 3 4
                                    ((void *)0)
 # 280 "/Users/weugene/basilisk/src/input.h"
@@ -16322,9 +16322,9 @@ struct InputGRD {
   FILE * fp;
   char * file;
   double nodatavalue;
-  
+
 # 362 "/Users/weugene/basilisk/src/input.h" 3 4
- _Bool 
+ _Bool
 # 362 "/Users/weugene/basilisk/src/input.h"
       linear;
 };
@@ -16333,26 +16333,26 @@ void input_grd (struct InputGRD p)
 {
   scalar input = p.s;
 
-  
+
 # 369 "/Users/weugene/basilisk/src/input.h" 3 4
- _Bool 
+ _Bool
 # 369 "/Users/weugene/basilisk/src/input.h"
-      opened = 
+      opened =
 # 369 "/Users/weugene/basilisk/src/input.h" 3 4
                0
 # 369 "/Users/weugene/basilisk/src/input.h"
                     ;
-  if (p.fp == 
+  if (p.fp ==
 # 370 "/Users/weugene/basilisk/src/input.h" 3 4
              ((void *)0)
 # 370 "/Users/weugene/basilisk/src/input.h"
                  ) {
-    if (p.file == 
+    if (p.file ==
 # 371 "/Users/weugene/basilisk/src/input.h" 3 4
                  ((void *)0)
 # 371 "/Users/weugene/basilisk/src/input.h"
                      )
-      p.fp = 
+      p.fp =
 # 372 "/Users/weugene/basilisk/src/input.h" 3 4
             __stdinp
 # 372 "/Users/weugene/basilisk/src/input.h"
@@ -16362,7 +16362,7 @@ void input_grd (struct InputGRD p)
       exit (1);
     }
     else
-      opened = 
+      opened =
 # 378 "/Users/weugene/basilisk/src/input.h" 3 4
               1
 # 378 "/Users/weugene/basilisk/src/input.h"
@@ -16395,11 +16395,11 @@ void input_grd (struct InputGRD p)
 
   double LGx0 = nx*DeltaGRD;
   double LGy0 = ny*DeltaGRD;
-  
+
 # 407 "/Users/weugene/basilisk/src/input.h" 3 4
- _Bool 
+ _Bool
 # 407 "/Users/weugene/basilisk/src/input.h"
-      warning = 
+      warning =
 # 407 "/Users/weugene/basilisk/src/input.h" 3 4
                 0
 # 407 "/Users/weugene/basilisk/src/input.h"
@@ -16409,9 +16409,9 @@ void input_grd (struct InputGRD p)
 # 409 "/Users/weugene/basilisk/src/input.h"
  {
 
-    
+
 # 411 "/Users/weugene/basilisk/src/input.h" 3 4
-   _Bool 
+   _Bool
 # 411 "/Users/weugene/basilisk/src/input.h"
         incl = (x >= XG0 - DeltaGRD/2. &&
    x <= XG0 + LGx0 + DeltaGRD/2. &&
@@ -16420,9 +16420,9 @@ void input_grd (struct InputGRD p)
     if (incl) {
       double val;
 
-      
+
 # 418 "/Users/weugene/basilisk/src/input.h" 3 4
-     _Bool 
+     _Bool
 # 418 "/Users/weugene/basilisk/src/input.h"
           ring = (x >= XG0 &&
      x <= XG0 + LGx0 &&
@@ -16448,7 +16448,7 @@ void input_grd (struct InputGRD p)
     }
     else {
       ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[input.i] = p.nodatavalue;
-      warning = 
+      warning =
 # 442 "/Users/weugene/basilisk/src/input.h" 3 4
                1
 # 442 "/Users/weugene/basilisk/src/input.h"
@@ -16481,19 +16481,19 @@ struct _bview {
   float quat[4];
   float fov;
 
-  
+
 # 87 "/Users/weugene/basilisk/src/view.h" 3 4
- _Bool 
+ _Bool
 # 87 "/Users/weugene/basilisk/src/view.h"
       gfsview;
-  
+
 # 88 "/Users/weugene/basilisk/src/view.h" 3 4
- _Bool 
+ _Bool
 # 88 "/Users/weugene/basilisk/src/view.h"
       vector;
-  
+
 # 89 "/Users/weugene/basilisk/src/view.h" 3 4
- _Bool 
+ _Bool
 # 89 "/Users/weugene/basilisk/src/view.h"
       reversed;
 
@@ -16510,9 +16510,9 @@ struct _bview {
 
   int ni;
 
-  
+
 # 104 "/Users/weugene/basilisk/src/view.h" 3 4
- _Bool 
+ _Bool
 # 104 "/Users/weugene/basilisk/src/view.h"
       active;
 };
@@ -16539,7 +16539,7 @@ bview * bview_new() {
   p->res = 1.;
   p->lc = 0.001;
 
-  p->vector = 
+  p->vector =
 # 129 "/Users/weugene/basilisk/src/view.h" 3 4
              0
 # 129 "/Users/weugene/basilisk/src/view.h"
@@ -16551,7 +16551,7 @@ bview * bview_new() {
   p->fb = framebuffer_new (p->width, p->height);
 
   init_gl();
-  p->active = 
+  p->active =
 # 137 "/Users/weugene/basilisk/src/view.h" 3 4
              0
 # 137 "/Users/weugene/basilisk/src/view.h"
@@ -16572,7 +16572,7 @@ void bview_destroy (bview * p)
 
 
 
-static bview * _view = 
+static bview * _view =
 # 154 "/Users/weugene/basilisk/src/view.h" 3 4
                       ((void *)0)
 # 154 "/Users/weugene/basilisk/src/view.h"
@@ -16585,13 +16585,13 @@ static bview * _view =
 
 static void destroy_view()
 {
-  
+
 # 163 "/Users/weugene/basilisk/src/view.h" 3 4
  (__builtin_expect(!(
 # 163 "/Users/weugene/basilisk/src/view.h"
  _view
 # 163 "/Users/weugene/basilisk/src/view.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/view.h", 163, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/view.h", 163,
 # 163 "/Users/weugene/basilisk/src/view.h"
  "_view"
 # 163 "/Users/weugene/basilisk/src/view.h" 3 4
@@ -16675,7 +16675,7 @@ static void redraw() {
 
   gl_get_frustum (&view->frustum);
 
-  view->active = 
+  view->active =
 # 217 "/Users/weugene/basilisk/src/view.h" 3 4
                 1
 # 217 "/Users/weugene/basilisk/src/view.h"
@@ -17291,13 +17291,13 @@ coord youngs_normal (Point point, scalar c)
 
   coord n;
   double nn = 0.;
-  
+
 # 388 "/Users/weugene/basilisk/src/fractions.h" 3 4
  (__builtin_expect(!(
 # 388 "/Users/weugene/basilisk/src/fractions.h"
  2 == 2
 # 388 "/Users/weugene/basilisk/src/fractions.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/fractions.h", 388, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/fractions.h", 388,
 # 388 "/Users/weugene/basilisk/src/fractions.h"
  "2 == 2"
 # 388 "/Users/weugene/basilisk/src/fractions.h" 3 4
@@ -17448,7 +17448,7 @@ void output_facets (struct OutputFacets p)
 { ;
   scalar c = p.c;
   vector s = p.s;
-  if (!p.fp) p.fp = 
+  if (!p.fp) p.fp =
 # 516 "/Users/weugene/basilisk/src/fractions.h" 3 4
                    __stdoutp
 # 516 "/Users/weugene/basilisk/src/fractions.h"
@@ -17516,7 +17516,7 @@ void clear()
 {
   bview * view = get_view();
   if (view->active)
-    view->active = 
+    view->active =
 # 15 "/Users/weugene/basilisk/src/draw.h" 3 4
                   0
 # 15 "/Users/weugene/basilisk/src/draw.h"
@@ -17532,9 +17532,9 @@ struct _view_set {
   unsigned width, height, samples;
   float bg[3];
   float theta, phi, psi;
-  
+
 # 54 "/Users/weugene/basilisk/src/draw.h" 3 4
- _Bool 
+ _Bool
 # 54 "/Users/weugene/basilisk/src/draw.h"
       relative;
   float res;
@@ -17570,7 +17570,7 @@ void view (struct _view_set p)
       v->bg[i] = p.bg[i];
 
   if (p.camera) {
-    v->gfsview = 
+    v->gfsview =
 # 88 "/Users/weugene/basilisk/src/draw.h" 3 4
                 0
 # 88 "/Users/weugene/basilisk/src/draw.h"
@@ -17603,7 +17603,7 @@ void view (struct _view_set p)
       for (int j = 0; j < 4; j++)
  v->quat[j] = q[j];
       v->fov = fov;
-      v->gfsview = 
+      v->gfsview =
 # 113 "/Users/weugene/basilisk/src/draw.h" 3 4
                   1
 # 113 "/Users/weugene/basilisk/src/draw.h"
@@ -17637,7 +17637,7 @@ void view (struct _view_set p)
     }
   }
   else if (p.theta || p.phi || p.psi) {
-    v->gfsview = 
+    v->gfsview =
 # 139 "/Users/weugene/basilisk/src/draw.h" 3 4
                 0
 # 139 "/Users/weugene/basilisk/src/draw.h"
@@ -17796,11 +17796,11 @@ static void mapped_position (bview * view, coord * p, double * r)
 # 304 "/Users/weugene/basilisk/src/draw.h"
 # 311 "/Users/weugene/basilisk/src/draw.h"
 # 359 "/Users/weugene/basilisk/src/draw.h"
-static 
+static
 # 359 "/Users/weugene/basilisk/src/draw.h" 3 4
-      _Bool 
+      _Bool
 # 359 "/Users/weugene/basilisk/src/draw.h"
-           _reversed = 
+           _reversed =
 # 359 "/Users/weugene/basilisk/src/draw.h" 3 4
                        0
 # 359 "/Users/weugene/basilisk/src/draw.h"
@@ -17818,7 +17818,7 @@ static void begin_draw_lines (bview * view, float color[3], float lw)
   glColor3f (color[0], color[1], color[2]);
   glLineWidth (view->samples*(lw > 0. ? lw : 1.));
   _reversed = view->reversed;
-  view->reversed = 
+  view->reversed =
 # 369 "/Users/weugene/basilisk/src/draw.h" 3 4
                   0
 # 369 "/Users/weugene/basilisk/src/draw.h"
@@ -17845,9 +17845,9 @@ static inline double interp (Point point, coord p, scalar col) { int ig = 0; (vo
 }
 # 440 "/Users/weugene/basilisk/src/draw.h"
 static void begin_colorized (float fc[3],
-        double cmap[127][3], 
+        double cmap[127][3],
 # 441 "/Users/weugene/basilisk/src/draw.h" 3 4
-                            _Bool 
+                            _Bool
 # 441 "/Users/weugene/basilisk/src/draw.h"
                                  use_texture)
 {
@@ -17864,15 +17864,15 @@ static void begin_colorized (float fc[3],
 # 452 "/Users/weugene/basilisk/src/draw.h" 3
                  0x0DE0
 # 452 "/Users/weugene/basilisk/src/draw.h"
-                              , 0, 
+                              , 0,
 # 452 "/Users/weugene/basilisk/src/draw.h" 3
                                    0x1907
 # 452 "/Users/weugene/basilisk/src/draw.h"
-                                         , 256,0, 
+                                         , 256,0,
 # 452 "/Users/weugene/basilisk/src/draw.h" 3
                                                   0x1907
 # 452 "/Users/weugene/basilisk/src/draw.h"
-                                                        , 
+                                                        ,
 # 452 "/Users/weugene/basilisk/src/draw.h" 3
                                                           0x1406
 # 452 "/Users/weugene/basilisk/src/draw.h"
@@ -17881,11 +17881,11 @@ static void begin_colorized (float fc[3],
 # 453 "/Users/weugene/basilisk/src/draw.h" 3
                     0x0DE0
 # 453 "/Users/weugene/basilisk/src/draw.h"
-                                 , 
+                                 ,
 # 453 "/Users/weugene/basilisk/src/draw.h" 3
                                    0x2801
 # 453 "/Users/weugene/basilisk/src/draw.h"
-                                                        , 
+                                                        ,
 # 453 "/Users/weugene/basilisk/src/draw.h" 3
                                                           0x2601
 # 453 "/Users/weugene/basilisk/src/draw.h"
@@ -17894,11 +17894,11 @@ static void begin_colorized (float fc[3],
 # 454 "/Users/weugene/basilisk/src/draw.h" 3
                     0x0DE0
 # 454 "/Users/weugene/basilisk/src/draw.h"
-                                 , 
+                                 ,
 # 454 "/Users/weugene/basilisk/src/draw.h" 3
                                    0x2800
 # 454 "/Users/weugene/basilisk/src/draw.h"
-                                                        , 
+                                                        ,
 # 454 "/Users/weugene/basilisk/src/draw.h" 3
                                                           0x2601
 # 454 "/Users/weugene/basilisk/src/draw.h"
@@ -17907,11 +17907,11 @@ static void begin_colorized (float fc[3],
 # 455 "/Users/weugene/basilisk/src/draw.h" 3
                     0x0DE0
 # 455 "/Users/weugene/basilisk/src/draw.h"
-                                 , 
+                                 ,
 # 455 "/Users/weugene/basilisk/src/draw.h" 3
                                    0x2802
 # 455 "/Users/weugene/basilisk/src/draw.h"
-                                                    , 
+                                                    ,
 # 455 "/Users/weugene/basilisk/src/draw.h" 3
                                                       0x812F
 # 455 "/Users/weugene/basilisk/src/draw.h"
@@ -17920,11 +17920,11 @@ static void begin_colorized (float fc[3],
 # 456 "/Users/weugene/basilisk/src/draw.h" 3
                     0x0DE0
 # 456 "/Users/weugene/basilisk/src/draw.h"
-                                 , 
+                                 ,
 # 456 "/Users/weugene/basilisk/src/draw.h" 3
                                    0x2803
 # 456 "/Users/weugene/basilisk/src/draw.h"
-                                                    , 
+                                                    ,
 # 456 "/Users/weugene/basilisk/src/draw.h" 3
                                                       0x812F
 # 456 "/Users/weugene/basilisk/src/draw.h"
@@ -17949,9 +17949,9 @@ static void end_colorized() {
 struct _draw_vof {
   char * c;
   char * s;
-  
+
 # 498 "/Users/weugene/basilisk/src/draw.h" 3 4
- _Bool 
+ _Bool
 # 498 "/Users/weugene/basilisk/src/draw.h"
       edges;
   double larger;
@@ -17959,9 +17959,9 @@ struct _draw_vof {
 
   char * color;
   double min, max, spread;
-  
+
 # 504 "/Users/weugene/basilisk/src/draw.h" 3 4
- _Bool 
+ _Bool
 # 504 "/Users/weugene/basilisk/src/draw.h"
       linear;
   colormap map;
@@ -17974,9 +17974,9 @@ struct _draw_vof {
 
 
 
-static 
+static
 # 515 "/Users/weugene/basilisk/src/draw.h" 3 4
-      _Bool 
+      _Bool
 # 515 "/Users/weugene/basilisk/src/draw.h"
            cfilter (Point point, scalar c, double cmin)
 { int ig = 0; (void)(ig); int jg = 0; (void)(jg); double Delta = L0*(1./(1 << point.level)); double Delta_x = Delta; double Delta_y = Delta; double x = (ig/2. + (point.i - 2) + 0.5)*Delta + X0; (void)(x); double y = (jg/2. + (point.j - 2) + 0.5)*Delta + Y0; (void)(y); double z = 0.; (void)(z); (void)(Delta); (void)(Delta_x); (void)(Delta_y); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;;
@@ -17988,7 +17988,7 @@ static
 # 519 "/Users/weugene/basilisk/src/draw.h"
 
       if (((double *) ((((Tree *)grid)->L[point.level]->m[point.i+1][point.j+0]) + sizeof(Cell)))[c.i] >= 1. - cmin1 || ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+-1][point.j+0]) + sizeof(Cell)))[c.i] >= 1. - cmin1)
- return 
+ return
 # 521 "/Users/weugene/basilisk/src/draw.h" 3 4
        1
 # 521 "/Users/weugene/basilisk/src/draw.h"
@@ -17996,12 +17996,12 @@ static
 # 519 "/Users/weugene/basilisk/src/draw.h"
 
       if (((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+1]) + sizeof(Cell)))[c.i] >= 1. - cmin1 || ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+-1]) + sizeof(Cell)))[c.i] >= 1. - cmin1)
- return 
+ return
 # 521 "/Users/weugene/basilisk/src/draw.h" 3 4
        1
 # 521 "/Users/weugene/basilisk/src/draw.h"
            ;}
-    return 
+    return
 # 522 "/Users/weugene/basilisk/src/draw.h" 3 4
           0
 # 522 "/Users/weugene/basilisk/src/draw.h"
@@ -18012,7 +18012,7 @@ static
 # 525 "/Users/weugene/basilisk/src/draw.h"
 
       if (((double *) ((((Tree *)grid)->L[point.level]->m[point.i+1][point.j+0]) + sizeof(Cell)))[c.i] <= cmin1 || ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+-1][point.j+0]) + sizeof(Cell)))[c.i] <= cmin1)
- return 
+ return
 # 527 "/Users/weugene/basilisk/src/draw.h" 3 4
        1
 # 527 "/Users/weugene/basilisk/src/draw.h"
@@ -18020,12 +18020,12 @@ static
 # 525 "/Users/weugene/basilisk/src/draw.h"
 
       if (((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+1]) + sizeof(Cell)))[c.i] <= cmin1 || ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+-1]) + sizeof(Cell)))[c.i] <= cmin1)
- return 
+ return
 # 527 "/Users/weugene/basilisk/src/draw.h" 3 4
        1
 # 527 "/Users/weugene/basilisk/src/draw.h"
            ;}
-    return 
+    return
 # 528 "/Users/weugene/basilisk/src/draw.h" 3 4
           0
 # 528 "/Users/weugene/basilisk/src/draw.h"
@@ -18035,7 +18035,7 @@ static
   double min = ((double)1e30), max = - ((double)1e30);
    { { int _nn = 1 + 0 ? 1 + 0 : 2; int _i = point.i, _j = point.j; for (int _k = - _nn; _k <= _nn; _k++) { point.i = _i + _k; for (int _l = - _nn; _l <= _nn; _l++) { point.j = _j + _l; double Delta = L0*(1./(1 << point.level)); double Delta_x = Delta; double Delta_y = Delta; double x = (ig/2. + (point.i - 2) + 0.5)*Delta + X0; (void)(x); double y = (jg/2. + (point.j - 2) + 0.5)*Delta + Y0; (void)(y); double z = 0.; (void)(z); (void)(Delta); (void)(Delta_x); (void)(Delta_y); ; int level = point.level; (void)(level); struct { int x, y; } child = { 2*((point.i+2)%2)-1, 2*((point.j+2)%2)-1 }; (void)(child); Point parent = point; (void)(parent); parent.level--; parent.i = (point.i + 2)/2; parent.j = (point.j + 2)/2;; {
     if (((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[c.i] > cmin && ((double *) ((((Tree *)grid)->L[point.level]->m[point.i+0][point.j+0]) + sizeof(Cell)))[c.i] < 1. - cmin && ++n >= (1 << 2))
-      return 
+      return
 # 534 "/Users/weugene/basilisk/src/draw.h" 3 4
             1
 # 534 "/Users/weugene/basilisk/src/draw.h"
@@ -18060,7 +18060,7 @@ static void glvertex2d (bview * view, double x, double y) {
 
 
 # 564 "/Users/weugene/basilisk/src/draw.h" 3 4
-_Bool 
+_Bool
 # 564 "/Users/weugene/basilisk/src/draw.h"
     draw_vof (struct _draw_vof p)
 { ;
@@ -18071,11 +18071,11 @@ _Bool
             __stderrp
 # 568 "/Users/weugene/basilisk/src/draw.h"
                      , "draw_vof(): no field named '%s'\n", p.c);
-    { 
+    {
 # 569 "/Users/weugene/basilisk/src/draw.h" 3 4
-     _Bool 
+     _Bool
 # 569 "/Users/weugene/basilisk/src/draw.h"
-          _ret = 
+          _ret =
 # 569 "/Users/weugene/basilisk/src/draw.h" 3 4
                   0
 # 569 "/Users/weugene/basilisk/src/draw.h"
@@ -18087,11 +18087,11 @@ _Bool
 # 573 "/Users/weugene/basilisk/src/draw.h" 3 4
                                                                                                                         __stderrp
 # 573 "/Users/weugene/basilisk/src/draw.h"
-                                                                                                                                 , "colorize_args(): no field named '%s'\n", p.color); { 
+                                                                                                                                 , "colorize_args(): no field named '%s'\n", p.color); {
 # 573 "/Users/weugene/basilisk/src/draw.h" 3 4
-                                                                                                                                                                                         _Bool 
+                                                                                                                                                                                         _Bool
 # 573 "/Users/weugene/basilisk/src/draw.h"
-                                                                                                                                                                                              _ret = 
+                                                                                                                                                                                              _ret =
 # 573 "/Users/weugene/basilisk/src/draw.h" 3 4
                                                                                                                                                                                                       0
 # 573 "/Users/weugene/basilisk/src/draw.h"
@@ -18218,11 +18218,11 @@ _Bool
   }
 
 
-  { 
+  {
 # 715 "/Users/weugene/basilisk/src/draw.h" 3 4
-   _Bool 
+   _Bool
 # 715 "/Users/weugene/basilisk/src/draw.h"
-        _ret = 
+        _ret =
 # 715 "/Users/weugene/basilisk/src/draw.h" 3 4
                 1
 # 715 "/Users/weugene/basilisk/src/draw.h"
@@ -18237,9 +18237,9 @@ struct _isoline {
 
   char * c;
   char * s;
-  
+
 # 735 "/Users/weugene/basilisk/src/draw.h" 3 4
- _Bool 
+ _Bool
 # 735 "/Users/weugene/basilisk/src/draw.h"
       edges;
   double larger;
@@ -18247,9 +18247,9 @@ struct _isoline {
 
   char * color;
   double min, max, spread;
-  
+
 # 741 "/Users/weugene/basilisk/src/draw.h" 3 4
- _Bool 
+ _Bool
 # 741 "/Users/weugene/basilisk/src/draw.h"
       linear;
   colormap map;
@@ -18259,7 +18259,7 @@ struct _isoline {
 
 
 # 747 "/Users/weugene/basilisk/src/draw.h" 3 4
-_Bool 
+_Bool
 # 747 "/Users/weugene/basilisk/src/draw.h"
     isoline (struct _isoline p)
 { ;
@@ -18269,11 +18269,11 @@ _Bool
 # 751 "/Users/weugene/basilisk/src/draw.h" 3 4
                                                                                                                         __stderrp
 # 751 "/Users/weugene/basilisk/src/draw.h"
-                                                                                                                                 , "colorize_args(): no field named '%s'\n", p.color); { 
+                                                                                                                                 , "colorize_args(): no field named '%s'\n", p.color); {
 # 751 "/Users/weugene/basilisk/src/draw.h" 3 4
-                                                                                                                                                                                         _Bool 
+                                                                                                                                                                                         _Bool
 # 751 "/Users/weugene/basilisk/src/draw.h"
-                                                                                                                                                                                              _ret = 
+                                                                                                                                                                                              _ret =
 # 751 "/Users/weugene/basilisk/src/draw.h" 3 4
                                                                                                                                                                                                       0
 # 751 "/Users/weugene/basilisk/src/draw.h"
@@ -18296,11 +18296,11 @@ _Bool
 
 
 
-  { 
+  {
 # 770 "/Users/weugene/basilisk/src/draw.h" 3 4
-   _Bool 
+   _Bool
 # 770 "/Users/weugene/basilisk/src/draw.h"
-        _ret = 
+        _ret =
 # 770 "/Users/weugene/basilisk/src/draw.h" 3 4
                 1
 # 770 "/Users/weugene/basilisk/src/draw.h"
@@ -18359,7 +18359,7 @@ void vectors (struct _vectors p)
 # 838 "/Users/weugene/basilisk/src/draw.h"
  {
     char name[80];
-    
+
 # 840 "/Users/weugene/basilisk/src/draw.h" 3 4
    __builtin___sprintf_chk (
 # 840 "/Users/weugene/basilisk/src/draw.h"
@@ -18369,7 +18369,7 @@ void vectors (struct _vectors p)
 # 840 "/Users/weugene/basilisk/src/draw.h"
    name
 # 840 "/Users/weugene/basilisk/src/draw.h" 3 4
-   , 2 > 1 ? 1 : 0), 
+   , 2 > 1 ? 1 : 0),
 # 840 "/Users/weugene/basilisk/src/draw.h"
    "%s.%c", p.u, index.x
 # 840 "/Users/weugene/basilisk/src/draw.h" 3 4
@@ -18381,7 +18381,7 @@ void vectors (struct _vectors p)
 # 838 "/Users/weugene/basilisk/src/draw.h"
  {
     char name[80];
-    
+
 # 840 "/Users/weugene/basilisk/src/draw.h" 3 4
    __builtin___sprintf_chk (
 # 840 "/Users/weugene/basilisk/src/draw.h"
@@ -18391,7 +18391,7 @@ void vectors (struct _vectors p)
 # 840 "/Users/weugene/basilisk/src/draw.h"
    name
 # 840 "/Users/weugene/basilisk/src/draw.h" 3 4
-   , 2 > 1 ? 1 : 0), 
+   , 2 > 1 ? 1 : 0),
 # 840 "/Users/weugene/basilisk/src/draw.h"
    "%s.%c", p.u, index.y
 # 840 "/Users/weugene/basilisk/src/draw.h" 3 4
@@ -18426,9 +18426,9 @@ void vectors (struct _vectors p)
 struct _squares {
   char * color;
   double min, max, spread;
-  
+
 # 878 "/Users/weugene/basilisk/src/draw.h" 3 4
- _Bool 
+ _Bool
 # 878 "/Users/weugene/basilisk/src/draw.h"
       linear;
   colormap map;
@@ -18441,7 +18441,7 @@ struct _squares {
 
 
 # 887 "/Users/weugene/basilisk/src/draw.h" 3 4
-_Bool 
+_Bool
 # 887 "/Users/weugene/basilisk/src/draw.h"
     squares (struct _squares p)
 { ;
@@ -18449,11 +18449,11 @@ _Bool
 # 889 "/Users/weugene/basilisk/src/draw.h" 3 4
                                                                                                                         __stderrp
 # 889 "/Users/weugene/basilisk/src/draw.h"
-                                                                                                                                 , "colorize_args(): no field named '%s'\n", p.color); { 
+                                                                                                                                 , "colorize_args(): no field named '%s'\n", p.color); {
 # 889 "/Users/weugene/basilisk/src/draw.h" 3 4
-                                                                                                                                                                                         _Bool 
+                                                                                                                                                                                         _Bool
 # 889 "/Users/weugene/basilisk/src/draw.h"
-                                                                                                                                                                                              _ret = 
+                                                                                                                                                                                              _ret =
 # 889 "/Users/weugene/basilisk/src/draw.h" 3 4
                                                                                                                                                                                                       0
 # 889 "/Users/weugene/basilisk/src/draw.h"
@@ -18521,11 +18521,11 @@ _Bool
     glEnd();
 # 976 "/Users/weugene/basilisk/src/draw.h"
   }
-  { 
+  {
 # 977 "/Users/weugene/basilisk/src/draw.h" 3 4
-   _Bool 
+   _Bool
 # 977 "/Users/weugene/basilisk/src/draw.h"
-        _ret = 
+        _ret =
 # 977 "/Users/weugene/basilisk/src/draw.h" 3 4
                 1
 # 977 "/Users/weugene/basilisk/src/draw.h"
@@ -18533,9 +18533,9 @@ _Bool
  ; }
 # 989 "/Users/weugene/basilisk/src/draw.h"
 struct _box {
-  
+
 # 990 "/Users/weugene/basilisk/src/draw.h" 3 4
- _Bool 
+ _Bool
 # 990 "/Users/weugene/basilisk/src/draw.h"
       notics;
   float lc[3], lw;
@@ -18544,7 +18544,7 @@ struct _box {
 
 
 # 995 "/Users/weugene/basilisk/src/draw.h" 3 4
-_Bool 
+_Bool
 # 995 "/Users/weugene/basilisk/src/draw.h"
     box (struct _box p)
 { ;
@@ -18569,7 +18569,7 @@ _Bool
  glTranslatef (X0 + i*L0/nt - height/2.*scale, Y0 - width/3.*scale, Z1);
  glRotatef (-90, 0, 0, 1);
  glScalef (scale, scale, scale);
- 
+
 # 1014 "/Users/weugene/basilisk/src/draw.h" 3 4
 __builtin___sprintf_chk (
 # 1014 "/Users/weugene/basilisk/src/draw.h"
@@ -18579,7 +18579,7 @@ label
 # 1014 "/Users/weugene/basilisk/src/draw.h"
 label
 # 1014 "/Users/weugene/basilisk/src/draw.h" 3 4
-, 2 > 1 ? 1 : 0), 
+, 2 > 1 ? 1 : 0),
 # 1014 "/Users/weugene/basilisk/src/draw.h"
 "%g", X0 + i*L0/nt
 # 1014 "/Users/weugene/basilisk/src/draw.h" 3 4
@@ -18590,7 +18590,7 @@ label
  glPopMatrix();
 
  glPushMatrix();
- 
+
 # 1019 "/Users/weugene/basilisk/src/draw.h" 3 4
 __builtin___sprintf_chk (
 # 1019 "/Users/weugene/basilisk/src/draw.h"
@@ -18600,7 +18600,7 @@ label
 # 1019 "/Users/weugene/basilisk/src/draw.h"
 label
 # 1019 "/Users/weugene/basilisk/src/draw.h" 3 4
-, 2 > 1 ? 1 : 0), 
+, 2 > 1 ? 1 : 0),
 # 1019 "/Users/weugene/basilisk/src/draw.h"
 "%g", Y0 + i*L0/nt
 # 1019 "/Users/weugene/basilisk/src/draw.h" 3 4
@@ -18617,7 +18617,7 @@ label
       }
 
       glPushMatrix();
-      
+
 # 1041 "/Users/weugene/basilisk/src/draw.h" 3 4
      __builtin___sprintf_chk (
 # 1041 "/Users/weugene/basilisk/src/draw.h"
@@ -18627,7 +18627,7 @@ label
 # 1041 "/Users/weugene/basilisk/src/draw.h"
      label
 # 1041 "/Users/weugene/basilisk/src/draw.h" 3 4
-     , 2 > 1 ? 1 : 0), 
+     , 2 > 1 ? 1 : 0),
 # 1041 "/Users/weugene/basilisk/src/draw.h"
      "%g", X0 + L0/2.
 # 1041 "/Users/weugene/basilisk/src/draw.h" 3 4
@@ -18642,7 +18642,7 @@ label
 
 
       glPushMatrix();
-      
+
 # 1050 "/Users/weugene/basilisk/src/draw.h" 3 4
      __builtin___sprintf_chk (
 # 1050 "/Users/weugene/basilisk/src/draw.h"
@@ -18652,7 +18652,7 @@ label
 # 1050 "/Users/weugene/basilisk/src/draw.h"
      label
 # 1050 "/Users/weugene/basilisk/src/draw.h" 3 4
-     , 2 > 1 ? 1 : 0), 
+     , 2 > 1 ? 1 : 0),
 # 1050 "/Users/weugene/basilisk/src/draw.h"
      "%g", Y0 + L0/2.
 # 1050 "/Users/weugene/basilisk/src/draw.h" 3 4
@@ -18686,11 +18686,11 @@ label
     } } } } }; }}; }
 # 1101 "/Users/weugene/basilisk/src/draw.h"
   } end_draw_lines(); }
-  { 
+  {
 # 1102 "/Users/weugene/basilisk/src/draw.h" 3 4
-   _Bool 
+   _Bool
 # 1102 "/Users/weugene/basilisk/src/draw.h"
-        _ret = 
+        _ret =
 # 1102 "/Users/weugene/basilisk/src/draw.h" 3 4
                 1
 # 1102 "/Users/weugene/basilisk/src/draw.h"
@@ -18700,17 +18700,17 @@ label
 struct _isosurface {
   char * f;
   double v;
-  
+
 # 1119 "/Users/weugene/basilisk/src/draw.h" 3 4
- _Bool 
+ _Bool
 # 1119 "/Users/weugene/basilisk/src/draw.h"
       edges;
 
   char * color;
   double min, max, spread;
-  
+
 # 1123 "/Users/weugene/basilisk/src/draw.h" 3 4
- _Bool 
+ _Bool
 # 1123 "/Users/weugene/basilisk/src/draw.h"
       linear;
   colormap map;
@@ -18720,16 +18720,16 @@ struct _isosurface {
 
 
 # 1129 "/Users/weugene/basilisk/src/draw.h" 3 4
-_Bool 
+_Bool
 # 1129 "/Users/weugene/basilisk/src/draw.h"
     isosurface (struct _isosurface p)
 { ;
 # 1199 "/Users/weugene/basilisk/src/draw.h"
-  { 
+  {
 # 1199 "/Users/weugene/basilisk/src/draw.h" 3 4
-   _Bool 
+   _Bool
 # 1199 "/Users/weugene/basilisk/src/draw.h"
-        _ret = 
+        _ret =
 # 1199 "/Users/weugene/basilisk/src/draw.h" 3 4
                 1
 # 1199 "/Users/weugene/basilisk/src/draw.h"
@@ -18778,7 +18778,7 @@ struct _draw_string {
 
 
 # 1265 "/Users/weugene/basilisk/src/draw.h" 3 4
-_Bool 
+_Bool
 # 1265 "/Users/weugene/basilisk/src/draw.h"
     draw_string (struct _draw_string p)
 { ;
@@ -18832,11 +18832,11 @@ _Bool
                             );
   glPopMatrix();
 
-  { 
+  {
 # 1301 "/Users/weugene/basilisk/src/draw.h" 3 4
-   _Bool 
+   _Bool
 # 1301 "/Users/weugene/basilisk/src/draw.h"
-        _ret = 
+        _ret =
 # 1301 "/Users/weugene/basilisk/src/draw.h" 3 4
                 1
 # 1301 "/Users/weugene/basilisk/src/draw.h"
@@ -18853,7 +18853,7 @@ struct _load {
 
 
 # 373 "/Users/weugene/basilisk/src/view.h" 3 4
-_Bool 
+_Bool
 # 373 "/Users/weugene/basilisk/src/view.h"
     load (struct _load p);
 # 417 "/Users/weugene/basilisk/src/view.h"
@@ -18871,7 +18871,7 @@ static void bview_draw (bview * view)
 {
   if (!view->active)
     return;
-  view->active = 
+  view->active =
 # 431 "/Users/weugene/basilisk/src/view.h" 3 4
                 0
 # 431 "/Users/weugene/basilisk/src/view.h"
@@ -18891,13 +18891,13 @@ static void bview_draw (bview * view)
 static void redraw_feedback (struct _save * p)
 {
   bview * view = p->view ? p->view : get_view();
-  
+
 # 439 "/Users/weugene/basilisk/src/view.h" 3 4
  (__builtin_expect(!(
 # 439 "/Users/weugene/basilisk/src/view.h"
  p->history
 # 439 "/Users/weugene/basilisk/src/view.h" 3 4
- ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/view.h", 439, 
+ ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/view.h", 439,
 # 439 "/Users/weugene/basilisk/src/view.h"
  "p->history"
 # 439 "/Users/weugene/basilisk/src/view.h" 3 4
@@ -18907,7 +18907,7 @@ static void redraw_feedback (struct _save * p)
   if (p->history->len) {
     float res = view->res;
     view->res = 0.;
-    view->vector = 
+    view->vector =
 # 443 "/Users/weugene/basilisk/src/view.h" 3 4
                   1
 # 443 "/Users/weugene/basilisk/src/view.h"
@@ -18916,7 +18916,7 @@ static void redraw_feedback (struct _save * p)
 
 
     int list = glGenLists (1);
-    glNewList (list, 
+    glNewList (list,
 # 448 "/Users/weugene/basilisk/src/view.h" 3
                     0x1300
 # 448 "/Users/weugene/basilisk/src/view.h"
@@ -18935,12 +18935,12 @@ static void redraw_feedback (struct _save * p)
    0x0001
 # 454 "/Users/weugene/basilisk/src/view.h"
    );
-    view->active = 
+    view->active =
 # 455 "/Users/weugene/basilisk/src/view.h" 3 4
                   0
 # 455 "/Users/weugene/basilisk/src/view.h"
                        ;
-    view->vector = 
+    view->vector =
 # 456 "/Users/weugene/basilisk/src/view.h" 3 4
                   0
 # 456 "/Users/weugene/basilisk/src/view.h"
@@ -18954,7 +18954,7 @@ static void redraw_feedback (struct _save * p)
 
 
 # 464 "/Users/weugene/basilisk/src/view.h" 3 4
-_Bool 
+_Bool
 # 464 "/Users/weugene/basilisk/src/view.h"
     save (struct _save p)
 { ;
@@ -18984,35 +18984,35 @@ _Bool
       gl_write_image (fp, image, view->width, view->height, view->samples);
       close_image (p.file, fp);
     }
-    { 
+    {
 # 492 "/Users/weugene/basilisk/src/view.h" 3 4
-     _Bool 
+     _Bool
 # 492 "/Users/weugene/basilisk/src/view.h"
-          _ret = 
+          _ret =
 # 492 "/Users/weugene/basilisk/src/view.h" 3 4
                   1
 # 492 "/Users/weugene/basilisk/src/view.h"
                       ; ; return _ret; }
   }
 
-  if (p.file && (p.fp = fopen (p.file, "w")) == 
+  if (p.file && (p.fp = fopen (p.file, "w")) ==
 # 495 "/Users/weugene/basilisk/src/view.h" 3 4
                                                ((void *)0)
 # 495 "/Users/weugene/basilisk/src/view.h"
                                                    ) {
     perror (p.file);
-    { 
+    {
 # 497 "/Users/weugene/basilisk/src/view.h" 3 4
-     _Bool 
+     _Bool
 # 497 "/Users/weugene/basilisk/src/view.h"
-          _ret = 
+          _ret =
 # 497 "/Users/weugene/basilisk/src/view.h" 3 4
                   0
 # 497 "/Users/weugene/basilisk/src/view.h"
                        ; ; return _ret; }
   }
   if (!p.fp)
-    p.fp = 
+    p.fp =
 # 500 "/Users/weugene/basilisk/src/view.h" 3 4
           __stdoutp
 # 500 "/Users/weugene/basilisk/src/view.h"
@@ -19026,13 +19026,13 @@ _Bool
   }
 
   else if (!strcmp (p.format, "bv")) {
-    
+
 # 510 "/Users/weugene/basilisk/src/view.h" 3 4
    (__builtin_expect(!(
 # 510 "/Users/weugene/basilisk/src/view.h"
    p.history
 # 510 "/Users/weugene/basilisk/src/view.h" 3 4
-   ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/view.h", 510, 
+   ), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/view.h", 510,
 # 510 "/Users/weugene/basilisk/src/view.h"
    "p.history"
 # 510 "/Users/weugene/basilisk/src/view.h" 3 4
@@ -19062,11 +19062,11 @@ _Bool
     !strcmp (p.format, "kml") ? FEEDBACK_KML :
     -1);
     unsigned buffsize = 1 << 24;
-    
+
 # 534 "/Users/weugene/basilisk/src/view.h" 3 4
-   _Bool 
+   _Bool
 # 534 "/Users/weugene/basilisk/src/view.h"
-        done = 
+        done =
 # 534 "/Users/weugene/basilisk/src/view.h" 3 4
                0
 # 534 "/Users/weugene/basilisk/src/view.h"
@@ -19109,17 +19109,17 @@ _Bool
     unsigned buffsize = 1 << 24;
     while (state == 5 && buffsize <= (1 << 28)) {
       gl2psBeginPage ("", "bview",
-        
+
 # 569 "/Users/weugene/basilisk/src/view.h" 3 4
        ((void *)0)
 # 569 "/Users/weugene/basilisk/src/view.h"
            ,
         format, sort, options,
-        
+
 # 571 "/Users/weugene/basilisk/src/view.h" 3
        0x1908
 # 571 "/Users/weugene/basilisk/src/view.h"
-              , 0, 
+              , 0,
 # 571 "/Users/weugene/basilisk/src/view.h" 3 4
                    ((void *)0)
 # 571 "/Users/weugene/basilisk/src/view.h"
@@ -19166,11 +19166,11 @@ _Bool
       fclose (p.fp);
       remove (p.file);
     }
-    { 
+    {
 # 590 "/Users/weugene/basilisk/src/view.h" 3 4
-     _Bool 
+     _Bool
 # 590 "/Users/weugene/basilisk/src/view.h"
-          _ret = 
+          _ret =
 # 590 "/Users/weugene/basilisk/src/view.h" 3 4
                   0
 # 590 "/Users/weugene/basilisk/src/view.h"
@@ -19181,11 +19181,11 @@ _Bool
   if (p.file)
     fclose (p.fp);
 
-  { 
+  {
 # 597 "/Users/weugene/basilisk/src/view.h" 3 4
-   _Bool 
+   _Bool
 # 597 "/Users/weugene/basilisk/src/view.h"
-        _ret = 
+        _ret =
 # 597 "/Users/weugene/basilisk/src/view.h" 3 4
                 1
 # 597 "/Users/weugene/basilisk/src/view.h"
@@ -19202,11 +19202,11 @@ static char * remove_blanks (char * line)
 {
   while (strchr (" \t", *line)) line++;
   char * s = line, * cur = line;
-  
+
 # 610 "/Users/weugene/basilisk/src/view.h" 3 4
- _Bool 
+ _Bool
 # 610 "/Users/weugene/basilisk/src/view.h"
-      instring = 
+      instring =
 # 610 "/Users/weugene/basilisk/src/view.h" 3 4
                  0
 # 610 "/Users/weugene/basilisk/src/view.h"
@@ -19235,7 +19235,7 @@ static void fields_stats()
             __stderrp
 # 626 "/Users/weugene/basilisk/src/view.h"
                 , " %s", _attribute[s.i].name);
-  fputs (" }\n", 
+  fputs (" }\n",
 # 627 "/Users/weugene/basilisk/src/view.h" 3 4
                 __stderrp
 # 627 "/Users/weugene/basilisk/src/view.h"
@@ -19283,20 +19283,20 @@ typedef struct {
   int n;
 } Params;
 
-static 
+static
 # 14 "/Users/weugene/basilisk/src/parse.h" 3 4
-      _Bool 
+      _Bool
 # 14 "/Users/weugene/basilisk/src/parse.h"
            atobool (char * s)
 {
   if (!strcmp (s, "true"))
-    return 
+    return
 # 17 "/Users/weugene/basilisk/src/parse.h" 3 4
           1
 # 17 "/Users/weugene/basilisk/src/parse.h"
               ;
   if (!strcmp (s, "false"))
-    return 
+    return
 # 19 "/Users/weugene/basilisk/src/parse.h" 3 4
           0
 # 19 "/Users/weugene/basilisk/src/parse.h"
@@ -19304,9 +19304,9 @@ static
   return atoi (s) != 0;
 }
 
-static 
+static
 # 23 "/Users/weugene/basilisk/src/parse.h" 3 4
-      _Bool 
+      _Bool
 # 23 "/Users/weugene/basilisk/src/parse.h"
            args (Params * p, char * val)
 {
@@ -19321,7 +19321,7 @@ static
               __stderrp
 # 31 "/Users/weugene/basilisk/src/parse.h"
                        , "expecting a string for '%s' got '%s'\n", p->key, val);
-      return 
+      return
 # 32 "/Users/weugene/basilisk/src/parse.h" 3 4
             0
 # 32 "/Users/weugene/basilisk/src/parse.h"
@@ -19333,7 +19333,7 @@ static
               __stderrp
 # 35 "/Users/weugene/basilisk/src/parse.h"
                        , "unterminated quoted string '%s'\n", val);
-      return 
+      return
 # 36 "/Users/weugene/basilisk/src/parse.h" 3 4
             0
 # 36 "/Users/weugene/basilisk/src/parse.h"
@@ -19358,7 +19358,7 @@ static
               __stderrp
 # 52 "/Users/weugene/basilisk/src/parse.h"
                        , "unknown colormap '%s'\n", val);
-      return 
+      return
 # 53 "/Users/weugene/basilisk/src/parse.h" 3 4
             0
 # 53 "/Users/weugene/basilisk/src/parse.h"
@@ -19374,7 +19374,7 @@ static
 # 59 "/Users/weugene/basilisk/src/parse.h"
                        , "expecting a %s for '%s' got %s\n",
         name[p->type], p->key, val);
-      return 
+      return
 # 61 "/Users/weugene/basilisk/src/parse.h" 3 4
             0
 # 61 "/Users/weugene/basilisk/src/parse.h"
@@ -19386,14 +19386,14 @@ static
       case punsigned: *((unsigned *)p->val) = atoi(val); break;
       case pbool: *((
 # 67 "/Users/weugene/basilisk/src/parse.h" 3 4
-                    _Bool 
+                    _Bool
 # 67 "/Users/weugene/basilisk/src/parse.h"
                          *)p->val) = atobool(val); break;
       case pfloat: *((float *)p->val) = atof(val); break;
       case pdouble: *((double *)p->val) = atof(val); break;
-      default: 
+      default:
 # 70 "/Users/weugene/basilisk/src/parse.h" 3 4
-              (__builtin_expect(!(0), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/parse.h", 70, 
+              (__builtin_expect(!(0), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/parse.h", 70,
 # 70 "/Users/weugene/basilisk/src/parse.h"
               "false"
 # 70 "/Users/weugene/basilisk/src/parse.h" 3 4
@@ -19409,7 +19409,7 @@ static
          __stderrp
 # 75 "/Users/weugene/basilisk/src/parse.h"
                   , "expecting an array for '%s' got %s\n", p->key, val);
- return 
+ return
 # 76 "/Users/weugene/basilisk/src/parse.h" 3 4
        0
 # 76 "/Users/weugene/basilisk/src/parse.h"
@@ -19428,7 +19428,7 @@ static
            __stderrp
 # 86 "/Users/weugene/basilisk/src/parse.h"
                     , "expecting an array for '%s' got %s\n", p->key, val);
-   return 
+   return
 # 87 "/Users/weugene/basilisk/src/parse.h" 3 4
          0
 # 87 "/Users/weugene/basilisk/src/parse.h"
@@ -19441,14 +19441,14 @@ static
  case punsigned: ((unsigned *)p->val)[i++] = atoi (val); break;
  case pbool: ((
 # 94 "/Users/weugene/basilisk/src/parse.h" 3 4
-              _Bool 
+              _Bool
 # 94 "/Users/weugene/basilisk/src/parse.h"
                    *)p->val)[i++] = atobool (val); break;
  case pfloat: ((float *)p->val)[i++] = atof (val); break;
  case pdouble: ((double *)p->val)[i++] = atof (val); break;
- default: 
+ default:
 # 97 "/Users/weugene/basilisk/src/parse.h" 3 4
-         (__builtin_expect(!(0), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/parse.h", 97, 
+         (__builtin_expect(!(0), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/parse.h", 97,
 # 97 "/Users/weugene/basilisk/src/parse.h"
          "false"
 # 97 "/Users/weugene/basilisk/src/parse.h" 3 4
@@ -19464,7 +19464,7 @@ static
          __stderrp
 # 102 "/Users/weugene/basilisk/src/parse.h"
                   , "expecting '}' for '%s' got %s\n", p->key, val);
- return 
+ return
 # 103 "/Users/weugene/basilisk/src/parse.h" 3 4
        0
 # 103 "/Users/weugene/basilisk/src/parse.h"
@@ -19474,9 +19474,9 @@ static
     break;
 
   default:
-    
+
 # 109 "/Users/weugene/basilisk/src/parse.h" 3 4
-   (__builtin_expect(!(0), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/parse.h", 109, 
+   (__builtin_expect(!(0), 0) ? __assert_rtn(__func__, "/Users/weugene/basilisk/src/parse.h", 109,
 # 109 "/Users/weugene/basilisk/src/parse.h"
    "false"
 # 109 "/Users/weugene/basilisk/src/parse.h" 3 4
@@ -19484,7 +19484,7 @@ static
 # 109 "/Users/weugene/basilisk/src/parse.h"
                  ;
   }
-  return 
+  return
 # 111 "/Users/weugene/basilisk/src/parse.h" 3 4
         1
 # 111 "/Users/weugene/basilisk/src/parse.h"
@@ -19505,7 +19505,7 @@ static char * find_comma (char * s)
       par--;
     s++;
   }
-  return 
+  return
 # 128 "/Users/weugene/basilisk/src/parse.h" 3 4
         ((void *)0)
 # 128 "/Users/weugene/basilisk/src/parse.h"
@@ -19523,7 +19523,7 @@ int parse_params (Params * params)
                    ((void *)0)
 # 137 "/Users/weugene/basilisk/src/parse.h"
                        , ");")) || s[0] == '\n')
-    return 
+    return
 # 138 "/Users/weugene/basilisk/src/parse.h" 3 4
           0
 # 138 "/Users/weugene/basilisk/src/parse.h"
@@ -19541,14 +19541,14 @@ int parse_params (Params * params)
          __stderrp
 # 147 "/Users/weugene/basilisk/src/parse.h"
                   , "unknown key '%s'\n", key);
- return 
+ return
 # 148 "/Users/weugene/basilisk/src/parse.h" 3 4
        0
 # 148 "/Users/weugene/basilisk/src/parse.h"
             ;
       }
       if (!args (p, s))
- return 
+ return
 # 151 "/Users/weugene/basilisk/src/parse.h" 3 4
        0
 # 151 "/Users/weugene/basilisk/src/parse.h"
@@ -19561,7 +19561,7 @@ int parse_params (Params * params)
          __stderrp
 # 155 "/Users/weugene/basilisk/src/parse.h"
                   , "anonymous value '%s' after keys\n", key);
- return 
+ return
 # 156 "/Users/weugene/basilisk/src/parse.h" 3 4
        0
 # 156 "/Users/weugene/basilisk/src/parse.h"
@@ -19573,14 +19573,14 @@ int parse_params (Params * params)
          __stderrp
 # 159 "/Users/weugene/basilisk/src/parse.h"
                   , "too many parameters: '%s' %d %d\n", key, i, n);
- return 
+ return
 # 160 "/Users/weugene/basilisk/src/parse.h" 3 4
        0
 # 160 "/Users/weugene/basilisk/src/parse.h"
             ;
       }
       if (!args (&params[i], key))
- return 
+ return
 # 163 "/Users/weugene/basilisk/src/parse.h" 3 4
        0
 # 163 "/Users/weugene/basilisk/src/parse.h"
@@ -19589,7 +19589,7 @@ int parse_params (Params * params)
     }
     s = next;
   }
-  return 
+  return
 # 168 "/Users/weugene/basilisk/src/parse.h" 3 4
         1
 # 168 "/Users/weugene/basilisk/src/parse.h"
@@ -19599,7 +19599,7 @@ int parse_params (Params * params)
 
 
 # 4 "/Users/weugene/basilisk/src/draw_get.h" 3 4
-_Bool 
+_Bool
 # 4 "/Users/weugene/basilisk/src/draw_get.h"
     _view_set_get (struct _view_set * p) {
   Params params[] = {
@@ -19635,7 +19635,7 @@ _Bool
 
 
 # 32 "/Users/weugene/basilisk/src/draw_get.h" 3 4
-_Bool 
+_Bool
 # 32 "/Users/weugene/basilisk/src/draw_get.h"
     _translate_get (struct _translate * p) {
   Params params[] = {
@@ -19653,7 +19653,7 @@ _Bool
 
 
 # 42 "/Users/weugene/basilisk/src/draw_get.h" 3 4
-_Bool 
+_Bool
 # 42 "/Users/weugene/basilisk/src/draw_get.h"
     _mirror_get (struct _mirror * p) {
   Params params[] = {
@@ -19670,7 +19670,7 @@ _Bool
 
 
 # 51 "/Users/weugene/basilisk/src/draw_get.h" 3 4
-_Bool 
+_Bool
 # 51 "/Users/weugene/basilisk/src/draw_get.h"
     _draw_vof_get (struct _draw_vof * p) {
   Params params[] = {
@@ -19699,7 +19699,7 @@ _Bool
 
 
 # 72 "/Users/weugene/basilisk/src/draw_get.h" 3 4
-_Bool 
+_Bool
 # 72 "/Users/weugene/basilisk/src/draw_get.h"
     _isoline_get (struct _isoline * p) {
   Params params[] = {
@@ -19731,7 +19731,7 @@ _Bool
 
 
 # 96 "/Users/weugene/basilisk/src/draw_get.h" 3 4
-_Bool 
+_Bool
 # 96 "/Users/weugene/basilisk/src/draw_get.h"
     _cells_get (struct _cells * p) {
   Params params[] = {
@@ -19750,7 +19750,7 @@ _Bool
 
 
 # 107 "/Users/weugene/basilisk/src/draw_get.h" 3 4
-_Bool 
+_Bool
 # 107 "/Users/weugene/basilisk/src/draw_get.h"
     _vectors_get (struct _vectors * p) {
   Params params[] = {
@@ -19769,7 +19769,7 @@ _Bool
 
 
 # 118 "/Users/weugene/basilisk/src/draw_get.h" 3 4
-_Bool 
+_Bool
 # 118 "/Users/weugene/basilisk/src/draw_get.h"
     _squares_get (struct _squares * p) {
   Params params[] = {
@@ -19794,7 +19794,7 @@ _Bool
 
 
 # 135 "/Users/weugene/basilisk/src/draw_get.h" 3 4
-_Bool 
+_Bool
 # 135 "/Users/weugene/basilisk/src/draw_get.h"
     _box_get (struct _box * p) {
   Params params[] = {
@@ -19812,7 +19812,7 @@ _Bool
 
 
 # 145 "/Users/weugene/basilisk/src/draw_get.h" 3 4
-_Bool 
+_Bool
 # 145 "/Users/weugene/basilisk/src/draw_get.h"
     _isosurface_get (struct _isosurface * p) {
   Params params[] = {
@@ -19839,7 +19839,7 @@ _Bool
 
 
 # 164 "/Users/weugene/basilisk/src/draw_get.h" 3 4
-_Bool 
+_Bool
 # 164 "/Users/weugene/basilisk/src/draw_get.h"
     _travelling_get (struct _travelling * p) {
   Params params[] = {
@@ -19860,7 +19860,7 @@ _Bool
 
 
 # 177 "/Users/weugene/basilisk/src/draw_get.h" 3 4
-_Bool 
+_Bool
 # 177 "/Users/weugene/basilisk/src/draw_get.h"
     _draw_string_get (struct _draw_string * p) {
   Params params[] = {
@@ -19879,14 +19879,14 @@ _Bool
 }
 # 653 "/Users/weugene/basilisk/src/view.h"
 
-static 
+static
 # 654 "/Users/weugene/basilisk/src/view.h" 3 4
-      _Bool 
+      _Bool
 # 654 "/Users/weugene/basilisk/src/view.h"
            process_line (char * line, Array * history, FILE * interactive)
 {
   if (line[0] == '\0')
-    return 
+    return
 # 657 "/Users/weugene/basilisk/src/view.h" 3 4
           1
 # 657 "/Users/weugene/basilisk/src/view.h"
@@ -19895,7 +19895,7 @@ static
   char * s = strtok (remove_blanks (line), "(");
   if (!s) {
     free(buf);
-    return 
+    return
 # 662 "/Users/weugene/basilisk/src/view.h" 3 4
           1
 # 662 "/Users/weugene/basilisk/src/view.h"
@@ -19903,7 +19903,7 @@ static
   }
 
   if (!strcmp (s, "restore")) {
-    char * file = 
+    char * file =
 # 666 "/Users/weugene/basilisk/src/view.h" 3 4
                  ((void *)0)
 # 666 "/Users/weugene/basilisk/src/view.h"
@@ -19932,7 +19932,7 @@ static
   }
 
   else if (!strcmp (s, "dump")) {
-    char * file = 
+    char * file =
 # 683 "/Users/weugene/basilisk/src/view.h" 3 4
                  ((void *)0)
 # 683 "/Users/weugene/basilisk/src/view.h"
@@ -19946,7 +19946,7 @@ static
   }
 
   else if (!strcmp (s, "input_gfs")) {
-    char * file = 
+    char * file =
 # 689 "/Users/weugene/basilisk/src/view.h" 3 4
                  ((void *)0)
 # 689 "/Users/weugene/basilisk/src/view.h"
@@ -19968,7 +19968,7 @@ static
   }
 
   else if (!strcmp (s, "save")) {
-    char * file = 
+    char * file =
 # 703 "/Users/weugene/basilisk/src/view.h" 3 4
                  ((void *)0)
 # 703 "/Users/weugene/basilisk/src/view.h"
@@ -19983,7 +19983,7 @@ static
   }
 
   else if (!strcmp (s, "load")) {
-    char * file = 
+    char * file =
 # 710 "/Users/weugene/basilisk/src/view.h" 3 4
                  ((void *)0)
 # 710 "/Users/weugene/basilisk/src/view.h"
@@ -20093,7 +20093,7 @@ static
 
   else if (!strcmp (s, "show")) {
     if (interactive && history->len)
-      save ((struct _save){.fp = 
+      save ((struct _save){.fp =
 # 812 "/Users/weugene/basilisk/src/view.h" 3 4
                                 __stderrp
 # 812 "/Users/weugene/basilisk/src/view.h"
@@ -20120,7 +20120,7 @@ static
 
   else if (!strcmp (s, "quit")) {
     free(buf);
-    return 
+    return
 # 835 "/Users/weugene/basilisk/src/view.h" 3 4
           0
 # 835 "/Users/weugene/basilisk/src/view.h"
@@ -20135,7 +20135,7 @@ static
                 , "load(): syntax error: '%s'\n", s);
 
   free(buf);
-  return 
+  return
 # 842 "/Users/weugene/basilisk/src/view.h" 3 4
         1
 # 842 "/Users/weugene/basilisk/src/view.h"
@@ -20144,14 +20144,14 @@ static
 
 
 # 845 "/Users/weugene/basilisk/src/view.h" 3 4
-_Bool 
+_Bool
 # 845 "/Users/weugene/basilisk/src/view.h"
     load (struct _load p) {
   if (p.file) {
     p.fp = fopen (p.file, "r");
     if (!p.fp) {
       perror (p.file);
-      return 
+      return
 # 850 "/Users/weugene/basilisk/src/view.h" 3 4
             0
 # 850 "/Users/weugene/basilisk/src/view.h"
@@ -20162,7 +20162,7 @@ _Bool
   Array * history = array_new();
   if (p.fp) {
     char line[256];
-    while (fgets (line, 256, p.fp) && process_line (line, history, 
+    while (fgets (line, 256, p.fp) && process_line (line, history,
 # 857 "/Users/weugene/basilisk/src/view.h" 3 4
                                                                   ((void *)0)
 # 857 "/Users/weugene/basilisk/src/view.h"
@@ -20177,13 +20177,13 @@ _Bool
  s++, i++;
       if (*s == '\n' && ++s > start) {
  char line[s - start + 1];
- 
+
 # 868 "/Users/weugene/basilisk/src/view.h" 3 4
 __builtin___strncpy_chk (
 # 868 "/Users/weugene/basilisk/src/view.h"
 line
 # 868 "/Users/weugene/basilisk/src/view.h" 3 4
-, 
+,
 # 868 "/Users/weugene/basilisk/src/view.h"
 start, s - start
 # 868 "/Users/weugene/basilisk/src/view.h" 3 4
@@ -20195,7 +20195,7 @@ line
 # 868 "/Users/weugene/basilisk/src/view.h"
                                 ;
  line[s - start] = '\0';
- process_line (line, history, 
+ process_line (line, history,
 # 870 "/Users/weugene/basilisk/src/view.h" 3 4
                              ((void *)0)
 # 870 "/Users/weugene/basilisk/src/view.h"
@@ -20207,7 +20207,7 @@ line
     array_append (p.history, history->p, history->len);
   array_free (history);
 
-  return 
+  return
 # 878 "/Users/weugene/basilisk/src/view.h" 3 4
         1
 # 878 "/Users/weugene/basilisk/src/view.h"
@@ -20244,15 +20244,15 @@ void output_pvtu_ascii (scalar * list, vector * vlist, int n, FILE * fp, char * 
     fputs ("</VTKFile>\n", fp);
 }
 # 51 "./../src_local/output_vtu_foreach.h"
-void output_vtu_ascii_foreach (scalar * list, vector * vlist, int n, FILE * fp, 
+void output_vtu_ascii_foreach (scalar * list, vector * vlist, int n, FILE * fp,
 # 51 "./../src_local/output_vtu_foreach.h" 3 4
-                                                                               _Bool 
+                                                                               _Bool
 # 51 "./../src_local/output_vtu_foreach.h"
                                                                                     linear, double shift)
 {
-    int dim = 3; 
+    int dim = 3;
 # 53 "./../src_local/output_vtu_foreach.h" 3 4
-                _Bool 
+                _Bool
 # 53 "./../src_local/output_vtu_foreach.h"
                      periodic_bc = shift > 0;
     coord Pmin = {X0 + shift - 1e-12, Y0 + shift - 1e-12, Z0 + shift - 1e-12};
@@ -20415,15 +20415,15 @@ void output_pvtu_bin (scalar * list, vector * vlist, int n, FILE * fp, char * su
     fputs ("</VTKFile>\n", fp);
 }
 # 209 "./../src_local/output_vtu_foreach.h"
-void output_vtu_bin_foreach (scalar * list, vector * vlist, int n, FILE * fp, 
+void output_vtu_bin_foreach (scalar * list, vector * vlist, int n, FILE * fp,
 # 209 "./../src_local/output_vtu_foreach.h" 3 4
-                                                                             _Bool 
+                                                                             _Bool
 # 209 "./../src_local/output_vtu_foreach.h"
                                                                                   linear, double shift)
 {
-  int dim = 3; 
+  int dim = 3;
 # 211 "./../src_local/output_vtu_foreach.h" 3 4
-              _Bool 
+              _Bool
 # 211 "./../src_local/output_vtu_foreach.h"
                    periodic_bc = shift > 0;
   coord Pmin = {X0 + 1e-12, Y0 + 1e-12, Z0 + 1e-12};
@@ -20595,7 +20595,7 @@ void output_vtu_MPI(scalar * list, vector * vlist, char * subname, double shift)
                           __stderrp
 # 362 "./../src_local/output_vtu_foreach.h"
                                    , "too many files, more than 9999"); exit(1); }
-    
+
 # 363 "./../src_local/output_vtu_foreach.h" 3 4
    __builtin___sprintf_chk (
 # 363 "./../src_local/output_vtu_foreach.h"
@@ -20605,7 +20605,7 @@ void output_vtu_MPI(scalar * list, vector * vlist, char * subname, double shift)
 # 363 "./../src_local/output_vtu_foreach.h"
    name_vtu
 # 363 "./../src_local/output_vtu_foreach.h" 3 4
-   , 2 > 1 ? 1 : 0), 
+   , 2 > 1 ? 1 : 0),
 # 363 "./../src_local/output_vtu_foreach.h"
    "%s_%4.4d_n%3.3d.vtu", subname, nf, 0
 # 363 "./../src_local/output_vtu_foreach.h" 3 4
@@ -20613,7 +20613,7 @@ void output_vtu_MPI(scalar * list, vector * vlist, char * subname, double shift)
 # 363 "./../src_local/output_vtu_foreach.h"
                                                                ;
     fp = fopen(name_vtu, "w");
-    output_vtu_bin_foreach(list, vlist, 64, fp, 
+    output_vtu_bin_foreach(list, vlist, 64, fp,
 # 365 "./../src_local/output_vtu_foreach.h" 3 4
                                                1
 # 365 "./../src_local/output_vtu_foreach.h"
@@ -20621,7 +20621,7 @@ void output_vtu_MPI(scalar * list, vector * vlist, char * subname, double shift)
     fclose(fp);
     if (0 == 0) {
         char name_pvtu[80], tmp[80];
-     
+
 # 369 "./../src_local/output_vtu_foreach.h" 3 4
     __builtin___sprintf_chk (
 # 369 "./../src_local/output_vtu_foreach.h"
@@ -20631,14 +20631,14 @@ void output_vtu_MPI(scalar * list, vector * vlist, char * subname, double shift)
 # 369 "./../src_local/output_vtu_foreach.h"
     name_pvtu
 # 369 "./../src_local/output_vtu_foreach.h" 3 4
-    , 2 > 1 ? 1 : 0), 
+    , 2 > 1 ? 1 : 0),
 # 369 "./../src_local/output_vtu_foreach.h"
     "%s_%4.4d.pvtu", subname, nf
 # 369 "./../src_local/output_vtu_foreach.h" 3 4
     )
 # 369 "./../src_local/output_vtu_foreach.h"
                                                     ;
-        
+
 # 370 "./../src_local/output_vtu_foreach.h" 3 4
        __builtin___sprintf_chk (
 # 370 "./../src_local/output_vtu_foreach.h"
@@ -20648,7 +20648,7 @@ void output_vtu_MPI(scalar * list, vector * vlist, char * subname, double shift)
 # 370 "./../src_local/output_vtu_foreach.h"
        tmp
 # 370 "./../src_local/output_vtu_foreach.h" 3 4
-       , 2 > 1 ? 1 : 0), 
+       , 2 > 1 ? 1 : 0),
 # 370 "./../src_local/output_vtu_foreach.h"
        "%s_%4.4d", subname, nf
 # 370 "./../src_local/output_vtu_foreach.h" 3 4
@@ -20784,7 +20784,7 @@ double _Linfu = Linfu;
  ; } return 0; }
 # 107 "karman_GI.c"
 static int vtk_file_0_expr0 (int * ip, double * tp, Event * _ev) { int i = *ip; double t = *tp; int ret = (i += 1); *ip = i; *tp = t; return ret; } static int vtk_file_0 (const int i, const double t, Event * _ev) { ; {
-    char subname[80]; 
+    char subname[80];
 # 108 "karman_GI.c" 3 4
                      __builtin___sprintf_chk (
 # 108 "karman_GI.c"
@@ -20794,7 +20794,7 @@ static int vtk_file_0_expr0 (int * ip, double * tp, Event * _ev) { int i = *ip; 
 # 108 "karman_GI.c"
                      subname
 # 108 "karman_GI.c" 3 4
-                     , 2 > 1 ? 1 : 0), 
+                     , 2 > 1 ? 1 : 0),
 # 108 "karman_GI.c"
                      "rk"
 # 108 "karman_GI.c" 3 4

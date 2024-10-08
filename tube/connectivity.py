@@ -1,17 +1,16 @@
 # state file generated using paraview version 5.8.0
-
 # ----------------------------------------------------------------
 # setup views used in the visualization
 # ----------------------------------------------------------------
-
 # trace generated using paraview version 5.8.0
 #
-# To ensure correct image size when batch processing, please search 
+# To ensure correct image size when batch processing, please search
 # for and uncomment the line `# renderView*.ViewSize = [*,*]`
+# import the simple module from the paraview
+from __future__ import annotations
 
-#### import the simple module from the paraview
 from paraview.simple import *
-#### disable automatic camera reset on 'Show'
+# disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
 # get the material library
@@ -80,7 +79,8 @@ SetActiveView(renderView1)
 # ----------------------------------------------------------------
 
 # create a new 'PVD Reader'
-dump2pvd_compressedpvd = PVDReader(FileName='/Users/weugene/basilisk/work/tube/dump2pvd_compressed.pvd')
+dump2pvd_compressedpvd = PVDReader(
+    FileName='/Users/weugene/basilisk/work/tube/dump2pvd_compressed.pvd')
 dump2pvd_compressedpvd.CellArrays = ['fs', 'f', 'l', 'l2', 'omega', 'u.x']
 
 # create a new 'Contour'
@@ -200,7 +200,8 @@ clip3.ClipType.Position = [14.8, -0.4396306872367859, -0.43842387199401855]
 clip3.ClipType.Length = [1.5, 0.8837202489376068, 0.8770357668399811]
 
 # init the 'Plane' selected for 'HyperTreeGridClipper'
-clip3.HyperTreeGridClipper.Origin = [16.132742404937744, 0.002229437232017517, 9.401142597198486e-05]
+clip3.HyperTreeGridClipper.Origin = [16.132742404937744,
+                                     0.002229437232017517, 9.401142597198486e-05]
 
 # create a new 'Integrate Variables'
 integrateVariables1 = IntegrateVariables(Input=clip3)
@@ -222,7 +223,8 @@ connectivity1Display = Show(connectivity1, renderView1, 'UnstructuredGridReprese
 
 # get color transfer function/color map for 'vtkGhostType'
 vtkGhostTypeLUT = GetColorTransferFunction('vtkGhostType')
-vtkGhostTypeLUT.RGBPoints = [0.0, 0.23137254902, 0.298039215686, 0.752941176471, 5.878906683738906e-39, 0.865, 0.865, 0.865, 1.1757813367477812e-38, 0.705882352941, 0.0156862745098, 0.149019607843]
+vtkGhostTypeLUT.RGBPoints = [0.0, 0.23137254902, 0.298039215686, 0.752941176471, 5.878906683738906e-39,
+                             0.865, 0.865, 0.865, 1.1757813367477812e-38, 0.705882352941, 0.0156862745098, 0.149019607843]
 vtkGhostTypeLUT.ScalarRangeInitialized = 1.0
 
 # get opacity transfer function/opacity map for 'vtkGhostType'
@@ -253,7 +255,8 @@ connectivity1Display.ScalarOpacityFunction = vtkGhostTypePWF
 connectivity1Display.ScalarOpacityUnitDistance = 0.08645112135295362
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-connectivity1Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+connectivity1Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
 connectivity1Display.ScaleTransferFunction.Points = [0.0, 0.0, 0.5, 0.0, 9.0, 1.0, 0.5, 0.0]
@@ -290,7 +293,8 @@ contour5Display = Show(contour5, spreadSheetView1, 'SpreadSheetRepresentation')
 # ----------------------------------------------------------------
 
 # show data from integrateVariables1
-integrateVariables1Display = Show(integrateVariables1, spreadSheetView2, 'SpreadSheetRepresentation')
+integrateVariables1Display = Show(
+    integrateVariables1, spreadSheetView2, 'SpreadSheetRepresentation')
 
 # ----------------------------------------------------------------
 # setup color maps and opacity mapes used in the visualization

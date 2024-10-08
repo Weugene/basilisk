@@ -42,8 +42,8 @@ class vect3f
 public:
   float v[3];
   // constructor
-  vect3f(); 
-  vect3f(const vect3f& n); 
+  vect3f();
+  vect3f(const vect3f& n);
   vect3f(const float x, const float y, const float z);
   // copy
   void operator=(const vect3f& n);
@@ -59,11 +59,11 @@ public:
   friend float length2(const vect3f& a);
   friend float length(const vect3f& a);
   friend float dot(const vect3f& a, const vect3f& b);
-  friend void cross(const vect3f& a, const vect3f& b, 
+  friend void cross(const vect3f& a, const vect3f& b,
 		    vect3f& res);
-  friend void add(const vect3f& a, const vect3f& b, 
+  friend void add(const vect3f& a, const vect3f& b,
 		  vect3f& res);
-  friend void sub(const vect3f& a, const vect3f& b, 
+  friend void sub(const vect3f& a, const vect3f& b,
 		  vect3f& res);
   void normalize();
   // friend operations
@@ -71,7 +71,7 @@ public:
   friend float length2(const float* a);
   friend float length(const float* a);
 
-  
+
   // Les mmes en FLOAT-STAR !!!
   vect3f(const float* n); // init to zero if pointer is void
   // cast
@@ -82,13 +82,13 @@ public:
   void operator+=(const float* n); // n!=NULL  !!
   void operator-=(const float* n);
   friend float dot(const float* a, const float* b);
-  friend void cross(const float* a, const float* b, 
+  friend void cross(const float* a, const float* b,
 		    float* res);
   // res = a^b
-  friend void add(const float* a, const float* b, 
+  friend void add(const float* a, const float* b,
 		  float* res);
   // res = a+b
-  friend void sub(const float* a, const float* b, 
+  friend void sub(const float* a, const float* b,
 		  float* res);
   // res = a-b
 };
@@ -96,7 +96,7 @@ public:
 class quaternion
 {
   //
-  //  Rappel des conventions utilisees ici: 
+  //  Rappel des conventions utilisees ici:
   //
   //   Soient:  v[3]   ->   vecteur directeur unitaire
   //            phi    ->   angle
@@ -115,11 +115,11 @@ public:
   // cast
   operator float*() { return q;}
   // operations
-  void fromAxis(const vect3f& v, 
+  void fromAxis(const vect3f& v,
 		const float angle);
-  void fromAxis(const vect3f& v, 
+  void fromAxis(const vect3f& v,
 		const float sina,
-		const float cosa); 
+		const float cosa);
   void fromMatrix(const float m[4][4]);
   // sina / cosa -> avec a=angle/2.0
   void rotmatrix(float m[4][4]) const; // m should be m[4][4]
@@ -131,10 +131,10 @@ public:
   // friend operations
   friend float length(const quaternion& a);
   friend float length2(const quaternion& a);
-  friend void add(const quaternion& a, 
+  friend void add(const quaternion& a,
 		  const quaternion& b,
 		  quaternion& res);
-  friend void sub(const quaternion& a, 
+  friend void sub(const quaternion& a,
 		  const quaternion& b,
 		  quaternion& res);
   // res=rotation equivalent to rotations a and b
@@ -151,14 +151,14 @@ public:
 class Box {
 public:
   vect3f min, max;
-  Box(const float xmin = 0.0f, 
-      const float ymin = 0.0f, 
+  Box(const float xmin = 0.0f,
+      const float ymin = 0.0f,
       const float zmin = 0.0f,
-      const float xmax = 0.0f, 
-      const float ymax = 0.0f, 
+      const float xmax = 0.0f,
+      const float ymax = 0.0f,
       const float zmax = 0.0f);
   Box(const vect3f& init_min, const vect3f& init_max);
-  
+
   int contains(const vect3f& p) const;
   // point p contained in box
   int contains(const vect3f& pmin, const vect3f& pmax) const;
@@ -177,7 +177,7 @@ public:
 //
 ////////////////////////////////////////////////////////////////////////////
 
-inline vect3f::vect3f() 
+inline vect3f::vect3f()
 {
   v[0]=v[1]=v[2]=0.0;
 }
@@ -185,7 +185,7 @@ inline vect3f::vect3f(const vect3f& n)
 {
   v[0]=n.v[0];v[1]=n.v[1];v[2]=n.v[2];
 }
-inline vect3f::vect3f(const float* n) 
+inline vect3f::vect3f(const float* n)
 {
   if (n!=NULL) {
     v[0]=n[0];v[1]=n[1];v[2]=n[2];
@@ -194,31 +194,31 @@ inline vect3f::vect3f(const float* n)
   }
 }
 inline vect3f::vect3f(const float x, const float y, const float z)
-{ 
+{
   v[0]=x;v[1]=y;v[2]=z;
 }
 // copy
 inline void
 vect3f::operator=(const vect3f& n)
 {
-  v[0]=n.v[0];v[1]=n.v[1];v[2]=n.v[2]; 
+  v[0]=n.v[0];v[1]=n.v[1];v[2]=n.v[2];
 }
 inline void
-vect3f::operator=(const float* n) 
+vect3f::operator=(const float* n)
 {
   if (n) {
-    v[0]=n[0];v[1]=n[1];v[2]=n[2]; 
+    v[0]=n[0];v[1]=n[1];v[2]=n[2];
   } else {
     v[0]=v[1]=v[2]=0.0;
   }
 }
 inline void
 vect3f::set(const float x, const float y, const float z)
-{ 
+{
   v[0]=x;v[1]=y;v[2]=z;
 }
 // member operations
-inline void 
+inline void
 vect3f::normalize()
 {
   float l=length2(*this);
@@ -242,29 +242,29 @@ vect3f::operator-=(const vect3f& n)
 inline void
 vect3f::operator*=(float s)
 {
-  v[0]*=s;v[1]*=s;v[2]*=s; 
+  v[0]*=s;v[1]*=s;v[2]*=s;
 }
 inline void
 vect3f::operator/=(float s)
 {
-  v[0]/=s;v[1]/=s;v[2]/=s; 
+  v[0]/=s;v[1]/=s;v[2]/=s;
 }
-inline float 
+inline float
 dot(const vect3f& a, const vect3f& b)
 {
   return (a.v[0]*b.v[0] + a.v[1]*b.v[1] + a.v[2]*b.v[2]);
 }
-inline float 
+inline float
 length(const vect3f& a)
 {
   return sqrtf(dot(a,a));
 }
-inline float 
+inline float
 length2(const vect3f& a)
 {
   return dot(a,a);
 }
-inline void 
+inline void
 cross(const vect3f& a, const vect3f& b, vect3f& res)
  // res = a^b  ++ prevent side effects (if res==a or b !!!)
 {
@@ -273,7 +273,7 @@ cross(const vect3f& a, const vect3f& b, vect3f& res)
   float z=a.v[0]*b.v[1] - a.v[1]*b.v[0];
   res.v[0] = x; res.v[1] = y; res.v[2] = z;
 }
-inline void 
+inline void
 add(const vect3f& a, const vect3f& b, vect3f& res)
   // res = a+b
 {
@@ -281,7 +281,7 @@ add(const vect3f& a, const vect3f& b, vect3f& res)
   res.v[1]=a.v[1]+b.v[1];
   res.v[2]=a.v[2]+b.v[2];
 }
-inline void 
+inline void
 sub(const vect3f& a, const vect3f& b, vect3f& res)
     // res = a-b
 {
@@ -301,17 +301,17 @@ vect3f::operator-=(const float* n)
 {
   v[0]-=n[0]; v[1]-=n[1]; v[2]-=n[2];
 }
-inline float 
+inline float
 dot(const float* a, const float* b)
 {
   return (a[0]*b[0] + a[1]*b[1] + a[2]*b[2]);
 }
-inline float 
+inline float
 length(const float* a)
 {
   return sqrtf(dot(a,a));
 }
-inline float 
+inline float
 length2(const float* a)
 {
   return dot(a,a);
@@ -327,7 +327,7 @@ normalize(float* a)
     a[0]=a[1]=a[2]=0.0;
   }
 }
-inline void 
+inline void
 cross(const float* a, const float* b, float* res)
  // res = a^b
 {
@@ -336,7 +336,7 @@ cross(const float* a, const float* b, float* res)
   float z=a[0]*b[1] - a[1]*b[0];
   res[0] = x; res[1] = y; res[2] = z;
 }
-inline void 
+inline void
 add(const float* a, const float* b, float* res)
   // res = a+b
 {
@@ -344,7 +344,7 @@ add(const float* a, const float* b, float* res)
   res[1]=a[1]+b[1];
   res[2]=a[2]+b[2];
 }
-inline void 
+inline void
 sub(const float* a, const float* b, float* res)
     // res = a-b
 {
@@ -370,7 +370,7 @@ inline quaternion::quaternion(const quaternion& n)
 }
 // operations
 inline void
-quaternion::fromAxis(const vect3f& v, 
+quaternion::fromAxis(const vect3f& v,
 		     const float sina,
 		     const float cosa)
 {
@@ -383,7 +383,7 @@ quaternion::fromAxis(const vect3f& v,
     q[0]=q[1]=q[2]=0.0f; q[3]=1.0f;
   }
 }
-inline quaternion::quaternion(const vect3f& v, 
+inline quaternion::quaternion(const vect3f& v,
 			      const float sina,
 			      const float cosa)
 {
@@ -395,7 +395,7 @@ quaternion::fromAxis(const vect3f& v, const float angle)
   float da = angle/2.0;
   fromAxis(v, sinf(da), cosf(da));
 }
-inline quaternion::quaternion(const vect3f& v, const float angle) 
+inline quaternion::quaternion(const vect3f& v, const float angle)
 {
   fromAxis(v, angle);
 }
@@ -415,7 +415,7 @@ quaternion::fromMatrix(const float m[4][4])
   if (m[0][0] > m[1][1]) {
     if (m[0][0] > m[2][2]) {
      i = 0;
-    } 
+    }
   } else {
     if (m[1][1] > m[2][2]) {
       i = 1;
@@ -430,7 +430,7 @@ quaternion::fromMatrix(const float m[4][4])
     q[2] = (m[0][1]-m[1][0])/(4*q[3]);
   } else {
     // Compute x, y, or z first:
-    int j = (i+1)%3; 
+    int j = (i+1)%3;
     int k = (i+2)%3;
 
     // Compute first value:
@@ -449,7 +449,7 @@ quaternion::quaternion(const float m[4][4])
 {
   fromMatrix(m);
 }
-inline void  
+inline void
 quaternion::rotmatrix(float m[4][4]) const
 // m should be m[4][4]
 {
@@ -473,17 +473,17 @@ quaternion::rotmatrix(float m[4][4]) const
   m[3][2] = 0.0;
   m[3][3] = 1.0;
 }
-inline float 
+inline float
 length2(const quaternion& a)
 {
   return a.q[0]*a.q[0] + a.q[1]*a.q[1] + a.q[2]*a.q[2] + a.q[3]*a.q[3];
 }
-inline float 
+inline float
 length(const quaternion& a)
 {
   return sqrtf(length2(a));
 }
-inline void  
+inline void
 quaternion::normalize()
 {
   float mag = length2(*this);
@@ -494,7 +494,7 @@ quaternion::normalize()
     q[0]=q[1]=q[2]=0.0; q[3]=1.0;
   }
 }
-inline void 
+inline void
 add(const quaternion& a, const quaternion& b,
     quaternion& res)
 // res=rotation equivalent to rotations a and b
@@ -506,7 +506,7 @@ add(const quaternion& a, const quaternion& b,
   res.q[0]=p0; res.q[1]=p1; res.q[2]=p2; res.q[3]=p3;
   res.normalize();
 }
-inline void 
+inline void
 sub(const quaternion& a, const quaternion& b,
     quaternion& res)
 // res=rotation equivalent to rotations a and b
@@ -534,78 +534,78 @@ quaternion::operator-=(const quaternion& n)
   sub(*this, n, *this);
 }
 // -- vect3f utilities
-inline void 
+inline void
 quaternion::image(const vect3f& v, vect3f& res) const
   // res <- image par la rotation q de v
 {
   // utilise la matrice plutot que des calculs vectoriels
-  float x = 
+  float x =
     (1.0 - 2.0 * (q[1] * q[1] + q[2] * q[2]))*v.v[0] +
     (      2.0 * (q[0] * q[1] - q[2] * q[3]))*v.v[1] +
     (      2.0 * (q[2] * q[0] + q[1] * q[3]))*v.v[2];
-  float y = 
+  float y =
     (      2.0 * (q[0] * q[1] + q[2] * q[3]))*v.v[0] +
     (1.0 - 2.0 * (q[2] * q[2] + q[0] * q[0]))*v.v[1] +
     (      2.0 * (q[1] * q[2] - q[0] * q[3]))*v.v[2];
-  float z = 
+  float z =
     (      2.0 * (q[2] * q[0] - q[1] * q[3]))*v.v[0] +
     (      2.0 * (q[1] * q[2] + q[0] * q[3]))*v.v[1] +
     (1.0 - 2.0 * (q[1] * q[1] + q[0] * q[0]))*v.v[2];
   res.v[0]=x; res.v[1]=y; res.v[2]=z;
 }
-inline void 
+inline void
 quaternion::source(const vect3f& v, vect3f& res) const
   // res <- vecteur t.q. v est image de res par la rotation q
-{  
+{
   // utilise la matrice plutot que des calculs vectoriels
-  float x = 
+  float x =
     (1.0 - 2.0 * (q[1] * q[1] + q[2] * q[2]))*v.v[0] +
     (      2.0 * (q[0] * q[1] + q[2] * q[3]))*v.v[1] +
     (      2.0 * (q[2] * q[0] - q[1] * q[3]))*v.v[2];
-  float y = 
+  float y =
     (      2.0 * (q[0] * q[1] - q[2] * q[3]))*v.v[0] +
     (1.0 - 2.0 * (q[2] * q[2] + q[0] * q[0]))*v.v[1] +
     (      2.0 * (q[1] * q[2] + q[0] * q[3]))*v.v[2];
-  float z = 
+  float z =
     (      2.0 * (q[2] * q[0] + q[1] * q[3]))*v.v[0] +
     (      2.0 * (q[1] * q[2] - q[0] * q[3]))*v.v[1] +
     (1.0 - 2.0 * (q[1] * q[1] + q[0] * q[0]))*v.v[2];
   res.v[0]=x; res.v[1]=y; res.v[2]=z;
 }
 
-inline void 
+inline void
 quaternion::image(float* v, float* res) const
   // res <- image par la rotation q de v
 {
   // utilise la matrice plutot que des calculs vectoriels
-  float x = 
+  float x =
     (1.0 - 2.0 * (q[1] * q[1] + q[2] * q[2]))*v[0] +
     (      2.0 * (q[0] * q[1] - q[2] * q[3]))*v[1] +
     (      2.0 * (q[2] * q[0] + q[1] * q[3]))*v[2];
-  float y = 
+  float y =
     (      2.0 * (q[0] * q[1] + q[2] * q[3]))*v[0] +
     (1.0 - 2.0 * (q[2] * q[2] + q[0] * q[0]))*v[1] +
     (      2.0 * (q[1] * q[2] - q[0] * q[3]))*v[2];
-  float z = 
+  float z =
     (      2.0 * (q[2] * q[0] - q[1] * q[3]))*v[0] +
     (      2.0 * (q[1] * q[2] + q[0] * q[3]))*v[1] +
     (1.0 - 2.0 * (q[1] * q[1] + q[0] * q[0]))*v[2];
   res[0]=x; res[1]=y; res[2]=z;
 }
-inline void 
+inline void
 quaternion::source(float* v, float* res) const
   // res <- vecteur t.q. v est image de res par la rotation q
-{  
+{
   // utilise la matrice plutot que des calculs vectoriels
-  float x = 
+  float x =
     (1.0 - 2.0 * (q[1] * q[1] + q[2] * q[2]))*v[0] +
     (      2.0 * (q[0] * q[1] + q[2] * q[3]))*v[1] +
     (      2.0 * (q[2] * q[0] - q[1] * q[3]))*v[2];
-  float y = 
+  float y =
     (      2.0 * (q[0] * q[1] - q[2] * q[3]))*v[0] +
     (1.0 - 2.0 * (q[2] * q[2] + q[0] * q[0]))*v[1] +
     (      2.0 * (q[1] * q[2] + q[0] * q[3]))*v[2];
-  float z = 
+  float z =
     (      2.0 * (q[2] * q[0] + q[1] * q[3]))*v[0] +
     (      2.0 * (q[1] * q[2] - q[0] * q[3]))*v[1] +
     (1.0 - 2.0 * (q[1] * q[1] + q[0] * q[0]))*v[2];
@@ -625,27 +625,27 @@ Box::Box(const vect3f& init_min, const vect3f& init_max)
   : min(init_min), max(init_max)
 {}
 
-inline int 
+inline int
 Box::contains(const vect3f& p) const
 {
   return (p[0]>=min[0]) && (p[1]>=min[1]) && (p[2]>=min[2])
     &&   (p[0]<=max[0]) && (p[1]<=max[1]) && (p[2]<=max[2]);
 }
 
-inline int 
+inline int
 Box::contains(const vect3f& pmin, const vect3f& pmax) const
 {
   return (pmin[0]>=min[0]) && (pmin[1]>=min[1]) && (pmin[2]>=min[2])
     &&   (pmax[0]<=max[0]) && (pmax[1]<=max[1]) && (pmax[2]<=max[2]);
 }
 
-inline int 
+inline int
 Box::contains(const Box& b) const
 {
   return contains(b.min, b.max);
 }
 
-inline int 
+inline int
 Box::intersect(const vect3f& pmin, const vect3f& pmax) const
 {
   return (min[0]<pmax[0]) && (min[1]<pmax[1]) && (min[2]<pmax[2])
@@ -659,13 +659,13 @@ Box::intersect(const Box& b) const
 
 //============= streams facilities ================
 /*
-inline ostream& 
+inline ostream&
 operator<<(ostream& out, const vect3f& v) {
   out << v.v[0] << " " << v.v[1] << " " << v.v[2] ;
   return out;
 }
 
-inline istream& 
+inline istream&
 operator>>(istream& in, vect3f& v) {
   in >> v.v[0];
   if (!in.fail()) {
@@ -677,13 +677,13 @@ operator>>(istream& in, vect3f& v) {
   return in;
 }
 
-inline ostream& 
+inline ostream&
 operator<<(ostream& out, const quaternion& q) {
   out << q.q[0] << " " << q.q[1] << " " << q.q[2] << " " << q.q[3] ;
   return out;
 }
 
-inline istream& 
+inline istream&
 operator>>(istream& in, quaternion& q) {
   in >> q.q[0];
   if (!in.fail()) {
@@ -698,7 +698,7 @@ operator>>(istream& in, quaternion& q) {
   return in;
 }
 
-inline ostream& 
+inline ostream&
 operator<<(ostream& out, const Box& b) {
   out << b.min << " " << b.max;
   return out;

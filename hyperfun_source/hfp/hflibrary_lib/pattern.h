@@ -17,7 +17,7 @@ static double Noise(double xt,double yt,double zt, double phase,double a2/*is fr
 
   double a2x, a2y, a2z, sx, sy, sz, sx2, sy2, sz2, a1d;
   double Serx, Sery, Serz;
-  double a1, SS; 
+  double a1, SS;
   double c;
   double c_min,c_max;
 
@@ -39,10 +39,10 @@ a1 = 1.0 ;
         Serz=a1*sz+sz2;
         SS=Serx*Sery*Serz;
 
-c=2.17/1.17; 
+c=2.17/1.17;
 c_min = pow(-a1*c,3);
 c_max = -c_min;
-		
+
 SS=(SS-c_min)/(c_max-c_min);
 
 return SS;
@@ -52,23 +52,23 @@ return SS;
 static double ConcentriqueCircle(double xt,double yt,double zt){
 double val;
 
-	
+
 	xt *= xt;
 	yt *= yt;
 	zt *= zt;
 	val = (fmod(sqrt(xt+yt+zt), 1.0));
-  
+
   return val;
 }
 
 static double cycle(double value)
 {
-  
+
   int i;
     i = (int)((value - floor(value)) * 1000.0);
     value = (1.0+sin((double)i*2.0*M_PI/1000.0))/2.0;
 	return value;
- 
+
 }
 
 static double Crackles(double xt,double yt,double zt,double phase,double freq){
@@ -116,7 +116,7 @@ static double turbulence(double *v, double freq)
 #define BM 0xff
 
 #define N 0x1000
-#define NP 12   
+#define NP 12
 #define NM 0xfff
 
 static int p[B + B + 2];
@@ -133,7 +133,7 @@ static double lerp(t, a, b) {
 	return 	( a + t * (b - a) );
 }
 
-static void setup_pattern(int i, int b0, int b1, double r0, double r1, double *vec) 
+static void setup_pattern(int i, int b0, int b1, double r0, double r1, double *vec)
 {
 	double t = vec[i] + N;
 	b0 = ((int)t) & BM;
@@ -149,7 +149,7 @@ static double Noise3(double *vec)
 	double rx0, rx1, ry0, ry1, rz0, rz1, *q, sy, sz, a, b, c, d, t, u, v;
 	register i, j;
 
-	
+
 
 	setup_pattern(0, bx0,bx1, rx0,rx1,vec);
 	setup_pattern(1, by0,by1, ry0,ry1,vec);
@@ -211,7 +211,7 @@ static void InitPerlin(int seed)
 	int i, j, k;
 
 	srand(seed);
-	
+
 	for (i = 0 ; i < B ; i++) {
 		p[i] = i;
 
@@ -244,7 +244,7 @@ static double fBm( double* vect, double H, double lacunarity, double octaves )
 
       double            value, frequency, remainder;
       int               i;
-     
+
       /* precompute and store spectral weights */
       if ( first==1 ) {
             /* seize required memory for exponent_array */

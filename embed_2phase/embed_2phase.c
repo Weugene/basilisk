@@ -658,7 +658,3 @@ ppm2mp4 movie.mp4 < movie.mp4.ppm
 ppm2mp4 l2.mp4 < l2.mp4.ppm
 ~~~
 */
-
-
-
-

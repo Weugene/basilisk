@@ -10,4 +10,3 @@
 
 cd $HOME/basilisk/work/two_phase_flow_cylinders
 mpirun -np 10 ./a.out
-

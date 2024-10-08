@@ -4,7 +4,7 @@ const vector zerocf[] = {1.,0.,0.};
 int main(int argc, char * argv[])
 {
     init_grid(16);
-    (const) vector bU = zerocf; 
+    (const) vector bU = zerocf;
     foreach_dimension(){
         foreach() {
             b.x[] = bU.x[];

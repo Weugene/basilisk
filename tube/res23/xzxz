@@ -40,12 +40,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 201, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 3.38035 length_min= -26.6196 length_max= 33.3804 length= 60 it_fp= 0
@@ -53,7 +53,7 @@
 < vtk: iter_fp = 0 myt = -0.0914252
 < <DataSet timestep="-0.0914252" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 201, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -126,12 +126,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 401, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 3.49958 length_min= -26.5004 length_max= 33.4996 length= 60 it_fp= 0
@@ -139,7 +139,7 @@
 < vtk: iter_fp = 0 myt = -0.188126
 < <DataSet timestep="-0.188126" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 401, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -228,12 +228,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 601, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 3.61891 length_min= -26.3811 length_max= 33.6189 length= 60 it_fp= 0
@@ -241,7 +241,7 @@
 < vtk: iter_fp = 0 myt = -0.284827
 < <DataSet timestep="-0.284827" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 601, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -348,12 +348,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 801, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 3.73825 length_min= -26.2617 length_max= 33.7383 length= 60 it_fp= 0
@@ -361,7 +361,7 @@
 < vtk: iter_fp = 0 myt = -0.381527
 < <DataSet timestep="-0.381527" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 801, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -486,12 +486,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 1001, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 3.85775 length_min= -26.1422 length_max= 33.8578 length= 60 it_fp= 0
@@ -499,7 +499,7 @@
 < vtk: iter_fp = 0 myt = -0.478228
 < <DataSet timestep="-0.478228" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 1001, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -642,12 +642,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 1201, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 3.9778 length_min= -26.0222 length_max= 33.9778 length= 60 it_fp= 0
@@ -655,7 +655,7 @@
 < vtk: iter_fp = 0 myt = -0.574929
 < <DataSet timestep="-0.574929" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 1201, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -816,12 +816,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 1401, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 4.09844 length_min= -25.9016 length_max= 34.0984 length= 60 it_fp= 0
@@ -829,7 +829,7 @@
 < vtk: iter_fp = 0 myt = -0.67163
 < <DataSet timestep="-0.67163" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 1401, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -1008,12 +1008,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 1601, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 4.21955 length_min= -25.7805 length_max= 34.2195 length= 60 it_fp= 0
@@ -1021,7 +1021,7 @@
 < vtk: iter_fp = 0 myt = -0.76833
 < <DataSet timestep="-0.76833" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 1601, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -1218,12 +1218,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 1801, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 4.3409 length_min= -25.6591 length_max= 34.3409 length= 60 it_fp= 0
@@ -1231,7 +1231,7 @@
 < vtk: iter_fp = 0 myt = -0.865031
 < <DataSet timestep="-0.865031" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 1801, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -1446,12 +1446,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 2001, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 4.46238 length_min= -25.5376 length_max= 34.4624 length= 60 it_fp= 0
@@ -1459,7 +1459,7 @@
 < vtk: iter_fp = 0 myt = -0.961732
 < <DataSet timestep="-0.961732" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 2001, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -1692,12 +1692,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 2201, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 4.58403 length_min= -25.416 length_max= 34.584 length= 60 it_fp= 0
@@ -1705,7 +1705,7 @@
 < vtk: iter_fp = 0 myt = -1.05843
 < <DataSet timestep="-1.05843" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 2201, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -1956,12 +1956,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 2401, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 4.70591 length_min= -25.2941 length_max= 34.7059 length= 60 it_fp= 0
@@ -1969,7 +1969,7 @@
 < vtk: iter_fp = 0 myt = -1.15513
 < <DataSet timestep="-1.15513" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 2401, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -2238,12 +2238,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 2601, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 4.82183 length_min= -25.1782 length_max= 34.8218 length= 60 it_fp= 0
@@ -2251,7 +2251,7 @@
 < vtk: iter_fp = 0 myt = -1.247
 < <DataSet timestep="-1.247" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 2601, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -2538,12 +2538,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 2801, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 4.94401 length_min= -25.056 length_max= 34.944 length= 60 it_fp= 0
@@ -2551,7 +2551,7 @@
 < vtk: iter_fp = 0 myt = -1.3437
 < <DataSet timestep="-1.3437" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 2801, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -2856,12 +2856,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 3001, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 5.06621 length_min= -24.9338 length_max= 35.0662 length= 60 it_fp= 0
@@ -2869,7 +2869,7 @@
 < vtk: iter_fp = 0 myt = -1.4404
 < <DataSet timestep="-1.4404" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 3001, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -3192,12 +3192,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 3201, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 5.18842 length_min= -24.8116 length_max= 35.1884 length= 60 it_fp= 0
@@ -3205,7 +3205,7 @@
 < vtk: iter_fp = 0 myt = -1.5371
 < <DataSet timestep="-1.5371" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 3201, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -3546,12 +3546,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 3401, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 5.31057 length_min= -24.6894 length_max= 35.3106 length= 60 it_fp= 0
@@ -3559,7 +3559,7 @@
 < vtk: iter_fp = 0 myt = -1.6338
 < <DataSet timestep="-1.6338" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 3401, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -3918,12 +3918,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 3601, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 5.43229 length_min= -24.5677 length_max= 35.4323 length= 60 it_fp= 0
@@ -3931,7 +3931,7 @@
 < vtk: iter_fp = 0 myt = -1.7305
 < <DataSet timestep="-1.7305" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 3601, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -4308,12 +4308,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 3801, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 5.54757 length_min= -24.4524 length_max= 35.5476 length= 60 it_fp= 0
@@ -4321,7 +4321,7 @@
 < vtk: iter_fp = 0 myt = -1.82237
 < <DataSet timestep="-1.82237" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 3801, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -4716,12 +4716,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 4001, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 5.66917 length_min= -24.3308 length_max= 35.6692 length= 60 it_fp= 0
@@ -4729,7 +4729,7 @@
 < vtk: iter_fp = 0 myt = -1.91907
 < <DataSet timestep="-1.91907" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 4001, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -5142,12 +5142,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 4201, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 5.79124 length_min= -24.2088 length_max= 35.7912 length= 60 it_fp= 0
@@ -5155,7 +5155,7 @@
 < vtk: iter_fp = 0 myt = -2.01577
 < <DataSet timestep="-2.01577" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 4201, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -5586,12 +5586,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 4401, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 5.91384 length_min= -24.0862 length_max= 35.9138 length= 60 it_fp= 0
@@ -5599,7 +5599,7 @@
 < vtk: iter_fp = 0 myt = -2.11247
 < <DataSet timestep="-2.11247" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 4401, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -6048,12 +6048,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 4601, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 6.03696 length_min= -23.963 length_max= 36.037 length= 60 it_fp= 0
@@ -6061,7 +6061,7 @@
 < vtk: iter_fp = 0 myt = -2.20917
 < <DataSet timestep="-2.20917" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 4601, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -6528,12 +6528,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 4801, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 6.16057 length_min= -23.8394 length_max= 36.1606 length= 60 it_fp= 0
@@ -6541,7 +6541,7 @@
 < vtk: iter_fp = 0 myt = -2.30587
 < <DataSet timestep="-2.30587" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 4801, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -7026,12 +7026,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 5001, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 6.27841 length_min= -23.7216 length_max= 36.2784 length= 60 it_fp= 0
@@ -7039,7 +7039,7 @@
 < vtk: iter_fp = 0 myt = -2.39774
 < <DataSet timestep="-2.39774" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 5001, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -7542,12 +7542,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 5201, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 6.40296 length_min= -23.597 length_max= 36.403 length= 60 it_fp= 0
@@ -7555,7 +7555,7 @@
 < vtk: iter_fp = 0 myt = -2.49444
 < <DataSet timestep="-2.49444" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 5201, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -8076,12 +8076,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 5401, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 6.52796 length_min= -23.472 length_max= 36.528 length= 60 it_fp= 0
@@ -8089,7 +8089,7 @@
 < vtk: iter_fp = 0 myt = -2.59114
 < <DataSet timestep="-2.59114" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 5401, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -8628,12 +8628,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 5601, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 6.65343 length_min= -23.3466 length_max= 36.6534 length= 60 it_fp= 0
@@ -8641,7 +8641,7 @@
 < vtk: iter_fp = 0 myt = -2.68784
 < <DataSet timestep="-2.68784" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 5601, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -9198,12 +9198,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 5801, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 6.7793 length_min= -23.2207 length_max= 36.7793 length= 60 it_fp= 0
@@ -9211,7 +9211,7 @@
 < vtk: iter_fp = 0 myt = -2.78454
 < <DataSet timestep="-2.78454" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 5801, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -9786,12 +9786,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 6001, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 6.90526 length_min= -23.0947 length_max= 36.9053 length= 60 it_fp= 0
@@ -9799,7 +9799,7 @@
 < vtk: iter_fp = 0 myt = -2.88124
 < <DataSet timestep="-2.88124" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 6001, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -10392,12 +10392,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 6201, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 7.03145 length_min= -22.9685 length_max= 37.0315 length= 60 it_fp= 0
@@ -10405,7 +10405,7 @@
 < vtk: iter_fp = 0 myt = -2.97794
 < <DataSet timestep="-2.97794" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 6201, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -11016,12 +11016,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 6401, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 7.14739 length_min= -22.8526 length_max= 37.1474 length= 60 it_fp= 0
@@ -11029,7 +11029,7 @@
 < vtk: iter_fp = 0 myt = -3.0666
 < <DataSet timestep="-3.0666" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 6401, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -11658,12 +11658,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 6601, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 7.26353 length_min= -22.7365 length_max= 37.2635 length= 60 it_fp= 0
@@ -11671,7 +11671,7 @@
 < vtk: iter_fp = 0 myt = -3.15554
 < <DataSet timestep="-3.15554" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 6601, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -12318,12 +12318,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 6801, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 7.38971 length_min= -22.6103 length_max= 37.3897 length= 60 it_fp= 0
@@ -12331,7 +12331,7 @@
 < vtk: iter_fp = 0 myt = -3.25224
 < <DataSet timestep="-3.25224" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 6801, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -12996,12 +12996,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 7001, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 7.51602 length_min= -22.484 length_max= 37.516 length= 60 it_fp= 0
@@ -13009,7 +13009,7 @@
 < vtk: iter_fp = 0 myt = -3.34894
 < <DataSet timestep="-3.34894" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 7001, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -13692,12 +13692,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 7201, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 7.6426 length_min= -22.3574 length_max= 37.6426 length= 60 it_fp= 0
@@ -13705,7 +13705,7 @@
 < vtk: iter_fp = 0 myt = -3.44564
 < <DataSet timestep="-3.44564" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 7201, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -14406,12 +14406,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 7401, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 7.76321 length_min= -22.2368 length_max= 37.7632 length= 60 it_fp= 0
@@ -14419,7 +14419,7 @@
 < vtk: iter_fp = 0 myt = -3.5375
 < <DataSet timestep="-3.5375" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 7401, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -15138,12 +15138,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 7601, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 7.89048 length_min= -22.1095 length_max= 37.8905 length= 60 it_fp= 0
@@ -15151,7 +15151,7 @@
 < vtk: iter_fp = 0 myt = -3.63421
 < <DataSet timestep="-3.63421" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 7601, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -15888,12 +15888,12 @@
 < Dimensionless Parameters: mu1=0.000833599 mu2=1.79982e-05 rho1=1 rho2=0.00120762 sigma=0.0334764 G=0.0266752  Umean=1
 < Dimensionless nums:       Re=1199.62  Ca=0.0306  Ca_mod=0.0249011
 < Bubble:                   Vdst=1.6046 dst=1.45252  rst=0.726262  r_bub=0.4 l_bub=2.39419 x_init=4.07013
-< 
+<
 < events (i = 0, t = 0)
 <   defaults                  src/run.h:42
 <   init                      convertD2P_single.c:207
 < file has been read: L0=30
-< 
+<
 < events (i = 7801, t = 100)
 <   vtk_file                  convertD2P_single.c:223
 < x= 8.01765 length_min= -21.9823 length_max= 38.0177 length= 60 it_fp= 0
@@ -15901,7 +15901,7 @@
 < vtk: iter_fp = 0 myt = -3.73091
 < <DataSet timestep="-3.73091" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 <   stop                      convertD2P_single.c:313
-< 
+<
 < end events (i = 7801, t = 100)
 <   cleanup                   src/run.h:50
 < + id_out=0
@@ -16645,7 +16645,7 @@
 > vtk: iter_fp = 0 myt = -3.82761
 > <DataSet timestep="-3.82761" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 8001, t = 100)
 >   cleanup                   src/run.h:50
 16728,16732d113
@@ -16663,7 +16663,7 @@
 > vtk: iter_fp = 0 myt = -3.92431
 > <DataSet timestep="-3.92431" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 8201, t = 100)
 >   cleanup                   src/run.h:50
 17514,17518d901
@@ -16678,7 +16678,7 @@
 > vtk: iter_fp = 0 myt = -4.02101
 > <DataSet timestep="-4.02101" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 8401, t = 100)
 >   cleanup                   src/run.h:50
 18318,18322d1705
@@ -16693,7 +16693,7 @@
 > vtk: iter_fp = 0 myt = -4.1129
 > <DataSet timestep="-4.1129" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 8601, t = 100)
 >   cleanup                   src/run.h:50
 19140,19144d2527
@@ -16708,7 +16708,7 @@
 > vtk: iter_fp = 0 myt = -4.20956
 > <DataSet timestep="-4.20956" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 8801, t = 100)
 >   cleanup                   src/run.h:50
 19980,19984d3367
@@ -16723,7 +16723,7 @@
 > vtk: iter_fp = 0 myt = -4.30626
 > <DataSet timestep="-4.30626" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 9001, t = 100)
 >   cleanup                   src/run.h:50
 20838,20842d4225
@@ -16738,7 +16738,7 @@
 > vtk: iter_fp = 0 myt = -4.37944
 > <DataSet timestep="-4.37944" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 9201, t = 100)
 >   cleanup                   src/run.h:50
 21714,21718d5101
@@ -16757,7 +16757,7 @@
 > vtk: iter_fp = 0 myt = -4.45162
 > <DataSet timestep="-4.45162" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 9401, t = 100)
 >   cleanup                   src/run.h:50
 22608,22612d5995
@@ -16772,7 +16772,7 @@
 > vtk: iter_fp = 0 myt = -4.51131
 > <DataSet timestep="-4.51131" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 9601, t = 100)
 >   cleanup                   src/run.h:50
 23520,23524d6907
@@ -16787,7 +16787,7 @@
 > vtk: iter_fp = 0 myt = -4.59881
 > <DataSet timestep="-4.59881" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 9801, t = 100)
 >   cleanup                   src/run.h:50
 24450,24454d7837
@@ -16812,7 +16812,7 @@
 > vtk: iter_fp = 0 myt = -4.78124
 > <DataSet timestep="-4.78124" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 10201, t = 100)
 >   cleanup                   src/run.h:50
 26358,26362d9740
@@ -16827,7 +16827,7 @@
 > vtk: iter_fp = 0 myt = -4.87663
 > <DataSet timestep="-4.87663" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 10401, t = 100)
 >   cleanup                   src/run.h:50
 27342,27346d10724
@@ -16842,7 +16842,7 @@
 > vtk: iter_fp = 0 myt = -4.96684
 > <DataSet timestep="-4.96684" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 10601, t = 100)
 >   cleanup                   src/run.h:50
 28344,28348d11726
@@ -16857,7 +16857,7 @@
 > vtk: iter_fp = 0 myt = -5.0629
 > <DataSet timestep="-5.0629" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 10801, t = 100)
 >   cleanup                   src/run.h:50
 29364,29368d12746
@@ -16872,7 +16872,7 @@
 > vtk: iter_fp = 0 myt = -5.15458
 > <DataSet timestep="-5.15458" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 11001, t = 100)
 >   cleanup                   src/run.h:50
 30402,30406d13784
@@ -16887,7 +16887,7 @@
 > vtk: iter_fp = 0 myt = -5.24646
 > <DataSet timestep="-5.24646" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 11201, t = 100)
 >   cleanup                   src/run.h:50
 31458,31462d14840
@@ -16902,7 +16902,7 @@
 > vtk: iter_fp = 0 myt = -5.33407
 > <DataSet timestep="-5.33407" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 11401, t = 100)
 >   cleanup                   src/run.h:50
 32532,32536d15914
@@ -16917,7 +16917,7 @@
 > vtk: iter_fp = 0 myt = -5.42081
 > <DataSet timestep="-5.42081" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 11601, t = 100)
 >   cleanup                   src/run.h:50
 33624,33628d17006
@@ -16932,7 +16932,7 @@
 > vtk: iter_fp = 0 myt = -5.51488
 > <DataSet timestep="-5.51488" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 11801, t = 100)
 >   cleanup                   src/run.h:50
 34734,34738d18116
@@ -16947,7 +16947,7 @@
 > vtk: iter_fp = 0 myt = -5.59028
 > <DataSet timestep="-5.59028" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 12001, t = 100)
 >   cleanup                   src/run.h:50
 35862,35866d19244
@@ -16962,7 +16962,7 @@
 > vtk: iter_fp = 0 myt = -5.67122
 > <DataSet timestep="-5.67122" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 12201, t = 100)
 >   cleanup                   src/run.h:50
 37008,37012d20390
@@ -16977,7 +16977,7 @@
 > vtk: iter_fp = 0 myt = -5.76791
 > <DataSet timestep="-5.76791" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 12401, t = 100)
 >   cleanup                   src/run.h:50
 38172,38176d21554
@@ -16992,7 +16992,7 @@
 > vtk: iter_fp = 0 myt = -5.8312
 > <DataSet timestep="-5.8312" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 12601, t = 100)
 >   cleanup                   src/run.h:50
 39354,39358d22736
@@ -17007,7 +17007,7 @@
 > vtk: iter_fp = 0 myt = -5.91033
 > <DataSet timestep="-5.91033" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 12801, t = 100)
 >   cleanup                   src/run.h:50
 40554,40558d23936
@@ -17022,7 +17022,7 @@
 > vtk: iter_fp = 0 myt = -6.00703
 > <DataSet timestep="-6.00703" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 13001, t = 100)
 >   cleanup                   src/run.h:50
 41772,41776d25154
@@ -17037,7 +17037,7 @@
 > vtk: iter_fp = 0 myt = -6.10373
 > <DataSet timestep="-6.10373" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 13201, t = 100)
 >   cleanup                   src/run.h:50
 43008,43012d26390
@@ -17052,7 +17052,7 @@
 > vtk: iter_fp = 0 myt = -6.20043
 > <DataSet timestep="-6.20043" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 13401, t = 100)
 >   cleanup                   src/run.h:50
 44262,44266d27644
@@ -17067,7 +17067,7 @@
 > vtk: iter_fp = 0 myt = -6.29713
 > <DataSet timestep="-6.29713" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 13601, t = 100)
 >   cleanup                   src/run.h:50
 45534,45538d28916
@@ -17082,7 +17082,7 @@
 > vtk: iter_fp = 0 myt = -6.39383
 > <DataSet timestep="-6.39383" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 13801, t = 100)
 >   cleanup                   src/run.h:50
 46824,46828d30206
@@ -17097,7 +17097,7 @@
 > vtk: iter_fp = 0 myt = -6.49053
 > <DataSet timestep="-6.49053" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 14001, t = 100)
 >   cleanup                   src/run.h:50
 48132,48136d31514
@@ -17112,7 +17112,7 @@
 > vtk: iter_fp = 0 myt = -6.58723
 > <DataSet timestep="-6.58723" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 14201, t = 100)
 >   cleanup                   src/run.h:50
 49458,49462d32840
@@ -17127,7 +17127,7 @@
 > vtk: iter_fp = 0 myt = -6.68173
 > <DataSet timestep="-6.68173" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 14401, t = 100)
 >   cleanup                   src/run.h:50
 50802c34185,34190
@@ -17169,7 +17169,7 @@
 > vtk: iter_fp = 0 myt = -6.77423
 > <DataSet timestep="-6.77423" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 14601, t = 100)
 >   cleanup                   src/run.h:50
 52164,52168d35572
@@ -17184,7 +17184,7 @@
 > vtk: iter_fp = 0 myt = -6.86609
 > <DataSet timestep="-6.86609" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 14801, t = 100)
 >   cleanup                   src/run.h:50
 53544,53548d36952
@@ -17199,7 +17199,7 @@
 > vtk: iter_fp = 0 myt = -6.96279
 > <DataSet timestep="-6.96279" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 15001, t = 100)
 >   cleanup                   src/run.h:50
 54942,54946d38350
@@ -17214,7 +17214,7 @@
 > vtk: iter_fp = 0 myt = -7.05949
 > <DataSet timestep="-7.05949" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 15201, t = 100)
 >   cleanup                   src/run.h:50
 56358,56362d39766
@@ -17229,7 +17229,7 @@
 > vtk: iter_fp = 0 myt = -7.15619
 > <DataSet timestep="-7.15619" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 15401, t = 100)
 >   cleanup                   src/run.h:50
 57792,57796d41200
@@ -17244,7 +17244,7 @@
 > vtk: iter_fp = 0 myt = -7.25289
 > <DataSet timestep="-7.25289" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 15601, t = 100)
 >   cleanup                   src/run.h:50
 59244,59248d42652
@@ -17263,7 +17263,7 @@
 > vtk: iter_fp = 0 myt = -7.34959
 > <DataSet timestep="-7.34959" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 15801, t = 100)
 >   cleanup                   src/run.h:50
 60714,60718d44122
@@ -17282,7 +17282,7 @@
 > vtk: iter_fp = 0 myt = -7.44629
 > <DataSet timestep="-7.44629" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 16001, t = 100)
 >   cleanup                   src/run.h:50
 62202,62206d45610
@@ -17297,7 +17297,7 @@
 > vtk: iter_fp = 0 myt = -7.54299
 > <DataSet timestep="-7.54299" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 16201, t = 100)
 >   cleanup                   src/run.h:50
 63708,63712d47116
@@ -17312,7 +17312,7 @@
 > vtk: iter_fp = 0 myt = -7.63486
 > <DataSet timestep="-7.63486" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 16401, t = 100)
 >   cleanup                   src/run.h:50
 65232,65236d48640
@@ -17327,7 +17327,7 @@
 > vtk: iter_fp = 0 myt = -7.73156
 > <DataSet timestep="-7.73156" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 16601, t = 100)
 >   cleanup                   src/run.h:50
 66774,66778d50182
@@ -17342,7 +17342,7 @@
 > vtk: iter_fp = 0 myt = -7.82342
 > <DataSet timestep="-7.82342" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 16801, t = 100)
 >   cleanup                   src/run.h:50
 68334,68338d51742
@@ -17357,7 +17357,7 @@
 > vtk: iter_fp = 0 myt = -7.92012
 > <DataSet timestep="-7.92012" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 17001, t = 100)
 >   cleanup                   src/run.h:50
 69912,69916d53320
@@ -17372,7 +17372,7 @@
 > vtk: iter_fp = 0 myt = -8.01682
 > <DataSet timestep="-8.01682" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 17201, t = 100)
 >   cleanup                   src/run.h:50
 71508,71512d54916
@@ -17387,7 +17387,7 @@
 > vtk: iter_fp = 0 myt = -8.11352
 > <DataSet timestep="-8.11352" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 17401, t = 100)
 >   cleanup                   src/run.h:50
 73122,73126d56530
@@ -17402,7 +17402,7 @@
 > vtk: iter_fp = 0 myt = -8.21022
 > <DataSet timestep="-8.21022" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 17601, t = 100)
 >   cleanup                   src/run.h:50
 74754,74758d58162
@@ -17421,7 +17421,7 @@
 > vtk: iter_fp = 0 myt = -8.30692
 > <DataSet timestep="-8.30692" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 17801, t = 100)
 >   cleanup                   src/run.h:50
 76404,76408d59812
@@ -17436,7 +17436,7 @@
 > vtk: iter_fp = 0 myt = -8.40362
 > <DataSet timestep="-8.40362" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 18001, t = 100)
 >   cleanup                   src/run.h:50
 78072,78076d61480
@@ -17451,7 +17451,7 @@
 > vtk: iter_fp = 0 myt = -8.49966
 > <DataSet timestep="-8.49966" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 18201, t = 100)
 >   cleanup                   src/run.h:50
 79758,79762d63166
@@ -17466,7 +17466,7 @@
 > vtk: iter_fp = 0 myt = -8.59635
 > <DataSet timestep="-8.59635" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 18401, t = 100)
 >   cleanup                   src/run.h:50
 81462,81466d64870
@@ -17481,7 +17481,7 @@
 > vtk: iter_fp = 0 myt = -8.69305
 > <DataSet timestep="-8.69305" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 18601, t = 100)
 >   cleanup                   src/run.h:50
 83184,83188d66592
@@ -17496,7 +17496,7 @@
 > vtk: iter_fp = 0 myt = -8.78975
 > <DataSet timestep="-8.78975" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 18801, t = 100)
 >   cleanup                   src/run.h:50
 84924,84928d68332
@@ -17515,7 +17515,7 @@
 > vtk: iter_fp = 0 myt = -8.88161
 > <DataSet timestep="-8.88161" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 19001, t = 100)
 >   cleanup                   src/run.h:50
 86682,86686d70090
@@ -17530,7 +17530,7 @@
 > vtk: iter_fp = 0 myt = -8.97831
 > <DataSet timestep="-8.97831" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 19201, t = 100)
 >   cleanup                   src/run.h:50
 88458,88462d71866
@@ -17545,7 +17545,7 @@
 > vtk: iter_fp = 0 myt = -9.07443
 > <DataSet timestep="-9.07443" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 19401, t = 100)
 >   cleanup                   src/run.h:50
 90252,90256d73660
@@ -17560,7 +17560,7 @@
 > vtk: iter_fp = 0 myt = -9.17113
 > <DataSet timestep="-9.17113" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 19601, t = 100)
 >   cleanup                   src/run.h:50
 92064,92068d75472
@@ -17575,7 +17575,7 @@
 > vtk: iter_fp = 0 myt = -9.26783
 > <DataSet timestep="-9.26783" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 19801, t = 100)
 >   cleanup                   src/run.h:50
 93894c77303,77308
@@ -17654,7 +17654,7 @@
 > vtk: iter_fp = 0 myt = -9.45639
 > <DataSet timestep="-9.45639" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 20201, t = 100)
 >   cleanup                   src/run.h:50
 97602,97606d81057
@@ -17669,7 +17669,7 @@
 > vtk: iter_fp = 0 myt = -9.55309
 > <DataSet timestep="-9.55309" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 20401, t = 100)
 >   cleanup                   src/run.h:50
 99486,99490d82941
@@ -17684,7 +17684,7 @@
 > vtk: iter_fp = 0 myt = -9.64979
 > <DataSet timestep="-9.64979" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 20601, t = 100)
 >   cleanup                   src/run.h:50
 101388,101392d84843
@@ -17699,7 +17699,7 @@
 > vtk: iter_fp = 0 myt = -9.74649
 > <DataSet timestep="-9.74649" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 20801, t = 100)
 >   cleanup                   src/run.h:50
 103308,103312d86763
@@ -17712,7 +17712,7 @@
 < ./conv_extract_isovolume.sh: line 94: 292135 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 21001, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 16.2552 length_min= -13.7448 length_max= 46.2552 length= 60 it_fp= 0
@@ -17720,7 +17720,7 @@
 > vtk: iter_fp = 0 myt = -9.8432
 > <DataSet timestep="-9.8432" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 21001, t = 100)
 >   cleanup                   src/run.h:50
 105240,105244d88701
@@ -17735,7 +17735,7 @@
 > vtk: iter_fp = 0 myt = -9.9399
 > <DataSet timestep="-9.9399" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 21201, t = 100)
 >   cleanup                   src/run.h:50
 107196,107200d90657
@@ -17748,7 +17748,7 @@
 < ./conv_extract_isovolume.sh: line 94: 297490 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 21401, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 16.5181 length_min= -13.4819 length_max= 46.5181 length= 60 it_fp= 0
@@ -17756,7 +17756,7 @@
 > vtk: iter_fp = 0 myt = -10.0363
 > <DataSet timestep="-10.0363" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 21401, t = 100)
 >   cleanup                   src/run.h:50
 109164,109168d92631
@@ -17769,7 +17769,7 @@
 < ./conv_extract_isovolume.sh: line 94: 299422 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 21601, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 16.6432 length_min= -13.3568 length_max= 46.6432 length= 60 it_fp= 0
@@ -17777,7 +17777,7 @@
 > vtk: iter_fp = 0 myt = -10.1282
 > <DataSet timestep="-10.1282" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 21601, t = 100)
 >   cleanup                   src/run.h:50
 111150,111154d94623
@@ -17794,7 +17794,7 @@
 < ./conv_extract_isovolume.sh: line 94: 301651 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 21801, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 16.7751 length_min= -13.2249 length_max= 46.7751 length= 60 it_fp= 0
@@ -17802,7 +17802,7 @@
 > vtk: iter_fp = 0 myt = -10.2249
 > <DataSet timestep="-10.2249" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 21801, t = 100)
 >   cleanup                   src/run.h:50
 113154,113158d96633
@@ -17815,7 +17815,7 @@
 < ./conv_extract_isovolume.sh: line 94: 303270 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 22001, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 16.9071 length_min= -13.0929 length_max= 46.9071 length= 60 it_fp= 0
@@ -17823,7 +17823,7 @@
 > vtk: iter_fp = 0 myt = -10.3216
 > <DataSet timestep="-10.3216" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 22001, t = 100)
 >   cleanup                   src/run.h:50
 115176,115180d98661
@@ -17836,7 +17836,7 @@
 < ./conv_extract_isovolume.sh: line 94: 305342 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 22201, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 17.0391 length_min= -12.9609 length_max= 47.0391 length= 60 it_fp= 0
@@ -17844,7 +17844,7 @@
 > vtk: iter_fp = 0 myt = -10.4183
 > <DataSet timestep="-10.4183" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 22201, t = 100)
 >   cleanup                   src/run.h:50
 117216,117220d100707
@@ -17857,7 +17857,7 @@
 < ./conv_extract_isovolume.sh: line 94: 307877 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 22401, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 17.1708 length_min= -12.8292 length_max= 47.1708 length= 60 it_fp= 0
@@ -17865,7 +17865,7 @@
 > vtk: iter_fp = 0 myt = -10.5149
 > <DataSet timestep="-10.5149" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 22401, t = 100)
 >   cleanup                   src/run.h:50
 119274,119278d102771
@@ -17878,7 +17878,7 @@
 < ./conv_extract_isovolume.sh: line 94: 309767 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 22601, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 17.3024 length_min= -12.6976 length_max= 47.3024 length= 60 it_fp= 0
@@ -17886,7 +17886,7 @@
 > vtk: iter_fp = 0 myt = -10.6116
 > <DataSet timestep="-10.6116" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 22601, t = 100)
 >   cleanup                   src/run.h:50
 121350,121354d104853
@@ -17899,7 +17899,7 @@
 < ./conv_extract_isovolume.sh: line 94: 311769 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 22801, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 17.434 length_min= -12.566 length_max= 47.434 length= 60 it_fp= 0
@@ -17907,7 +17907,7 @@
 > vtk: iter_fp = 0 myt = -10.7083
 > <DataSet timestep="-10.7083" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 22801, t = 100)
 >   cleanup                   src/run.h:50
 123444,123448d106953
@@ -17920,7 +17920,7 @@
 < ./conv_extract_isovolume.sh: line 94: 314275 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 23001, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 17.5648 length_min= -12.4352 length_max= 47.5648 length= 60 it_fp= 0
@@ -17928,7 +17928,7 @@
 > vtk: iter_fp = 0 myt = -10.8045
 > <DataSet timestep="-10.8045" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 23001, t = 100)
 >   cleanup                   src/run.h:50
 125556,125560d109071
@@ -17941,7 +17941,7 @@
 < ./conv_extract_isovolume.sh: line 94: 316580 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 23201, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 17.6961 length_min= -12.3039 length_max= 47.6961 length= 60 it_fp= 0
@@ -17949,7 +17949,7 @@
 > vtk: iter_fp = 0 myt = -10.9011
 > <DataSet timestep="-10.9011" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 23201, t = 100)
 >   cleanup                   src/run.h:50
 127686,127690d111207
@@ -17966,7 +17966,7 @@
 < ./conv_extract_isovolume.sh: line 94: 318677 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 23401, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 17.8277 length_min= -12.1723 length_max= 47.8277 length= 60 it_fp= 0
@@ -17974,7 +17974,7 @@
 > vtk: iter_fp = 0 myt = -10.9978
 > <DataSet timestep="-10.9978" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 23401, t = 100)
 >   cleanup                   src/run.h:50
 129834,129838d113361
@@ -17987,7 +17987,7 @@
 < ./conv_extract_isovolume.sh: line 94: 321284 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 23601, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 17.9597 length_min= -12.0403 length_max= 47.9597 length= 60 it_fp= 0
@@ -17995,7 +17995,7 @@
 > vtk: iter_fp = 0 myt = -11.0945
 > <DataSet timestep="-11.0945" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 23601, t = 100)
 >   cleanup                   src/run.h:50
 132000,132004d115533
@@ -18008,7 +18008,7 @@
 < ./conv_extract_isovolume.sh: line 94: 323269 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 23801, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 18.0852 length_min= -11.9148 length_max= 48.0852 length= 60 it_fp= 0
@@ -18016,7 +18016,7 @@
 > vtk: iter_fp = 0 myt = -11.1864
 > <DataSet timestep="-11.1864" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 23801, t = 100)
 >   cleanup                   src/run.h:50
 134184,134188d117723
@@ -18029,7 +18029,7 @@
 < ./conv_extract_isovolume.sh: line 94: 325684 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 24001, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 18.2174 length_min= -11.7826 length_max= 48.2174 length= 60 it_fp= 0
@@ -18037,7 +18037,7 @@
 > vtk: iter_fp = 0 myt = -11.2831
 > <DataSet timestep="-11.2831" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 24001, t = 100)
 >   cleanup                   src/run.h:50
 136386,136390d119931
@@ -18054,7 +18054,7 @@
 < ./conv_extract_isovolume.sh: line 94: 327549 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 24201, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 18.3494 length_min= -11.6506 length_max= 48.3494 length= 60 it_fp= 0
@@ -18062,7 +18062,7 @@
 > vtk: iter_fp = 0 myt = -11.3798
 > <DataSet timestep="-11.3798" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 24201, t = 100)
 >   cleanup                   src/run.h:50
 138606,138610d122157
@@ -18075,7 +18075,7 @@
 < ./conv_extract_isovolume.sh: line 94: 329551 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 24401, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 18.4812 length_min= -11.5188 length_max= 48.4812 length= 60 it_fp= 0
@@ -18083,7 +18083,7 @@
 > vtk: iter_fp = 0 myt = -11.4765
 > <DataSet timestep="-11.4765" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 24401, t = 100)
 >   cleanup                   src/run.h:50
 140844,140848d124401
@@ -18096,7 +18096,7 @@
 < ./conv_extract_isovolume.sh: line 94: 332071 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 24601, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 18.613 length_min= -11.387 length_max= 48.613 length= 60 it_fp= 0
@@ -18104,7 +18104,7 @@
 > vtk: iter_fp = 0 myt = -11.5732
 > <DataSet timestep="-11.5732" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 24601, t = 100)
 >   cleanup                   src/run.h:50
 143100c126664,126669
@@ -18144,7 +18144,7 @@
 < ./conv_extract_isovolume.sh: line 94: 334342 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 24801, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 18.7448 length_min= -11.2552 length_max= 48.7448 length= 60 it_fp= 0
@@ -18152,7 +18152,7 @@
 > vtk: iter_fp = 0 myt = -11.6699
 > <DataSet timestep="-11.6699" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 24801, t = 100)
 >   cleanup                   src/run.h:50
 145374,145378d128969
@@ -18165,7 +18165,7 @@
 < ./conv_extract_isovolume.sh: line 94: 336345 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 25001, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 18.8756 length_min= -11.1244 length_max= 48.8756 length= 60 it_fp= 0
@@ -18173,7 +18173,7 @@
 > vtk: iter_fp = 0 myt = -11.7659
 > <DataSet timestep="-11.7659" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 25001, t = 100)
 >   cleanup                   src/run.h:50
 147666,147670d131267
@@ -18186,7 +18186,7 @@
 < ./conv_extract_isovolume.sh: line 94: 338659 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 25201, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 19.0075 length_min= -10.9925 length_max= 49.0075 length= 60 it_fp= 0
@@ -18194,7 +18194,7 @@
 > vtk: iter_fp = 0 myt = -11.8626
 > <DataSet timestep="-11.8626" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 25201, t = 100)
 >   cleanup                   src/run.h:50
 149976,149980d133583
@@ -18207,7 +18207,7 @@
 < ./conv_extract_isovolume.sh: line 94: 340783 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 25401, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 19.1396 length_min= -10.8604 length_max= 49.1396 length= 60 it_fp= 0
@@ -18215,7 +18215,7 @@
 > vtk: iter_fp = 0 myt = -11.9593
 > <DataSet timestep="-11.9593" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 25401, t = 100)
 >   cleanup                   src/run.h:50
 152304,152308d135917
@@ -18228,7 +18228,7 @@
 < ./conv_extract_isovolume.sh: line 94: 342877 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 25601, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 19.2719 length_min= -10.7281 length_max= 49.2719 length= 60 it_fp= 0
@@ -18236,7 +18236,7 @@
 > vtk: iter_fp = 0 myt = -12.056
 > <DataSet timestep="-12.056" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 25601, t = 100)
 >   cleanup                   src/run.h:50
 154650,154654d138269
@@ -18249,7 +18249,7 @@
 < ./conv_extract_isovolume.sh: line 94: 345792 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 25801, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 19.4043 length_min= -10.5957 length_max= 49.4043 length= 60 it_fp= 0
@@ -18257,7 +18257,7 @@
 > vtk: iter_fp = 0 myt = -12.1527
 > <DataSet timestep="-12.1527" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 25801, t = 100)
 >   cleanup                   src/run.h:50
 157014,157018d140639
@@ -18270,7 +18270,7 @@
 < ./conv_extract_isovolume.sh: line 94: 347943 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 26001, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 19.5297 length_min= -10.4703 length_max= 49.5297 length= 60 it_fp= 0
@@ -18278,7 +18278,7 @@
 > vtk: iter_fp = 0 myt = -12.2445
 > <DataSet timestep="-12.2445" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 26001, t = 100)
 >   cleanup                   src/run.h:50
 159396,159400d143027
@@ -18295,7 +18295,7 @@
 < ./conv_extract_isovolume.sh: line 94: 349936 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 26201, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 19.6618 length_min= -10.3382 length_max= 49.6618 length= 60 it_fp= 0
@@ -18303,7 +18303,7 @@
 > vtk: iter_fp = 0 myt = -12.3412
 > <DataSet timestep="-12.3412" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 26201, t = 100)
 >   cleanup                   src/run.h:50
 161796,161800d145433
@@ -18316,7 +18316,7 @@
 < ./conv_extract_isovolume.sh: line 94: 352527 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 26401, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 19.7941 length_min= -10.2059 length_max= 49.7941 length= 60 it_fp= 0
@@ -18324,7 +18324,7 @@
 > vtk: iter_fp = 0 myt = -12.4379
 > <DataSet timestep="-12.4379" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 26401, t = 100)
 >   cleanup                   src/run.h:50
 164214,164218d147857
@@ -18337,7 +18337,7 @@
 < ./conv_extract_isovolume.sh: line 94: 354901 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 26601, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 19.9226 length_min= -10.0774 length_max= 49.9226 length= 60 it_fp= 0
@@ -18345,7 +18345,7 @@
 > vtk: iter_fp = 0 myt = -12.5319
 > <DataSet timestep="-12.5319" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 26601, t = 100)
 >   cleanup                   src/run.h:50
 166650,166654d150299
@@ -18362,7 +18362,7 @@
 < ./conv_extract_isovolume.sh: line 94: 357726 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 26801, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 20.0547 length_min= -9.9453 length_max= 50.0547 length= 60 it_fp= 0
@@ -18370,7 +18370,7 @@
 > vtk: iter_fp = 0 myt = -12.6286
 > <DataSet timestep="-12.6286" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 26801, t = 100)
 >   cleanup                   src/run.h:50
 169104,169108d152759
@@ -18387,7 +18387,7 @@
 < ./conv_extract_isovolume.sh: line 94: 359971 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 27001, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 20.1868 length_min= -9.81321 length_max= 50.1868 length= 60 it_fp= 0
@@ -18395,7 +18395,7 @@
 > vtk: iter_fp = 0 myt = -12.7253
 > <DataSet timestep="-12.7253" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 27001, t = 100)
 >   cleanup                   src/run.h:50
 171576,171580d155237
@@ -18412,7 +18412,7 @@
 < ./conv_extract_isovolume.sh: line 94: 363293 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 27201, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 20.319 length_min= -9.68102 length_max= 50.319 length= 60 it_fp= 0
@@ -18420,7 +18420,7 @@
 > vtk: iter_fp = 0 myt = -12.822
 > <DataSet timestep="-12.822" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 27201, t = 100)
 >   cleanup                   src/run.h:50
 174066,174070d157733
@@ -18437,7 +18437,7 @@
 < ./conv_extract_isovolume.sh: line 94: 365825 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 27401, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 20.4513 length_min= -9.54871 length_max= 50.4513 length= 60 it_fp= 0
@@ -18445,7 +18445,7 @@
 > vtk: iter_fp = 0 myt = -12.9187
 > <DataSet timestep="-12.9187" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 27401, t = 100)
 >   cleanup                   src/run.h:50
 176574c160248,160253
@@ -18485,7 +18485,7 @@
 < ./conv_extract_isovolume.sh: line 94: 368015 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 27601, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 20.5834 length_min= -9.41657 length_max= 50.5834 length= 60 it_fp= 0
@@ -18493,7 +18493,7 @@
 > vtk: iter_fp = 0 myt = -13.0154
 > <DataSet timestep="-13.0154" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 27601, t = 100)
 >   cleanup                   src/run.h:50
 179100,179104d162805
@@ -18506,7 +18506,7 @@
 < ./conv_extract_isovolume.sh: line 94: 370918 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 27801, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 20.7143 length_min= -9.28568 length_max= 50.7143 length= 60 it_fp= 0
@@ -18514,7 +18514,7 @@
 > vtk: iter_fp = 0 myt = -13.1113
 > <DataSet timestep="-13.1113" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 27801, t = 100)
 >   cleanup                   src/run.h:50
 181644,181648d165355
@@ -18527,7 +18527,7 @@
 < ./conv_extract_isovolume.sh: line 94: 373374 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 28001, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 20.8463 length_min= -9.15371 length_max= 50.8463 length= 60 it_fp= 0
@@ -18535,7 +18535,7 @@
 > vtk: iter_fp = 0 myt = -13.208
 > <DataSet timestep="-13.208" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 28001, t = 100)
 >   cleanup                   src/run.h:50
 184206,184210d167923
@@ -18548,7 +18548,7 @@
 < ./conv_extract_isovolume.sh: line 94: 376281 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 28201, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 20.9717 length_min= -9.02825 length_max= 50.9717 length= 60 it_fp= 0
@@ -18556,7 +18556,7 @@
 > vtk: iter_fp = 0 myt = -13.2999
 > <DataSet timestep="-13.2999" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 28201, t = 100)
 >   cleanup                   src/run.h:50
 186786,186790d170509
@@ -18569,7 +18569,7 @@
 < ./conv_extract_isovolume.sh: line 94: 378205 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 28401, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 21.104 length_min= -8.89596 length_max= 51.104 length= 60 it_fp= 0
@@ -18577,7 +18577,7 @@
 > vtk: iter_fp = 0 myt = -13.3966
 > <DataSet timestep="-13.3966" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 28401, t = 100)
 >   cleanup                   src/run.h:50
 189384,189388d173113
@@ -18590,7 +18590,7 @@
 < ./conv_extract_isovolume.sh: line 94: 380638 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 28601, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 21.2364 length_min= -8.76362 length_max= 51.2364 length= 60 it_fp= 0
@@ -18598,7 +18598,7 @@
 > vtk: iter_fp = 0 myt = -13.4933
 > <DataSet timestep="-13.4933" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 28601, t = 100)
 >   cleanup                   src/run.h:50
 192000,192004d175735
@@ -18611,7 +18611,7 @@
 < ./conv_extract_isovolume.sh: line 94: 383242 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 28801, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 21.3687 length_min= -8.63132 length_max= 51.3687 length= 60 it_fp= 0
@@ -18619,7 +18619,7 @@
 > vtk: iter_fp = 0 myt = -13.59
 > <DataSet timestep="-13.59" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 28801, t = 100)
 >   cleanup                   src/run.h:50
 194634,194638d178375
@@ -18636,7 +18636,7 @@
 < ./conv_extract_isovolume.sh: line 94: 385581 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 29001, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 21.5009 length_min= -8.49906 length_max= 51.5009 length= 60 it_fp= 0
@@ -18644,7 +18644,7 @@
 > vtk: iter_fp = 0 myt = -13.6867
 > <DataSet timestep="-13.6867" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 29001, t = 100)
 >   cleanup                   src/run.h:50
 197286,197290d181033
@@ -18657,7 +18657,7 @@
 < ./conv_extract_isovolume.sh: line 94: 387809 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 29201, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 21.6332 length_min= -8.36678 length_max= 51.6332 length= 60 it_fp= 0
@@ -18665,7 +18665,7 @@
 > vtk: iter_fp = 0 myt = -13.7834
 > <DataSet timestep="-13.7834" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 29201, t = 100)
 >   cleanup                   src/run.h:50
 199956,199960d183709
@@ -18678,7 +18678,7 @@
 < ./conv_extract_isovolume.sh: line 94: 390553 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 29401, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 21.7655 length_min= -8.23445 length_max= 51.7655 length= 60 it_fp= 0
@@ -18686,7 +18686,7 @@
 > vtk: iter_fp = 0 myt = -13.8801
 > <DataSet timestep="-13.8801" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 29401, t = 100)
 >   cleanup                   src/run.h:50
 202644,202648d186403
@@ -18699,7 +18699,7 @@
 < ./conv_extract_isovolume.sh: line 94: 392963 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 29601, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 21.8978 length_min= -8.10218 length_max= 51.8978 length= 60 it_fp= 0
@@ -18707,7 +18707,7 @@
 > vtk: iter_fp = 0 myt = -13.9768
 > <DataSet timestep="-13.9768" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 29601, t = 100)
 >   cleanup                   src/run.h:50
 205350,205354d189115
@@ -18724,7 +18724,7 @@
 < ./conv_extract_isovolume.sh: line 94: 395461 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 29801, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 22.03 length_min= -7.96996 length_max= 52.03 length= 60 it_fp= 0
@@ -18732,7 +18732,7 @@
 > vtk: iter_fp = 0 myt = -14.0735
 > <DataSet timestep="-14.0735" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 29801, t = 100)
 >   cleanup                   src/run.h:50
 208074,208078d191845
@@ -18755,7 +18755,7 @@
 < ./conv_extract_isovolume.sh: line 94: 399811 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 30201, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 22.2949 length_min= -7.70512 length_max= 52.2949 length= 60 it_fp= 0
@@ -18763,7 +18763,7 @@
 > vtk: iter_fp = 0 myt = -14.2669
 > <DataSet timestep="-14.2669" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 30201, t = 100)
 >   cleanup                   src/run.h:50
 213576,213580d197348
@@ -18776,7 +18776,7 @@
 < ./conv_extract_isovolume.sh: line 94: 401928 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 30401, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 22.4209 length_min= -7.57914 length_max= 52.4209 length= 60 it_fp= 0
@@ -18784,7 +18784,7 @@
 > vtk: iter_fp = 0 myt = -14.3588
 > <DataSet timestep="-14.3588" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 30401, t = 100)
 >   cleanup                   src/run.h:50
 216354,216358d200132
@@ -18797,7 +18797,7 @@
 < ./conv_extract_isovolume.sh: line 94: 404181 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 30601, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 22.5535 length_min= -7.44647 length_max= 52.5535 length= 60 it_fp= 0
@@ -18805,7 +18805,7 @@
 > vtk: iter_fp = 0 myt = -14.4555
 > <DataSet timestep="-14.4555" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 30601, t = 100)
 >   cleanup                   src/run.h:50
 219150,219154d202934
@@ -18820,7 +18820,7 @@
 > vtk: iter_fp = 0 myt = -14.5522
 > <DataSet timestep="-14.5522" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 30801, t = 100)
 >   cleanup                   src/run.h:50
 221970,221974d205754
@@ -18839,7 +18839,7 @@
 > vtk: iter_fp = 0 myt = -14.6489
 > <DataSet timestep="-14.6489" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 31001, t = 100)
 >   cleanup                   src/run.h:50
 224808,224812d208592
@@ -18854,7 +18854,7 @@
 > vtk: iter_fp = 0 myt = -14.7456
 > <DataSet timestep="-14.7456" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 31201, t = 100)
 >   cleanup                   src/run.h:50
 227664,227668d211448
@@ -18877,7 +18877,7 @@
 > vtk: iter_fp = 0 myt = -14.8423
 > <DataSet timestep="-14.8423" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 31401, t = 100)
 >   cleanup                   src/run.h:50
 230538,230542d214322
@@ -18890,7 +18890,7 @@
 < ./conv_extract_isovolume.sh: line 94: 419814 Killed                  ./convert_single $dump 0 $bubcase $maxlevel
 ---
 > file has been read: L0=30
-> 
+>
 > events (i = 31601, t = 100)
 >   vtk_file                  convertD2P_single.c:223
 > x= 23.2158 length_min= -6.78421 length_max= 53.2158 length= 60 it_fp= 0
@@ -18898,7 +18898,7 @@
 > vtk: iter_fp = 0 myt = -14.939
 > <DataSet timestep="-14.939" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 31601, t = 100)
 >   cleanup                   src/run.h:50
 233424,233428d217214
@@ -18913,7 +18913,7 @@
 > vtk: iter_fp = 0 myt = -15.0357
 > <DataSet timestep="-15.0357" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 31801, t = 100)
 >   cleanup                   src/run.h:50
 236334,236338d220124
@@ -18928,7 +18928,7 @@
 > vtk: iter_fp = 0 myt = -15.1324
 > <DataSet timestep="-15.1324" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 32001, t = 100)
 >   cleanup                   src/run.h:50
 239262,239266d223052
@@ -18947,7 +18947,7 @@
 > vtk: iter_fp = 0 myt = -15.2222
 > <DataSet timestep="-15.2222" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 32201, t = 100)
 >   cleanup                   src/run.h:50
 242208,242212d225998
@@ -18962,7 +18962,7 @@
 > vtk: iter_fp = 0 myt = -15.3189
 > <DataSet timestep="-15.3189" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 32401, t = 100)
 >   cleanup                   src/run.h:50
 245172c228963,228968
@@ -19004,7 +19004,7 @@
 > vtk: iter_fp = 0 myt = -15.4108
 > <DataSet timestep="-15.4108" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 32601, t = 100)
 >   cleanup                   src/run.h:50
 248154,248158d231970
@@ -19019,7 +19019,7 @@
 > vtk: iter_fp = 0 myt = -15.5075
 > <DataSet timestep="-15.5075" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 32801, t = 100)
 >   cleanup                   src/run.h:50
 251154,251158d234970
@@ -19034,7 +19034,7 @@
 > vtk: iter_fp = 0 myt = -15.6038
 > <DataSet timestep="-15.6038" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 33001, t = 100)
 >   cleanup                   src/run.h:50
 254172,254176d237988
@@ -19053,7 +19053,7 @@
 > vtk: iter_fp = 0 myt = -15.6974
 > <DataSet timestep="-15.6974" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 33201, t = 100)
 >   cleanup                   src/run.h:50
 257208,257212d241024
@@ -19068,7 +19068,7 @@
 > vtk: iter_fp = 0 myt = -15.7941
 > <DataSet timestep="-15.7941" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 33401, t = 100)
 >   cleanup                   src/run.h:50
 260262,260266d244078
@@ -19087,7 +19087,7 @@
 > vtk: iter_fp = 0 myt = -15.8908
 > <DataSet timestep="-15.8908" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 33601, t = 100)
 >   cleanup                   src/run.h:50
 263334,263338d247150
@@ -19102,7 +19102,7 @@
 > vtk: iter_fp = 0 myt = -15.9875
 > <DataSet timestep="-15.9875" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 33801, t = 100)
 >   cleanup                   src/run.h:50
 266424,266428d250240
@@ -19117,7 +19117,7 @@
 > vtk: iter_fp = 0 myt = -16.0842
 > <DataSet timestep="-16.0842" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 34001, t = 100)
 >   cleanup                   src/run.h:50
 269532,269536d253348
@@ -19132,7 +19132,7 @@
 > vtk: iter_fp = 0 myt = -16.1809
 > <DataSet timestep="-16.1809" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 34201, t = 100)
 >   cleanup                   src/run.h:50
 272658,272662d256474
@@ -19151,7 +19151,7 @@
 > vtk: iter_fp = 0 myt = -16.2728
 > <DataSet timestep="-16.2728" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 34401, t = 100)
 >   cleanup                   src/run.h:50
 275802,275806d259618
@@ -19166,7 +19166,7 @@
 > vtk: iter_fp = 0 myt = -16.3695
 > <DataSet timestep="-16.3695" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 34601, t = 100)
 >   cleanup                   src/run.h:50
 278964,278968c262781,262782
@@ -19184,7 +19184,7 @@
 > vtk: iter_fp = 0 myt = -16.4662
 > <DataSet timestep="-16.4662" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 34801, t = 100)
 >   cleanup                   src/run.h:50
 282144,282148d265962
@@ -19199,7 +19199,7 @@
 > vtk: iter_fp = 0 myt = -16.5618
 > <DataSet timestep="-16.5618" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 35001, t = 100)
 >   cleanup                   src/run.h:50
 285342,285346d269160
@@ -19214,7 +19214,7 @@
 > vtk: iter_fp = 0 myt = -16.6585
 > <DataSet timestep="-16.6585" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 35201, t = 100)
 >   cleanup                   src/run.h:50
 288558,288562d272376
@@ -19229,7 +19229,7 @@
 > vtk: iter_fp = 0 myt = -16.7552
 > <DataSet timestep="-16.7552" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 35401, t = 100)
 >   cleanup                   src/run.h:50
 291792,291796d275610
@@ -19244,7 +19244,7 @@
 > vtk: iter_fp = 0 myt = -16.8519
 > <DataSet timestep="-16.8519" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 35601, t = 100)
 >   cleanup                   src/run.h:50
 295044,295048d278862
@@ -19259,7 +19259,7 @@
 > vtk: iter_fp = 0 myt = -16.9486
 > <DataSet timestep="-16.9486" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 35801, t = 100)
 >   cleanup                   src/run.h:50
 298314,298318d282132
@@ -19274,7 +19274,7 @@
 > vtk: iter_fp = 0 myt = -17.0453
 > <DataSet timestep="-17.0453" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 36001, t = 100)
 >   cleanup                   src/run.h:50
 301602,301606d285420
@@ -19289,7 +19289,7 @@
 > vtk: iter_fp = 0 myt = -17.142
 > <DataSet timestep="-17.142" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 36201, t = 100)
 >   cleanup                   src/run.h:50
 304908,304912d288726
@@ -19304,7 +19304,7 @@
 > vtk: iter_fp = 0 myt = -17.2387
 > <DataSet timestep="-17.2387" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 36401, t = 100)
 >   cleanup                   src/run.h:50
 308232,308236d292050
@@ -19319,7 +19319,7 @@
 > vtk: iter_fp = 0 myt = -17.3215
 > <DataSet timestep="-17.3215" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 36601, t = 100)
 >   cleanup                   src/run.h:50
 311574,311578d295392
@@ -19334,7 +19334,7 @@
 > vtk: iter_fp = 0 myt = -17.4181
 > <DataSet timestep="-17.4181" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 36801, t = 100)
 >   cleanup                   src/run.h:50
 314934,314938d298752
@@ -19353,7 +19353,7 @@
 > vtk: iter_fp = 0 myt = -17.5148
 > <DataSet timestep="-17.5148" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 37001, t = 100)
 >   cleanup                   src/run.h:50
 318312,318316d302130
@@ -19372,7 +19372,7 @@
 > vtk: iter_fp = 0 myt = -17.6115
 > <DataSet timestep="-17.6115" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 37201, t = 100)
 >   cleanup                   src/run.h:50
 321708,321712d305526
@@ -19391,7 +19391,7 @@
 > vtk: iter_fp = 0 myt = -17.7082
 > <DataSet timestep="-17.7082" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 37401, t = 100)
 >   cleanup                   src/run.h:50
 325122,325126d308940
@@ -19406,7 +19406,7 @@
 > vtk: iter_fp = 0 myt = -17.8049
 > <DataSet timestep="-17.8049" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 37601, t = 100)
 >   cleanup                   src/run.h:50
 328554,328558d312372
@@ -19421,7 +19421,7 @@
 > vtk: iter_fp = 0 myt = -17.9016
 > <DataSet timestep="-17.9016" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 37801, t = 100)
 >   cleanup                   src/run.h:50
 332004,332008d315822
@@ -19440,7 +19440,7 @@
 > vtk: iter_fp = 0 myt = -17.9983
 > <DataSet timestep="-17.9983" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 38001, t = 100)
 >   cleanup                   src/run.h:50
 335472,335476d319290
@@ -19455,7 +19455,7 @@
 > vtk: iter_fp = 0 myt = -18.095
 > <DataSet timestep="-18.095" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 38201, t = 100)
 >   cleanup                   src/run.h:50
 338958c322777,322782
@@ -19501,7 +19501,7 @@
 > vtk: iter_fp = 0 myt = -18.1917
 > <DataSet timestep="-18.1917" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 38401, t = 100)
 >   cleanup                   src/run.h:50
 342462c326307,326312
@@ -19547,7 +19547,7 @@
 > vtk: iter_fp = 0 myt = -18.2884
 > <DataSet timestep="-18.2884" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 38601, t = 100)
 >   cleanup                   src/run.h:50
 345984c329855,329860
@@ -19589,7 +19589,7 @@
 > vtk: iter_fp = 0 myt = -18.3813
 > <DataSet timestep="-18.3813" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 38801, t = 100)
 >   cleanup                   src/run.h:50
 349524,349528d333420
@@ -19604,7 +19604,7 @@
 > vtk: iter_fp = 0 myt = -18.4778
 > <DataSet timestep="-18.4778" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 39001, t = 100)
 >   cleanup                   src/run.h:50
 353082,353086d336978
@@ -19619,7 +19619,7 @@
 > vtk: iter_fp = 0 myt = -18.5697
 > <DataSet timestep="-18.5697" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 39201, t = 100)
 >   cleanup                   src/run.h:50
 356658,356662d340554
@@ -19634,7 +19634,7 @@
 > vtk: iter_fp = 0 myt = -18.6664
 > <DataSet timestep="-18.6664" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 39401, t = 100)
 >   cleanup                   src/run.h:50
 360252,360256d344148
@@ -19649,7 +19649,7 @@
 > vtk: iter_fp = 0 myt = -18.7631
 > <DataSet timestep="-18.7631" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 39601, t = 100)
 >   cleanup                   src/run.h:50
 363864,363868d347760
@@ -19664,7 +19664,7 @@
 > vtk: iter_fp = 0 myt = -18.8598
 > <DataSet timestep="-18.8598" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 39801, t = 100)
 >   cleanup                   src/run.h:50
 367494,367498d351390
@@ -19701,7 +19701,7 @@
 > vtk: iter_fp = 0 myt = -19.0532
 > <DataSet timestep="-19.0532" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 40201, t = 100)
 >   cleanup                   src/run.h:50
 374802,374806d358693
@@ -19716,7 +19716,7 @@
 > vtk: iter_fp = 0 myt = -19.1499
 > <DataSet timestep="-19.1499" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 40401, t = 100)
 >   cleanup                   src/run.h:50
 378486,378490c362378,362379
@@ -19734,7 +19734,7 @@
 > vtk: iter_fp = 0 myt = -19.2466
 > <DataSet timestep="-19.2466" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 40601, t = 100)
 >   cleanup                   src/run.h:50
 382188,382192d366081
@@ -19753,7 +19753,7 @@
 > vtk: iter_fp = 0 myt = -19.3433
 > <DataSet timestep="-19.3433" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 40801, t = 100)
 >   cleanup                   src/run.h:50
 385908,385912d369801
@@ -19772,7 +19772,7 @@
 > vtk: iter_fp = 0 myt = -19.44
 > <DataSet timestep="-19.44" part="0" file="res/dump2pvd_compressed_0_0000.pvtu"/>
 >   stop                      convertD2P_single.c:313
-> 
+>
 > end events (i = 41001, t = 100)
 >   cleanup                   src/run.h:50
 389646,389650d373539

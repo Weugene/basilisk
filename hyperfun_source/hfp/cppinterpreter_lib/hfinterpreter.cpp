@@ -6,7 +6,7 @@
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,7 +17,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -61,7 +61,7 @@ HFInterpreter::~HFInterpreter(){
 	if(itsStackUsage!=NULL)
 		free(itsStackUsage);
 	itsStackUsage = NULL;
-	
+
 	// we need to free the memory used in itsPNList with HF_Empty_PN_List
 	HF_Empty_PN_List(&itsPNList);
 	itsPNList.first = NULL;
@@ -78,7 +78,7 @@ void HFInterpreter::parse(const string& model, const string& object){
   itsObject = new char[object.length()+1];
   object.copy(itsObject,string::npos);
   itsObject[object.length()]='\0';
-  
+
 	//Note: It's Library List is now Empty
   init();
 }
@@ -88,7 +88,7 @@ void HFInterpreter::parse(const string& model, const string& object){
 void HFInterpreter::init(){
   int memory_status=HF_parse(itsModel, &itsPNList, &itsErrorList, &itsLibraryList);
   if(!memory_status) //Memory Error
-    throw MemoryError("Parse Init"); 
+    throw MemoryError("Parse Init");
   if(itsErrorList.first!=NULL) //Parse Error
     throw ParseError(itsErrorList.first->er_info.error_text, itsErrorList.first->er_info.line, itsErrorList.first->er_info.position);
   /*
@@ -104,23 +104,23 @@ void HFInterpreter::init(){
     }
   stack_size = stack_size + lpn_node->pn_info->stack_size;
 
-  // The size of the stack is known now.  
-  
+  // The size of the stack is known now.
+
   //Set PN_Node, BodyCode, and itsObject to first in list
   //itsPNNode=itsPNList.last;//first;
-  
+
   itsPNNode = itsPNList.first;
-  
+
   while (itsPNNode != itsPNList.last)
     {
       if(!strcmp(itsObject,itsPNNode->pn_info->body_name))
 	break;
       itsPNNode = itsPNNode->next;
     }
-    
+
   if (strcmp(itsObject, itsPNNode->pn_info->body_name))
     itsPNNode = itsPNList.first;
-    
+
     //printf("%s\n",itsPNNode->pn_info->body_name );
 
   itsBodyCode=itsPNNode->pn_info;
@@ -181,7 +181,7 @@ vector<double> HFInterpreter::parameters(){
   vector<double> ret(getASize());
   for(int i=0; i < getASize(); i++)
     ret[i] = itsStack[i + getXSize()];
-  return ret;	
+  return ret;
 }
 
 
@@ -207,21 +207,21 @@ short HFInterpreter::getSSize(){
 void HFInterpreter::object(const string& object){
   // hfp -o name_object did not work
   // problem was here. Fixed now.
-  
+
   //Set Local Test node to first node
   //PN_NODE_T* lpn_node=itsPNList.first;
   itsPNNode = itsPNList.first;
-  
+
   while (itsPNNode != itsPNList.last)
     {
       if(!strcmp(object.c_str(),itsPNNode->pn_info->body_name))
 	break;
       itsPNNode = itsPNNode->next;
     }
-    
+
   if (strcmp(object.c_str(), itsPNNode->pn_info->body_name))
     itsPNNode = itsPNList.first;
-    
+
   itsBodyCode = itsPNNode->pn_info;
  }
 

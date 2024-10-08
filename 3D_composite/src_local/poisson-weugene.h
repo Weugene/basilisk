@@ -8,7 +8,7 @@ We want to solve Poisson--Helmholtz equations of the general form
 $$
 L(a) = \nabla\cdot (\alpha\nabla a) + \lambda a = b
 $$
-This can be done efficiently using a multigrid solver. 
+This can be done efficiently using a multigrid solver.
 
 An important aspect of Poisson--Helmholtz equations is that the
 operator $L()$ is linear. This property can be used to build better
@@ -33,7 +33,7 @@ function *relax*, we will provide an improved guess at the end of the
 cycle. */
 
 void mg_cycle (scalar * a, scalar * res, scalar * da,
-	       void (* relax) (scalar * da, scalar * res, 
+	       void (* relax) (scalar * da, scalar * res,
 			       int depth, void * data),
 	       void * data,
 	       int nrelax, int minlevel, int maxlevel)
@@ -95,7 +95,7 @@ void mg_cycle (scalar * a, scalar * res, scalar * da,
 
 The multigrid solver itself uses successive calls to the multigrid
 cycle to refine an initial guess until a specified tolerance is
-reached. 
+reached.
 
 The maximum number of iterations is controlled by *NITERMAX* and the
 tolerance by *TOLERANCE* with the default values below. */
@@ -127,10 +127,10 @@ struct MGSolve {
   scalar * a, * b;
   double (* residual) (scalar * a, scalar * b, scalar * res,
 		       void * data);
-  void (* relax) (scalar * da, scalar * res, int depth, 
+  void (* relax) (scalar * da, scalar * res, int depth,
 		  void * data);
   void * data;
-  
+
   int nrelax;
   scalar * res;
   int minlevel;
@@ -159,7 +159,7 @@ mgstats mg_solve (struct MGSolve p)
   for (int b = 0; b < nboundary; b++)
     for (scalar s in da)
       s.boundary[b] = s.boundary_homogeneous[b];
-  
+
   /**
   We initialise the structure storing convergence statistics. */
 
@@ -170,7 +170,7 @@ mgstats mg_solve (struct MGSolve p)
       sum += s[];
   s.sum = sum;
   s.nrelax = p.nrelax > 0 ? p.nrelax : 4;
-  
+
   /**
   Here we compute the initial residual field and its maximum. */
 
@@ -216,18 +216,18 @@ mgstats mg_solve (struct MGSolve p)
     resb = s.resa;
   }
   s.minlevel = p.minlevel;
-  
+
   /**
   If we have not satisfied the tolerance, we warn the user. */
 
   if (s.resa > p.tolerance) {
     scalar v = p.a[0];
-    fprintf (ferr, 
+    fprintf (ferr,
 	     "WARNING: convergence for %s not reached after %d iterations\n"
 	     "  res: %g sum: %g nrelax: %d\n", v.name,
 	     s.i, s.resa, s.sum, s.nrelax), fflush (ferr);
   }
-    
+
   /**
   We deallocate the residual and correction fields and free the lists. */
 
@@ -248,7 +248,7 @@ $$
 We first setup the data structure required to pass the extra
 parameters $\alpha$ and $\lambda$. We define $\alpha$ as a face
 vector field because we need values at the face locations
-corresponding to the face gradients of field $a$. 
+corresponding to the face gradients of field $a$.
 
 *alpha* and *lambda* are declared as *(const)* to indicate that the
 function works also when *alpha* and *lambda* are constant vector
@@ -297,13 +297,13 @@ static void relax (scalar * al, scalar * bl, int l, void * data)
   order). The same comment applies to OpenMP or MPI parallelism. In
   practice however Jacobi convergence tends to be slower than simple
   reuse. */
-  
+
 #if JACOBI
   scalar c[];
 #else
   scalar c = a;
 #endif
-  
+
   /**
   We use the face values of $\alpha$ to weight the gradients of the
   5-points Laplacian operator. We get the relaxation function. */
@@ -329,12 +329,12 @@ static void relax (scalar * al, scalar * bl, int l, void * data)
 
   /**
   For weighted Jacobi we under-relax with a weight of 2/3. */
-  
+
 #if JACOBI
   foreach_level_or_leaf (l)
     a[] = (a[] + 2.*c[])/3.;
 #endif
-  
+
 #if TRASH
   scalar a1[];
   foreach_level_or_leaf (l)
@@ -373,14 +373,14 @@ static double residual (scalar * al, scalar * bl, scalar * resl, void * data)
     res[] = b[] - lambda[]*a[];
     foreach_dimension()
       res[] += (alpha.x[0]*face_gradient_x (a, 0) -
-		alpha.x[1]*face_gradient_x (a, 1))/Delta;  
-#endif // !TREE    
+		alpha.x[1]*face_gradient_x (a, 1))/Delta;
+#endif // !TREE
 #if EMBED
     if (p->embed_flux) {
       double c, e = p->embed_flux (point, a, alpha, &c);
       res[] += c - e*a[];
     }
-#endif // EMBED    
+#endif // EMBED
     if (fabs (res[]) > maxres)
       maxres = fabs (res[]);
   }

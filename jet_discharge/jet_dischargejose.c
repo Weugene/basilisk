@@ -25,9 +25,9 @@ int main (){
   L0 = 64.;
   init_grid(64);
   rho1 = 1., rho2 = 0.001;
-  mu1 = 1./Re, mu2 = 0.01/Re;  
+  mu1 = 1./Re, mu2 = 0.01/Re;
   f.sigma = 1/We;
-  
+
 //  f[needle] = 0;
 //  run();
   f[needle] = neumann(0);
@@ -40,7 +40,7 @@ event init (t = 0) {
   mask(x < 2 && y > 1 ? needle : none);
   refine(level < LEVEL && x < 4 && y < 3);
   fraction (f, difference (Ln/2. - x, y - 1.));
-  foreach() 
+  foreach()
     u.x[] = f[]*2.*(1.-sq(y));
   boundary ({f, u.x});
 }

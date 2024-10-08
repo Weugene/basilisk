@@ -616,8 +616,3 @@ event adapt (i++) {
     adapt_wavelet ({f,fiber,u},
                    (double[]){feps, feps, uemax, uemax, uemax}, maxlevel=MAXLEVEL, minlevel=5);// maxlevel=MAXLEVEL, minlevel=5
 }
-
-
-
-
-

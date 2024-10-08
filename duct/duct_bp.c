@@ -36,7 +36,7 @@ int main (int argc, char * argv[]) {
 
   TOLERANCE = 1e-4;
   DT = 1e-3; //Time step
-  
+
   run();
 }
 
@@ -71,7 +71,7 @@ event init (t = 0) {
     }
     boundary ({phi});
     fractions (phi, fs);
-    
+
     foreach() {
       u.x[] = 1 - fs[]; //Init velocity
       un[] = u.x[];
@@ -93,7 +93,7 @@ event profiles (t = end) {
   int len_my_list = list_len(my_list); //lenght of my list
   int np = 100;
   double v[(np+1)*len_my_list]; //number of interpolated points (np+1) times number of scalars (len_my_list)
-  
+
   //line 1
   coord a[np+1];
   for (int n = 0; n <= np; n++) {

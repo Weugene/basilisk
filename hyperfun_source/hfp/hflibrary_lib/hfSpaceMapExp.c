@@ -1,12 +1,12 @@
 /*==============================================================================
 
- Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa 
+ Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa
  Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,7 +17,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -29,7 +29,7 @@
   Operation: Space Mapping
 
   Definition: inverse mapping
-           
+
 
   Call: hfSpaceMapExp(xt,source,target,b);
 
@@ -89,7 +89,7 @@ double hfSpaceMapExp(double* f_a, String_Array_T* str_param)
 
   for(i=0;i<N;i+=3){
 
-	
+
     dt[0]=(to[i+0]-from[i+0]);
     dt[1]=(to[i+1]-from[i+1]);
     dt[2]=(to[i+2]-from[i+2]);
@@ -114,4 +114,3 @@ double hfSpaceMapExp(double* f_a, String_Array_T* str_param)
 
   return 1.;
 }
-

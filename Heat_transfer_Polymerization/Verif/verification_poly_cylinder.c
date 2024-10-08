@@ -1,31 +1,39 @@
 #define BRINKMAN_PENALIZATION 1
 #define DEBUG_MINMAXVALUES
-//#define DEBUG_BRINKMAN_PENALIZATION
-//#define DEBUG_MODE_POISSON
-//#define DEBUG_HEAT
+#define DEBUG_BRINKMAN_PENALIZATION
+#define DEBUG_MODE_POISSON
+#define DEBUG_HEAT
+#define DEBUG_MULTIGRID
+#define RELATIVE_RES
+#define HEAT_TRANSFER
 #define REACTION_MODEL REACTION_MODEL_NON_AUTOCATALYTIC
-//#define DEBUG_OUTPUT_VTU_MPI
+#define VISCOSITY_MODEL VISCOSITY_MODEL_DUSI
+#define DEBUG_OUTPUT_VTU_MPI
 #define FILTERED
 #define JACOBI 1
-#define CORRECT_UF_FLUXES 1
-#define STICKY_SOLID 1
-#define RELATIVE_RES
+
 #define EPS_MAXA 2 // adapt based on Max-Min value
-//#define PRINT_ALL_VALUES
-//#define STOKES
 #define T_DIRICHLET_BC 1
+// ignore solid and gas
+#define mu(f, fs, alpha_doc, T) muf1(alpha_doc, T)
+
 
 scalar mu_cell[];
 scalar Phi_visc[], Phi_src[];
-face vector fs_face[];
+scalar temp_cyl[];
+scalar levelset[];
+scalar fss[];
+
 static coord vel_s = {0, 0, 0};
 //#include "curvature_partstr.h"
 #include "centered-weugene.h"
 #include "rheology_model.h"
 #include "utils-weugene.h"
-#include "output_vtu_foreach.h"
+#include "output_htg.h"
 
 int snapshot_i = 1000;
+int iter_fp = 0;
+int is_extrapolated = 0;
 double dt_vtk = 0.1;
 double Uin, Tin, T_solid, Tam;
 double RhoR, RhoRS, MuR, MuRS, CpR, CpRS, KappaR, KappaRS;
@@ -37,61 +45,69 @@ double Ggrav, Ggrav_ndim;
 double channel_diam, channel_length;
 double Re; //Reynolds
 double Fr; //Froude number Fr = sqrt(u^2/(g*cyl_diam))
-double G;
-double Umean;
-double x_init = 2, Dx_min, dx_min;
 int maxlevel = 9;
 int minlevel = 5;
-int LEVEL = 7;
+int LEVEL = 9;
+int nmax = 1;
+int Nsb = 3;
 double maxDT, maxDT0;
 double mu_max = 0, nu_max = 0;
-int adapt_method = 1; // 0 - traditional, 1 - using limitation, 2 - using array for maxlevel
 double feps = 1e-10, fseps = 1e-10, ueps = 1e-5, rhoeps = 1e-10, Teps = 1e-5, aeps = 1e-5, mueps=1e-5;
-double TOLERANCE_P = 1e-7, TOLERANCE_V = 1e-8, TOLERANCE_T = 1e-7;
 double mindelta, mindelta0;
 
 char subname[150], logname[200];
+char prefix[100];
+
+
 int main(int argc, char * argv[]) {
-    fprintf(ferr,"correction of uf\n");
-    fprintf(ferr, "./a.out T_solid, Tin, maxlevel, iter_fp, "
-                  "TOLERANCE_P, TOLERANCE_V, TOLERANCE_T, Htr, Arrhenius_const, Ea_by_R, subname\n");
-    TOLERANCE = 1e-7;
+    fprintf(
+        ferr,
+        "./a.out T_solid, Tin, maxlevel, iter_fp, TOLERANCE_P, TOLERANCE_V, TOLERANCE_T, Htr, "
+        "Arrhenius_const, Ea_by_R, subname prefix is_extrapolated nmax Nsb\n"
+    );
     NITERMIN = 1;
     NITERMAX = 100;
     CFL = 0.4;
     CFL_ARR = 0.5;
-    DT = 1e-5;
+    double DT0 = 1e-3;
     maxDT0 = 2.5e-3;
 
     N_smooth = 1; //three-phase-rheology.h
-#ifdef STOKES
+    RELATIVE_RES_TOLERANCE = 0.01;
+
     stokes = true;
     stokes_heat = true;
-#endif
-    m_bp = 0.5; // Brinkman layer resolution
-    m_bp_T = 0.5;
-    fprintf(ferr, "Stokes flow:stokes=%d, stokes_heat=%d, uf.x correction.\n", stokes, stokes_heat);
+    viscDissipation = false;
+    relative_residual_poisson = true;
+
+    m_bp = 1; // Brinkman layer resolution
+    mbpT = 1;
+    fprintf(ferr, "Stokes flow:stokes=%d, stokes_heat=%d\n", stokes, stokes_heat);
 #if T_DIRICHLET_BC != 0
     fprintf(ferr, "T_DIRICHLET_BC: 1\n");
 #endif
     sprintf(subname, "saturated_1");
     sprintf(logname, "log_saturated_1");
-// Physical parameters
+    // Physical parameters
 	Uin = 1e-2;
-    channel_diam = 15e-6, channel_length = 20*channel_diam;
+    channel_diam = 0.2, channel_length = 20*channel_diam;
 	Tin = 300, T_solid = 400, Tam = 300;
-//	Gorthala, R., Roux, J. A., & Vaughan, J. G. (1994). Resin Flow, Cure and Heat Transfer Analysis for Pultrusion Process. Journal of Composite Materials, 28(6), 486–506. doi:10.1177/002199839402800601  sci-hub.se/10.1177/002199839402800601
-//EPON 9310
+    // Gorthala, R., Roux, J. A., & Vaughan, J. G. (1994).
+    // Resin Flow, Cure and Heat Transfer Analysis for Pultrusion Process.
+    // Journal of Composite Materials, 28(6), 486–506.
+    // doi:10.1177/002199839402800601
+    // EPON 9310
 	Htr = 355000; //J/kg
 	Arrhenius_const = 80600;//1/s //originally in Gothala: 80600
-	Ea_by_R = 12000/8.314;// Kelvin //origianally  64000/8.314;
+	Ea_by_R = 64000/8.314;// Kelvin //origianally  64000/8.314;
     n_degree = 1.2;
 
 	Eeta_by_Rg = 3.76e+4/8.314;// Kelvin Epon 9310,Safonov page 21
 	chi = 20;
-    Rho1 = 1200, Rho2 = 1.092, Rho3 = 1790;//air at 23 C Graphite
-    CP1 = 1255, CP2 = 1006, CP3 = 712;//J/(kg*K)
-    Kappa1 = 0.2, Kappa2 = 0.02535, Kappa3 = 8.70;//W/(m*K)
+    Rho1 = 1200, Rho2 = 1.092, Rho3 = 1200;//air at 23 C Graphite Rho3 = 1790
+    CP1 = 1255, CP2 = 1006, CP3 = 1255;//J/(kg*K)  CP3=712
+//    Kappa1 = 0.2, Kappa2 = 0.02535, Kappa3 = 8.70;//W/(m*K)
+    Kappa1 = 3012.05, Kappa2 = 381.78, Kappa3 = 3012.05;//W/(m*K)
     Ggrav = 0; // m/s^2
 
     if (argc > 1)
@@ -119,37 +135,51 @@ int main(int argc, char * argv[]) {
         strcpy(subname, argv[11]);
         sprintf (logname, "log%s", subname);
     }
+    if (argc > 12) {
+        strcpy(prefix, argv[12]);
+    }
+    if (argc > 13) {
+        is_extrapolated = atoi(argv[13]);
+    }
+    if (argc > 14) {
+        nmax = atoi(argv[14]);
+    }
+    if (argc > 15) {
+        Nsb = atoi(argv[15]);
+    }
 
-	fprintf(ferr,
-                 "Props(SI): Mu0=%g, Mu1=%g, Mu2=%g, Mu3=%g, Rho1=%g, Rho2=%g,  Rho3=%g,\n"
-                 "           nu1=%g, nu2=%g, nu3=%g,\n"
-                 "           Kappa1=%g, Kappa2=%g, Kappa3=%g, CP1=%g, CP2=%g, CP3=%g,\n"
-				 "           Uin=%g, time*=%g, Tin=%g, T_solid=%g, Tam=%g\n"
-                 "           Htr=%g, Arrenius=%g, Ea_by_R=%g, n_deg=%g, m_deg=%g\n"
-				 "           Eeta_by_Rg=%g, chi=%g\n"
-                 "Geometry: channel_diam=%g,  domainSize=%g\n",
-                 Mu0, Mu1, Mu2, Mu3, Rho1, Rho2, Rho3,
-                 Mu1/Rho1, Mu2/Rho2, Mu3/Rho3,
-                 Kappa1, Kappa2, Kappa3, CP1, CP2, CP3,
-                 Uin, channel_diam/Uin, Tin, T_solid, Tam,
-                 Htr, Arrhenius_const, Ea_by_R, n_degree, m_degree,
-                 Eeta_by_Rg, chi,
-                 channel_diam, channel_length);
-// Dimensionless numbers
+	fprintf(
+        ferr,
+        "Props(SI): Mu0=%g, Mu1=%g, Mu2=%g, Mu3=%g, Rho1=%g, Rho2=%g,  Rho3=%g,\n"
+        "           nu1=%g, nu2=%g, nu3=%g,\n"
+        "           Kappa1=%g, Kappa2=%g, Kappa3=%g, CP1=%g, CP2=%g, CP3=%g,\n"
+        "           Uin=%g, time*=%g, Tin=%g, T_solid=%g, Tam=%g,\n"
+        "           Htr=%g, Arrhenius=%g, Ea_by_R=%g, n_degree=%g,\n"
+        "           Eeta_by_Rg=%g, chi=%g\n"
+        "Geometry: channel_diam=%g,  domainSize=%g\n",
+        Mu0, Mu1, Mu2, Mu3, Rho1, Rho2, Rho3,
+        Mu1/Rho1, Mu2/Rho2, Mu3/Rho3,
+        Kappa1, Kappa2, Kappa3, CP1, CP2, CP3,
+        Uin, channel_diam/Uin, Tin, T_solid, Tam,
+        Htr, Arrhenius_const, Ea_by_R, n_degree,
+        Eeta_by_Rg, chi,
+        channel_diam, channel_length
+    );
+    // Dimensionless numbers
 	Re = Uin*channel_diam*Rho1/Mu1;
 	Fr = sqrt(sq(Uin)/(Ggrav*channel_diam + SEPS));
-// Dimensionless parameters are chosen channel_diam, rho1, Cp1, Tin, Uin
+    // Dimensionless parameters are chosen channel_diam, rho1, Cp1, Tin, Uin
     size(channel_length/channel_diam);
     mindelta = L0/pow(2, maxlevel);
     mindelta0 = L0/pow(2, 8);
     maxDT = maxDT0*sq(mindelta/mindelta0);  // h^2/DT = h0^2/DT0
 	RhoR = Rho2/Rho1, RhoRS = Rho3/Rho1;
-	MuR = Mu2/Mu1, MuRS = 1.0;// Mu3/Mu1; // Mu3/Mu1 = Rho3/Rho1 => RhoRS leads bad result?
+	MuR = Mu2/Mu1, MuRS = 1.0; // Mu3/Mu1; // Mu3/Mu1 = Rho3/Rho1 => RhoRS leads bad result?
 	CpR = CP2/CP1, CpRS = CP3/CP1;
 	KappaR = Kappa2/Kappa1, KappaRS = Kappa3/Kappa1;
     rho1 = 1; rho2 = RhoR; rho3 = RhoRS;
     mu0 = (1./Re)*(Mu0/Mu1); mu1 = (1./Re); mu2 = mu1*MuR; mu3 = mu1*MuRS; mu_eff = 0;
-//    mu3 = mu1*(rho3/rho1)*sq(1.0/(m_bp*dx_min));
+    // mu3 = mu1*(rho3/rho1)*sq(1.0/(m_bp*dx_min));
 	Cp1 = 1; Cp2 = Cp1*CpR; Cp3 = Cp1*CpRS;//J/(kg*K)
 	kappa1 = Kappa1/(Rho1*CP1*channel_diam*Uin + SEPS), kappa2 = kappa1*KappaR, kappa3 = kappa1*KappaRS;
     chi_conductivity = kappa1 / (rho1 * Cp1);
@@ -163,49 +193,51 @@ int main(int argc, char * argv[]) {
 	T_solid /= Tin;
 	Tin  /= Tin;
     channel_diam = 1;
-    const scalar temp_cyl[] = T_solid;
     T_target = temp_cyl;
     const vector U_sol[] = {vel_s.x, vel_s.y, vel_s.z};
     target_U = U_sol;
-    init_grid(1 << LEVEL);
     origin (-L0/2, -L0/2.);
-//    periodic(right);
-//    periodic(top);
-	fprintf(ferr,"Dim-less vars: mu0=%g, mu1=%g, mu2=%g, mu3=%g,\n"
-                 "               rho1=%g, rho2=%g, rho3=%g,\n"
-                 "               nu1=%g, nu2=%g, nu3=%g,\n"
-				 "               kappa1=%g, kappa2=%g, kappa3=%g,\n"
-                 "               Cp1=%g, Cp2=%g, Cp3=%g,\n"
-                 "               RhoR=%g, RhoRS=%g, MuR=%g, MuRS=%g,\n"
-                 "               KappaR=%g, KappaRS=%g, CpR=%g, CpRS=%g\n"
-				 "               Uin=%g, Tin=%g, T_solid=%g, Tam=%g,\n"
-				 "               Htr=%g, Arrhenius_const=%g, Ea_by_R=%g, Eeta_by_Rg=%g,\n"
-				 "               L0=%g, channel_diam=%g, maxDT0=%g for maxlevel=8, maxDT=%g for maxlevel=%d\n"
-				 "               Ggrav_ndim=%g Uin=%g\n"
-                 "Dim-less nums: Re=%g,  Fr=%g\n"
-                 "Solver:        DTmax=%g, CFL=%g, CFL_ARR=%g, NITERMIN=%d,  NITERMAX=%d,\n"
-                 "               TOLERANCE_P=%g, TOLERANCE_V=%g, TOLERANCE_T=%g\n"
-                 "ADAPT:         minlevel=%d,  maxlevel=%d, feps=%g, fseps=%g, ueps=%g, Teps=%g, aeps=%g\n"
-                 "OUTPUT:        dt_vtk=%g,    number of procs=%d\n",
-				mu0, mu1, mu2, mu3, rho1, rho2, rho3,
-				mu1/rho1, mu2/rho2, mu3/rho3,
-				kappa1, kappa2, kappa3,
-				Cp1, Cp2, Cp3,
-                RhoR, RhoRS, MuR, MuRS,
-                KappaR, KappaRS, CpR, CpRS,
-				Uin, Tin, T_solid, Tam,
-				Htr, Arrhenius_const, Ea_by_R, Eeta_by_Rg,
-				L0, channel_diam, maxDT0, maxDT, maxlevel,
-				Ggrav_ndim, Uin,
-                Re, Fr,
-                DT, CFL, CFL_ARR, NITERMIN, NITERMAX,
-                TOLERANCE_P, TOLERANCE_V, TOLERANCE_T,
-                minlevel, maxlevel, feps, fseps, ueps, Teps, aeps,
-                dt_vtk, npe());
+    periodic(right);
+    periodic(top);
+	fprintf(
+        ferr,
+        "Dim-less vars: mu0=%g, mu1=%g, mu2=%g, mu3=%g,\n"
+        "               rho1=%g, rho2=%g, rho3=%g,\n"
+        "               nu1=%g, nu2=%g, nu3=%g,\n"
+        "               kappa1=%g, kappa2=%g, kappa3=%g,\n"
+        "               Cp1=%g, Cp2=%g, Cp3=%g,\n"
+        "               RhoR=%g, RhoRS=%g, MuR=%g, MuRS=%g,\n"
+        "               KappaR=%g, KappaRS=%g, CpR=%g, CpRS=%g\n"
+        "               Uin=%g, Tin=%g, T_solid=%g, Tam=%g,\n"
+        "               Htr=%g, Arrhenius_const=%g, Ea_by_R=%g, Eeta_by_Rg=%g,\n"
+        "               L0=%g, channel_diam=%g, maxDT0=%g for maxlevel=8, maxDT=%g for maxlevel=%d\n"
+        "               Ggrav_ndim=%g Uin=%g,\n"
+        "Dim-less nums: Re=%g,  Fr=%g\n"
+        "Solver:        DTmax=%g, CFL=%g, CFL_ARR=%g, NITERMIN=%d,  NITERMAX=%d,\n"
+        "               TOLERANCE_P=%g, TOLERANCE_V=%g, TOLERANCE_T=%g\n"
+        "               is_extrapolated=%d nmax=%d\n"
+        "ADAPT:         minlevel=%d,  maxlevel=%d, feps=%g, fseps=%g, ueps=%g, Teps=%g, aeps=%g\n"
+        "OUTPUT:        dt_vtk=%g,    number of procs=%d,   prefix=%s\n",
+        mu0, mu1, mu2, mu3, rho1, rho2, rho3,
+        mu1/rho1, mu2/rho2, mu3/rho3,
+        kappa1, kappa2, kappa3,
+        Cp1, Cp2, Cp3,
+        RhoR, RhoRS, MuR, MuRS,
+        KappaR, KappaRS, CpR, CpRS,
+        Uin, Tin, T_solid, Tam,
+        Htr, Arrhenius_const, Ea_by_R, Eeta_by_Rg,
+        L0, channel_diam, maxDT0, maxDT, maxlevel,
+        Ggrav_ndim, Uin,
+        Re, Fr,
+        DT, CFL, CFL_ARR, NITERMIN, NITERMAX,
+        TOLERANCE_P, TOLERANCE_V, TOLERANCE_T, is_extrapolated, nmax,
+        minlevel, maxlevel, feps, fseps, ueps, Teps, aeps,
+        dt_vtk, npe(), prefix
+    );
 
+    fss.refine = fss.prolongation = fraction_refine;
     fs.refine = fs.prolongation = fraction_refine;
     f.refine = f.prolongation = fraction_refine;
-    boundary((scalar *){f, fs});
 #ifdef _MPI
     int rank, psize, h_len;
     char hostname[MPI_MAX_PROCESSOR_NAME];
@@ -216,16 +248,26 @@ int main(int argc, char * argv[]) {
     MPI_Get_processor_name(hostname, &h_len);
     printf("rank:%d size: %d at %s h_len %d\n", rank, psize, hostname, h_len);
 #endif
-
-    run();
+    for (maxlevel = 5; maxlevel < 10; maxlevel++){
+        iter_fp = 0;
+        mindelta = L0/pow(2, maxlevel);
+        mindelta0 = L0/pow(2, 8);
+        DT = sq(mindelta/mindelta0)*DT0;  // h^2/DT = h0^2/DT0
+        N = 1 << maxlevel;
+        init_grid(N);
+        fprintf(
+            ferr,
+            "maxlevel=%d N=%d mindelta=%g mindelta0=%g DT=%g TOLERANCE_T=%g\n",
+            maxlevel, N, mindelta, mindelta0, DT, TOLERANCE_T);
+        run();
+    }
 }
-//#define u_BC (Uin*(sq(0.5*L0) - sq(y)))
-#define u_BC (0)
+
 //#define T_BC min(T_solid + (Tin - T_solid)*tanh( 100*(sqrt(sq(x) + sq(y)) - channel_diam) ), T_solid)  #not compatible for convergence check
 #define T_BC ((sqrt(sq(x) + sq(y)) <= 1.0) ? T_solid : (sqrt(sq(x) + sq(y)) <= 2.0) ? \
                                            (0.5*(Tin + T_solid) + 0.5*(T_solid - Tin)*cos(pi*(sqrt(sq(x) + sq(y)) - 1.0))) : \
                                            Tin)
-u.n[left]  = dirichlet(u_BC);
+u.n[left]  = dirichlet(0);
 p[left]    = dirichlet(0);
 pf[left]   = dirichlet(0);
 f[left]    = dirichlet(1);
@@ -257,65 +299,93 @@ f[top]   = dirichlet(1);
 fs[top]   = dirichlet(0);
 alpha_doc[top] = neumann(0);
 
-#define mynorm(v) (sqrt(sq(v.x) + sq(v.y)))
 double xmin_center = 0, xmax_center = 0;
 
-double geometry(double x, double y, double z){
-    coord mypoint = {x,y,z};
-    coord pnt_dist;
-    double phi = -HUGE;
-    foreach_dimension() pnt_dist.x = mypoint.x;
-    phi = max(phi, (1 - mynorm(pnt_dist)));
-    return phi;
+// Cylinder with radii 1
+//double r_inner = 0.5;
+
+//double r_between = 0.75;
+//double geometry_ring(double x, double y, double z){
+//    double r = sqrt (sq (x) + sq (y));
+//    if (r > r_between){
+//        return r_outer - r;
+//    } else {
+//        return r - r_inner;
+//    }
+//    return 1 - sqrt (sq (x) + sq (y));
+//}
+
+// Cylinder with radii 1
+double r_outer = 1;
+double geometry_cylinder(double x, double y, double z){
+    return r_outer - sqrt (sq (x) + sq (y));
 }
 
-void solid_func(scalar fs, face vector fs_face){
+void solid_func_ring(scalar fs){
+    double mindelta = L0 / (1 << maxlevel);
     vertex scalar phi[];
     foreach_vertex() {
-        phi[] = geometry(x, y, z);
+        double phi1 = geometry_cylinder(x, y, z);
+        double phi2 = geometry_cylinder(x, y, z) - Nsb * mindelta;
+        phi[] = min(phi1, -phi2);
     }
     boundary ((scalar *){phi});
-    fractions (phi, fs, fs_face);
+    fractions (phi, fs);
+    boundary({fs});
 }
 
+void solid_func_cylinder(scalar fs){
+    vertex scalar phi[];
+    foreach_vertex() {
+        phi[] = geometry_cylinder(x, y, z);
+    }
+    boundary ((scalar *){phi});
+    fractions (phi, fs);
+    boundary({fs});
+}
+
+double T_target_fun(double x, double y, double z){
+    return T_solid;
+}
+
+
+void calculate_T_target(scalar fs, scalar T, scalar T_target){
+    foreach(){
+        T_target[] = (1 - fs[]) * T[] + fs[] * T_target[];
+    }
+    boundary({T_target});
+}
 
 event init (t = 0) {
     char name[300];
     sprintf (name, "restart_%s", subname);
 
     if (!restore (file = name)) {
-        fprintf(ferr, "The file %s can not be successfully read! Iniitial conditions are set\n", name);
+        fprintf(ferr, "The file `%s` can not be successfully read! Initial conditions are set\n", name);
         int it = 0;
         scalar fs_smoothed[];
         do {
-            solid_func(fs, fs_face);
+            solid_func_ring(fs);
+            solid_func_cylinder(fss);
             filter_scalar(fs, fs_smoothed);
             foreach()
                 T[] = T_BC;
-            boundary ((scalar *){T});
+            boundary({T});
         }while (adapt_wavelet({fs_smoothed, T}, (double []){feps, Teps}, maxlevel=maxlevel, minlevel=minlevel).nf != 0 && ++it <= 10);
         foreach() {
             f[] = 1;
             alpha_doc[] = 0;
-            u.x[] = u_BC; // penalization will work
-            u.y[] = 0;
-            if (rho1 || rho2){
-                rhov[] = var_hom(f[], fs[], rho1, rho2, rho3);
-            }
+            foreach_dimension() u.x[] = 0;
+            levelset[] = geometry_cylinder(x, y, z);
+            T_target[] = T_solid;
         }
-        boundary ((scalar *){f, T, alpha_doc, u, rhov});
-        foreach_face(){
-            double ff2 = (fs[] + fs[-1])/2.; //solid
-            if (kappa1 || kappa2)
-                kappav.x[] = var_hom(1, ff2, kappa1, kappa2, kappa3);
-            if (mu1 || mu2) {
-                double Tf = (T[] + T[-1])/2.;
-                face vector muv = mu;
-                muv.x[] = fm.x[] * mu(1, ff2, 0, Tf); //((1 - clamp(fs,0.,1.)) < SEPS);//
-            }
+        boundary({f, alpha_doc, T_target, levelset, u.x, u.y});
+        if (is_extrapolated){
+            calculate_T_target(fss, T, T_target);
+            solid_function target_fun[1] = {T_target_fun};
+            update_targets(levelset, targets={T_target}, fss=fss, fs=fs, target_fun=target_fun, cfl=0.5, nmax=200);
+//            update_T_target(levelset, T_target, fss=fss, fs=fs, T_solid=T_solid, cfl=0.5, nmax=200);
         }
-		boundary((scalar *){kappa, mu});
-        event("vtk_file");
     }else{
         FILE *popen(const char *cmd_str, const char *mode);
         int pclose(FILE *stream);
@@ -332,10 +402,10 @@ event init (t = 0) {
             perror("popen");
             exit(EXIT_FAILURE);
         }
-        int k = 0;
+//        int k = 0;
         while (fgets(result, sizeof(result), cmd)) {
             printf ("%s", result);
-            file_timesteps[k++] = atof(result);
+            // file_timesteps[k++] = atof(result);
         }
         cmd_str[0] = 0;
         strcpy(cmd_str, "grep \"vtk: iter_fp\" ");
@@ -343,7 +413,7 @@ event init (t = 0) {
         strcat(cmd_str, " | tail -1 | awk \'{print $4}\' ");
         fprintf(ferr, "grep iter_fp: %s", cmd_str);
         cmd = popen(cmd_str, "r");
-//        cmd = popen("grep \"vtk: iter_fp\" log | tail -1 | awk \'{print $4}\'", "r");
+        // cmd = popen("grep \"vtk: iter_fp\" log | tail -1 | awk \'{print $4}\'", "r");
         if (cmd == NULL) {
             fprintf(ferr, "Error in opening log file and searching iter_fp");
             perror("popen");
@@ -356,164 +426,119 @@ event init (t = 0) {
     }
 }
 
-void calc_mu(scalar muv){
+event set_penalization (i++) {
+    double new_eta_s = 1e-5;
+    double new_m_bp = 0;
+    set_penalization_parameters (mu, rho, fs, new_m_bp, new_eta_s);
+    //    new_m_bp = 1;
+    //    double new_eta_T = sq(dt);
+    //    double mindelta = L0 / (1 << maxlevel);
+    //    double new_chi_conductivity = sq(new_m_bp*mindelta)/new_eta_T;
+
+    new_m_bp = 0.5;
+    double new_eta_T = 0;
+    double new_chi_conductivity = kappa1 / (rho1 * Cp1);
+    set_heat_penalization_parameters(new_m_bp, new_eta_T, new_chi_conductivity);
+}
+
+event print_maxlevel (i++) {
+    fprintf(ferr, "Maximum level of refinement at step %d: %d\n", i, grid->maxdepth);
+}
+
+void calc_mu(scalar mu_cell){
     foreach(){
-        muv[] = mu(f[], fs[], alpha_doc[], T[]);
-        if( muv[] > mu_max) mu_max = muv[];
+        mu_cell[] = mu(f[], fss[], alpha_doc[], T[]);
     }
-    boundary((scalar *){muv});
 }
 
-double alpha_near_solid = 0;
 event properties(i++){
-    solid_func(fs, fs_face);
     calc_mu(mu_cell);
+    if (viscDissipation)
+        dissipation (Phi_visc, u, mu = mu);
+    foreach(){
+        Phi_src[] = f[]*(1 - fss[])*rho1*Htr*KT(T[])*FR(alpha_doc[]);
+    }
+    boundary({Phi_src});
 }
 
-event set_dtmax (i++) {
-    RELATIVE_RES_TOLERANCE = 0.01; //fabs(res1 - res2)/(res1 + 1e-30) < RELATIVE_RES_TOLERANCE
-    DT *= 1.05;
-    DT = min(DT, maxDT);
-    fprintf(ferr, "TIMEMAX i=%d set_dtmax: tnext= %g, t=%g, DT=%g, dt=%g\n", i, tnext, t, DT, dt);
+event chem_conductivity_term (i++){
+    if (is_extrapolated){
+        calculate_T_target(fss, T, T_target);
+        fprintf(ferr, "Extrapolation of T with nmax=%d\n", nmax);
+        // Array of function pointers for the corresponding solid values
+        solid_function target_fun[1] = {T_target_fun};
+        update_targets(levelset, targets={T_target}, fss=fss, fs=fs, target_fun=target_fun, cfl=0.5, nmax=nmax);
+//        update_T_target(levelset, T_target, fss=fss, fs=fs, T_solid=T_solid, cfl=0.5, nmax=nmax);
+    }
 }
 
-/**
-The gravity vector is aligned with the channel and viscosity is
-unity. */
-
-//event acceleration (i++) {
-//  if (fabs(Ggrav_ndim) > 1e-10){
-//  	foreach_face(x)	av.x[] = Ggrav_ndim;
-//  }
-//}
-
-event advection_term(i++){
-    TOLERANCE = TOLERANCE_P;
-}
-
-event viscous_term(i++){
-    nu_max = mu_max/rho1;
-    TOLERANCE = TOLERANCE_V;
-    eta_s = sq(m_bp*mindelta)/nu_max;
-    eta_T = sq(m_bp_T*mindelta)/chi_conductivity;
-   fprintf(ferr, "VISC: m=%g, mindelta=%g, nu=%g, chi_conductivity=%g, eta_s=%15.12g, eta_T=%15.12g\n", m_bp, mindelta, nu_max, chi_conductivity, eta_s, eta_T);
-
-    alpha_near_solid += dt*KT(T_solid)*FR(alpha_near_solid);
-    mu3 = muf1(alpha_near_solid, T_solid);
-    //    mu3 = mu_max*MuRS;
-    fprintf(ferr, "mu3=%g was updated, mu_max=%g, alpha_near_solid=%g\n", mu3, mu_max, alpha_near_solid);
-}
-
-event projection(i++){
-    TOLERANCE = TOLERANCE_P;
-}
-
-event end_timestep(i++){
-	TOLERANCE = TOLERANCE_T;
-}
-
-FILE *fp;
-int firstWrite = 0;
-double rslice = 1.2;
-const int Nvar = 4;
-event logoutput(t += 0.01){
+event logoutput(t += 0.1){
+    FILE *fp;
+    const int Nvar = 5;
+    const int Ninterp = 1001;
+    static int firstWrite = 0;
     char name_vtu[1000];
-    coord loc[1];
-    double v[Nvar];
-    loc[0].x = rslice;
-    loc[0].y = 0;
-    loc[0].z = 0;
-    sprintf(name_vtu, "cylinder_polymerization_basilisk_x=%g.csv", rslice);
-
-    if (firstWrite == 0){
+    coord loc[Ninterp];
+    double v[Nvar*Ninterp];
+    for (int i = 0; i < Ninterp; i++){
+        loc[i].x = 0.5*L0*i/(Ninterp - 1.0);
+        loc[i].y = loc[i].z = 0;
+    }
+    sprintf(name_vtu, "cylinder_polymerization_basilisk_%s.csv", prefix);
+    if (firstWrite == 0 && pid() == 0){
         fp = fopen(name_vtu, "w");
-        if(pid() == 0) fprintf (fp, "t,T,alpha,u,mu\n");
+        fprintf (fp, "x,t,maxlevel,T,alpha,u,mu,T_target\n");
         fclose(fp);
         firstWrite++;
     }
-    fp = fopen(name_vtu, "a");
-    interpolate_array ((scalar*) {T, alpha_doc, u.x, mu_cell}, loc, 1, v, true);
-    if(pid() == 0)  fprintf (fp, "%g,%g,%g,%g,%g\n", t, v[0], v[1], v[2],v[3]);
-    fclose(fp);
-}
 
-
-const int Ninterp = 101;
-event logoutput2(t += 0.1){
-    if (t < 2) {
-        char name_vtu[1000];
-        coord loc[Ninterp];
-        double v[Nvar*Ninterp];
+    interpolate_array ((scalar*) {T, alpha_doc, u.x, mu_cell, T_target}, loc, Ninterp, v, true);
+    if (pid() == 0){
+        fp = fopen(name_vtu, "a");
         for (int i = 0; i < Ninterp; i++){
-            loc[i].x = 0.5*L0*i/(Ninterp - 1.0);
-            loc[i].y = loc[i].z = 0;
-        }
-        sprintf(name_vtu, "cylinder_polymerization_basilisk_tfix=%g.csv", t);
-        fp = fopen(name_vtu, "w");
-        if (pid() == 0) fprintf (fp, "x,T,alpha,u,mu\n");
-        interpolate_array ((scalar*) {T, alpha_doc, u.x, mu_cell}, loc, Ninterp, v, true);
-        if (pid() == 0){
-            for (int i = 0; i < Ninterp; i++){
-                int ii = i*Nvar;
-                fprintf (fp, "%g,%g,%g,%g,%g\n", loc[i].x, v[ii], v[ii+1], v[ii+2], v[ii+3]);
-            }
+            int ii = i*Nvar;
+            fprintf (fp, "%g,%g,%d,%g,%g,%g,%g,%g\n", loc[i].x, t, maxlevel, v[ii], v[ii+1], v[ii+2], v[ii+3], v[ii+4]);
         }
         fclose(fp);
     }
 }
 
-event vtk_file (t += dt_vtk)
+#define VTK_SCALARS {rhov, T, T_target, alpha_doc, mu_cell, Phi_src, levelset}
+#define VTK_EPS_SCALARS {rhoeps, Teps, Teps, aeps, mueps, feps, feps}
 //event vtk_file (i += 1)
+event vtk_file (t += dt_vtk)
 {
-    char name[300];
-    sprintf (name, "vtk_%s", subname);
-    scalar l[];
-    foreach() {
-        l[] = level;
-        Phi_src[] = f[]*(1 - fs[])*rho1*Htr*KT(T[])*FR(alpha_doc[]);
-    }
-    boundary((scalar *){l});
-    dissipation (Phi_visc, u, mu = mu);
-#ifdef DEBUG_BRINKMAN_PENALIZATION
-    output_vtu_MPI(name, (iter_fp) ? t + dt : 0, list = (scalar *) {T, alpha_doc, p, fs, f, l, rhov, mu_cell},
-    vlist = (vector *) {u, g, uf, dbp, total_rhs, residual_of_u, divtauu, fs_face, alpha});
-#else
-    output_vtu_MPI(name, (iter_fp) ? t + dt : 0, list = (scalar *) {T, alpha_doc, fs, l, mu_cell, Phi_visc, Phi_src});
-#endif
-}
+    char path[] = "res"; // no slash at the end!!
+    char maxlevel_str[150];
+    sprintf(maxlevel_str, "%s_%d", prefix, maxlevel);
 
+    output_htg(
+        (scalar *){T, T_target, alpha_doc, p, fs, fss, rhov, mu_cell, levelset},
+        (vector *){alpha, alphamv, kappa},
+        path, maxlevel_str, iter_fp, t
+    );
+    iter_fp++;
+    double eps_arr[] = VTK_EPS_SCALARS;
+    MinMaxValues((scalar *) VTK_SCALARS, eps_arr);
+}
 
 
 /**
 We adapt according to the error on the embedded geometry, velocity and
 tracer fields. */
-#define ADAPT_SCALARS {rhov, T, alpha_doc, mu_cell}
-#define ADAPT_EPS_SCALARS {rhoeps, Teps, aeps, mueps}
+#define ADAPT_SCALARS {fs, fss, T, alpha_doc}
+#define ADAPT_EPS_SCALARS {fseps, fseps, Teps, aeps}
+
 event adapt (i++){
 	double eps_arr[] = ADAPT_EPS_SCALARS;
 	MinMaxValues((scalar *) ADAPT_SCALARS, eps_arr);
 	adapt_wavelet ((scalar *) ADAPT_SCALARS, eps_arr, maxlevel = maxlevel, minlevel = minlevel);
+    foreach(){
+        levelset[] = geometry_cylinder(x, y, z);
+    }
+    boundary({levelset});
     if (i%100) count_cells(t, i);
 }
 
-event snapshot (t += 0.5)
-{
-    char name[300];
-    if (t==0)
-        sprintf (name, "dump_%s-0.0", subname);
-    else
-        sprintf (name, "dump_%s-%g", subname, t);
-    dump (file = name);
-}
 
-event check_fail(i += 100){
-    double umax = 0;
-    foreach(){
-        if ((u.x[] != u.x[]) || (umax > 10e+10)) {
-            fprintf(ferr, "NAN values, u.x=%g, umax=%g", u.x[], umax);
-            return 9;
-        }
-    }
-}
-
-event stop(t = 2);
+event stop(t = 3);

@@ -15,4 +15,3 @@ curved_boundaries:
 	CC99='mpicc -std=c99' qcc $(CFLAGS)  -D_MPI=1  curved_boundaries.c $(CINCL) $(CLIBS)
 	mpirun -np 10 ./a.out  > out 2> log
 #	mvlc movie.mp4
-

@@ -212,7 +212,7 @@ set format y "10^{%L}"
 plot '< grep "^10" log' u 2:4 ps 5 lw 5 t 'Sangani and Acrivos, 1982','' u 2:3 ps 5 pt 6 lw 5 t '10 levels'
 ~~~
  plot '< grep "^11" log_1e-6'  u 2:3 w lp ps 1 pt 6 lw 2 t 'BP eta=1e-6, 11 levels','< grep "^11" log_1e-5' u 2:3 w lp ps 1 pt 30 lw 2 t 'BP eta=1e-5, 11 levels','< grep "^11" log_1e-4' u 2:3 w lp ps 1 pt 33 lw 2 t 'BP eta=1e-4, 11 levels','< grep "^11" log_1e-3' u 2:3 w lp ps 1 pt 10 lw 2 t 'BP eta=1e-3, 11 levels','< grep "^11" log_1e-2' u 2:3 w lp ps 1 pt 12 lw 2 t 'BP eta=1e-2, 11 levels','< grep "^11" log_1e-6' u 2:4 w lp pt 2 ps 1 lc rgb "orange-red" lw 2 t 'Sangani and Acrivos, 1982'
- 
+
 This can be further quantified by plotting the relative error. It
 seems that at low volume fractions, the error is independent from the
 mesh refinement. This may be due to other sources of errors, such as
@@ -236,7 +236,7 @@ refinement of the narrow gap between cylinders.
 
 ~~~bib
 @article{sangani1982,
-  title={Slow flow past periodic arrays of cylinders 
+  title={Slow flow past periodic arrays of cylinders
   with application to heat transfer},
   author={Sangani, AS and Acrivos, A},
   journal={International Journal of Multiphase Flow},

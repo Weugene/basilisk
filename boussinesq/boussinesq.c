@@ -113,7 +113,3 @@ int main() {
     T[right] = dirichlet(0.5);a = 1e3; Pr = 0.71; N = 1<<MINLEVEL ;
     run();
 }
-
-
-
-

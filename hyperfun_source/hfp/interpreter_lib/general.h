@@ -7,7 +7,7 @@
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -18,7 +18,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -122,7 +122,7 @@ typedef struct
 {
   int    amount;
   int    size;
-  
+
   char*  string_data;
   int*   int_data;/* index, amount, ar_flag = 1 if array, else = 0 */
 } Name_Array_T;
@@ -139,23 +139,23 @@ int  HF_Get_Runtime_Array(int index, double **p, int *size);
 enum
 {
   CODE_String_Index          =  0,
-    
+
   CODE_array_assignment      =  1,
   CODE_assignment            =  2,
   CODE_array_item_assignment =  3,
   CODE_Sarray_assignment      =  4,  /* VAVAVA */
-  CODE_Sarray_item_assignment =  5,  /* VAVAVA */ 
+  CODE_Sarray_item_assignment =  5,  /* VAVAVA */
 
   CODE_goto                  =  6,
   CODE_if                    =  7,
   CODE_if_else               =  8,
   CODE_while                 =  9,
   CODE_body_assignment       =  10,
-    
+
   I_ARRAY                    =  11,
   I_ARRAY_AS_ARG             = 12,
   I_EXTERN_CALL              = 13,
-    
+
   FUNC_bool_and              = 14,
   FUNC_bool_or               = 15,
   FUNC_bool_less             = 16,
@@ -164,7 +164,7 @@ enum
   FUNC_bool_not_less         = 19,
   FUNC_bool_equal            = 20,
   FUNC_bool_not_equal        = 21,
-    
+
   FUNC_binary_plus           = 22,
   FUNC_binary_minus          = 23,
   FUNC_binary_mult           = 24,
@@ -174,9 +174,9 @@ enum
   FUNC_binary_ampersand      = 28,
   FUNC_binary_union          = 29,
   FUNC_binary_neg            = 30,
-    
+
   FUNC_unary_not             = 31,
-    
+
   FUNC_unary_plus            = 32,
   FUNC_unary_minus           = 33,
   FUNC_unary_tilda           = 34,
@@ -269,7 +269,7 @@ enum Error_Code
 enum Tokens
 {
   IllegalToken       , /* Error      0 */
-    
+
   ArrayToken         , /* massive    1 */
   IfToken            , /* if         2 */
   ThenToken          , /* then       3 */
@@ -279,25 +279,25 @@ enum Tokens
   LoopToken          , /* loop       7 */
   EndLoopToken       , /* end while  8 */
   AssignToken        , /* =          9 */
-    
+
   LeftParenToken     , /* (         10 */
   RightParenToken    , /* )         11 */
   LeftBracketToken   , /* [         12 */
   RightBracketToken  , /* ]         13 */
   LeftBraceToken     , /* {         14 */
   RightBraceToken    , /* }         15 */
-    
+
   AndToken,            /* and       16 */
   NotToken           , /* not       17 */
   OrToken            , /* or        18 */
   XorToken           , /* xor       19 */
-    
+
   NotEqualToken      , /* /=        20 */
   LessToken          , /* <         21 */
   NotGreaterToken    , /* <=        22 */
   GreaterToken       , /* >         23 */
   NotLessToken       , /* >=        24 */
-    
+
   PowerToken         , /* ^         25 */
   PlusToken          , /* +         26 */
   MinusToken         , /* -         27 */
@@ -308,17 +308,17 @@ enum Tokens
   UnionToken         , /* |         32 */
   NegToken           , /* \         33 */
   CartProductToken   , /* @         34 */
-    
+
   CommaToken         , /* ,         35 */
   SemicolonToken     , /* ;         36 */
-    
+
   RealValueToken     , /* 1.2e-4.5  37 */
   ConstantStringToken, /* "f.txt"   38 */
   CommentToken       , /* --        39 */
   XIdToken           , /* X array   40 */
   AIdToken           , /* A array   41 */
  /* VAVAVA Token for "S" array */
-   SIdToken           , /* S array   42 */  
+   SIdToken           , /* S array   42 */
    FunctionIdToken    , /* COS       43 */
    IdentifierToken    , /* count     44 */
 
@@ -387,7 +387,7 @@ typedef struct                                         /* function_info_T */
   int    function_args[ARGS_LIMIT];                   /* function_info_T */
   p_F_T  p_Function;                                  /* function_info_T */
   p_FR_T p_F_Restriction;                             /* function_info_T */
-  
+
   int    F_instance_counter;                          /* function_info_T */
 } function_info_T;                                     /* function_info_T */
 /***************************************************************************/
@@ -439,14 +439,14 @@ void HF_DeletePNS(PN_T** p_p_pns);
 
 int HF_get_token(char* p_str, ScanParamStruct_T* sps);
 
-/* the memory allocated by HF_parse() needs to be freed by the client 
-	for example with the polygonizer: 
-	the memory allocated by HF_parse is freed inside the destructor 
+/* the memory allocated by HF_parse() needs to be freed by the client
+	for example with the polygonizer:
+	the memory allocated by HF_parse is freed inside the destructor
 	of the wrapper HFinterpreter.
  */
 int HF_parse(char* p_program, PN_List_T* p_pn_list, ER_List_T* p_er_list, PN_List_T* p_Library);
 
-/* VAVAVA double* svalue - values of "S" array returned */ 
+/* VAVAVA double* svalue - values of "S" array returned */
 int HF_calc(PN_T* p_pn, double* stack, int* stack_usage, double* value, double* svalue, Error_Info_T* error_info);
 
 /* SERIALIZATION: */

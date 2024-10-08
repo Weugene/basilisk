@@ -145,7 +145,7 @@ int main(int argc, char * argv[]) {
 		Arrhenius_const = atof(argv[16]);
 	if (argc > 17)
 		Ea_by_R = atof(argv[17]);
-	cyl_diam = 15e-6; 
+	cyl_diam = 15e-6;
 	dist_x = ratio_dist_x*cyl_diam, dist_y = ratio_dist_y*cyl_diam; //m 5-25 microns
 	Rbmin = ratio_Rbmin*cyl_diam, Rbmax = ratio_Rbmax*cyl_diam;
 	domain_size = dist_y*max(max(Ncx,Ncy),1);
@@ -510,7 +510,7 @@ tracer fields. */
 //#define ADAPT_SCALARS {f, fs}
 //#define ADAPT_EPS_SCALARS {feps, fseps}
 
-scalar un[]; 
+scalar un[];
 event adapt (i++){
 	foreach() un[] = norm(u); boundary((scalar *){un});
 	double eps_arr[] = ADAPT_EPS_SCALARS;

@@ -1,12 +1,12 @@
 /*==============================================================================
 
- Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa 
+ Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa
  Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,7 +17,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -34,7 +34,7 @@ extern int HF_Get_Runtime_Array(int index, double** array, int* size);
 void HF_Fill_Error(PN_T* p_pn, int er_index, Error_Info_T* EI,int ic);
 
 static double R_int(double x, double y,int c)
-{	
+{
 //    int i;
 	double ct;
 	double xx,yy;
@@ -45,7 +45,7 @@ static double R_int(double x, double y,int c)
 
 	ct = (xx+yy);
 	ct=pow(ct,c/2.0);
-	
+
 	r_int =  ((x)+(y)-sqrt((xx)+(yy))) * ct;
 
 
@@ -91,12 +91,12 @@ if(init_spline==1) {
 	W=(int)f_a[2]+3+3;
 	V=(int)f_a[3]+3+3;
 	U=(int)f_a[4]+3+3;
-	
+
 	InitSpline(U,V,W,ctr_points);
     InitArray(U,V,W,ctr_points);
 }
 
- 
+
 
 
 
@@ -121,7 +121,7 @@ bbox[5] = bbox[5] + my_eps;
 			yt = (x[1]-bbox[1])/(bbox[4]-bbox[1]);
 			zt = (x[2]-bbox[2])/(bbox[5]-bbox[2]);
 
-			
+
 			/*Mapping to the parameter space :        */
 
 			result=0.0;
@@ -134,22 +134,22 @@ bbox[5] = bbox[5] + my_eps;
 				if(indice_u<3) indice_u=3;
 				for(k=0;k<4;k++)
 						bu[k]=bspline_u(xt,indice_u-k,3);
-			
-/****Y****/	
+
+/****Y****/
 				yt = yt * noeuds_v[V];
 				indice_v=(int)floor(yt)+3;
 				if(indice_v<3) indice_v=3;
 				for(k=0;k<4;k++)
 						bv[k]=bspline_v(yt,indice_v-k,3);
-		
 
-/****Z****/	
+
+/****Z****/
 				zt = zt * noeuds_w[W];
 				indice_w=(int)floor(zt)+3;
 				if(indice_w<3) indice_w=3;
 				for(k=0;k<4;k++)
 						bw[k]=bspline_w(zt,indice_w-k,3);
-			
+
 
 
 
@@ -159,7 +159,7 @@ bbox[5] = bbox[5] + my_eps;
 						result+=bv[i]*bu[j]*bw[k]*
 									(ext_ctr_pts[(indice_w-k)][(indice_u-j)][(indice_v-i)]);
 									//(ctr_points[(indice_w-k)*U*V+(indice_u-j)*U+(indice_v-i)]);
-						
+
 						}
 					}
 				}
@@ -177,10 +177,10 @@ xt = (bbox[3]-my_eps-x[0])*(x[0]-bbox[0]-my_eps);
 yt = (bbox[4]-my_eps-x[1])*(x[1]-bbox[1]-my_eps);
 zt = (bbox[5]-my_eps-x[2])*(x[2]-bbox[2]-my_eps);
 
- 
-tmp1 = R_int(xt,yt,0);			
+
+tmp1 = R_int(xt,yt,0);
 cube = R_int(tmp1,zt,0);
-tmp2 = R_int(cube,result,0);	
+tmp2 = R_int(cube,result,0);
 
 
 //	return tmp2;
@@ -189,7 +189,7 @@ tmp2 = R_int(cube,result,0);
 
 }
 
-/*--------------------------------------------------------------*/ 
+/*--------------------------------------------------------------*/
 int R_hfCubicBSpline(double* f_a,
             String_Array_T* str_param,
             Error_Info_T* error_info,
@@ -200,7 +200,7 @@ int R_hfCubicBSpline(double* f_a,
         if((fabs(f_a[0]) < EPS) || (fabs(f_a[1]) < EPS) || (fabs(f_a[2]) < EPS))
         {
            HF_Fill_Error(p_pn, Blend_2_3_Error, error_info, code_index);
-           return 0; 
+           return 0;
         }
         return 1;
 */

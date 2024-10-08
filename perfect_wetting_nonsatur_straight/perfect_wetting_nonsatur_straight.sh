@@ -10,4 +10,3 @@
 
 cd $HOME/basilisk/work/perfect_wetting_nonsatur_straight
 mpirun -np 10 ./a.out
-

@@ -3,7 +3,7 @@
 
 This file helps setup simulations for flows of two fluids separated by
 an interface (i.e. immiscible fluids). It is typically used in
-combination with a [Navier--Stokes solver](navier-stokes/centered.h). 
+combination with a [Navier--Stokes solver](navier-stokes/centered.h).
 
 The interface between the fluids is tracked with a Volume-Of-Fluid
 method. The volume fraction in fluid 1 is $f=1$ and $f=0$ in fluid
@@ -29,7 +29,7 @@ event defaults (i = 0) {
   /**
   If the viscosity is non-zero, we need to allocate the face-centered
   viscosity field. */
-  
+
   if (mu1 || mu2)
     mu = new face vector;
 }
@@ -65,26 +65,26 @@ event properties (i++) {
 #ifndef sf
 #if dimension <= 2
   foreach()
-    sf[] = (4.*f[] + 
+    sf[] = (4.*f[] +
 	    2.*(f[0,1] + f[0,-1] + f[1,0] + f[-1,0]) +
 	    f[-1,-1] + f[1,-1] + f[1,1] + f[-1,1])/16.;
 #else // dimension == 3
   foreach()
     sf[] = (8.*f[] +
 	    4.*(f[-1] + f[1] + f[0,1] + f[0,-1] + f[0,0,1] + f[0,0,-1]) +
-	    2.*(f[-1,1] + f[-1,0,1] + f[-1,0,-1] + f[-1,-1] + 
+	    2.*(f[-1,1] + f[-1,0,1] + f[-1,0,-1] + f[-1,-1] +
 		f[0,1,1] + f[0,1,-1] + f[0,-1,1] + f[0,-1,-1] +
 		f[1,1] + f[1,0,1] + f[1,-1] + f[1,0,-1]) +
 	    f[1,-1,1] + f[-1,1,1] + f[-1,1,-1] + f[1,1,1] +
 	    f[1,1,-1] + f[-1,-1,-1] + f[1,-1,-1] + f[-1,-1,1])/64.;
 #endif
-#endif 
+#endif
 
 #if TREE
   sf.prolongation = refine_bilinear;
   boundary ({sf});
 #endif
-  
+
   foreach_face() {
     double ff = (sf[] + sf[-1])/2.;
     alphav.x[] = fm.x[]/rho(ff);
@@ -96,7 +96,7 @@ event properties (i++) {
   foreach()
     rhov[] = cm[]*rho(sf[]);
 
-#if TREE  
+#if TREE
   sf.prolongation = fraction_refine;
   boundary ({sf});
 #endif

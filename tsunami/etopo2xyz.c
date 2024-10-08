@@ -2,7 +2,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <arpa/inet.h>
- 
+
 /* check that this matches ETOPO2v2c_i2_LSB.hdr */
 #define NCOLS 10800
 #define NROWS 5400
@@ -14,13 +14,13 @@
 #define NUMBERTYPE 2_BYTE_INTEGER
 #define MIN_VALUE -10791
 #define MAX_VALUE 8440
- 
+
 int main (int argc, char * argv[])
 {
   double lat, lon;
   int16_t v;
   int i, j;
- 
+
   for (j = 0; j < NROWS; j++) {
     lat = YLLCORNER + CELLSIZE*j;
     for (i = 0; i < NCOLS; i++) {

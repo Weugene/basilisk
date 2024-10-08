@@ -11,4 +11,3 @@
 #PBS -o out.txt
 cd $HOME/basilisk/work/Kasimov_copy
 mpirun -np 32 ./a.out
-

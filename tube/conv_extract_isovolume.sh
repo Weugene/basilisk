@@ -42,7 +42,7 @@ if $time_of_debug; then
     <Collection>'
     text3='    </Collection>
 </VTKFile>'
-    
+
     for (( i = $iter_cur; i < length; i+=1 )); do
       echo "i=$i";
       dump=${list[i]}
@@ -53,17 +53,17 @@ if $time_of_debug; then
       if $save_all_data; then
           ./convert_single $dump $i $bubcase $maxlevel
       else
-          ./convert_single $dump 0 $bubcase $maxlevel	  
+          ./convert_single $dump 0 $bubcase $maxlevel
 	  id_out=0
       fi
-      
-      text2_pvd="        <DataSet timestep=\"${t}\" part=\"0\" file=\"res/${subn_pvd}_0_$(printf %04d ${id_out}).pvtu\"/>" >> $pvd      
-      
+
+      text2_pvd="        <DataSet timestep=\"${t}\" part=\"0\" file=\"res/${subn_pvd}_0_$(printf %04d ${id_out}).pvtu\"/>" >> $pvd
+
       rm $pvd
       echo $text1 >> $pvd
       echo $text2_pvd >> $pvd
       echo $text3 >> $pvd
-      
+
       # Wait for all jobs to complete
       jobs
       wait
@@ -91,5 +91,5 @@ if $time_of_debug; then
       done
       echo $text3 >> $isopvdtail
     done
-    
+
 fi

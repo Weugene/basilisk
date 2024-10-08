@@ -1,23 +1,23 @@
 /*==============================================================================
 
  Copyright 1999 Eric Fausett
- Copyright 2003-2004 Benjamin Schmitt 
+ Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
  The implemented polygonization algorithm is described in
 
- Pasko A.A., Pilyugin V.V., Pokrovskiy V.N. 
- "Geometric modeling in the analysis of trivariate functions", 
- Communications of Joint Insititute of Nuclear Research, P10-86-310, 
+ Pasko A.A., Pilyugin V.V., Pokrovskiy V.N.
+ "Geometric modeling in the analysis of trivariate functions",
+ Communications of Joint Insititute of Nuclear Research, P10-86-310,
  Dubna, Russia, 1986 (in Russian).
 
- Pasko A.A., Pilyugin V.V., Pokrovskiy V.N. 
+ Pasko A.A., Pilyugin V.V., Pokrovskiy V.N.
  "Geometric modeling in the analysis of trivariate functions",
- Computers and Graphics, vol.12, Nos.3/4, 1988, pp.457-465. 
+ Computers and Graphics, vol.12, Nos.3/4, 1988, pp.457-465.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -28,7 +28,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -39,34 +39,34 @@
 void HFPolyMesh::TraceGraph(int* I[12]){
 	int Head, Child1, Child2;
 	int tmpTri[3]={-1, -1, -1};
-	
+
 	for(Head=0; Head<12; Head++){
-		
+
 		if(itsConnect[Head][0]>=0){//Found Starting Vertex <Head>
 			Child1=itsConnect[Head][0];
 			Child2=itsConnect[Head][1];
 			//*********************
 			//*****  CHILD 1  *****
-			if(itsConnect[Child1][0]==Head)//If Child1[0] is connected to Head 
+			if(itsConnect[Child1][0]==Head)//If Child1[0] is connected to Head
 				if(itsConnect[Child1][1]!=Child2) itsConnect[Child1][0]=Child2;//Replace Child1[0]-Head Link with Child1[0]-Child2 Link
 				else itsConnect[Child1][0]=itsConnect[Child1][1]=-1;
-			else//If Child1[1] is connected to Head 
+			else//If Child1[1] is connected to Head
 				if(itsConnect[Child1][0]!=Child2) itsConnect[Child1][1]=Child2;//Replace Child1[1]-Head Link with Child1[1]-Child2 Link
-				else itsConnect[Child1][0]=itsConnect[Child1][1]=-1;				
-			
+				else itsConnect[Child1][0]=itsConnect[Child1][1]=-1;
+
 			//*********************
 			//*****  CHILD 2  *****
-			if(itsConnect[Child2][0]==Head)//If Child2[0] is connected to Head 
+			if(itsConnect[Child2][0]==Head)//If Child2[0] is connected to Head
 				if(itsConnect[Child2][1]!=Child1) itsConnect[Child2][0]=Child1;//Replace Child1[0]-Head Link with Child1[0]-Child2 Link
-				else itsConnect[Child2][0]=itsConnect[Child2][1]=-1;	
-			else//If Child2[1] is connected to Head 
+				else itsConnect[Child2][0]=itsConnect[Child2][1]=-1;
+			else//If Child2[1] is connected to Head
 				if(itsConnect[Child2][0]!=Child1) itsConnect[Child2][1]=Child1;//Replace Child2[1]-Head Link with Child2[1]-Child2 Link
-				else itsConnect[Child2][0]=itsConnect[Child2][1]=-1;	
-			
+				else itsConnect[Child2][0]=itsConnect[Child2][1]=-1;
+
 			//******************
 			//*****  HEAD  *****
 			itsConnect[Head][0]=itsConnect[Head][1]=-1;//Delete Head-Child1 and Head-Child2 Links
-			
+
 			//**********************
 			//*****  TRIANGLE  *****
 			tmpTri[0]=*I[Head];
@@ -100,38 +100,38 @@ void HFPolyMesh::TraceGraph(int* I[12]){
 			}
 		}
 	//**********************
-	
+
 
 	for(Head=0; Head<12; Head++){
 		if(itsConnect[Head][0]>=0){//Found Starting Vertex <Head>
-			if((itsConnect[Head][1]<0)) cout << "HERE's the PROBLEM!!!! \n";//TMP: Error Checking 
+			if((itsConnect[Head][1]<0)) cout << "HERE's the PROBLEM!!!! \n";//TMP: Error Checking
 			Child1=itsConnect[Head][0];
 			Child2=itsConnect[Head][1];
 			//*********************
 			//*****  CHILD 1  *****
-			if(itsConnect[Child1][0]==Head)//If Child1[0] is connected to Head 
+			if(itsConnect[Child1][0]==Head)//If Child1[0] is connected to Head
 				itsConnect[Child1][0]=Child2;//Replace Child1[0]-Head Link with Child1[0]-Child2 Link
-			else//If Child1[1] is connected to Head 
+			else//If Child1[1] is connected to Head
 				itsConnect[Child1][1]=Child2;//Replace Child1[1]-Head Link with Child1[1]-Child2 Link
 			//*********************
 			//*****  CHILD 2  *****
-			if(itsConnect[Child2][0]==Head) //If Child2[0] is connected to Head 
+			if(itsConnect[Child2][0]==Head) //If Child2[0] is connected to Head
 				itsConnect[Child2][0]=Child1;//Replace Child1[0]-Head Link with Child1[0]-Child2 Link
-			else//If Child2[1] is connected to Head 
+			else//If Child2[1] is connected to Head
 				itsConnect[Child2][1]=Child1;//Replace Child2[1]-Head Link with Child2[1]-Child2 Link
 			//******************
 			//*****  HEAD  *****
 			itsConnect[Head][0]=itsConnect[Head][1]=-1;//Delete Head-Child1 and Head-Child2 Links
 			//**********************
 			//*****  TRIANGLE  *****
-			if((*I[Head]!=*I[Child1]) && (*I[Head]!=*I[Child2]) && (*I[Child1]!=*I[Child2])){//An Actual Triangle				
+			if((*I[Head]!=*I[Child1]) && (*I[Head]!=*I[Child2]) && (*I[Child1]!=*I[Child2])){//An Actual Triangle
 				double LC1H, LC2H, LCC; //Length C1-H C2-H C1-C2
 				int links=0;
 				//Calculate Distances  (Compare to itsMinEdgeLen)
 				LC1H=VertDist(*I[Child1], *I[Head]);
 				LC2H=VertDist(*I[Child2], *I[Head]);
 				LCC=VertDist(*I[Child1], *I[Child2]);
-				
+
 				//
 				//const double LEPS=0.01;
 				short SC1H=0;
@@ -149,7 +149,7 @@ void HFPolyMesh::TraceGraph(int* I[12]){
 				if(LC2H<itsMinEdgeLen) links+=2;
 				if(LCC<itsMinEdgeLen)  links+=4;
 
-				
+
 				if(SC1H==2){
 					if((LC1H/(LC2H+LCC))>COSALPHA){
 						Zero=true;
@@ -306,7 +306,7 @@ void HFPolyMesh::SealTriangle(int* V1, int* V2){
 				else{
 					if(T[2]==*V1){
 						if((T[0]==*V2) || (T[1]==*V2)){ itsData.itsBadTempTriangles[i]=true; itsSkipCurrentTriangle++; itsCurrentTriangle--; }//cout << "H3\n";}
-						else{ itsData.itsTempTriangles[i][2]=*V2; }//cout << "C3\n";}			
+						else{ itsData.itsTempTriangles[i][2]=*V2; }//cout << "C3\n";}
 						}
 					}
 				}

@@ -1,7 +1,7 @@
 /*==============================================================================
 
 Copyright 1999 Eric Fausett
-Copyright 2003-2004 Benjamin Schmitt 
+Copyright 2003-2004 Benjamin Schmitt
 Copyright 2007-2008 Oleg Fryazinov
 
 This Work or file is part of the greater total Work, software or group of
@@ -9,16 +9,16 @@ files named HyperFun Polygonizer.
 
 The implemented polygonization algorithm is described in
 
-Pasko A.A., Pilyugin V.V., Pokrovskiy V.N. 
-"Geometric modeling in the analysis of trivariate functions", 
-Communications of Joint Insititute of Nuclear Research, P10-86-310, 
+Pasko A.A., Pilyugin V.V., Pokrovskiy V.N.
+"Geometric modeling in the analysis of trivariate functions",
+Communications of Joint Insititute of Nuclear Research, P10-86-310,
 Dubna, Russia, 1986 (in Russian).
 
-Pasko A.A., Pilyugin V.V., Pokrovskiy V.N. 
+Pasko A.A., Pilyugin V.V., Pokrovskiy V.N.
 "Geometric modeling in the analysis of trivariate functions",
-Computers and Graphics, vol.12, Nos.3/4, 1988, pp.457-465. 
+Computers and Graphics, vol.12, Nos.3/4, 1988, pp.457-465.
 
-HyperFun Polygonizer can be redistributed and/or modified under the terms 
+HyperFun Polygonizer can be redistributed and/or modified under the terms
 of the CGPL, The Common Good Public License as published by and at CGPL.org
 (http://CGPL.org).  It is released under version 1.0 Beta of the License
 until the 1.0 version is released after which either version 1.0 of the
@@ -29,7 +29,7 @@ WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
 CGPL, The Common Good Public License for more information.)
 
-You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+You should have received a copy of the CGPL along with HyperFun Polygonizer;
 if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -70,7 +70,7 @@ void HFPolyMesh::CreateTNormals()
 /***FOR ATTRIBUTES : to be more clear and for debuging,
 I did not add a parameter to this function (the S array).
 It is not needed, because S blelongs to the PolyMesh class.
-*/ 
+*/
 double HFPolyMesh::CalcVal(const double pos[3]){
 	itsSendingX[itsXMap]=pos[0];
 	itsSendingX[itsYMap]=pos[1];
@@ -83,8 +83,8 @@ double HFPolyMesh::CalcVal(const double pos[3]){
 
 /******For Attibutes : During the refinement process
 /******vertices where the function value is negative
-/******due to the polygonalisation, are replaced 
-/******with another close vertices where the function 
+/******due to the polygonalisation, are replaced
+/******with another close vertices where the function
 /****** value becomes positive. Thus, a new normal is need.
 */
 

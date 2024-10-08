@@ -6,7 +6,7 @@
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,7 +17,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -68,8 +68,8 @@ extern int HF_VERTEX_NORMAL;
 extern int first_normal_show;
 extern int HF_SHOW_AXES;
 
-extern int HF_LIGHT_TYPE;               //0 : ambient;  1: ambient+diffuse;  2:ambient+diffuse+specular. 
-extern GLfloat HF_FACE_COLOR[3];			// Face Color; 
+extern int HF_LIGHT_TYPE;               //0 : ambient;  1: ambient+diffuse;  2:ambient+diffuse+specular.
+extern GLfloat HF_FACE_COLOR[3];			// Face Color;
 extern GLfloat HF_LINE_COLOR[3];
 
 extern float HF_MIN[3],HF_MAX[3];			// Bounding Box

@@ -30,7 +30,7 @@ evolution equation for the velocity of the [centered Navier--Stokes
 solver](navier-stokes/centered.h) i.e. it is an acceleration. If
 necessary, we allocate a new vector field to store it. */
 
-event defaults (i = 0) {  
+event defaults (i = 0) {
   if (is_constant(a.x)) {
     a = new face vector;
     foreach_face()
@@ -46,7 +46,7 @@ the centered Navier--Stokes solver. */
 
 event acceleration (i++)
 {
-  
+
   /**
   We check for all existing interfaces for which $\phi$ is allocated. The
   corresponding volume fraction fields will be stored in *list*. */
@@ -72,7 +72,7 @@ event acceleration (i++)
   ensure well-balancing of the pressure gradient and interfacial force
   term. To do so, we apply the same prolongation to the volume
   fraction field as applied to the pressure field. */
-  
+
 #if TREE
   for (scalar f in list)
     f.prolongation = p.prolongation;
@@ -84,7 +84,7 @@ event acceleration (i++)
   compute the interfacial force acceleration
   $$
   \phi\mathbf{n}\delta_s/\rho \approx \alpha\phi\nabla f
-  $$ 
+  $$
   */
 
   face vector ia = a;
@@ -99,7 +99,7 @@ event acceleration (i++)
 	value. If all fails we set the potential to zero: this should
 	happen only because of very pathological cases e.g. weird
 	boundary conditions for the volume fraction. */
-	
+
 	scalar phi = f.phi;
 	double phif =
 	  (phi[] < nodata && phi[-1] < nodata) ?
@@ -107,20 +107,20 @@ event acceleration (i++)
 	  phi[] < nodata ? phi[] :
 	  phi[-1] < nodata ? phi[-1] :
 	  0.;
-	
+
 	ia.x[] += alpha.x[]/fm.x[]*phif*(f[] - f[-1])/Delta;
       }
 
   /**
   On trees, we need to restore the prolongation values for the
   volume fraction field. */
-  
+
 #if TREE
   for (scalar f in list)
     f.prolongation = fraction_refine;
   boundary (list);
 #endif
-  
+
   /**
   Finally we free the potential fields and the list of volume
   fractions. */

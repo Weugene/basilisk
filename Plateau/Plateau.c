@@ -97,7 +97,3 @@ event snapshot (i += 10000) {
     boundary ({pid});
     dump (name);
 }
-
-
-
-

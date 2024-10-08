@@ -7,6 +7,6 @@ cav3d:
 #	./a.out > out.ppm 2> log
 #	animate out.ppm
 	CC99='mpicc -std=c99' $(QCC_COMPILER)   -O2 -D_MPI=1  cav3d.c  -L$(BASILISK)/gl $(OPENGLIBS) -lm
-	mpirun -np 10 ./a.out 
+	mpirun -np 10 ./a.out
 	#> output 2> logout
 #	animate movie.mp4.ppm

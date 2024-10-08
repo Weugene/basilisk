@@ -10,4 +10,3 @@
 
 cd $HOME/basilisk/work/alphaT
 mpirun -np 10 ./a.out
-

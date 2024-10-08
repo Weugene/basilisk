@@ -12,4 +12,3 @@ SPECIAL_TESTS = \
 
 ALLPAGES = \
 	saint_venant.c.page \
-

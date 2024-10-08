@@ -43,14 +43,14 @@ tbAnimate()
     }
     p++;
   }
-  glutSetWindow(save_id);     
+  glutSetWindow(save_id);
 }
 
 Trackball::Trackball(const int id,
 		     const float _translSensitivity,
 		     const float _trackballSz)
-  : xfm(NULL), 
-    translSensitivity(_translSensitivity), 
+  : xfm(NULL),
+    translSensitivity(_translSensitivity),
     _wantanim(GL_TRUE),
     _animate(GL_FALSE),
     _previousIdle(NULL),
@@ -68,7 +68,7 @@ Trackball::~Trackball()
   currentTrackballs.erase(window_id);
 }
 
-Trackball* 
+Trackball*
 Trackball::getCurrent(int id)
 {
   if (id>0) {
@@ -100,7 +100,7 @@ Trackball::rotMotion(int x, int y)
 void
 Trackball::composedRotMotion(int x, int y)
 {
-  
+
   buildQuaternion(lastquat,
 		  (2.0 * beginx - _width) / _width,
 		  (_height - 2.0 * beginy) / _height,
@@ -129,7 +129,7 @@ Trackball::zoomMotion(int x, int y)
 void
 Trackball::composedTranslMotion(int x, int y)
 {
-  vect3f tmp((x-beginx)/translSensitivity, 
+  vect3f tmp((x-beginx)/translSensitivity,
 	     (beginy-y)/translSensitivity,
 	     0);
   xfm->image(tmp, tmp);
@@ -147,8 +147,8 @@ Trackball::composedZoomMotion(int x, int y)
 void
 Trackball::stopMotion()
 {
-  if (_wantanim && 
-      ((this->_currMotion == static_cast<void (Trackball::*)(int, int)>(&Trackball::rotMotion)) || 
+  if (_wantanim &&
+      ((this->_currMotion == static_cast<void (Trackball::*)(int, int)>(&Trackball::rotMotion)) ||
        (this->_currMotion == static_cast<void (Trackball::*)(int, int)>(&Trackball::composedRotMotion)))) {
     if (glutGet((GLenum)GLUT_ELAPSED_TIME) == _lasttime) {
       _animate = GL_TRUE;
@@ -160,4 +160,3 @@ Trackball::stopMotion()
   }
   _currMotion=NULL;
 }
-

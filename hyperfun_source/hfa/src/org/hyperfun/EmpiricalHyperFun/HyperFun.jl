@@ -91,13 +91,13 @@ binary2 = mod
 <YYINITIAL>	{unary3}	{ return new Symbol(Sym.UNARY3, yytext()); }
 <YYINITIAL>	{binary1} 	{ return new Symbol(Sym.BIN1, yytext()); }
 <YYINITIAL>	{binary2}	{ return new Symbol(Sym.BIN2, yytext()); }
-<YYINITIAL>	{digit}+	{ return new Symbol(Sym.INT, 
+<YYINITIAL>	{digit}+	{ return new Symbol(Sym.INT,
 					new Integer(yytext())); }
 <YYINITIAL>	{digit}+(\.{digit}*)?([Ee][\+\-]?{digit}+)?
 				{ return new Symbol(Sym.NUM,
 					new Double(yytext())); }
 <YYINITIAL>	{digit}*(\.{digit}+)([Ee][\+\-]?{digit}+)? {
-				return new Symbol(Sym.NUM, 
+				return new Symbol(Sym.NUM,
 					new Double(yytext())); }
 <YYINITIAL>	hfsphere        { return new Symbol(Sym.HFSPHERE); }
 <YYINITIAL>	hfellipsoid     { return new Symbol(Sym.HFELLIPSOID); }
@@ -146,7 +146,6 @@ binary2 = mod
 <YYINITIAL>	hfspacemapcubic { return new Symbol(Sym.HFSPACEMAPCUBIC); }
 <YYINITIAL>	hfspacemapexp	{ return new Symbol(Sym.HFSPACEMAPEXP); }
 <YYINITIAL>	hfsuperell	{ return new Symbol(Sym.HFSUPERELL); }
-<YYINITIAL>	{letter}({letter}|{digit}|_)*	
+<YYINITIAL>	{letter}({letter}|{digit}|_)*
 				{ return new Symbol(Sym.ID, yytext()); }
 <YYINITIAL>	" "|\n|\r|\t	{ }
-	

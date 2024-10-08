@@ -6,7 +6,7 @@
 
 This file helps setup simulations for flows of two fluids separated by
 an interface (i.e. immiscible fluids) with solid obstacles. It is typically used in
-combination with a [Navier--Stokes solver](navier-stokes/centered.h). 
+combination with a [Navier--Stokes solver](navier-stokes/centered.h).
 
 The interface between the fluids is tracked with a Volume-Of-Fluid
 method. The volume fraction $f$ and $fs$ leads to next interpretation of averaged value of A =(\rho, \mu, \kappa)
@@ -45,7 +45,7 @@ event defaults (i = 0) {
   /**
   If the viscosity and conductivity are non-zero, we need to allocate the face-centered
   viscosity and conductivity fields. */
-  
+
   if (mu1 || mu2) //?
     mu = new face vector;
 

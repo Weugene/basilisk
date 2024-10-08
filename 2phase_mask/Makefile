@@ -5,4 +5,3 @@ CINCL=-I$(BASILISK)
 
 2phase_mask:
 	$(QCC_COMPILER) $(CFLAGS) 2phase_mask.c $(CINCL) $(CLIBS)
-

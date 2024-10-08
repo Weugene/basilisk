@@ -139,10 +139,10 @@ int main(int argc, char * argv[])
 			   "Rs=%g Radius_b=%g\n"
 			   "D-nal:U0=%g rhol=%g mul=%g grav=%g sig=%g Lchar=%g\n"
 			   "maxlevel=%d TOLERANCE=%g eta_s=%g DT=%g N=%d\n",
-	           RE, CA, FR, 
-			   mu1, mu2, Rmu, rho1, rho2, Rrho, 
+	           RE, CA, FR,
+			   mu1, mu2, Rmu, rho1, rho2, Rrho,
 			   f.sigma, Ggrav, L0,
-			   (0.25*L0)/Nobst, Radius_b, 
+			   (0.25*L0)/Nobst, Radius_b,
 			   U0, rhol, mul, grav, sig, Lchar,
 			   maxlevel, TOLERANCE, eta_s, DT, N);
 	run();

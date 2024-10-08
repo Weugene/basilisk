@@ -4,7 +4,7 @@
 This is an improved version of the [famous Gerris
 example](http://gerris.dalembert.upmc.fr/gerris/examples/examples/tangaroa.html),
 illustrating the combination of complex solid boundaries, air-water
-turbulent flows and reduced gravity approach. 
+turbulent flows and reduced gravity approach.
 
 We use the centered Navier--Stokes solver, two-phase flow and the
 momentum-conserving option. Note that the momentum-conserving option
@@ -33,10 +33,10 @@ performances. */
 #include "navier-stokes/perfs.h"
 
 /**
-## Importing the geometry 
+## Importing the geometry
 
 This function computes the solid fraction given a pointer to an STL
-file, a tolerance (maximum relative error on distance) and a 
+file, a tolerance (maximum relative error on distance) and a
 maximum level. */
 
 void fraction_from_stl (scalar f, FILE * fp, double eps, int maxlevel)
@@ -44,7 +44,7 @@ void fraction_from_stl (scalar f, FILE * fp, double eps, int maxlevel)
 
   /**
   We read the STL file and compute the bounding box of the model. */
-  
+
   coord * p = input_stl (fp);
   coord min, max;
   bounding_box (p, &min, &max);
@@ -52,7 +52,7 @@ void fraction_from_stl (scalar f, FILE * fp, double eps, int maxlevel)
   foreach_dimension()
     if (max.x - min.x > maxl)
       maxl = max.x - min.x;
-  
+
   /**
   We initialize the distance field on the coarse initial mesh and
   refine it adaptively until the threshold error (on distance) is
@@ -79,7 +79,7 @@ void fraction_from_stl (scalar f, FILE * fp, double eps, int maxlevel)
 ## Main function
 
 We can change both the maximum level of refinement and the [Froude
-number](https://en.wikipedia.org/wiki/Froude_number) at runtime. 
+number](https://en.wikipedia.org/wiki/Froude_number) at runtime.
 
 [RV Tangaroa](https://en.wikipedia.org/wiki/RV_Tangaroa) is 70 metres
 long. If we assume that it moves at 20 knots (twice its actual cruise
@@ -101,7 +101,7 @@ int main (int argc, char * argv[])
     LEVEL = atoi(argv[1]);
   if (argc > 2)
     FROUDE = atof(argv[2]);
-    
+
   init_grid (32);
 
   rho1 = 1.; // water
@@ -111,21 +111,21 @@ int main (int argc, char * argv[])
   The length of the ship is unity and the domain is five times
   larger. We change the origin so that the ship is not too close to
   the inflow. */
-	      
+
   size (5.);
   origin (-L0/2.,-L0/3.,-L0/2.);
 
   /**
   We need to tell the code that both `tangaroa` and `f0` are volume
   fraction fields. */
-	      
+
   for (scalar s in {tangaroa,f0})
     s.refine = s.prolongation = fraction_refine;
 
   /**
   Since the ship length is one and the velocity one, the acceleration
   of gravity is...*/
-	      
+
   G.z = - 1./sq(FROUDE);
   run();
 }
@@ -135,7 +135,7 @@ int main (int argc, char * argv[])
 
 The inflow condition fixes the velocity (unity) and the water level
 (using `f0`). */
-	      
+
 u.n[bottom] = dirichlet(1);
 p[bottom]   = neumann(0.);
 pf[bottom]  = neumann(0.);
@@ -143,7 +143,7 @@ f[bottom]   = f0[];
 
 /**
 Outflow uses standard Neumann/Dirichlet conditions.  */
-	      
+
 u.n[top]  = neumann(0.);
 p[top]    = dirichlet(0.);
 pf[top]   = dirichlet(0.);
@@ -156,24 +156,24 @@ f[back] = 1;
 
 /**
 Not sure whether this is really useful. */
-	      
+
 uf.n[left] = 0.;
 uf.n[right] = 0.;
-	      
+
 /**
 ## Initial conditions
 
 We can optionally restart, otherwise we open the STL file and
 initialize the corresponding fraction. We also initialize the `f0`
 field used for the inflow condition and set the initial water level
-and velocity field. */      
+and velocity field. */
 
 event init (t = 0) {
   if (!restore (file = "restart")) {
     FILE * fp = fopen ("tangaroa.stl", "r");
     fraction_from_stl (tangaroa, fp, 5e-4, LEVEL);
     fclose (fp);
-    
+
     fraction (f0, - z);
 
     foreach() {
@@ -188,7 +188,7 @@ event init (t = 0) {
 ## Boundary conditions on the ship
 
 We use a simple (but crude) imposition of $u=0$ in the solid. */
-	      
+
 event velocity (i++) {
   foreach()
     foreach_dimension()
@@ -217,7 +217,7 @@ the top of the steep primary Kelvin waves is particularly noticeable.
 
 The computations above were done on the Irene supercomputer using 12
 levels of refinement. */
-	      
+
 event movie (t >= 10)
 {
   view (fov = 5.86528,
@@ -259,7 +259,7 @@ event snapshot (i += 100)
 
 This computation is only feasible thanks to mesh adaptation, based
 both on volume fraction and velocity accuracy. */
-	      
+
 event adapt (i++) {
   double uemax = 0.1;
   adapt_wavelet ({f,tangaroa,u},

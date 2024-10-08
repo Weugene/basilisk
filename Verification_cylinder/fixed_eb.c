@@ -7,7 +7,7 @@
 /**
 ## Mesh parameters */
 
-# define LEVEL 9 
+# define LEVEL 9
 # define MAXLEVEL 9
 
 /**
@@ -58,7 +58,7 @@ int main() {
   stokes = false;
   TOLERANCE = 1e-5;
   DT = min (T_MESH, min (T_CONV, T_DIFF))/NDT;
-  
+
   N = 1 << MAXLEVEL;
   init_grid (N);
   run ();
@@ -101,16 +101,16 @@ event init (t = 0) {
   xpos = (xinit);
   ypos = (yinit);
   particle (cs, fs, xpos, ypos);
-  
+
   fractions_cleanup (cs, fs);
   foreach_face()
     if (uf.x[] && !fs.x[])
       uf.x[] = 0.;
   boundary ((scalar *){cs, fs, uf});
-    
+
   /**
   Viscosity. */
-  
+
   mu = muv;
 }
 

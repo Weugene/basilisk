@@ -55,7 +55,7 @@ int main()
   foreach() l[] = level;
   output_vtu_MPI( (scalar *) {omega, p, l, divutmp}, (vector *) {uf}, subname, 0 );
   fprintf (stderr, "div max before: %.9f\n", divmax(uf));
-    
+
   uf.x.refine = refine_face_solenoidal;
   t = 2;
   foreach() l[] = level;
@@ -63,7 +63,7 @@ int main()
   fprintf (stderr, "div max before: %.9f\n", divmax(uf));
   refine (x*x + y*y + z*z < sq(0.25) && level < 8);
 
-#if 0  
+#if 0
   output_gfs (stdout);
   foreach_face(x)
     fprintf (stderr, "%g %g %g %g 0\n", x, y, z, uf.x[]);

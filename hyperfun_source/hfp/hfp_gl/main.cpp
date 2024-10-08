@@ -7,7 +7,7 @@ Copyright 2018-2019 Dmitry Popov
 This Work or file is part of the greater total Work, software or group of
 files named HyperFun Polygonizer.
 
-HyperFun Polygonizer can be redistributed and/or modified under the terms 
+HyperFun Polygonizer can be redistributed and/or modified under the terms
 of the CGPL, The Common Good Public License as published by and at CGPL.org
 (http://CGPL.org).  It is released under version 1.0 Beta of the License
 until the 1.0 version is released after which either version 1.0 of the
@@ -18,7 +18,7 @@ WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
 CGPL, The Common Good Public License for more information.)
 
-You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+You should have received a copy of the CGPL along with HyperFun Polygonizer;
 if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -26,7 +26,7 @@ if not, see -  http://CGPL.org to get a copy of the License.
 
 
 /////////////////////////////////////
-// INCLUDE 
+// INCLUDE
 /////////////////////////////////////
 #ifdef WIN32
 #include <windows.h>
@@ -101,17 +101,17 @@ init_var (CMainApp *mainapp)
 	height = mainapp->getWindowSizeY();
 
 	// gives to HF_FACE_LINE_FILL a 0 or 1 value
-	// meaning wireframe or solid 
+	// meaning wireframe or solid
 	HF_FACE_LINE_FILL = mainapp->getFaceLineFill();
 
 	// if it has beeen required WireAndSurface from the command line
-	// then we should give a value of 2 
+	// then we should give a value of 2
 	if (mainapp->getWireAndSurface() == 1)
-		HF_FACE_LINE_FILL = 2; 
+		HF_FACE_LINE_FILL = 2;
 
 	HF_NORMAL = mainapp->getNormal();
 	if (HF_NORMAL)
-	{   
+	{
 		HF_SHOW_NORMAL = mainapp->getNormalDisplay ();
 		HF_FLAT_SMOOTH = mainapp->getFlat();
 	}
@@ -126,7 +126,7 @@ init_var (CMainApp *mainapp)
 
 	HF_VERTEX_NORMAL = 1;
 
-	HF_LIGHT_TYPE = mainapp->getLightType (); // 1 diffuse; 2 specular; 
+	HF_LIGHT_TYPE = mainapp->getLightType (); // 1 diffuse; 2 specular;
 	// 3: diffuse & specular.
 
 	mainapp->getFaceColor(HF_FACE_COLOR);
@@ -142,15 +142,15 @@ init_var (CMainApp *mainapp)
 }
 
 
-void 
-idle_func () 
+void
+idle_func ()
 {
 	glutPostRedisplay ();
 }
 
 
-void 
-icon (int State) 
+void
+icon (int State)
 {
 	switch (State)
 	{
@@ -168,7 +168,7 @@ icon (int State)
 }
 
 
-void 
+void
 display_help(void)
 {
 	GL_CALL(glClear (GL_COLOR_BUFFER_BIT), ;);
@@ -177,8 +177,8 @@ display_help(void)
 }
 
 
-void 
-display_render(void) 
+void
+display_render(void)
 {
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -186,7 +186,7 @@ display_render(void)
 	if (globalTrackball)
 		globalTrackball->matrix ();
 
-	if (solidAndWire == 0) 
+	if (solidAndWire == 0)
 	{
 		GL_CALL(glCallList(hfObject), ;);
 	}
@@ -204,9 +204,9 @@ display_render(void)
 		GL_CALL(glColor3f(HF_LINE_COLOR[0],HF_LINE_COLOR[1],HF_LINE_COLOR[2]),;);
 		GL_CALL(glCallList(hfObject),;);
 
-		GL_CALL(glDisable(GL_POLYGON_OFFSET_LINE),;); 
-		GL_CALL(glPolygonMode(GL_FRONT_AND_BACK,GL_FILL),;); 
-		GL_CALL(glEnable(GL_LIGHTING),;); 
+		GL_CALL(glDisable(GL_POLYGON_OFFSET_LINE),;);
+		GL_CALL(glPolygonMode(GL_FRONT_AND_BACK,GL_FILL),;);
+		GL_CALL(glEnable(GL_LIGHTING),;);
 		// end of modification
 	}
 
@@ -236,8 +236,8 @@ display_main(void)
 }
 
 
-void 
-reshape_render(int w, int h) 
+void
+reshape_render(int w, int h)
 {
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -250,8 +250,8 @@ reshape_render(int w, int h)
 	gluPerspective (30, (GLfloat) w / (GLfloat) h, 1.0, 200.0);
 	glMatrixMode (GL_MODELVIEW);
 	glLoadIdentity ();
-	gluLookAt (itsCPos[0], itsCPos[1], itsCPos[2], 
-		itsCLookAt[0], itsCLookAt[1], itsCLookAt[2], 
+	gluLookAt (itsCPos[0], itsCPos[1], itsCPos[2],
+		itsCLookAt[0], itsCLookAt[1], itsCLookAt[2],
 		0, 1, 0);
 }
 
@@ -290,8 +290,8 @@ reshape_main(int w, int h)
 }
 
 
-void 
-freeRessources (void) 
+void
+freeRessources (void)
 {
 	if(edi!=NULL){
 		delete (edi);
@@ -312,7 +312,7 @@ freeRessources (void)
 
 
 
-int main (int argc, char **argv) 
+int main (int argc, char **argv)
 {
 	edi = new CMainApp (argc, argv);
 

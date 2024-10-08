@@ -18,7 +18,7 @@ static void embed_fraction_refine (Point point, scalar cs)
   /**
   If the cell is empty or full, simple injection from the coarse cell
   value is used. */
-  
+
   if (cc <= 0. || cc >= 1.) {
     foreach_child()
       cs[] = cc;
@@ -32,7 +32,7 @@ static void embed_fraction_refine (Point point, scalar cs)
 
     coord n = facet_normal (point, cs, fs);
     double alpha = plane_alpha (cc, n);
-      
+
     foreach_child() {
       static const coord a = {0.,0.,0.}, b = {.5,.5,.5};
       coord nc;
@@ -57,7 +57,7 @@ static void embed_face_fraction_refine_x (Point point, scalar s)
   /**
   If the cell is empty or full, simple injection from the coarse cell
   value is used. */
-  
+
   if (cs[] <= 0. || cs[] >= 1.) {
 
     /**
@@ -83,10 +83,10 @@ static void embed_face_fraction_refine_x (Point point, scalar s)
 
     coord n = facet_normal (point, cs, fs);
     double alpha = plane_alpha (cs[], n);
-      
+
     /**
     We need to reconstruct the face fractions *fs* for the fine cells.
-    
+
     For the fine face fractions contained within the coarse cell,
     we compute the intersections directly using the VOF
     reconstruction. */
@@ -123,7 +123,7 @@ static void embed_face_fraction_refine_x (Point point, scalar s)
 	}
 
 #endif // dimension == 3
-    
+
     /**
     For the fine face fractions coincident with the faces of the
     coarse cell, we obtain the intersection position from the
@@ -139,11 +139,11 @@ static void embed_face_fraction_refine_x (Point point, scalar s)
 		fine(fs.x,2*i,j,k) = fs.x[i];
 	  else {
 #if dimension == 2
-	  
+
 	    /**
 	    In 2D the orientation is obtained by looking at the values
 	    of face fractions in the transverse direction. */
-	  
+
 	    double a = fs.y[0,1] <= 0. || fs.y[2*i-1,1] <= 0. ||
 	      fs.y[] >= 1. || fs.y[2*i-1] >= 1.;
 	    if ((2.*a - 1)*(fs.x[i] - 0.5) > 0.) {
@@ -160,7 +160,7 @@ static void embed_face_fraction_refine_x (Point point, scalar s)
 	    /**
 	    In 3D we reconstruct the face fraction from the projection
 	    of the cell interface reconstruction, as above. */
-	  
+
 	    for (int j = 0; j <= 1; j++)
 	      for (int k = 0; k <= 1; k++) {
 		static const coord a = {0.,0.,0.}, b = {.5,.5,.5};
@@ -176,7 +176,7 @@ static void embed_face_fraction_refine_x (Point point, scalar s)
 
 	/**
 	The face fractions of empty children cells must be zero. */
-	
+
 	for (int j = 0; j <= 1; j++)
 	#if dimension > 2
 	  for (int k = 0; k <= 1; k++)
@@ -193,7 +193,7 @@ static void embed_face_fraction_refine_x (Point point, scalar s)
 We now define restriction and prolongation functions for cell-centered
 fields. The goal is to define second-order operators which do not use
 any values from cells entirely contained within the embedded boundary
-(for which *cs = 0*). 
+(for which *cs = 0*).
 
 When restricting it is unfortunately not always possible to obtain a
 second-order interpolation. This happens when the parent cell does not
@@ -208,7 +208,7 @@ attribute {
 }
 
 static inline void restriction_embed_linear (Point point, scalar s)
-{  
+{
   // 0 children
   if (!cs[]) {
     s[] = 0.;
@@ -235,7 +235,7 @@ static inline void restriction_embed_linear (Point point, scalar s)
   /**
   Otherwise, we use the average of the child cells which are defined
   (there is at least one). */
-  
+
   coord p = {0.,0.,0.};
   foreach_child()
     if (cs[])
@@ -247,7 +247,7 @@ static inline void restriction_embed_linear (Point point, scalar s)
   If the gradient is defined and if the variable is not using
   homogeneous boundary conditions, we improve the interpolation using
   this information. */
-  
+
   if (s.embed_gradient && s.boundary[0] != s.boundary_homogeneous[0]) {
     coord o = {x,y,z}, g;
     s.embed_gradient (point, s, &g);
@@ -281,12 +281,12 @@ static inline void refine_embed_linear (Point point, scalar s)
 	if (coarse(fs.x,i,child.y) && coarse(fs.y,child.x,j)) {
 	  // bilinear interpolation
 	  assert (coarse(cs,child.x,child.y));
-	  s[] = (9.*coarse(s) + 
-		 3.*(coarse(s,child.x) + coarse(s,0,child.y)) + 
+	  s[] = (9.*coarse(s) +
+		 3.*(coarse(s,child.x) + coarse(s,0,child.y)) +
 		 coarse(s,child.x,child.y))/16.;
 	}
 	else
-	  // triangular interpolation	  
+	  // triangular interpolation
 	  s[] = (2.*coarse(s) + coarse(s,child.x) + coarse(s,0,child.y))/4.;
       }
       else if (coarse(cs,child.x,child.y) &&
@@ -313,11 +313,11 @@ static inline void refine_embed_linear (Point point, scalar s)
 		  coarse(cs,0,child.y,child.z) &&
 		  coarse(cs,child.x,child.y,child.z));
 	  // bilinear interpolation
-	  s[] = (27.*coarse(s) + 
+	  s[] = (27.*coarse(s) +
 		 9.*(coarse(s,child.x) + coarse(s,0,child.y) +
-		     coarse(s,0,0,child.z)) + 
+		     coarse(s,0,0,child.z)) +
 		 3.*(coarse(s,child.x,child.y) + coarse(s,child.x,0,child.z) +
-		     coarse(s,0,child.y,child.z)) + 
+		     coarse(s,0,child.y,child.z)) +
 		 coarse(s,child.x,child.y,child.z))/64.;
 	}
 	else

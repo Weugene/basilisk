@@ -7,7 +7,7 @@
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -18,7 +18,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -31,7 +31,7 @@
 #include "hfdc_dcgenerator.h"
 
 //////////////////////////////////////////////////////////////////////
-// 
+//
 //////////////////////////////////////////////////////////////////////
 
 using namespace std;
@@ -437,7 +437,7 @@ void DcGenerator::generateQuadMesh()
 		}
 	}
 
-	//free 
+	//free
 	for(i=0; i<gZ; i++){
 		for(int j=0; j<gY; j++){
 			delete[] value[i][j];
@@ -513,7 +513,7 @@ void DcGenerator::generateQuadMesh()
 	delete[] Q;
 	delete[] A;
 	delete[] v;
-}    
+}
 
 void DcGenerator::createHfMesh()
 {
@@ -536,7 +536,7 @@ void DcGenerator::createHfMesh()
 	//Construct output mesh
 	hf_mesh = new HFPolyMesh(*func);
 	hf_mesh->itsData.guessSize(fN*2, vN, func->getSSize());
-	
+
 	std::vector<int> vecGrid;
 	vecGrid.push_back(gX); vecGrid.push_back(gY); vecGrid.push_back(gZ);
 	hf_mesh->Grid(vecGrid);
@@ -661,7 +661,7 @@ double DcGenerator::nablaFuncF(std::vector<double>& g, double x, double y, doubl
 }
 
 //Find root between (x1, y1, z1) and (x2, y2, z2)
-double DcGenerator::convergeToZero(std::vector<double>& p, double x1, double y1, double z1, double v1, 
+double DcGenerator::convergeToZero(std::vector<double>& p, double x1, double y1, double z1, double v1,
 								   double x2, double y2, double z2, double v2)
 {
 	double x, y, z, v;

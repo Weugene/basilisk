@@ -15,7 +15,7 @@ public:
 	void setBox(double minX, double maxX, double minY, double maxY, double minZ, double maxZ);
 	void setFunc(HFInterpreter* func, double iso);
 	void setParameters(std::vector<double>& params);
-	void sampleValue();  
+	void sampleValue();
 	void generateQuadMesh();
 	void createHfMesh();
 
@@ -37,7 +37,7 @@ private:
 	double evalFunc(double x, double y, double z, double* s);
 	void nablaFuncC(std::vector<double>& g, double x, double y, double z);
 	double nablaFuncF(std::vector<double>& g, double x, double y, double z);
-	double convergeToZero(std::vector<double>& p, double x1, double y1, double z1, double v1, 
+	double convergeToZero(std::vector<double>& p, double x1, double y1, double z1, double v1,
 		double x2, double y2, double z2, double v2);
 
 	template <typename DST_T, typename SRC_T>

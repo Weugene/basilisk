@@ -7,7 +7,7 @@
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -18,7 +18,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -46,7 +46,7 @@ HFPCommandLine::~HFPCommandLine(){
 
 
 HFPCommandLine::HFPCommandLine(int& argc, char** argv){
-  Init(argc, argv);	
+  Init(argc, argv);
 }
 
 
@@ -61,45 +61,45 @@ void HFPCommandLine::Init(int& argc, char** argv){
 
 void HFPCommandLine::defaults(){
   itsObject=DEF_OBJECT;
-  
+
   itsXYZMapping.push_back(DEF_XMAPPING);
   itsXYZMapping.push_back(DEF_YMAPPING);
   itsXYZMapping.push_back(DEF_ZMAPPING);
   itsXConstants.resize(DEF_XCONSTANT_SIZE, DEF_XCONSTANT);
-  
+
   itsAConstants.resize(DEF_ACONSTANTS_SIZE, DEF_ACONSTANTS);
-  
+
   itsTimeReport=DEF_TIMEREPORT;
-  
+
   itsGridSize.resize(DEF_GRIDSIZE_SIZE, DEF_GRIDSIZE);
 
   itsSlicingGridStep.resize(DEF_SGSTEP_SIZE, DEF_SGSTEP);
-  
+
   itsBBMinMax.push_back(DEF_BBMIN);
   itsBBMinMax.push_back(DEF_BBMIN);
   itsBBMinMax.push_back(DEF_BBMIN);
   itsBBMinMax.push_back(DEF_BBMAX);
   itsBBMinMax.push_back(DEF_BBMAX);
   itsBBMinMax.push_back(DEF_BBMAX);
-  
+
   itsLineColor.push_back(DEF_LINECOLORR);
   itsLineColor.push_back(DEF_LINECOLORG);
   itsLineColor.push_back(DEF_LINECOLORB);
-  
+
   itsFaceColor.push_back(DEF_FACECOLORR);
   itsFaceColor.push_back(DEF_FACECOLORG);
   itsFaceColor.push_back(DEF_FACECOLORB);
-  
+
   itsIsoValue=DEF_ISOVALUE;
-  
+
   itsWindowSize.push_back(DEF_WINDOWSIZEX);
   itsWindowSize.push_back(DEF_WINDOWSIZEY);
-  
+
   itsSearch=DEF_SEARCH;
   itsSearchPer=DEF_SEARCHPER;
-  
+
   itsReduce=DEF_REDUCE;
-  
+
 
   itsWRL=DEF_WRL;
   itsWRLName=DEF_WRLNAME;
@@ -123,7 +123,7 @@ void HFPCommandLine::defaults(){
   itsFlat=DEF_FLAT;
   itsDisplayMode = DEF_DISPLAY_MODE;
   itsWireAndSurface = false;
-  
+
   itsShowBoundingBox = DEF_SHOWBOUNDINGBOX;
   itsShow3DAxes = DEF_SHOW3DAXES;
   itsUseDC = DEF_USEDC;
@@ -136,23 +136,23 @@ void HFPCommandLine::defaults(){
 void HFPCommandLine::parse(){
   itsCurrentArg=itsArgs.begin();
   itsValidArgArray=fillSV(VALIDARGS);
-  
+
   //Check for no arguments
-  if(itsCurrentArg==itsArgs.end()) 
+  if(itsCurrentArg==itsArgs.end())
     throw CommandLineError("No arguments specified.\nCheck Usage!\n\n", helpOut());
-  
+
   //Check for help query
-  if(itsArgs[0]=="-h") 
+  if(itsArgs[0]=="-h")
     throw CommandLineError("Usage:\n", helpOut());
-  
+
   //Check for no Model as first argument
-  if(validArg(*itsCurrentArg)) 
+  if(validArg(*itsCurrentArg))
     throw CommandLineError("No Model specified.\nCheck Usage!\n\n", helpOut());
-  
+
   //Set Model
   itsModel=*itsCurrentArg;
   itsCurrentArg++;
-  
+
   //Parse Loop
   for(;itsCurrentArg!=itsArgs.end();){
     ARG argSwitch=getArg(*itsCurrentArg);
@@ -165,7 +165,7 @@ void HFPCommandLine::parse(){
 	itsCurrentArg++;
       }
       break;
-      
+
       /* Mapping */
     case Mapping:
       if(hasArg("-x")){
@@ -182,20 +182,20 @@ void HFPCommandLine::parse(){
 	itsCurrentArg++;
       }
       break;
-      
+
       /* Parameters */
     case Parameters:
       if(hasArg("-a")){
 	itsAConstants=fillDV(*itsCurrentArg);
 	itsCurrentArg++;
-      }				
+      }
       break;
-      
+
       /* TimeReport */
     case TimeReport:
-      itsTimeReport=true;				
+      itsTimeReport=true;
       break;
-      
+
       /* GridSize */
     case GridSize:
       if(hasArg("-g")){
@@ -250,14 +250,14 @@ void HFPCommandLine::parse(){
 			itsCurrentArg++;
 		}
 		break;
-      
+
       /* BoundingBox */
     case BoundingBox:
       if(hasArg("-b")){
 	itsBBMinMax=fillDV(*itsCurrentArg);
 	switch(itsBBMinMax.size()){
 	case 1:
-	  if(itsBBMinMax[0]>0.0) 
+	  if(itsBBMinMax[0]>0.0)
 	    itsBBMinMax[0]=-itsBBMinMax[0];
 	  itsBBMinMax.resize(3, itsBBMinMax[0]);
 	  itsBBMinMax.resize(6, -itsBBMinMax[0]);
@@ -270,7 +270,7 @@ void HFPCommandLine::parse(){
 	  }
 	  itsBBMinMax.resize(6);
 	  itsBBMinMax[3]=itsBBMinMax[4]=itsBBMinMax[5]=itsBBMinMax[1];
-	  itsBBMinMax[1]=itsBBMinMax[2]=itsBBMinMax[0];							
+	  itsBBMinMax[1]=itsBBMinMax[2]=itsBBMinMax[0];
 	  break;
 	case 3:
 	  if(itsBBMinMax[0]>0.0) itsBBMinMax[0]=-itsBBMinMax[0];
@@ -281,7 +281,7 @@ void HFPCommandLine::parse(){
 	  itsBBMinMax[4]=-itsBBMinMax[1];
 	  itsBBMinMax[3]=-itsBBMinMax[0];
 	  break;
-	case 6:							
+	case 6:
 	  break;
 	default:
 	  itsBBMinMax.clear();
@@ -305,13 +305,13 @@ void HFPCommandLine::parse(){
 	  itsBBMinMax.push_back(DEF_BBMAX);
 	  cout << "\"" << *itsCurrentArg << "\" is not a valid argument for <-b>.\n";
 	  cout << "Using default values.\n";
-	}					
+	}
 	itsCurrentArg++;
       }
-      
-      
+
+
       break;
-      
+
       /* LineColor */
     case LineColor:
       if(hasArg("-cl")){
@@ -329,7 +329,7 @@ void HFPCommandLine::parse(){
 	  tmpIV1[2]=clampI(tmpIV1[2], DEF_COLOR_MIN, DEF_COLOR_MAX, "-cl");
 	  itsLineColor[0]=(double)tmpIV1[0]/divLC;
 	  itsLineColor[1]=(double)tmpIV1[1]/divLC;
-	  itsLineColor[2]=(double)tmpIV1[2]/divLC;							
+	  itsLineColor[2]=(double)tmpIV1[2]/divLC;
 	  break;
 	default:
 	  itsLineColor.clear();
@@ -341,9 +341,9 @@ void HFPCommandLine::parse(){
 	  break;
 	}
 	itsCurrentArg++;
-      }				
+      }
       break;
-      
+
       /* FaceColor */
     case FaceColor:
       if(hasArg("-cf")){
@@ -361,7 +361,7 @@ void HFPCommandLine::parse(){
 	  tmpIV2[2]=clampI(tmpIV2[2], DEF_COLOR_MIN, DEF_COLOR_MAX, "-cf");
 	  itsFaceColor[0]=(double)tmpIV2[0]/divFC;
 	  itsFaceColor[1]=(double)tmpIV2[1]/divFC;
-	  itsFaceColor[2]=(double)tmpIV2[2]/divFC;							
+	  itsFaceColor[2]=(double)tmpIV2[2]/divFC;
 	  break;
 	default:
 	  itsFaceColor.clear();
@@ -373,9 +373,9 @@ void HFPCommandLine::parse(){
 	  break;
 	}
 	itsCurrentArg++;
-      }				
+      }
       break;
-      
+
       /* IsoValue */
     case IsoValue:
       if(hasArg("-i")){
@@ -383,12 +383,12 @@ void HFPCommandLine::parse(){
 	itsCurrentArg++;
       }
       break;
-      
+
       /* Help */
     case Help:
-      cout << helpOut();				
+      cout << helpOut();
       break;
-      
+
       /* WindowSize */
     case WindowSize:
       if(hasArg("-w")){
@@ -403,7 +403,7 @@ void HFPCommandLine::parse(){
 	  itsWindowSize[0]=clampI(itsWindowSize[0], DEF_WINDOWSIZEX_MIN, DEF_WINDOWSIZEX_MAX, "-w");
 	  itsWindowSize[1]=clampI(itsWindowSize[1], DEF_WINDOWSIZEY_MIN, DEF_WINDOWSIZEY_MAX, "-w");
 	  break;
-	  
+
 	default:
 	  itsWindowSize.clear();
 	  itsWindowSize.push_back(DEF_WINDOWSIZEX);
@@ -413,9 +413,9 @@ void HFPCommandLine::parse(){
 	  break;
 	}
 	itsCurrentArg++;
-      }				
+      }
       break;
-      
+
       /* Search */
     case Search:
       itsSearch=true;
@@ -426,12 +426,12 @@ void HFPCommandLine::parse(){
 	itsCurrentArg++;
       }
       break;
-      
+
       /* Reduce */
     case Reduce:
       itsReduce=true;
       break;
-      
+
       /* Object */
     case VRMLOut:
       itsWRL=true;
@@ -546,7 +546,7 @@ void HFPCommandLine::parse(){
 			break;
 			default:
 			cout << "\"" << *itsCurrentArg << "\" is not a valid argument for <-d>.\n";
-			cout << "Using default values.\n";						
+			cout << "Using default values.\n";
 			break;
 	  }
 	  break;
@@ -557,13 +557,13 @@ void HFPCommandLine::parse(){
 	  break;
 	}
 	itsCurrentArg++;
-      }				
+      }
       break;
-      
+
     case ShowBoundingBox:
       itsShowBoundingBox = true;
       break;
-      
+
     case Show3DAxes:
       itsShow3DAxes = true;
       break;
@@ -584,13 +584,13 @@ void HFPCommandLine::parse(){
 		}
 		itsCurrentArg++;
 		break;
-		      
+
       /* ADDED FOR ATTRIBUTES */
-      /* Attributes */	
-    case Attributes:		
-      itsAttributes = true;		
+      /* Attributes */
+    case Attributes:
+      itsAttributes = true;
       break;
-      
+
       /* Default */
     default:
       break;
@@ -614,13 +614,13 @@ bool HFPCommandLine::validArg(string s){
   for(vector<string>::iterator it=itsValidArgArray.begin(); it!=itsValidArgArray.end(); it++, i++){
     if(s==*it) return true;
   }
-  return false;	
+  return false;
 }
 
 
 string HFPCommandLine::helpOut(){
   string ret;
-  
+
   ret+=HELP0;
   ret+=HELP1;
   ret+=HELPFileName;
@@ -643,7 +643,7 @@ string HFPCommandLine::helpOut(){
   ret+=HELPcli;
   ret+=HELPct;
   ret+=HELPx;
-  
+
   return ret;
 }
 
@@ -729,7 +729,7 @@ vector<int> HFPCommandLine::fillIV(string s){
   for(int i = 0; i < j; i++){
     ret[i] = fillI(v[i]);
   }
-  return ret;	
+  return ret;
 }
 
 
@@ -740,7 +740,7 @@ vector<double> HFPCommandLine::fillDV(string s){
   for(int i = 0; i < j; i++){
     ret[i] = fillD(v[i]);
   }
-  return ret;	
+  return ret;
 }
 
 
@@ -775,7 +775,7 @@ bool HFPCommandLine::checkMapping(){
     return false;
   if(itsXYZMapping[1]==itsXYZMapping[2])
     return false;
-  return true;	
+  return true;
 }
 
 
@@ -795,11 +795,11 @@ bool HFPCommandLine::hasArg(string key){
   }
   else{
     return true;
-  }				
+  }
 }
 
 
 bool HFPCommandLine::hasArg(){
   if((itsCurrentArg == itsArgs.end()) || (validArg(*itsCurrentArg))) return false;
-  else return true;				
+  else return true;
 }

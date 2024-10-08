@@ -65,7 +65,7 @@ int main (int argc, char * argv[])
   /**
   The initial domain is discretised with $64^3$ grid points. We set
   the origin and domain size. */
-  
+
   init_grid (64);
   origin (0, -1.5, -1.5);
   size (3.);
@@ -73,9 +73,9 @@ int main (int argc, char * argv[])
   /**
   We set the density and viscosity of each phase as well as the
   surface tension coefficient and start the simulation. */
-  
+
   rho1 = 1., rho2 = 1./27.84;
-  mu1 = 2.*radius/Re*rho1, mu2 = 2.*radius/Re*rho2;  
+  mu1 = 2.*radius/Re*rho1, mu2 = 2.*radius/Re*rho2;
   f.sigma = SIGMA;
 
   run();
@@ -93,15 +93,15 @@ event init (t = 0) {
     times longer than the initial jet and twice the radius. */
 
     refine (x < 1.2*length && sq(y) + sq(z) < 2.*sq(radius) && level < maxlevel);
-    
+
     /**
     We initialise the auxilliary volume fraction field for a cylinder of
     constant radius. */
-    
+
     fraction (f0, sq(radius) - sq(y) - sq(z));
     f0.refine = f0.prolongation = fraction_refine;
     restriction ({f0}); // for boundary conditions on levels
-    
+
     /**
     We then use this to define the initial jet and its velocity. */
 
@@ -129,7 +129,7 @@ event logfile (i++) {
   if (i == 0)
     fprintf (ferr,
 	     "t dt mgp.i mgpf.i mgu.i grid->tn perf.t perf.speed\n");
-  fprintf (ferr, "%g %g %d %d %d %ld %g %g\n", 
+  fprintf (ferr, "%g %g %d %d %d %ld %g %g\n",
 	   t, dt, mgp.i, mgpf.i, mgu.i,
 	   grid->tn, perf.t, perf.speed);
 }
@@ -230,7 +230,7 @@ event droplets (t += 0.1)
 	     j, v[j], b[j].x/v[j], b[j].y/v[j]);
   fflush (fout);
 }
-  
+
 /**
 ## Mesh adaptation
 
@@ -280,7 +280,7 @@ the local machine
 
 ~~~bash
 local% qcc -source -grid=octree -D_MPI=1 atomisation.c
-local% scp _atomisation.c occigen.cines.fr: 
+local% scp _atomisation.c occigen.cines.fr:
 ~~~
 
 and on occigen (to run on 64*24 = 1536 cores, with 12 levels of refinement)
@@ -325,7 +325,7 @@ on the local machine
 
 ~~~bash
 local% qcc -source -grid=octree -D_MPI=1 atomisation.c
-local% scp _atomisation.c mesu.dsi.upmc.fr: 
+local% scp _atomisation.c mesu.dsi.upmc.fr:
 ~~~
 
 and on mesu (to run on 672 cores, with 12 levels of refinement)
@@ -338,17 +338,17 @@ mesu% qsub run.sh
 with the following `run.sh` script
 
 ~~~bash
-#!/bin/bash 
+#!/bin/bash
 #PBS -l select=28:ncpus=24:mpiprocs=24
 #PBS -l walltime=12:00:00
 #PBS -N atomisation
-#PBS -j oe  
-# load modules 
+#PBS -j oe
+# load modules
 module load mpt
 mpicc -Wall -O2 -std=c99 _atomisation.c -o atomisation \
      -L$HOME/gl -lglutils -lfb_osmesa -lOSMesa -lGLU -lm
-# change to the directory where program job_script_file is located 
-cd $PBS_O_WORKDIR 
+# change to the directory where program job_script_file is located
+cd $PBS_O_WORKDIR
 # mpirun -np 672 !!!! does not work !!!!
 mpiexec_mpt -n 672 ./atomisation 12 2>> log >> out
 ~~~

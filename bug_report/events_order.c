@@ -43,4 +43,3 @@ event ex (i+=1; i<6)
     fprintf(stderr, "ex! i=%d\n", i);
 }
 event stop(i = 10);
-

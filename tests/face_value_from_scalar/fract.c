@@ -15,11 +15,11 @@ int main()
   FILE * fp = fopen ("cells", "w");
   output_cells (fp);
   fclose (fp);
- 
+
   vertex scalar phi[];
   foreach_vertex()
     phi[] = 0.1 - sq(x) - sq(y);
-  
+
   scalar c[];
 #if TREE
   c.prolongation = fraction_refine;
@@ -40,7 +40,7 @@ int main()
    ~~~gnuplot Reconstructed face fractions
    set terminal @PNG enhanced size 640,640 font ",8"
    set size ratio -1
-   unset key 
+   unset key
    unset border
    unset tics
    plot 'cells' w l, 'facet' w l, 'log' u 1:2:3 with labels

@@ -1,7 +1,7 @@
 /**
 # Differentially heated cavity in 3D
-This example is a simple extension of the 2D case presented here [cav2d.c](). Like before the model equations 
-correspond to the Boussinesq equations. 
+This example is a simple extension of the 2D case presented here [cav2d.c](). Like before the model equations
+correspond to the Boussinesq equations.
 
 */
 
@@ -10,7 +10,7 @@ correspond to the Boussinesq equations.
 
 /**
 ## Dimensionless parameters
-For this example for $Ra=10^3$ and $Pr=0.71$ which leads to a steady-state 
+For this example for $Ra=10^3$ and $Pr=0.71$ which leads to a steady-state
 solution. We use a $16^3$ grid and refine progressively up to $64^3$.
 */
 
@@ -85,8 +85,8 @@ event init (t=0) {
 
 For this problem we extract the temperature field
 $T(x,y)$ and the velocity field $\vec{u}(x,y)$.
-We define the following function to write our fields using binary files in a 
-gnuplot-compatible format as well as in *VTK format - UnstructuredGrid (.vtu)* 
+We define the following function to write our fields using binary files in a
+gnuplot-compatible format as well as in *VTK format - UnstructuredGrid (.vtu)*
 files. Fields are stored at the end of the simulation (t=EndTime) or when
 a steady-state is reached.
 
@@ -116,11 +116,11 @@ event logfile (t += EndTime/4.;t <= EndTime) {
 
 /**
 
-Finally, to identify if the steady-state is reached we follow the maximum 
-change in the horizontal velocity over two consecutive time units. If the 
+Finally, to identify if the steady-state is reached we follow the maximum
+change in the horizontal velocity over two consecutive time units. If the
 change is smaller than $10^{-6}$, we write the results and stop the simulation.
 For this particular case, we are interested on comparing the heat-flux evaluated
-at the left and right walls against reference results from 
+at the left and right walls against reference results from
 [E. Tric et al. / Int. J. Heat Mass Transfer 43 (2000)].
 
 */

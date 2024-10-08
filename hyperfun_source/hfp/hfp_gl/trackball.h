@@ -4,26 +4,26 @@
 #ifndef _TRACKBALL_H_
 #define _TRACKBALL_H_
 
-/* 
+/*
  *  Simple trackball-like motion adapted (ripped off) from projtex.c
  *  (written by David Yu and David Blythe).  See the SIGGRAPH '96
  *  Advanced OpenGL course notes.
  *
  *
  *  Usage:
- *  
+ *
  *  o  call reshape() from the reshape callback
  *  o  call matrix() to get the trackball matrix rotation+tranlation
- *  
+ *
  *  o  call startRotation() to begin trackball rotational movememt
  *  o  call startTranslation() to begin trackball translational movememt
  *  o  call startZoom() to begin trackball zoom movememt (e.g. z transl)
  *  o  call stopMotion() to stop trackball movememt
  *
  *  o  call motion() from the motion callback
- *  o  call animate(GL_TRUE) if you want the trackball to continue 
+ *  o  call animate(GL_TRUE) if you want the trackball to continue
  *     spinning after a stopRotation call
- *  o  call animate(GL_FALSE) if you want the trackball to stop 
+ *  o  call animate(GL_FALSE) if you want the trackball to stop
  *     spinning after a stopRotation call
  *
  *  Typical setup:
@@ -74,7 +74,7 @@
       tb->matrix();
       . . . draw the scene . . .
 
-      drawObject();      
+      drawObject();
 
       glPopMatrix();
     }
@@ -118,7 +118,7 @@
 
  *
  *
- history: 
+ history:
    08/98 : EF creation from glut/progs/demos/bounce/trackball
    09/98 : EF add translations(+"zoom") handling
    10/98 : Xadec bug fix + extension (windowId and reshape handling)
@@ -171,8 +171,8 @@ public:
   void animate(GLboolean animate);
 
   void compose(quaternion *);
-  void worldToLocal(float* src, float* dest) const; 
-  void localToWorld(float* src, float* dest) const; 
+  void worldToLocal(float* src, float* dest) const;
+  void localToWorld(float* src, float* dest) const;
   // gives a quaternion to transform the transl/zoom
   quaternion curquat;
   vect3f transl;
@@ -207,21 +207,21 @@ private:
   virtual void rotMotion(int,int);
   virtual void translMotion(int,int);
   virtual void zoomMotion(int,int);
- 
+
   void (Trackball::*_currMotion)(int,int);
 
   friend void tbAnimate();
 };
 
 
-inline void 
+inline void
 Trackball::compose(quaternion * q)
 {
   xfm = q;
 }
 
 inline void
-Trackball::worldToLocal(float* src, float* dest) const 
+Trackball::worldToLocal(float* src, float* dest) const
 {
   vect3f* d = (vect3f*) dest;
   if (src!=dest) {
@@ -266,7 +266,7 @@ Trackball::inv_matrix()
   m[3][2] = -tmpv[2];
   glMultMatrixf(&m[0][0]);
 }
-  
+
 
 inline void
 Trackball::stepRotation()
@@ -287,7 +287,7 @@ Trackball::projectToSphere(float x, float y)
 }
 
 inline void
-Trackball::buildQuaternion(quaternion& q, 
+Trackball::buildQuaternion(quaternion& q,
 			   float p1x, float p1y,
 			   float p2x, float p2y)
 {
@@ -298,15 +298,15 @@ Trackball::buildQuaternion(quaternion& q,
   // z-coords of P1 and P2 on the deformed sphere
   vect3f p1(p1x, p1y, projectToSphere(p1x, p1y));
   vect3f p2(p2x, p2y, projectToSphere(p2x, p2y));
-  
+
   // Axis of rotation
-  vect3f axe; 
-  cross(p2,p1, axe); 
-  
+  vect3f axe;
+  cross(p2,p1, axe);
+
   // sinus of angle of rotation
   p1 -= p2;
   float sina = length(p1) / (2.0 * tbSz);
-  
+
   // avoid pb with "out-of-control" value
   if (sina>1.0) {
     sina = 1.0;
@@ -344,7 +344,7 @@ Trackball::startMotion(int x, int y)
 
 inline void
 Trackball::startRotation(int x, int y)
-{  
+{
   if (xfm==NULL) {
     _currMotion = &Trackball::rotMotion;
   } else {
@@ -365,7 +365,7 @@ Trackball::startTranslation(int x, int y)
   startMotion(x,y);
 }
 
-inline void 
+inline void
 Trackball::startZoom(int x, int y)
 {
   if (xfm==NULL) {
@@ -390,7 +390,7 @@ Trackball::setSize(const float _trackballSz)
   maxSz = minSz = tbSz2/2.0;
 }
 
-inline void 
+inline void
 Trackball::reInit()
 {
   curquat.nullRot();
@@ -398,4 +398,3 @@ Trackball::reInit()
 }
 
 #endif
-

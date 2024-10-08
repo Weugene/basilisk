@@ -15,4 +15,3 @@ CALC_TIME=72000
 #	CC99='mpicc -std=c99' qcc $(CFLAGS)  -D_MPI=1  3dendotube.c $(CINCL) $(CLIBS)
 #	mpirun -np 5 ./a.out
 #	mvlc movie.mp4
-

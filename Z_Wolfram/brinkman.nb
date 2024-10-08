@@ -21,16 +21,16 @@ Notebook[{
 
 Cell[CellGroupData[{
 Cell[BoxData[
- RowBox[{"Export", "[", 
+ RowBox[{"Export", "[",
   RowBox[{
-   RowBox[{"Plot", "[", 
+   RowBox[{"Plot", "[",
     RowBox[{
-     RowBox[{"1", "+", 
-      RowBox[{"Exp", "[", 
+     RowBox[{"1", "+",
+      RowBox[{"Exp", "[",
        RowBox[{
-        RowBox[{"-", "x"}], "/", "0.01"}], "]"}]}], ",", 
-     RowBox[{"{", 
-      RowBox[{"x", ",", "0", ",", "1"}], "}"}]}], "]"}], ",", " ", 
+        RowBox[{"-", "x"}], "/", "0.01"}], "]"}]}], ",",
+     RowBox[{"{",
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}]}], "]"}], ",", " ",
    "\"\<Brinkman-penalization.eps\>\""}], "]"}]], "Input",
  CellChangeTimes->{{3.7809131172576447`*^9, 3.780913150745179*^9}, {
   3.780913389046706*^9, 3.780913412653048*^9}}],
@@ -38,7 +38,7 @@ Cell[BoxData[
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"Export", "::", "chtype"}], "MessageName"], 
+   RowBox[{"Export", "::", "chtype"}], "MessageName"],
   RowBox[{
   ":", " "}], "\<\"First argument \
 \[NoBreak]\\!\\(\\*GraphicsBox[List[List[List[List[], List[], \
@@ -101,49 +101,49 @@ Cell[BoxData["$Failed"], "Output",
 }, Open  ]],
 
 Cell[BoxData[
- RowBox[{"Plot", "[", 
+ RowBox[{"Plot", "[",
   RowBox[{
-   RowBox[{"{", 
-    RowBox[{"1", "+", 
-     RowBox[{"Exp", "[", 
+   RowBox[{"{",
+    RowBox[{"1", "+",
+     RowBox[{"Exp", "[",
       RowBox[{
-       RowBox[{"-", "x"}], "/", "0.1"}], "]"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", " ", 
-   RowBox[{"PlotRange", "\[Rule]", 
-    RowBox[{"{", 
-     RowBox[{"0", ",", "2.5"}], "}"}]}], ",", 
-   RowBox[{"GridLinesStyle", "\[Rule]", 
-    RowBox[{"Directive", "[", "Dashed", "]"}]}], ",", 
-   RowBox[{"AxesLabel", "\[Rule]", 
-    RowBox[{"{", 
+       RowBox[{"-", "x"}], "/", "0.1"}], "]"}]}], "}"}], ",",
+   RowBox[{"{",
+    RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", " ",
+   RowBox[{"PlotRange", "\[Rule]",
+    RowBox[{"{",
+     RowBox[{"0", ",", "2.5"}], "}"}]}], ",",
+   RowBox[{"GridLinesStyle", "\[Rule]",
+    RowBox[{"Directive", "[", "Dashed", "]"}]}], ",",
+   RowBox[{"AxesLabel", "\[Rule]",
+    RowBox[{"{",
      RowBox[{"\"\<\!\(\*
 StyleBox[\"t\", \"Subsubsection\"]\)\>\"", ",", " ", "\"\<\!\(\*
 StyleBox[\"u\", \"Subsubsection\"]\)\!\(\*
 StyleBox[\"(\", \"Subsubsection\"]\)\!\(\*
 StyleBox[\"t\", \"Subsubsection\"]\)\!\(\*
-StyleBox[\")\", \"Subsubsection\"]\)\>\""}], "}"}]}], ",", 
-   RowBox[{"GridLines", "\[Rule]", 
-    RowBox[{"{", 
+StyleBox[\")\", \"Subsubsection\"]\)\>\""}], "}"}]}], ",",
+   RowBox[{"GridLines", "\[Rule]",
+    RowBox[{"{",
      RowBox[{
-      RowBox[{"{", "}"}], ",", 
-      RowBox[{"{", "1", "}"}]}], "}"}]}], ",", 
-   RowBox[{"LabelStyle", "\[Rule]", 
-    RowBox[{"Directive", "[", 
-     RowBox[{"Black", ",", "Bold", ",", "16"}], "]"}]}], ",", " ", 
-   RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", "}"}], ",",
+      RowBox[{"{", "1", "}"}]}], "}"}]}], ",",
+   RowBox[{"LabelStyle", "\[Rule]",
+    RowBox[{"Directive", "[",
+     RowBox[{"Black", ",", "Bold", ",", "16"}], "]"}]}], ",", " ",
+   RowBox[{"PlotStyle", "\[Rule]",
     RowBox[{"{", "Thick", "}"}]}]}], "]"}]], "Input",
  CellChangeTimes->{{3.780913429844058*^9, 3.780913453599997*^9}, {
-  3.7809142910138617`*^9, 3.780914319004252*^9}, {3.780914573680213*^9, 
+  3.7809142910138617`*^9, 3.780914319004252*^9}, {3.780914573680213*^9,
   3.780914630762308*^9}, {3.780914673432119*^9, 3.7809146841446743`*^9}, {
-  3.780914741045124*^9, 3.780914765475754*^9}, {3.780914939779009*^9, 
+  3.780914741045124*^9, 3.780914765475754*^9}, {3.780914939779009*^9,
   3.780914941910893*^9}, {3.780915282159277*^9, 3.7809152823994713`*^9}, {
-  3.780915380666436*^9, 3.7809154048607473`*^9}, {3.7809155469267*^9, 
+  3.780915380666436*^9, 3.7809154048607473`*^9}, {3.7809155469267*^9,
   3.78091558583779*^9}}],
 
 Cell[BoxData[
- GraphicsBox[{{{}, {}, 
-    {RGBColor[0.368417, 0.506779, 0.709798], Thickness[Large], Opacity[1.], 
+ GraphicsBox[{{{}, {},
+    {RGBColor[0.368417, 0.506779, 0.709798], Thickness[Large], Opacity[1.],
      LineBox[CompressedData["
 1:eJwV1Hc8Vu8bB3DJtyRJg5CspJJVRkg+pZBCVlK/CC1kFZGQZDRIyciKhEiK
 pCVlpIyIjAjhsefznMdjFOF3++u83q/7Pud1359zXZe4rYvJGXY2NrZzi9jY
@@ -299,8 +299,8 @@ aO89e+tpBprNeunyxAk5BvIKswxw720pXfAD0eUT8/MMlK8Yj1vw/wFezEUz
   Axes->{True, True},
   AxesLabel->{
     FormBox[
-    "\"\\!\\(\\*\\nStyleBox[\\\"t\\\", \\\"Subsubsection\\\"]\\)\"", 
-     TraditionalForm], 
+    "\"\\!\\(\\*\\nStyleBox[\\\"t\\\", \\\"Subsubsection\\\"]\\)\"",
+     TraditionalForm],
     FormBox[
     "\"\\!\\(\\*\\nStyleBox[\\\"u\\\", \
 \\\"Subsubsection\\\"]\\)\\!\\(\\*\\nStyleBox[\\\"(\\\", \
@@ -320,7 +320,7 @@ aO89e+tpBprNeunyxAk5BvIKswxw720pXfAD0eUT8/MMlK8Yj1vw/wFezEUz
   LabelStyle->Directive[
     GrayLevel[0], Bold, 16],
   Method->{
-   "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
+   "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" ->
     AbsolutePointSize[6], "ScalingFunctions" -> None},
   PlotRange->{{-0.020833332908163266`, 1.0208333125}, {0., 2.5}},
   PlotRangeClipping->True,
@@ -329,11 +329,11 @@ aO89e+tpBprNeunyxAk5BvIKswxw720pXfAD0eUT8/MMlK8Yj1vw/wFezEUz
  CellChangeTimes->{{3.780915625163372*^9, 3.7809156528249826`*^9}}],
 
 Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.780915350211151*^9, 3.7809153612468977`*^9}, 
+ CellChangeTimes->{{3.780915350211151*^9, 3.7809153612468977`*^9},
    3.78091559794775*^9}],
 
 Cell[BoxData["\[IndentingNewLine]"], "Input",
- CellChangeTimes->{{3.780915021986917*^9, 3.7809150431975737`*^9}, 
+ CellChangeTimes->{{3.780915021986917*^9, 3.7809150431975737`*^9},
    3.780915337358109*^9}],
 
 Cell[BoxData[""], "Input",
@@ -357,7 +357,7 @@ Cell[BoxData[
    FontFamily->"Helvetica",
    FontWeight->Bold,
    FontColor->RGBColor[
-    0.7526207370107576, 0.09987029831387809, 
+    0.7526207370107576, 0.09987029831387809,
      0.0018005645838101779`]]]], "Input",
  CellChangeTimes->{{3.78091560498573*^9, 3.7809156087808523`*^9}}]
 },
@@ -392,4 +392,3 @@ Cell[16672, 341, 675, 20, 374, "Input"]
 }
 ]
 *)
-

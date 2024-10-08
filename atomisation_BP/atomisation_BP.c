@@ -113,7 +113,7 @@ event init (t = 0) {
     times longer than the initial jet and twice the radius.
     We initialise the auxilliary volume fraction field for a cylinder of
     constant radius. */
-    
+
     /**
     We then use this to define the initial jet and its velocity. */
     int it = 0;
@@ -138,7 +138,7 @@ event logfile (i++) {
   if (i == 0)
     fprintf (ferr,
 	     "t dt mgp.i mgpf.i mgu.i grid->tn perf.t perf.speed\n");
-  fprintf (ferr, "%g %g %d %d %d %ld %g %g\n", 
+  fprintf (ferr, "%g %g %d %d %d %ld %g %g\n",
 	   t, dt, mgp.i, mgpf.i, mgu.i,
 	   grid->tn, perf.t, perf.speed);
 }
@@ -211,7 +211,7 @@ event droplets (t += 0.1)
 	     j, v[j], b[j].x/v[j], b[j].y/v[j]);
   fflush (fout);
 }
-  
+
 /**
 ## Mesh adaptation
 

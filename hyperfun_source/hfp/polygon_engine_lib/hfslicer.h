@@ -83,7 +83,7 @@ private:
 
 	//xMin, yMin, zMin, xMax, yMax, zMax
 	vector<double> boundaries;
-	
+
 	vector<double> delta;
 
 	//Y size

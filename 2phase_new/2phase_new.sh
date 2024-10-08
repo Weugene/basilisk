@@ -10,4 +10,3 @@
 
 cd $HOME/basilisk/work/2phase_new/
 mpirun -np 20 ./a.out
-

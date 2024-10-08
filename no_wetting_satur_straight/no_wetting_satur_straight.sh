@@ -10,4 +10,3 @@
 
 cd $HOME/basilisk/work/no_wetting_satur_straight
 mpirun -np 10 ./a.out
-

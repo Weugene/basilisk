@@ -16,7 +16,7 @@ scalar fs[];
 /**
 ## Mesh parameters */
 
-# define LEVEL 9 
+# define LEVEL 9
 # define MAXLEVEL 9
 
 /**
@@ -69,7 +69,7 @@ int main() {
   stokes = false;
   TOLERANCE = 1e-5;
   DT = min (T_MESH, min (T_CONV, T_DIFF))/NDT;
-  
+
   N = 1 << MAXLEVEL;
   init_grid (N);
   run ();
@@ -105,16 +105,16 @@ event init (t = 0) {
   xpos = (xinit);
   ypos = (yinit);
   particle (fs, fs_face, xpos, ypos);
-  
+
 //  fractions_cleanup (fs, fs_face);
 //  foreach_face()
 //    if (uf.x[] && fs_face.x[])
 //      uf.x[] = 0.;
 //  boundary ((scalar *){fs, fs_face, uf});
-    
+
   /**
   Viscosity. */
-  
+
   mu = muv;
   event("vtk_file");
 }
@@ -237,4 +237,3 @@ event stop_run (t = 20) {
 ![Velocity *u.y*](test-embed-fixed-cylinder-2D-Re-100/uy.mp4)
 ![Pressure *p*](test-embed-fixed-cylinder-2D-Re-100/p.mp4)
 */
-

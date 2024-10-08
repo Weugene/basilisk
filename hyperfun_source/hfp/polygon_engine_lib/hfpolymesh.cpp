@@ -1,23 +1,23 @@
 /*==============================================================================
 
  Copyright 1999 Eric Fausett
- Copyright 2003-2004 Pierre-Alain Fayolle, Benjamin Schmitt 
+ Copyright 2003-2004 Pierre-Alain Fayolle, Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
  The implemented polygonization algorithm is described in
 
- Pasko A.A., Pilyugin V.V., Pokrovskiy V.N. 
- "Geometric modeling in the analysis of trivariate functions", 
- Communications of Joint Insititute of Nuclear Research, P10-86-310, 
+ Pasko A.A., Pilyugin V.V., Pokrovskiy V.N.
+ "Geometric modeling in the analysis of trivariate functions",
+ Communications of Joint Insititute of Nuclear Research, P10-86-310,
  Dubna, Russia, 1986 (in Russian).
 
- Pasko A.A., Pilyugin V.V., Pokrovskiy V.N. 
+ Pasko A.A., Pilyugin V.V., Pokrovskiy V.N.
  "Geometric modeling in the analysis of trivariate functions",
- Computers and Graphics, vol.12, Nos.3/4, 1988, pp.457-465. 
+ Computers and Graphics, vol.12, Nos.3/4, 1988, pp.457-465.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -28,7 +28,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -77,7 +77,7 @@ HFPolyMesh::HFPolyMesh(HFInterpreter& interp):itsInterpreter(interp){
 
 	if(itsInterpreter.getXSize()<3) throw HFPError("Dimension is less than 3");
 
-	
+
 
 	//Reset it's XYZ Mapping to defaults
 
@@ -87,7 +87,7 @@ HFPolyMesh::HFPolyMesh(HFInterpreter& interp):itsInterpreter(interp){
 
 		itsZMap=2;
 
-		
+
 
 	//Reset Bounding Box to defaults
 
@@ -99,7 +99,7 @@ HFPolyMesh::HFPolyMesh(HFInterpreter& interp):itsInterpreter(interp){
 
 		}
 
-		
+
 
 	//Reset its Grid Sizes to defaults
 
@@ -113,11 +113,11 @@ HFPolyMesh::HFPolyMesh(HFInterpreter& interp):itsInterpreter(interp){
 
 	itsSendingX.resize(itsInterpreter.getXSize(), 0.0);
 
-	
+
 
 	//Parameters are defaulted already
 
-	
+
 
 	//Set it's epsilon value
 
@@ -132,8 +132,8 @@ HFPolyMesh::HFPolyMesh(HFInterpreter& interp):itsInterpreter(interp){
 	itsSSize = itsInterpreter.getSSize();
 
 	itsSAttributesM =new double[itsSSize];
-	
-	
+
+
 
 	itsRefinement = 0;
 
@@ -151,7 +151,7 @@ int HFPolyMesh::VertexNum(){
 
 
 
-int HFPolyMesh::TriangleNum(){ 
+int HFPolyMesh::TriangleNum(){
 
 	return itsData.getNumT();
 
@@ -239,7 +239,7 @@ bool HFPolyMesh::Reduce(){
 
 
 
-void HFPolyMesh::IsoValue(double isov){ 
+void HFPolyMesh::IsoValue(double isov){
 
 	itsS0=isov;
 
@@ -247,7 +247,7 @@ void HFPolyMesh::IsoValue(double isov){
 
 
 
-double HFPolyMesh::IsoValue(){ 
+double HFPolyMesh::IsoValue(){
 
 	return itsS0;
 
@@ -263,7 +263,7 @@ void HFPolyMesh::Refine(bool r){
 
 }
 
-	
+
 
 bool HFPolyMesh::Refine(){
 
@@ -275,7 +275,7 @@ bool HFPolyMesh::Refine(){
 
 
 
-void HFPolyMesh::MinMax(vector<double> mm){ 
+void HFPolyMesh::MinMax(vector<double> mm){
 
 	short i;
 
@@ -295,7 +295,7 @@ void HFPolyMesh::MinMax(vector<double> mm){
 
 	else{
 
-		for(i=0; i<3; i++) 
+		for(i=0; i<3; i++)
 
 			itsBBMin[i]=mm[i];
 
@@ -327,7 +327,7 @@ vector<double> HFPolyMesh::MinMax(){
 
 	short i;
 
-	for(i=0; i<3; i++) 
+	for(i=0; i<3; i++)
 
 		mmret[i]=itsBBMin[i];
 
@@ -368,7 +368,7 @@ void HFPolyMesh::Grid(vector<int> g){
 
 	else{
 
-		for(i=0; i<3; i++) 
+		for(i=0; i<3; i++)
 
 			itsGridSize[i]=g[i];
 
@@ -412,7 +412,7 @@ void HFPolyMesh::DimMap(vector<int> dm){
 
 	itsZMap=dm[2];
 
-	if((itsXMap>=itsInterpreter.getXSize()) || (itsYMap>=itsInterpreter.getXSize()) 
+	if((itsXMap>=itsInterpreter.getXSize()) || (itsYMap>=itsInterpreter.getXSize())
 
 		|| (itsZMap>=itsInterpreter.getXSize())){//Reset to defaults
 
@@ -485,10 +485,3 @@ vector<double> HFPolyMesh::Parameters(){
 	return itsInterpreter.parameters();
 
 	}
-
-
-
-
-
-
-

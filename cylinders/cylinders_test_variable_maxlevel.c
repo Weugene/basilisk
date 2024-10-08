@@ -242,7 +242,7 @@ refinement of the narrow gap between cylinders.
 
 ~~~bib
 @article{sangani1982,
-  title={Slow flow past periodic arrays of cylinders 
+  title={Slow flow past periodic arrays of cylinders
   with application to heat transfer},
   author={Sangani, AS and Acrivos, A},
   journal={International Journal of Multiphase Flow},

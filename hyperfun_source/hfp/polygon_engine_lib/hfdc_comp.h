@@ -56,7 +56,7 @@ static int iminarg1,iminarg2;
 
 #define SIGN(a,b) ((b) >= 0.0 ? fabs(a) : -fabs(a))
 
-class COMP  
+class COMP
 {
 public:
 	static void svbksb(float **u, float w[], float **v, int m, int n, float b[], float x[]);
@@ -96,7 +96,7 @@ public:
 		v[1] = p2[1]-(double)p1[1];
 		v[2] = p2[2]-(double)p1[2];
 	}
-	
+
 	static inline void TIMES(float kv[3], float k, float v[3]){
 		kv[0] = k*v[0];
 		kv[1] = k*v[1];
@@ -262,7 +262,7 @@ public:
 			a = -a;
 		double b = acos(v[2]/COMP::LENGTH(v));
 
-		double Rz[3][3], Rx[3][3], Rt[3][3]; 
+		double Rz[3][3], Rx[3][3], Rt[3][3];
 		Rz[0][0] = Rz[1][1] = (float)cos(a);
 		Rz[0][1] = sin(a);
 		Rz[1][0] = -Rz[0][1];
@@ -312,7 +312,7 @@ public:
 			a = -a;
 		double b = acos(v[2]/COMP::LENGTH(v));
 
-		double Rz[3][3], Rx[3][3], Rt[3][3]; 
+		double Rz[3][3], Rx[3][3], Rt[3][3];
 		Rz[0][0] = Rz[1][1] = (float)cos(a);
 		Rz[0][1] = sin(a);
 		Rz[1][0] = -Rz[0][1];
@@ -346,7 +346,7 @@ public:
 		MAT_VEC(x, tmp, v);
 	}
 
-	
+
 	static inline void MATRIX(double A[10], double n[3], double d){
 		A[0] = n[0]*n[0];
 		A[1] = n[0]*n[1];
@@ -426,7 +426,7 @@ public:
 		return v[0]*(A[0]*v[0] + A[1]*v[1] + A[2]*v[2]) +
 			   v[1]*(A[1]*v[0] + A[3]*v[1] + A[4]*v[2]) +
 			   v[2]*(A[2]*v[0] + A[4]*v[1] + A[5]*v[2]) +
-			   2.0*(A[6]*v[0] + A[7]*v[1] + A[8]*v[2]) + 
+			   2.0*(A[6]*v[0] + A[7]*v[1] + A[8]*v[2]) +
 			   A[9];
 	}
 
@@ -434,7 +434,7 @@ public:
 		return v[0]*(A[0]*v[0] + A[1]*v[1] + A[2]*v[2]) +
 			   v[1]*(A[1]*v[0] + A[3]*v[1] + A[4]*v[2]) +
 			   v[2]*(A[2]*v[0] + A[4]*v[1] + A[5]*v[2]) +
-			   2.0*(A[6]*v[0] + A[7]*v[1] + A[8]*v[2]) + 
+			   2.0*(A[6]*v[0] + A[7]*v[1] + A[8]*v[2]) +
 			   A[9];
 	}
 
@@ -453,7 +453,7 @@ public:
 	}
 
 	static inline double DET(double A[10]){
-		return A[0]*A[3]*A[5] + 2.0*A[1]*A[4]*A[2] 
+		return A[0]*A[3]*A[5] + 2.0*A[1]*A[4]*A[2]
 			-A[2]*A[2]*A[3] - A[1]*A[1]*A[5] - A[4]*A[4]*A[0];
 	}
 
@@ -487,8 +487,8 @@ public:
 	}
 private:
 	static float pythag(float a, float b);
-	
-	
+
+
 static void nrerror(char error_text[])
 /* Numerical Recipes standard error handler */
 {

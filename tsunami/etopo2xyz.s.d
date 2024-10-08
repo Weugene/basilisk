@@ -12,4 +12,3 @@ etopo2xyz.s:	\
 	/home/weugene/basilisk/src/grid/events.h \
 	/home/weugene/basilisk/src/grid/fpe.h \
 	/home/weugene/basilisk/src/common.h \
-

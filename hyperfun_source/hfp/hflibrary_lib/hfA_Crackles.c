@@ -1,12 +1,12 @@
 /*==============================================================================
 
- Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa 
+ Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa
  Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,14 +17,14 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
 
 
-/* 
-HyperFun Attributes Library 
+/*
+HyperFun Attributes Library
 
 Description: 2 steps in this function:
 		1- Caculate a psuedo random value
@@ -42,14 +42,14 @@ Definition: Attibutes: {a1,a2,a3}
 Call: hfColorPattern(x,type,output,freq,input_attr,input_map);
 
 Parameters:
- x - point coordinates array 
+ x - point coordinates array
  type - type of pattern.
  output - output array of attributes
  freq - frequency
  input_attr : input array of set of attributes.
  input_map : input array for the mapping
 
-Test file: 
+Test file:
 
 C-parameters:
 
@@ -61,7 +61,7 @@ C-parameters:
 
 Code by: Schmitt
 Last revised: 24.04.2001
-*/ 
+*/
 
 #include "pattern.h"
 #include "general.h"
@@ -95,20 +95,20 @@ double hfA_Crackles(double* f_a, String_Array_T* str_param)
 	int j;
 
 array_index = (int)f_a[0];
-HF_Get_Runtime_Array(array_index, &prob, &n_prob); 
+HF_Get_Runtime_Array(array_index, &prob, &n_prob);
 
 
 
 array_index = (int)f_a[1];
-HF_Get_Runtime_Array(array_index, &color, &dim); 
+HF_Get_Runtime_Array(array_index, &color, &dim);
 
 	   freq = (double)f_a[2];
 
 array_index = (int)f_a[3];
-HF_Get_Runtime_Array(array_index, &rgb, &dim1); 
+HF_Get_Runtime_Array(array_index, &rgb, &dim1);
 
 array_index = (int)f_a[4];
-HF_Get_Runtime_Array(array_index, &x, &dim); 
+HF_Get_Runtime_Array(array_index, &x, &dim);
 
 xt = x[0];
 yt = x[1];
@@ -120,14 +120,14 @@ phase = (sqrt(xt*xt)+sqrt(yt*yt)+sqrt(zt*zt))/3.0;
 noise = Crackles(xt,yt,zt,phase,freq);
 
 
-color[n_prob] = 1.0+0.1;		
+color[n_prob] = 1.0+0.1;
 for(i=0;i<n_prob-1;i++){
 
 	if((noise>=prob[i])&&(noise<prob[i+1]))
 		for(j=0;j<dim1;j++) rgb[j] = color[dim1*i+j];
-		
-		
-	
+
+
+
 }
 
 
@@ -135,6 +135,3 @@ for(i=0;i<n_prob-1;i++){
 return 1.0;
 
 }
-
-
-

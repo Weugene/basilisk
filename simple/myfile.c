@@ -37,4 +37,3 @@ event event1 (t = 4; t <= 12.23; t += 0.1)
 //event stop (t = 10) {
 //    return 1;
 //}
-

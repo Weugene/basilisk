@@ -107,7 +107,7 @@ static void sweep_x (scalar c, scalar cc)
     are far enough from the interface (as controlled by *cmin*),
     otherwise a two-point scheme biased away from the interface is
     used. */
-    
+
     foreach() {
       scalar t, gf;
       for (t,gf in tracers,gfl) {
@@ -134,7 +134,7 @@ static void sweep_x (scalar c, scalar cc)
     }
     boundary (gfl);
   }
-  
+
   /**
   We reconstruct the interface normal $\mathbf{n}$ and the intercept
   $\alpha$ for each cell. Then we go through each (vertical) face of
@@ -163,9 +163,9 @@ static void sweep_x (scalar c, scalar cc)
     volume fraction flux through the face of the cell is given by the dark
     area in the figure below. The corresponding volume fraction can be
     computed using the `rectangle_fraction()` function.
-    
+
     ![Volume fraction flux](figures/flux.svg)
-    
+
     When the upwind cell is entirely full or empty we can avoid this
     computation. */
 
@@ -173,7 +173,7 @@ static void sweep_x (scalar c, scalar cc)
       rectangle_fraction ((coord){-s*n.x[i], n.y[i], n.z[i]}, alpha[i],
 			  (coord){-0.5, -0.5, -0.5},
 			  (coord){s*un - 0.5, 0.5, 0.5});
-    
+
     /**
     Once we have the upwind volume fraction *cf*, the volume fraction
     flux through the face is simply: */
@@ -184,7 +184,7 @@ static void sweep_x (scalar c, scalar cc)
     If we are transporting tracers, we compute their flux using the
     upwind volume fraction *cf* and a tracer value upwinded using the
     Bell--Collela--Glaz scheme and the gradient computed above. */
-    
+
     scalar t, gf, tflux;
     for (t,gf,tflux in tracers,gfl,tfluxl) {
       double cf1 = cf, ci = c[i];
@@ -199,7 +199,7 @@ static void sweep_x (scalar c, scalar cc)
     }
   }
   delete (gfl); free (gfl);
-  
+
   /**
   On tree grids, we need to make sure that the fluxes match at
   fine/coarse cell boundaries i.e. we need to *restrict* the fluxes from
@@ -244,8 +244,8 @@ static void sweep_x (scalar c, scalar cc)
   We warn the user if the CFL condition has been violated. */
 
   if (cfl > 0.5 + 1e-6)
-    fprintf (ferr, 
-	     "WARNING: CFL must be <= 0.5 for VOF (cfl - 0.5 = %g)\n", 
+    fprintf (ferr,
+	     "WARNING: CFL must be <= 0.5 for VOF (cfl - 0.5 = %g)\n",
 	     cfl - 0.5), fflush (ferr);
 
   /**
@@ -257,7 +257,7 @@ static void sweep_x (scalar c, scalar cc)
   $$
   The first term is computed using the fluxes. The second term -- which is
   non-zero for the one-dimensional velocity field -- is approximated using
-  a centered volume fraction field `cc` which will be defined below. 
+  a centered volume fraction field `cc` which will be defined below.
 
   For tracers, the one-dimensional update is simply
   $$

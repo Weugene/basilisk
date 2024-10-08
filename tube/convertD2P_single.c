@@ -3,17 +3,20 @@
 #include "run.h"
 #include "timestep.h"
 #include "poisson.h"
-//#include "utils.h"
+#include "utils.h"
 #include "lambda2.h"
+#define DEBUG_MINMAXVALUES
 #include "utils-weugene.h"
 #include "output_htg.h"
 #include <ctype.h>
+#include <dirent.h> // Directory entry
 scalar fs[], f[], p[];
 vector u[];
 scalar l[], omega[], l2[];
 double rho1=1, rho2=1, mu1=1, mu2=1;
-double eta_s=1e-5; 
+double eta_s=1e-5;
 int NITERMIN, NITERMAX;
+int iter_fp = 0;
 bool relative_residual_poisson=false, relative_residual_viscous=false;
 attribute {
   double sigma;
@@ -75,13 +78,16 @@ double Re; //Reynolds
 double G;
 double Umean;
 double lDomain=30, x_init = 2;
-int maxlevel = 10;
+int maxlevel_init = 0;
+int maxlevel = 8;
 int minlevel = 5;
 int LEVEL = 6;
 int adapt_method = 1; // 0 - traditional, 1 - using limitation, 2 - using array for maxlevel
 int snapshot_i = 100;
 double fseps = 1e-3, ueps = 1e-2;
 double TOLERANCE_P = 1e-5, TOLERANCE_V = 1e-5;
+double timesteps[1000];
+int timesteps_count = 0;
 
 //get time from dump name (dump-1.1234 => 1.1234)
 double get_double(const char *str)
@@ -91,8 +97,43 @@ double get_double(const char *str)
     while (*str && !(isdigit(*str) || ((*str == '-' || *str == '+') && isdigit(*(str + 1)))))
         str++;
     /* The parse to a double */
-    return strtod(str, NULL);
+    return fabs(strtod(str, NULL));
 }
+
+// Comparison function for qsort
+int compare(const void *a, const void *b) {
+    double diff = *(double*)a - *(double*)b;
+    return (diff < 0) ? -1 : (diff > 0);
+}
+
+void get_timesteps(){
+    DIR *d; // Directory stream
+    struct dirent *dir; // Pointer for directory entry
+
+    // Open the current directory
+    d = opendir(".");
+    if (d) {
+        while ((dir = readdir(d)) != NULL) { // Read each directory entry
+            // Check if the file name starts with "dump-"
+            if (strncmp(dir->d_name, "dump-", 5) == 0) {
+                double time = get_double(dir->d_name);
+                timesteps[timesteps_count++] = time;
+            }
+        }
+        closedir(d); // Close the directory
+        // Sort the times array
+        qsort(timesteps, timesteps_count, sizeof(double), compare);
+
+        // Print the sorted times
+        for (int i = 0; i < timesteps_count; i++) {
+            printf("sorted time=%f\n", timesteps[i]);
+        }
+    } else {
+        perror("opendir() failed");
+    }
+
+}
+
 
 int main (int argc, char * argv[]) {
     // set which dump files will be converted: each $(i_take)th
@@ -127,7 +168,7 @@ int main (int argc, char * argv[]) {
         diam_tube = 494e-6;
         dt_vtk = 1e-2;
     }
-    fprintf(ferr, "dump_name=%s shiftm=%g shiftp=%g iter_fp=%d\n", dump_name, shiftm, shiftp, iter_fp);
+    fprintf(ferr, "dump_name=%s shiftm=%g shiftp=%g iter_fp=%d myt=%g\n", dump_name, shiftm, shiftp, iter_fp, myt);
     Ca = cases[bubcase].Ca; //Ca = Ud*Mu1/sigma
     Vd = cases[bubcase].Vd; // m^3
     Umean = cases[bubcase].Uc; // m/s
@@ -189,12 +230,41 @@ int main (int argc, char * argv[]) {
 
 event init (t = 0) {
     bool success = restore (file = dump_name);
-    fprintf(ferr, "file has been read: L0=%g\n", L0);
-
+    foreach(reduction(max:maxlevel_init)){
+        maxlevel_init = max(maxlevel_init, level);
+    }
+    maxlevel = (maxlevel == 0) ? maxlevel_init : maxlevel;
+    count_cells(myt, i);
+    fprintf(ferr, "file has been read: L0=%g maxlevel_init=%d\n", L0, maxlevel_init);
     if (!success) {
         fprintf(ferr, "can't open the file %s. Missing this file, go to the next file\n", dump_name);
         return 0;
     }
+    get_timesteps();
+}
+
+#define ADAPT_SCALARS {fs, f, p, l, omega, l2, u}
+#define ADAPT_EPS_SCALARS {1e-4, 1e-4, 1e-2, 1e-2, 1e-2, 1e-2, 1e-2, 1e-2, 1e-2}
+event adapt (i++){
+    if (maxlevel_init != maxlevel) {
+        double eps_arr[] = ADAPT_EPS_SCALARS;
+        MinMaxValues (ADAPT_SCALARS, eps_arr);
+        int it = 1;
+        astats s;
+        do {
+            fprintf(ferr, "iteration=%d\n", it);
+            s = adapt_wavelet (
+                    slist=ADAPT_SCALARS,
+                    max=(double[]) ADAPT_EPS_SCALARS,
+                    maxlevel=maxlevel,
+                    minlevel=1
+            );
+            fprintf(ferr, "Adaptation: nf=%d nc=%d\n", s.nf, s.nc);
+            if (s.nf == 0  || it > 2) break;
+            it++;
+        } while(1);
+    }
+    fprintf(ferr, "adapt with maxlevel=%d maxdepth=%d\n", maxlevel, grid->maxdepth);
 }
 
 void calculate_aux_fields(vector u, scalar l, scalar omega, scalar l2){
@@ -203,44 +273,50 @@ void calculate_aux_fields(vector u, scalar l, scalar omega, scalar l2){
     lambda2 (u, l2);
 }
 
-event vtk_file (i++)
-{
+event vtk_file (i++){
     calculate_aux_fields(u, l, omega, l2);
     vector gradp[];
 
-    double xcg = 0, volume = 0, volumeg = 0 ;
+    double xcg = 0, Ek = 0, Ekl = 0, Ekg = 0, volume = 0, volumeg = 0;
     length_min = 1e+30, length_max = -1e+30, length = 0;
-    foreach( reduction(+:xcg) reduction(+:volume) reduction(+:volumeg)) {
+    foreach(
+        reduction(+:xcg) reduction(+:volume) reduction(+:volumeg)
+        reduction(+:Ek) reduction(+:Ekl) reduction(+:Ekg)
+    ) {
         if (fs[]<1){
-        double dvtmp = (1.0 - f[])*(1.0 - fs[])*dv(); // gas volume
-        volumeg += dvtmp;//gas liquid
-        volume += (1.0 - fs[])*dv();//channel volume
-        xcg   += x*dvtmp;// Along x
+            double dvv = (1.0 - fs[])*dv();
+            double dvg = (1.0 - f[])*dvv; // gas volume
+            volumeg += dvg;//gas liquid
+            volume += dvv;//channel volume
+            xcg   += x*dvg;// Along x
+            double magu = norm(u); // speed
+            Ek += 0.5*rho(f[])*dvv*sq(magu);
+            Ekl += 0.5*rho1*f[]*dvv*sq(magu);
+            Ekg += 0.5*rho2*(1.0 - f[])*dvv*sq(magu);
         }
         foreach_dimension() gradp.x[] = (p[] - p[-1])/Delta;
     }
     scalar sf[];
     filter_scalar_N_times(f, sf, 10);
+    double volumel = volume - volumeg;
     xcg /= volumeg;
+    Ek /= volume;
+    Ekl /= volumel;
+    Ekg /= volumeg;
     length_min = xcg - shiftm;
     length_max = xcg + shiftp;
     length = length_max - length_min;
 
-    fprintf (ferr, "x= %g length_min= %g length_max= %g length= %g it_fp= %d\n"
-                    "volume= %g volumeg= %g\n",
-                    xcg, length_min, length_max, length, iter_fp,
-                    volume, volumeg);
-//    unrefine ( (x < length_min || x > length_max) && level >= 1);
-//    unrefine ( (sq(y) + sq(z) > sq(0.55)) && level >= 1);
+    fprintf (
+        ferr, "x= %g length_min= %g length_max= %g length= %g it_fp= %d volume= %g volumeg= %g Ek= %g Ekl= %g Ekg= %g\n",
+        xcg, length_min, length_max, length, iter_fp, volume, volumeg, Ek, Ekl, Ekg
+    );
 
-//    char subname[80]; sprintf(subname, "dump2pvd_compressed");
-//    output_vtu_MPI( subname, myt, (scalar *) {fs, f, l, l2, omega, p}, (vector *) {u, gradp});
-    char path[]="res"; // no slash at the end!!
+    char path[] = "res"; // no slash at the end!!
     char prefix[] = "dump2pvd_compressed";
-    output_htg(path, prefix, (iter_fp) ? t + dt : 0, (scalar *) {fs, f, l, l2, omega, p, sf},
-               (vector *){u, gradp});
-    fprintf(ferr, "ended adapt\n");
-    count_cells(t, i);
+    output_htg((scalar *){fs, f, l, l2, omega, p, sf}, (vector *){u, gradp}, path, prefix, iter_fp, myt);
+    fprintf(ferr, "ended output_htg\n");
+    count_cells(myt, i);
     return 0;
 }
 

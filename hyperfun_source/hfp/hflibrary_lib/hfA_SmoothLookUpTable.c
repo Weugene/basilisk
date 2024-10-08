@@ -1,12 +1,12 @@
 /*==============================================================================
 
- Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa 
+ Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa
  Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,17 +17,17 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
 
 
-/* 
-HyperFun Attributes Library 
+/*
+HyperFun Attributes Library
 
 Description: Use a value as an entry of a table to apply a set of attributes,with a linar interpolation between the 2 sets
-	
+
 
 Definition: Attibutes: {a1,a2,a3}
 			Intervals: [0,i,j,1]
@@ -44,7 +44,7 @@ Parameters:
  input_attr : input array of set of attributes.
  input_map : input array for the mapping
 
-Test file: 
+Test file:
 
 C-parameters:
 
@@ -55,7 +55,7 @@ C-parameters:
 
 Code by: Schmitt
 Last revised: 24.04.2001
-*/ 
+*/
 
 #include "pattern.h"
 #include "general.h"
@@ -86,13 +86,13 @@ double hfA_SmoothLookUpTable(double* f_a, String_Array_T* str_param)
 	int filled=0;
 
 array_index = (int)f_a[0];
-HF_Get_Runtime_Array(array_index, &entry, &n_entries); 
+HF_Get_Runtime_Array(array_index, &entry, &n_entries);
 
 array_index = (int)f_a[1];
-HF_Get_Runtime_Array(array_index, &colormap, &dim); 
+HF_Get_Runtime_Array(array_index, &colormap, &dim);
 
 array_index = (int)f_a[2];
-HF_Get_Runtime_Array(array_index, &output, &dim1); 
+HF_Get_Runtime_Array(array_index, &output, &dim1);
 
 t = (double)f_a[3];
 if(t<entry[0])
@@ -103,7 +103,7 @@ else
 			if((t>=entry[i])&&(t<entry[i+1])){
 				filled=1;
 				l=(t-entry[i])/(entry[i+1]-entry[i]);
-				for(j=0;j<dim1;j++) 
+				for(j=0;j<dim1;j++)
 					output[j] = (1-l)*colormap[dim1*i+j]+(l)*colormap[dim1*(i+1)+j];
 			break;
 			}
@@ -117,6 +117,3 @@ if(filled == 0)
 return 1.0;
 
 }
-
-
-

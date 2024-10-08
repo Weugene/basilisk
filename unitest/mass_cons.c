@@ -184,7 +184,7 @@ event properties(i++){
 //	dump (name);
 //}
 
-static double volume0_gas = 0; 
+static double volume0_gas = 0;
 static int log_i = 0;
 event logfile (i += 1)
 //event logfile (t += 0.01)

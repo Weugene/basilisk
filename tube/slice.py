@@ -1,17 +1,16 @@
 # state file generated using paraview version 5.8.0
-
 # ----------------------------------------------------------------
 # setup views used in the visualization
 # ----------------------------------------------------------------
-
 # trace generated using paraview version 5.8.0
 #
-# To ensure correct image size when batch processing, please search 
+# To ensure correct image size when batch processing, please search
 # for and uncomment the line `# renderView*.ViewSize = [*,*]`
+# import the simple module from the paraview
+from __future__ import annotations
 
-#### import the simple module from the paraview
 from paraview.simple import *
-#### disable automatic camera reset on 'Show'
+# disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
 # get the material library
@@ -79,7 +78,8 @@ cylinder1.Height = 30.0
 cylinder1.Capping = 0
 
 # create a new 'PVD Reader'
-dump2pvd_compressedpvd = PVDReader(FileName='/home-local/e.sharaborin/res_wbasilisk/tube/res22_adaptffsu/dump2pvd_compressed.pvd')
+dump2pvd_compressedpvd = PVDReader(
+    FileName='/home-local/e.sharaborin/res_wbasilisk/tube/res22_adaptffsu/dump2pvd_compressed.pvd')
 dump2pvd_compressedpvd.CellArrays = ['p', 'fs', 'f', 'l', 'l2', 'omega', 'u.x']
 
 # create a new 'Contour'
@@ -114,7 +114,8 @@ clip1.ClipType.Position = [7.0, -0.52, -0.52]
 clip1.ClipType.Length = [8.0, 1.04, 1.04]
 
 # init the 'Plane' selected for 'HyperTreeGridClipper'
-clip1.HyperTreeGridClipper.Origin = [12.383253908307324, 0.0003794258290628072, 6.398686387718011e-05]
+clip1.HyperTreeGridClipper.Origin = [12.383253908307324,
+                                     0.0003794258290628072, 6.398686387718011e-05]
 
 # create a new 'Cell Data to Point Data'
 cellDatatoPointData1 = CellDatatoPointData(Input=clip1)
@@ -147,7 +148,7 @@ slice4.HyperTreeGridSlicer.Origin = [11.0, 0.0, 0.0]
 
 # create a new 'Stream Tracer'
 streamTracer1 = StreamTracer(Input=resampleToImage1,
-    SeedType='High Resolution Line Source')
+                             SeedType='High Resolution Line Source')
 streamTracer1.Vectors = ['POINTS', 'u.x']
 streamTracer1.SurfaceStreamlines = 1
 streamTracer1.InitialStepLength = 0.05
@@ -244,7 +245,8 @@ contour2Display = Show(contour2, renderView1, 'GeometryRepresentation')
 
 # get color transfer function/color map for 'ux'
 uxLUT = GetColorTransferFunction('ux')
-uxLUT.RGBPoints = [0.0, 0.0, 0.0, 0.5625, 0.2274297407641418, 0.0, 0.0, 1.0, 0.7472701716598941, 0.0, 1.0, 1.0, 1.0071898753903419, 0.5, 1.0, 0.5, 1.2671095791207894, 1.0, 1.0, 0.0, 1.7869500100165419, 1.0, 0.0, 0.0, 2.0468697137469896, 0.5, 0.0, 0.0]
+uxLUT.RGBPoints = [0.0, 0.0, 0.0, 0.5625, 0.2274297407641418, 0.0, 0.0, 1.0, 0.7472701716598941, 0.0, 1.0, 1.0, 1.0071898753903419,
+                   0.5, 1.0, 0.5, 1.2671095791207894, 1.0, 1.0, 0.0, 1.7869500100165419, 1.0, 0.0, 0.0, 2.0468697137469896, 0.5, 0.0, 0.0]
 uxLUT.ColorSpace = 'RGB'
 uxLUT.ScalarRangeInitialized = 1.0
 
@@ -271,13 +273,15 @@ contour2Display.DataAxesGrid = 'GridAxesRepresentation'
 contour2Display.PolarAxes = 'PolarAxesRepresentation'
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-contour2Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+contour2Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
 contour2Display.ScaleTransferFunction.Points = [0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-contour2Display.OpacityTransferFunction.Points = [0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
+contour2Display.OpacityTransferFunction.Points = [
+    0.5, 0.0, 0.5, 0.0, 0.5001220703125, 1.0, 0.5, 0.0]
 
 # show data from transform1
 transform1Display = Show(transform1, renderView1, 'UnstructuredGridRepresentation')
@@ -303,13 +307,16 @@ transform1Display.PolarAxes = 'PolarAxesRepresentation'
 transform1Display.ScalarOpacityUnitDistance = 18.91127960708838
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-transform1Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+transform1Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-transform1Display.ScaleTransferFunction.Points = [-2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
+transform1Display.ScaleTransferFunction.Points = [
+    -2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-transform1Display.OpacityTransferFunction.Points = [-2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
+transform1Display.OpacityTransferFunction.Points = [
+    -2.220446049250313e-16, 0.0, 0.5, 0.0, 2.220446049250313e-16, 1.0, 0.5, 0.0]
 
 # show data from slice4
 slice4Display = Show(slice4, renderView1, 'GeometryRepresentation')
@@ -334,13 +341,16 @@ slice4Display.DataAxesGrid = 'GridAxesRepresentation'
 slice4Display.PolarAxes = 'PolarAxesRepresentation'
 
 # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-slice4Display.OSPRayScaleFunction.Points = [0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
+slice4Display.OSPRayScaleFunction.Points = [
+    0.001414213562373095, 0.0, 0.5, 0.0, 1.4142135623730951, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-slice4Display.ScaleTransferFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
+slice4Display.ScaleTransferFunction.Points = [
+    0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-slice4Display.OpacityTransferFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
+slice4Display.OpacityTransferFunction.Points = [
+    0.0, 0.0, 0.5, 0.0, 1.0000000000000002, 1.0, 0.5, 0.0]
 
 # setup the color legend parameters for each legend in this view
 

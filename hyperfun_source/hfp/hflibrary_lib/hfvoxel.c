@@ -1,12 +1,12 @@
 /*==============================================================================
 
- Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa 
+ Copyright 1998, 1999 Valery Adzhiev, Alexander Pasko, Ken Yoshikawa
  Copyright 2003-2004 Benjamin Schmitt
 
  This Work or file is part of the greater total Work, software or group of
  files named HyperFun Polygonizer.
 
- HyperFun Polygonizer can be redistributed and/or modified under the terms 
+ HyperFun Polygonizer can be redistributed and/or modified under the terms
  of the CGPL, The Common Good Public License as published by and at CGPL.org
  (http://CGPL.org).  It is released under version 1.0 Beta of the License
  until the 1.0 version is released after which either version 1.0 of the
@@ -17,7 +17,7 @@
  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
  CGPL, The Common Good Public License for more information.)
 
- You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+ You should have received a copy of the CGPL along with HyperFun Polygonizer;
  if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -28,18 +28,18 @@ Core HyperFun Library
 
 Primitive: Voxel to Function converion
 
-Definition: 
+Definition:
 
-Call: 
+Call:
 
 Parameters:
  x - point coordinates
- 
 
-Test file: 
+
+Test file:
 
 C-parameters:
-      
+
 
 Code by: Pasko
 Last revised: 10.09.01 (by Schmitt)
@@ -88,17 +88,17 @@ double hfVoxel(double* f_a, String_Array_T* str_param)
    double* x;
 
 double FAILED;
-long ED; 
+long ED;
 //int NX;
-//int NY; 
-//int NZ; 
-double X_MAX; 
-double Y_MAX; 
-double Z_MAX; 
+//int NY;
+//int NZ;
+double X_MAX;
+double Y_MAX;
+double Z_MAX;
 
-double X_STEP; 
-double Y_STEP; 
-double Z_STEP; 
+double X_STEP;
+double Y_STEP;
+double Z_STEP;
 int NOT_FOUND;
 int NOT_EXIST;
 
@@ -121,8 +121,8 @@ NOT_EXIST= (int)(0xFFFF);
 
 ED = 1;
 //NX=150;
-//NY=200; 
-//NZ=192; 
+//NY=200;
+//NZ=192;
 X_MAX=(double)1.0;
 Y_MAX=(double)1.0;
 Z_MAX=(double)1.0;
@@ -142,8 +142,8 @@ if(readflag == 0){
 // num=read(fileno(fin),volumeData,sizeof( unsigned char)*NX*NY*NZ)/sizeof( unsigned char);
   num=fread(volumeData,sizeof( unsigned char),NX*NY*NZ,fin);
  //fread( list, sizeof( char ), 25, stream );
-      
-  
+
+
   printf("%d bytes read \n", num);
  fclose(fin);
  printf("Data file read \n");
@@ -213,6 +213,5 @@ fglob = fglob -LEVEL;
 
 return fglob;
 
- 
-}
 
+}

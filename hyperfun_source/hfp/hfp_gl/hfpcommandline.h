@@ -7,7 +7,7 @@ Copyright 2007-2008 Oleg Fryazinov
 This Work or file is part of the greater total Work, software or group of
 files named HyperFun Polygonizer.
 
-HyperFun Polygonizer can be redistributed and/or modified under the terms 
+HyperFun Polygonizer can be redistributed and/or modified under the terms
 of the CGPL, The Common Good Public License as published by and at CGPL.org
 (http://CGPL.org).  It is released under version 1.0 Beta of the License
 until the 1.0 version is released after which either version 1.0 of the
@@ -18,7 +18,7 @@ WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED (See the
 CGPL, The Common Good Public License for more information.)
 
-You should have received a copy of the CGPL along with HyperFun Polygonizer;  
+You should have received a copy of the CGPL along with HyperFun Polygonizer;
 if not, see -  http://CGPL.org to get a copy of the License.
 
 ==============================================================================*/
@@ -37,7 +37,7 @@ if not, see -  http://CGPL.org to get a copy of the License.
 #include <string>
 #include <iostream>
 
-#if defined(__sgi) || defined(__unix) || defined(unix) 
+#if defined(__sgi) || defined(__unix) || defined(unix)
 #include <ctype.h>
 #else /* neither sgi or unix */
 #include <cctype>
@@ -53,12 +53,12 @@ if not, see -  http://CGPL.org to get a copy of the License.
 #pragma once
 #endif /* _MSC_VER >= 1000 */
 
-struct CommandLineError{ 
-	std::string error; 
+struct CommandLineError{
+	std::string error;
 	std::string help;
-	CommandLineError(std::string e, std::string h){ 
-		error=e; 
-		help=h; 
+	CommandLineError(std::string e, std::string h){
+		error=e;
+		help=h;
 	}
 };
 
@@ -69,7 +69,7 @@ public:
 
 	//init can throw CommandLineError
 	HFPCommandLine(int& argc, char** argv);
-	void Init(int& argc, char** argv); 
+	void Init(int& argc, char** argv);
 
 	// *********** MODEL **********
 	// ARGUMENT FORMAT: string
@@ -197,7 +197,7 @@ public:
 
 	// *********** REDUCE POLYGONS **********
 	// ARGUMENT FORMAT: None.
-	// NOTES:	
+	// NOTES:
 	// ARGUMENT KEY: REDUCE "-r"
 #define DEF_REDUCE false
 	bool itsReduce;
@@ -241,7 +241,7 @@ public:
 
 	// *********** DISPLAY **********
 	// ARGUMENT FORMAT: None.
-	// NOTES:	
+	// NOTES:
 	// ARGUMENT KEY:  "-d"
 #define DEF_WIREFRAME false
 #define DEF_NORMALS true
@@ -293,7 +293,7 @@ public:
 	/****ADDED FOR ATTRIBUTES*/
 	// *********** ATTRIBUTES **********
 	// ARGUMENT FORMAT: None.
-	// NOTES: Set colors to the isosurface using the constructive texturing (ct) method.  	
+	// NOTES: Set colors to the isosurface using the constructive texturing (ct) method.
 	// ARGUMENT KEY:  "-ct"
 
 #define DEF_ATTRIBUTES false
@@ -323,7 +323,7 @@ private:
 	int fillI(std::string s);
 	double fillD(std::string s);
 
-	std::vector<std::string> fillSV(std::string s);		
+	std::vector<std::string> fillSV(std::string s);
 	std::vector<int> fillIV(std::string s);
 	std::vector<double> fillDV(std::string s);
 

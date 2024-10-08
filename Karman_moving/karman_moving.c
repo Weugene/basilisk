@@ -62,9 +62,9 @@ event moving_cylinder (i++) {
 
   /**
   We then use this (solid) volume fraction field to impose the
-  corresponding velocity field inside the solid (as a volume-weighted 
+  corresponding velocity field inside the solid (as a volume-weighted
   average). */
-  
+
   foreach()
     foreach_dimension()
       u.x[] = cylinder[]*vc.x + (1. - cylinder[])*u.x[];
@@ -87,7 +87,7 @@ event logfile (i++){
 }
 
 /**
-... and a movie of vorticity. 
+... and a movie of vorticity.
 
 ![Animation of the vorticity field.](movingcylinder/vort.gif)
 */
@@ -137,7 +137,7 @@ This method was used in Gerris in particular for these papers:
 ~~~bib
 @InProceedings{wu2007,
   author =  {C. J. Wu and L. Wang},
-  title =  {Direct numerical simulation of self-propelled 
+  title =  {Direct numerical simulation of self-propelled
 swimming of 3D bionic fish school},
   booktitle =  {Computational Mechanics, Proceedings of ISCM 2007},
   year =  {2007},
@@ -147,7 +147,7 @@ swimming of 3D bionic fish school},
 
 @Article{Lin-Lin2016,
 author={Lin-Lin, Zhu and Hui, Guan and Chui-Jie, Wu},
-title={Three-dimensional numerical simulation of a bird 
+title={Three-dimensional numerical simulation of a bird
 model in unsteady flight},
 journal={Computational Mechanics},
 year={2016},

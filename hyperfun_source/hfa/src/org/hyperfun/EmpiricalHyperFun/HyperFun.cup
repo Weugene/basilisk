@@ -1613,7 +1613,7 @@ function ::=
 		lil.append(xil);
 		lil.append(ail);
 		lil.append(new ICONST(0));
-		lil.append(new NEWARRAY(Constants.T_DOUBLE)); 
+		lil.append(new NEWARRAY(Constants.T_DOUBLE));
 		lil.append(
 		    new INVOKEVIRTUAL(
 			cp.addMethodref("EmpiricalHyperFun.FrepType",
